@@ -1,63 +1,72 @@
-# Nullgram
+<p align="center">
+  <img src="docs/banner.svg" alt="Nullgram" width="100%">
+</p>
 
-Nullgram is an Android Telegram client based on the official [Telegram for Android](https://github.com/DrKLO/Telegram) 13.2.2 source, redesigned in Material You and extended with privacy and quality-of-life features. It uses the standard Telegram API (MTProto) and the same native code as the original.
+<p align="center">
+  Неофициальный клиент Telegram для Android на основе исходников 13.2.2.<br>
+  Один акцентный цвет, крупные скруглённые элементы, больше приватности.
+</p>
 
-Licensed under GPL v2, like the original. See [LICENSE](LICENSE).
+---
 
-## Features
+## Возможности
 
-- **Material You** interface with one seed colour, adjustable density and corner roundness, AMOLED mode, minimalist icons.
-- **Ghost mode**: does not send read receipts, typing status, story views or online status.
-- **Saving deleted messages** and **edit history**.
-- **Saving disappearing photos and videos** to the gallery.
-- **Built-in WebSocket proxy** (local SOCKS5 to Telegram's web endpoints).
-- **Link cleaner**, message details, snippets, chat export.
-- **Thoughts**: a short text next to your avatar that lives for 24 hours.
-- **Profile banner** and **main screen wallpaper**.
-- Up to 16 accounts, no ads, faster downloads, New Year and Halloween themes.
-- Privacy options: hide stories bar, hide own phone number, confirm calls, block screenshots, disable swipe-to-reply.
+**Внешний вид**
+- Material You: один цвет темы, плотность, скругление, AMOLED
+- Минималистичные иконки и логотип
+- Обои главного экрана и баннер профиля
+- Новогодняя и хеллоуинская темы
 
-## Building
+**Приватность**
+- Режим призрака: без отметок о прочтении, набора текста, просмотра историй и статуса «в сети»
+- Сохранение удалённых сообщений и истории правок
+- Сохранение исчезающих фото и видео
+- Скрыть свой номер, скрыть истории, запрет скриншотов, подтверждение звонков
 
-Requirements: JDK 21, Android SDK (compileSdk 36), NDK 27.2.12479018.
+**Удобство**
+- Мысли: короткий текст у аватарки на 24 часа
+- WebSocket-прокси, очистка ссылок, сниппеты, экспорт чата
+- До 16 аккаунтов, без рекламы, быстрые загрузки
 
-1. Get your own Telegram API credentials at <https://my.telegram.org> and add them to `local.properties`:
+Все настройки лежат в **Настройки → Nullgram**.
+
+## Сборка
+
+Нужны JDK 21, Android SDK 36 и NDK 27.2.12479018.
+
+1. Получите свои ключи на [my.telegram.org](https://my.telegram.org) и добавьте в `local.properties`:
 
    ```properties
    NULLGRAM_API_ID=123456
-   NULLGRAM_API_HASH=your_api_hash
+   NULLGRAM_API_HASH=ваш_hash
    ```
 
-   Without them the client builds with the public test credentials from the upstream source, which Telegram rate-limits.
-
-2. Optionally set the address of a profile-sync server (see below):
-
-   ```properties
-   NULLGRAM_SYNC_URL=http://your-server:8787
-   ```
-
-   Leave it unset to keep the banner and thoughts on the device only.
-
-3. Build an arm64 APK:
+2. Соберите arm64-версию:
 
    ```bash
    ./gradlew :TMessagesProj_App:assembleAfatDebug -Pandroid.injected.build.abi=arm64-v8a -Pandroid.injected.testOnly=false
    ```
 
-   The APK is written to `TMessagesProj_App/build/intermediates/apk/afat/debug/app.apk`.
+   Готовый файл: `TMessagesProj_App/build/intermediates/apk/afat/debug/app.apk`
 
-   The default `.beta` package id lets it install next to the official app. Sign it with your own key if you distribute builds.
+Пакет `.beta`, поэтому приложение ставится рядом с официальным Telegram. Для распространения подпишите его своим ключом.
 
-## Profile sync server
+## Сервер профилей
 
-`server/nullgram_server.py` is a small standard-library Python service that stores each user's banner and thought so other Nullgram users can see them.
+Чтобы другие пользователи Nullgram видели ваши баннер и мысли, нужен небольшой сервер из `server/`:
 
 ```bash
-python3 server/nullgram_server.py   # listens on 0.0.0.0:8787
+python3 server/nullgram_server.py
 ```
 
-The first client to write for a Telegram user id receives a secret token and is the only one allowed to change that entry afterwards. Traffic is plain HTTP; put it behind HTTPS if you care about token privacy.
+Затем укажите его адрес в `local.properties`:
 
-## Credits
+```properties
+NULLGRAM_SYNC_URL=http://ваш-сервер:8787
+```
 
-Telegram for Android by Telegram FZ-LLC and contributors. Nullgram is an unofficial client and is not affiliated with Telegram.
+Без адреса баннер и мысли остаются только на вашем устройстве.
+
+## Лицензия
+
+GPL v2, как у оригинала. Telegram для Android принадлежит Telegram FZ-LLC и участникам проекта. Nullgram — неофициальный клиент и не связан с Telegram.
