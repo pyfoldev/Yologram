@@ -2,71 +2,31 @@
   <img src="docs/banner.svg" alt="Nullgram" width="100%">
 </p>
 
-<p align="center">
-  Неофициальный клиент Telegram для Android на основе исходников 13.2.2.<br>
-  Один акцентный цвет, крупные скруглённые элементы, больше приватности.
-</p>
-
----
-
 ## Возможности
 
-**Внешний вид**
-- Material You: один цвет темы, плотность, скругление, AMOLED
-- Минималистичные иконки и логотип
-- Обои главного экрана и баннер профиля
-- Новогодняя и хеллоуинская темы
-
-**Приватность**
-- Режим призрака: без отметок о прочтении, набора текста, просмотра историй и статуса «в сети»
-- Сохранение удалённых сообщений и истории правок
-- Сохранение исчезающих фото и видео
-- Скрыть свой номер, скрыть истории, запрет скриншотов, подтверждение звонков
-
-**Удобство**
-- Мысли: короткий текст у аватарки на 24 часа
-- WebSocket-прокси, очистка ссылок, сниппеты, экспорт чата
+- Material You: цвет темы, плотность, скругление, AMOLED
+- Режим призрака: без отметок о прочтении, набора текста и статуса «в сети»
+- Сохранение удалённых сообщений, истории правок и исчезающих фото
+- Мысли, баннер профиля, обои главного экрана
+- WebSocket-прокси, очистка ссылок, экспорт чата
 - До 16 аккаунтов, без рекламы, быстрые загрузки
 
-Все настройки лежат в **Настройки → Nullgram**.
+Настройки: **Настройки → Nullgram**.
 
 ## Сборка
 
-Нужны JDK 21, Android SDK 36 и NDK 27.2.12479018.
-
-1. Получите свои ключи на [my.telegram.org](https://my.telegram.org) и добавьте в `local.properties`:
-
-   ```properties
-   NULLGRAM_API_ID=123456
-   NULLGRAM_API_HASH=ваш_hash
-   ```
-
-2. Соберите arm64-версию:
-
-   ```bash
-   ./gradlew :TMessagesProj_App:assembleAfatDebug -Pandroid.injected.build.abi=arm64-v8a -Pandroid.injected.testOnly=false
-   ```
-
-   Готовый файл: `TMessagesProj_App/build/intermediates/apk/afat/debug/app.apk`
-
-Пакет `.beta`, поэтому приложение ставится рядом с официальным Telegram. Для распространения подпишите его своим ключом.
-
-## Сервер профилей
-
-Чтобы другие пользователи Nullgram видели ваши баннер и мысли, нужен небольшой сервер из `server/`:
-
-```bash
-python3 server/nullgram_server.py
-```
-
-Затем укажите его адрес в `local.properties`:
+JDK 21, Android SDK 36, NDK 27.2.12479018. Ключи с [my.telegram.org](https://my.telegram.org) в `local.properties`:
 
 ```properties
-NULLGRAM_SYNC_URL=http://ваш-сервер:8787
+NULLGRAM_API_ID=123456
+NULLGRAM_API_HASH=ваш_hash
+NULLGRAM_SYNC_URL=http://ваш-сервер:8787  # необязательно, сервер: server/
 ```
 
-Без адреса баннер и мысли остаются только на вашем устройстве.
+```bash
+./gradlew :TMessagesProj_App:assembleAfatDebug -Pandroid.injected.build.abi=arm64-v8a -Pandroid.injected.testOnly=false
+```
 
 ## Лицензия
 
-GPL v2, как у оригинала. Telegram для Android принадлежит Telegram FZ-LLC и участникам проекта. Nullgram — неофициальный клиент и не связан с Telegram.
+GPL v2. Основан на [Telegram для Android](https://github.com/DrKLO/Telegram), неофициальный клиент.
