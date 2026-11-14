@@ -13,20 +13,6 @@
 
 Настройки: **Настройки → Nullgram**.
 
-## Сборка
-
-JDK 21, Android SDK 36, NDK 27.2.12479018. Ключи с [my.telegram.org](https://my.telegram.org) в `local.properties`:
-
-```properties
-NULLGRAM_API_ID=123456
-NULLGRAM_API_HASH=ваш_hash
-NULLGRAM_SYNC_URL=http://ваш-сервер:8787  # необязательно, сервер: server/
-```
-
-```bash
-./gradlew :TMessagesProj_App:assembleAfatDebug -Pandroid.injected.build.abi=arm64-v8a -Pandroid.injected.testOnly=false
-```
-
 ## Лицензия
 
 GPL v2. Основан на [Telegram для Android](https://github.com/DrKLO/Telegram), неофициальный клиент.
