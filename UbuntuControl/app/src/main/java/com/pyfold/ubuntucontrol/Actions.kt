@@ -28,12 +28,14 @@ sealed interface Target {
     data object Terminal : Target
     data class Menu(val title: String, val items: List<Cmd>) : Target
     data class Run(val cmd: Cmd) : Target
+    /** Отдельный экран: "services" | "docker". */
+    data class Page(val id: String) : Target
 }
 
 data class RingItem(val icon: ImageVector, val label: String, val target: Target, val danger: Boolean = false)
 
 object Actions {
-    private val network = Target.Menu("Сеть", listOf(
+    val network = Target.Menu("Сеть", listOf(
         Cmd("Адреса интерфейсов", "ip -br a"),
         Cmd("Wi‑Fi: уровень сигнала", "for i in \$(iw dev | awk '\$1==\"Interface\"{print \$2}'); do echo \"== \$i\"; iw dev \$i link; done; echo; cat /proc/net/wireless"),
         Cmd("Маршруты и шлюз", "ip route"),
@@ -47,7 +49,7 @@ object Actions {
         Cmd("Файрвол (ufw)", "sudo -n ufw status verbose"),
     ))
 
-    private val services = Target.Menu("Службы", listOf(
+    val services = Target.Menu("Службы", listOf(
         Cmd("Запущенные службы", "systemctl list-units --type=service --state=running --no-pager --no-legend | awk '{print \$1, \$4}'"),
         Cmd("Упавшие службы", "systemctl --failed --no-pager"),
         Cmd("Статус службы…", "systemctl status %s --no-pager -l", arg = "Имя службы", hint = "ssh"),
@@ -59,7 +61,7 @@ object Actions {
         Cmd("Таймеры cron/systemd", "systemctl list-timers --no-pager; echo; crontab -l 2>/dev/null"),
     ))
 
-    private val docker = Target.Menu("Docker", listOf(
+    val docker = Target.Menu("Docker", listOf(
         Cmd("Контейнеры", "docker ps -a --format 'table {{.Names}}\\t{{.Status}}\\t{{.Image}}'"),
         Cmd("Нагрузка контейнеров", "docker stats --no-stream --format 'table {{.Name}}\\t{{.CPUPerc}}\\t{{.MemUsage}}'"),
         Cmd("Логи контейнера…", "docker logs --tail 80 %s 2>&1", arg = "Имя контейнера", hint = "chat-helper-bot-1"),
@@ -69,7 +71,7 @@ object Actions {
         Cmd("Очистка неиспользуемого", "docker system prune -f", confirm = "Удалить остановленные контейнеры и неиспользуемые образы?"),
     ))
 
-    private val disk = Target.Menu("Диск и память", listOf(
+    val disk = Target.Menu("Диск и память", listOf(
         Cmd("Свободное место", "df -h -x tmpfs -x devtmpfs -x squashfs"),
         Cmd("Что занимает место (/)", "du -xh / --max-depth=1 2>/dev/null | sort -h | tail -15"),
         Cmd("Диски и разделы", "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT,FSTYPE"),
@@ -78,7 +80,7 @@ object Actions {
         Cmd("Крупные файлы в домашней папке", "du -ah ~ 2>/dev/null | sort -h | tail -15"),
     ))
 
-    private val procs = Target.Menu("Процессы", listOf(
+    val procs = Target.Menu("Процессы", listOf(
         Cmd("Топ по CPU", "ps aux --sort=-%cpu | head -15 | cut -c1-140"),
         Cmd("Топ по памяти", "ps aux --sort=-%mem | head -15 | cut -c1-140"),
         Cmd("Нагрузка (top)", "top -bn1 | head -20"),
@@ -88,7 +90,7 @@ object Actions {
         Cmd("Кто в системе", "who; echo; w; echo; journalctl -u ssh --no-pager -n 15 | grep -i accepted"),
     ))
 
-    private val logs = Target.Menu("Журналы", listOf(
+    val logs = Target.Menu("Журналы", listOf(
         Cmd("Системный журнал (100)", "journalctl -n 100 --no-pager"),
         Cmd("Только ошибки", "journalctl -p err -n 60 --no-pager"),
         Cmd("Журнал службы…", "journalctl -u %s -n 100 --no-pager", arg = "Имя службы", hint = "nullgram"),
@@ -97,7 +99,7 @@ object Actions {
         Cmd("Последние загрузки", "journalctl --list-boots --no-pager | tail"),
     ))
 
-    private val updates = Target.Menu("Обновления", listOf(
+    val updates = Target.Menu("Обновления", listOf(
         Cmd("Проверить обновления", "sudo -n apt-get update -qq && apt list --upgradable 2>/dev/null"),
         Cmd("Установить обновления", "sudo -n apt-get -y upgrade 2>&1 | tail -30", confirm = "Установить все доступные обновления?"),
         Cmd("Нужна ли перезагрузка", "[ -f /var/run/reboot-required ] && echo 'Да, нужна перезагрузка' || echo 'Нет, не нужна'"),
@@ -105,7 +107,7 @@ object Actions {
         Cmd("Версия системы", "lsb_release -ds; uname -r"),
     ))
 
-    private val tailscale = Target.Menu("Tailscale", listOf(
+    val tailscale = Target.Menu("Tailscale", listOf(
         Cmd("Статус", "sudo -n tailscale status"),
         Cmd("Мой IP", "tailscale ip"),
         Cmd("Funnel (публичные адреса)", "sudo -n tailscale funnel status"),
@@ -114,7 +116,7 @@ object Actions {
         Cmd("Перезапустить Tailscale", "sudo -n systemctl restart tailscaled && echo OK", confirm = "Перезапустить Tailscale? Приложение переподключится само."),
     ))
 
-    private val bots = Target.Menu("Боты и сервисы", listOf(
+    val bots = Target.Menu("Боты и сервисы", listOf(
         Cmd("Состояние", "echo '== nullgram =='; systemctl is-active nullgram; cd /opt/chat-helper 2>/dev/null && docker compose ps --format 'table {{.Name}}\\t{{.Status}}'"),
         Cmd("Перезапустить chat-helper (бот)", "cd /opt/chat-helper && docker compose restart bot", confirm = "Перезапустить бота?"),
         Cmd("Перезапустить nullgram", "sudo -n systemctl restart nullgram && echo OK", confirm = "Перезапустить сервер nullgram?"),
@@ -126,10 +128,10 @@ object Actions {
     val ring: List<RingItem> = listOf(
         RingItem(Icons.Rounded.Terminal, "Терминал", Target.Terminal),
         RingItem(Icons.Rounded.Lan, "Сеть", network),
-        RingItem(Icons.Rounded.Tune, "Службы", services),
-        RingItem(Icons.Rounded.ViewInAr, "Docker", docker),
+        RingItem(Icons.Rounded.Tune, "Службы", Target.Page("services")),
+        RingItem(Icons.Rounded.ViewInAr, "Docker", Target.Page("docker")),
         RingItem(Icons.Rounded.Storage, "Диск", disk),
-        RingItem(Icons.Rounded.Memory, "Процессы", procs),
+        RingItem(Icons.Rounded.Memory, "Процессы", Target.Page("monitor")),
         RingItem(Icons.Rounded.Article, "Журналы", logs),
         RingItem(Icons.Rounded.SystemUpdateAlt, "Обновления", updates),
         RingItem(Icons.Rounded.VpnLock, "Tailscale", tailscale),

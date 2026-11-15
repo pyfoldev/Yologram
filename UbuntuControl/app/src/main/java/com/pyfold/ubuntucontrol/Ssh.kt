@@ -7,6 +7,7 @@ import android.security.keystore.KeyProperties
 import android.util.Base64
 import com.jcraft.jsch.ChannelExec
 import com.jcraft.jsch.ChannelShell
+import com.jcraft.jsch.ChannelSftp
 import com.jcraft.jsch.JSch
 import com.jcraft.jsch.KeyPair
 import com.jcraft.jsch.Session
@@ -20,7 +21,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
+import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
+import java.io.InputStream
+import java.io.OutputStream
 import java.io.InputStreamReader
 import java.security.KeyStore
 import javax.crypto.Cipher
@@ -80,6 +84,8 @@ sealed interface Conn {
 }
 
 data class ExecResult(val code: Int, val out: String)
+
+data class RemoteFile(val name: String, val dir: Boolean, val size: Long, val mtime: Long, val perms: String)
 
 /** Одно SSH-подключение с автоматическим переподключением по сохранённому ключу. */
 object SshManager {
@@ -146,6 +152,7 @@ object SshManager {
     }
 
     fun disconnect() {
+        resetTerm()
         try { session?.disconnect() } catch (_: Exception) {}
         session = null
         _state.value = Conn.Idle
@@ -237,6 +244,72 @@ object SshManager {
         val text = buf.toString("UTF-8") + if (timedOut) "\n[время ожидания вышло]" else ""
         return ExecResult(code, text.trimEnd())
     }
+
+    // ───── постоянный терминал (живёт при переключении вкладок) ─────
+    @Volatile var term: TermSession? = null
+    @Volatile var pendingTermInput: String? = null
+
+    fun ensureTerm(): TermSession? {
+        val t = term
+        if (t != null && !t.closed.value) return t
+        t?.close()
+        term = openShell()
+        return term
+    }
+
+    fun resetTerm() { term?.close(); term = null }
+
+    /** Время отклика сервера, мс (или -1). */
+    suspend fun latencyMs(): Long {
+        val t0 = System.nanoTime()
+        val r = exec("true", 8000)
+        return if (r.code == 0) (System.nanoTime() - t0) / 1_000_000 else -1
+    }
+
+    // ───── SFTP ─────
+    private suspend fun <T> sftp(block: (ChannelSftp) -> T): Result<T> = withContext(Dispatchers.IO) {
+        runCatching {
+            val s = session?.takeIf { it.isConnected } ?: error("Нет подключения к серверу")
+            val ch = s.openChannel("sftp") as ChannelSftp
+            ch.connect(10000)
+            try { block(ch) } finally { ch.disconnect() }
+        }
+    }
+
+    suspend fun home(): Result<String> = sftp { it.realpath(".") }
+
+    suspend fun listDir(path: String): Result<Pair<String, List<RemoteFile>>> = sftp { c ->
+        val real = c.realpath(path)
+        val list = c.ls(real).filterIsInstance<ChannelSftp.LsEntry>()
+            .filter { it.filename != "." && it.filename != ".." }
+            .map { e ->
+                var dir = e.attrs.isDir
+                if (e.attrs.isLink) dir = try { c.stat(real.trimEnd('/') + "/" + e.filename).isDir } catch (_: Exception) { false }
+                RemoteFile(e.filename, dir, e.attrs.size, e.attrs.mTime * 1000L, e.attrs.permissionsString ?: "")
+            }
+            .sortedWith(compareBy<RemoteFile>({ !it.dir }, { it.name.lowercase() }))
+        real to list
+    }
+
+    suspend fun readText(path: String, max: Int = 512 * 1024): Result<String> = sftp { c ->
+        val size = c.stat(path).size
+        if (size > max) error("Файл слишком большой для редактора (${size / 1024} КБ). Скачайте его.")
+        val b = ByteArrayOutputStream()
+        c.get(path, b)
+        b.toString("UTF-8")
+    }
+
+    suspend fun writeText(path: String, text: String): Result<Unit> = sftp { c -> c.put(ByteArrayInputStream(text.toByteArray()), path) }
+    suspend fun download(path: String, out: OutputStream): Result<Unit> = sftp { c -> c.get(path, out) }
+    suspend fun upload(input: InputStream, path: String): Result<Unit> = sftp { c -> c.put(input, path) }
+    suspend fun rename(from: String, to: String): Result<Unit> = sftp { it.rename(from, to) }
+    suspend fun mkdir(path: String): Result<Unit> = sftp { it.mkdir(path) }
+
+    suspend fun remove(path: String, dir: Boolean): Result<Unit> =
+        if (dir) {
+            val r = exec("rm -rf -- " + shq(path))
+            if (r.code == 0) Result.success(Unit) else Result.failure(Exception(r.out.ifBlank { "Не удалось удалить" }))
+        } else sftp { it.rm(path) }
 
     fun openShell(): TermSession? {
         val s = session?.takeIf { it.isConnected } ?: return null

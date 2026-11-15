@@ -110,7 +110,7 @@ private fun HeroLogo(size: Dp, online: Boolean, modifier: Modifier = Modifier) {
 // ───────────── Общие элементы ─────────────
 
 @Composable
-private fun StatusChip(state: Conn) {
+fun StatusChip(state: Conn) {
     val (color, text) = when (state) {
         Conn.Online -> Good to "В сети"
         Conn.Connecting -> Warn to "Подключение…"
@@ -127,7 +127,7 @@ private fun StatusChip(state: Conn) {
 }
 
 @Composable
-private fun IconBubble(icon: ImageVector, tint: Color = UbuntuOrange, size: Dp = 40.dp) {
+fun IconBubble(icon: ImageVector, tint: Color = UbuntuOrange, size: Dp = 40.dp) {
     Box(Modifier.size(size).clip(CircleShape).background(tint.copy(alpha = 0.14f)), contentAlignment = Alignment.Center) {
         Icon(icon, null, tint = tint, modifier = Modifier.size(size * 0.55f))
     }
@@ -135,8 +135,8 @@ private fun IconBubble(icon: ImageVector, tint: Color = UbuntuOrange, size: Dp =
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun AppScaffold(
-    title: String, subtitle: String? = null, onBack: () -> Unit,
+fun AppScaffold(
+    title: String, subtitle: String? = null, onBack: () -> Unit, showBack: Boolean = true,
     actions: @Composable RowScope.() -> Unit = {},
     snackbar: SnackbarHostState? = null,
     content: @Composable (PaddingValues) -> Unit,
@@ -152,7 +152,7 @@ private fun AppScaffold(
                         subtitle?.let { Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant) }
                     }
                 },
-                navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Rounded.ArrowBack, "Назад") } },
+                navigationIcon = { if (showBack) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Rounded.ArrowBack, "Назад") } },
                 actions = actions,
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
             )
@@ -170,9 +170,11 @@ fun DashboardScreen(onOpen: (Target) -> Unit, onSettings: () -> Unit) {
     val conn by SshManager.state.collectAsStateWithLifecycle()
     var stats by remember { mutableStateOf<Stats?>(null) }
     var pending by remember { mutableStateOf<RingItem?>(null) }
+    var latency by remember { mutableStateOf<Long?>(null) }
 
     LaunchedEffect(conn) {
         while (conn == Conn.Online) {
+            latency = SshManager.latencyMs().takeIf { it >= 0 }
             val r = SshManager.exec(
                 "echo \"\$(hostname)|\$(uptime -p | sed 's/up //')|\$(cut -d' ' -f1 /proc/loadavg)|\$(nproc)|" +
                     "\$(free | awk '/Mem/{printf \"%d\", \$3*100/\$2}')|\$(df / | awk 'NR==2{gsub(\"%\",\"\",\$5); print \$5}')|" +
@@ -188,11 +190,11 @@ fun DashboardScreen(onOpen: (Target) -> Unit, onSettings: () -> Unit) {
         }
     }
 
-    Column(Modifier.fillMaxSize().systemBarsPadding().padding(horizontal = 16.dp)) {
+    Column(Modifier.fillMaxSize().windowInsetsPadding(WindowInsets.safeDrawing).padding(horizontal = 16.dp)) {
         Row(Modifier.fillMaxWidth().padding(top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
             Column(Modifier.weight(1f)) {
                 Text(stats?.host ?: SshManager.host, style = MaterialTheme.typography.titleLarge)
-                Text("${SshManager.user}@${SshManager.host}", style = MaterialTheme.typography.bodySmall, color = TextDim)
+                Text("${SshManager.user}@${SshManager.host}" + (latency?.let { " · $it мс" } ?: ""), style = MaterialTheme.typography.bodySmall, color = TextDim)
             }
             StatusChip(conn)
             IconButton(onClick = onSettings) { Icon(Icons.Rounded.Settings, "Настройки", tint = TextDim) }
@@ -455,7 +457,8 @@ fun OutputScreen(title: String, command: String, onBack: () -> Unit) {
 // ───────────── Терминал ─────────────
 
 @Composable
-fun TerminalScreen(onBack: () -> Unit) {
+fun TerminalScreen(onBack: () -> Unit = {}, showBack: Boolean = true) {
+    val scope = rememberCoroutineScope()
     var term by remember { mutableStateOf<TermSession?>(null) }
     var input by remember { mutableStateOf("") }
     var fail by remember { mutableStateOf<String?>(null) }
@@ -464,19 +467,28 @@ fun TerminalScreen(onBack: () -> Unit) {
 
     LaunchedEffect(conn) {
         if (conn == Conn.Online && (term == null || term?.closed?.value == true)) {
-            term?.close()
-            term = try { kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { SshManager.openShell() } } catch (e: Exception) { fail = "Не удалось открыть сессию: ${e.message}"; null }
+            fail = null
+            term = try { kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { SshManager.ensureTerm() } }
+            catch (e: Exception) { fail = "Не удалось открыть сессию: ${e.message}"; null }
         }
+        if (conn != Conn.Online) term = null
     }
-    DisposableEffect(Unit) { onDispose { term?.close() } }
+    // команда, присланная из других экранов («Мои команды», «Файлы»), вставляется в поле ввода
+    LaunchedEffect(term) {
+        SshManager.pendingTermInput?.let { input = it; SshManager.pendingTermInput = null }
+    }
 
     val text by (term?.text ?: remember { MutableStateFlow("") }).collectAsStateWithLifecycle()
     val closed by (term?.closed ?: remember { MutableStateFlow(false) }).collectAsStateWithLifecycle()
     LaunchedEffect(text) { scroll.scrollTo(scroll.maxValue) }
+    val fontSize = (SecureStore.get("fs", "13").toIntOrNull() ?: 13).sp
 
     fun sendLine() { term?.send(input + "\n"); input = "" }
 
-    AppScaffold("Терминал", "${SshManager.user}@${SshManager.host}", onBack = onBack, actions = {
+    AppScaffold("Терминал", "${SshManager.user}@${SshManager.host}", onBack = onBack, showBack = showBack, actions = {
+        IconButton(onClick = { SshManager.resetTerm(); term = null; fail = null
+            scope.launch { term = try { kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { SshManager.ensureTerm() } } catch (e: Exception) { fail = "Не удалось открыть сессию: ${e.message}"; null } }
+        }) { Icon(Icons.Rounded.Refresh, "Новая сессия") }
         IconButton(onClick = { term?.clear() }) { Icon(Icons.Rounded.DeleteSweep, "Очистить") }
     }) { pad ->
         Column(Modifier.fillMaxSize().padding(pad).imePadding()) {
@@ -490,7 +502,7 @@ fun TerminalScreen(onBack: () -> Unit) {
                                 term == null -> fail ?: "Открываю сессию…"
                                 else -> text + if (closed) "\n[сессия завершена — выйдите и откройте заново]" else ""
                             },
-                            fontFamily = FontFamily.Monospace, fontSize = 12.sp, lineHeight = 16.sp, color = Color(0xFFE8E8EC),
+                            fontFamily = FontFamily.Monospace, fontSize = fontSize, lineHeight = fontSize * 1.3f, color = Color(0xFFE8E8EC),
                         )
                     }
                 }
