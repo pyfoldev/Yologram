@@ -252,12 +252,13 @@ class TermSession(session: Session) {
     }
     val text = MutableStateFlow("")
     val closed = MutableStateFlow(false)
-    private val out = ch.outputStream
-    private val ansi = Regex("\u001B\\[[0-9;?]*[ -/]*[@-~]|\u001B\\][^\u0007]*\u0007|\u001B[()][A-Z0-9]|\u001B[=>]")
+    private lateinit var out: java.io.OutputStream
+    private val ansi = Regex("\u001B\\][^\u0007\u001B]*(?:\u0007|\u001B\\\\)|\u001B\\[[0-9;?<>=]*[ -/]*[@-~]|\u001B[()][A-Z0-9]|\u001B[=>78cDEHMNOZ]|\u001B_[^\u001B]*\u001B\\\\")
 
     init {
         val input = ch.inputStream
         ch.connect(10000)
+        out = ch.outputStream
         Thread {
             val r = InputStreamReader(input, Charsets.UTF_8)
             val buf = CharArray(4096)
@@ -273,7 +274,14 @@ class TermSession(session: Session) {
         }.apply { isDaemon = true }.start()
     }
 
-    private fun append(raw: String) {
+    private var carry = ""
+
+    private fun append(chunk: String) {
+        var raw = carry + chunk
+        carry = ""
+        val esc = raw.lastIndexOf('\u001B')
+        // обрезанная посреди чтения управляющая последовательность — дожидаемся продолжения
+        if (esc >= 0 && raw.length - esc < 600 && !ansi.matchesAt(raw, esc)) { carry = raw.substring(esc); raw = raw.substring(0, esc) }
         val clean = ansi.replace(raw, "")
         val sb = StringBuilder(text.value)
         for (c in clean) when (c) {

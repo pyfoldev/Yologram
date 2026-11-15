@@ -35,7 +35,7 @@ data class RingItem(val icon: ImageVector, val label: String, val target: Target
 object Actions {
     private val network = Target.Menu("Сеть", listOf(
         Cmd("Адреса интерфейсов", "ip -br a"),
-        Cmd("Wi‑Fi: уровень сигнала", "iw dev 2>/dev/null | awk '/Interface/{print \$2}' | xargs -r -I{} sh -c 'iw dev {} link; echo; iw dev {} station dump | head -20'"),
+        Cmd("Wi‑Fi: уровень сигнала", "for i in \$(iw dev | awk '\$1==\"Interface\"{print \$2}'); do echo \"== \$i\"; iw dev \$i link; done; echo; cat /proc/net/wireless"),
         Cmd("Маршруты и шлюз", "ip route"),
         Cmd("Открытые порты", "ss -tulpn 2>/dev/null"),
         Cmd("Пинг (интернет)", "ping -c 4 -W 2 1.1.1.1 && ping -c 2 -W 2 google.com"),
@@ -71,10 +71,10 @@ object Actions {
 
     private val disk = Target.Menu("Диск и память", listOf(
         Cmd("Свободное место", "df -h -x tmpfs -x devtmpfs -x squashfs"),
-        Cmd("Что занимает место (/)", "sudo -n du -xh / --max-depth=1 2>/dev/null | sort -h | tail -15"),
+        Cmd("Что занимает место (/)", "du -xh / --max-depth=1 2>/dev/null | sort -h | tail -15"),
         Cmd("Диски и разделы", "lsblk -o NAME,SIZE,TYPE,MOUNTPOINT,FSTYPE"),
         Cmd("Память", "free -h"),
-        Cmd("SMART / состояние диска", "sudo -n smartctl -H /dev/sda 2>&1 | tail -8"),
+        Cmd("Модель и тип диска", "lsblk -d -o NAME,MODEL,SIZE,ROTA,TRAN"),
         Cmd("Крупные файлы в домашней папке", "du -ah ~ 2>/dev/null | sort -h | tail -15"),
     ))
 
@@ -85,7 +85,7 @@ object Actions {
         Cmd("Аптайм и нагрузка", "uptime; echo; cat /proc/loadavg"),
         Cmd("Температура", "for f in /sys/class/thermal/thermal_zone*/temp; do echo \"\$(basename \$(dirname \$f)): \$((\$(cat \$f)/1000)) °C\"; done"),
         Cmd("Завершить процесс (PID)…", "kill %s && echo Отправлен сигнал: %s", arg = "PID", confirm = "Завершить процесс?"),
-        Cmd("Кто в системе", "who; echo; last -n 10"),
+        Cmd("Кто в системе", "who; echo; w; echo; journalctl -u ssh --no-pager -n 15 | grep -i accepted"),
     ))
 
     private val logs = Target.Menu("Журналы", listOf(

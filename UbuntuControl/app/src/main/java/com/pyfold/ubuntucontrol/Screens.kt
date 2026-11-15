@@ -465,7 +465,7 @@ fun TerminalScreen(onBack: () -> Unit) {
     LaunchedEffect(conn) {
         if (conn == Conn.Online && (term == null || term?.closed?.value == true)) {
             term?.close()
-            term = try { SshManager.openShell() } catch (e: Exception) { fail = e.message; null }
+            term = try { kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) { SshManager.openShell() } } catch (e: Exception) { fail = "Не удалось открыть сессию: ${e.message}"; null }
         }
     }
     DisposableEffect(Unit) { onDispose { term?.close() } }
