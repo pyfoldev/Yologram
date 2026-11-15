@@ -1,5 +1,20 @@
 package com.pyfold.ubuntucontrol
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Article
+import androidx.compose.material.icons.rounded.Lan
+import androidx.compose.material.icons.rounded.Memory
+import androidx.compose.material.icons.rounded.PowerSettingsNew
+import androidx.compose.material.icons.rounded.RestartAlt
+import androidx.compose.material.icons.rounded.SmartToy
+import androidx.compose.material.icons.rounded.Storage
+import androidx.compose.material.icons.rounded.SystemUpdateAlt
+import androidx.compose.material.icons.rounded.Terminal
+import androidx.compose.material.icons.rounded.Tune
+import androidx.compose.material.icons.rounded.ViewInAr
+import androidx.compose.material.icons.rounded.VpnLock
+import androidx.compose.ui.graphics.vector.ImageVector
+
 /** Одна команда: [arg] — подсказка для ввода параметра (подставляется вместо %s в кавычках). */
 data class Cmd(
     val title: String,
@@ -15,7 +30,7 @@ sealed interface Target {
     data class Run(val cmd: Cmd) : Target
 }
 
-data class RingItem(val emoji: String, val label: String, val target: Target)
+data class RingItem(val icon: ImageVector, val label: String, val target: Target, val danger: Boolean = false)
 
 object Actions {
     private val network = Target.Menu("Сеть", listOf(
@@ -109,19 +124,19 @@ object Actions {
     ))
 
     val ring: List<RingItem> = listOf(
-        RingItem("⌨️", "Терминал", Target.Terminal),
-        RingItem("🌐", "Сеть", network),
-        RingItem("⚙️", "Службы", services),
-        RingItem("🐳", "Docker", docker),
-        RingItem("💾", "Диск", disk),
-        RingItem("📊", "Процессы", procs),
-        RingItem("📜", "Журналы", logs),
-        RingItem("⬆️", "Обновления", updates),
-        RingItem("🔗", "Tailscale", tailscale),
-        RingItem("🤖", "Боты", bots),
-        RingItem("🔄", "Перезагр.", Target.Run(Cmd("Перезагрузка", "sudo -n systemctl reboot",
-            confirm = "Перезагрузить сервер? Все сервисы будут недоступны пару минут."))),
-        RingItem("⏻", "Выключить", Target.Run(Cmd("Выключение", "sudo -n systemctl poweroff",
-            confirm = "ВЫКЛЮЧИТЬ сервер? Включить его удалённо будет нельзя — только кнопкой на самом устройстве."))),
+        RingItem(Icons.Rounded.Terminal, "Терминал", Target.Terminal),
+        RingItem(Icons.Rounded.Lan, "Сеть", network),
+        RingItem(Icons.Rounded.Tune, "Службы", services),
+        RingItem(Icons.Rounded.ViewInAr, "Docker", docker),
+        RingItem(Icons.Rounded.Storage, "Диск", disk),
+        RingItem(Icons.Rounded.Memory, "Процессы", procs),
+        RingItem(Icons.Rounded.Article, "Журналы", logs),
+        RingItem(Icons.Rounded.SystemUpdateAlt, "Обновления", updates),
+        RingItem(Icons.Rounded.VpnLock, "Tailscale", tailscale),
+        RingItem(Icons.Rounded.SmartToy, "Боты", bots),
+        RingItem(Icons.Rounded.RestartAlt, "Перезагр.", Target.Run(Cmd("Перезагрузка", "sudo -n systemctl reboot",
+            confirm = "Перезагрузить сервер? Все сервисы будут недоступны пару минут.")), danger = true),
+        RingItem(Icons.Rounded.PowerSettingsNew, "Выключить", Target.Run(Cmd("Выключение", "sudo -n systemctl poweroff",
+            confirm = "ВЫКЛЮЧИТЬ сервер? Включить его удалённо будет нельзя — только кнопкой на самом устройстве.")), danger = true),
     )
 }
