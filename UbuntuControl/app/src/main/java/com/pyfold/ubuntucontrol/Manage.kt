@@ -346,6 +346,7 @@ fun MoreScreen(onMenu: (Target.Menu) -> Unit, onRun: (String, String) -> Unit, o
     val items = listOf(
         MoreItem(Icons.Rounded.Tune, "Службы", "systemd: запуск, остановка, логи") { onPage("services") },
         MoreItem(Icons.Rounded.ViewInAr, "Docker", "Контейнеры и их логи") { onPage("docker") },
+        MoreItem(Icons.Rounded.Shield, "Локдаун сети", "Закрыть всё, кроме Tailscale") { onPage("lockdown") },
         MoreItem(Icons.Rounded.Bookmarks, "Мои команды", "Свои сценарии") { onPage("snippets") },
         MoreItem(Icons.Rounded.Lan, "Сеть", "Адреса, порты, DNS, пинг") { onMenu(Actions.network) },
         MoreItem(Icons.Rounded.Storage, "Диск и память", "Место, разделы, RAM") { onMenu(Actions.disk) },
@@ -468,4 +469,4 @@ fun SettingsScreen(onBack: () -> Unit, onReset: () -> Unit, onLockChanged: (Bool
     )
 }
 
-object BuildConfigVersion { const val NAME = "2.0" }
+object BuildConfigVersion { const val NAME = "2.1" }

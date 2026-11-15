@@ -49,6 +49,7 @@ sealed interface Screen {
     data object Docker : Screen
     data object Snippets : Screen
     data object Settings : Screen
+    data object Lockdown : Screen
 }
 
 class MainActivity : ComponentActivity() {
@@ -122,6 +123,7 @@ fun App() {
         is Target.Page -> when (t.id) {
             "services" -> { stack.add(Screen.Services); Unit }
             "docker" -> { stack.add(Screen.Docker); Unit }
+            "lockdown" -> { stack.add(Screen.Lockdown); Unit }
             "monitor" -> { stack.clear(); tab = Tab.Monitor }
             else -> Unit
         }
@@ -166,6 +168,7 @@ fun App() {
                     Screen.Services -> ServicesScreen(onBack = ::back, onRun = ::runCmd)
                     Screen.Docker -> DockerScreen(onBack = ::back, onRun = ::runCmd)
                     Screen.Snippets -> SnippetsScreen(onBack = ::back, onRun = ::runCmd, onTerminal = ::toTerminal)
+                    Screen.Lockdown -> LockdownScreen(onBack = ::back)
                     Screen.Settings -> SettingsScreen(onBack = ::back,
                         onReset = { SshManager.reset(); stack.clear(); tab = Tab.Home; configured = false },
                         onLockChanged = { })

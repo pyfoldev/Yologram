@@ -4,7 +4,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Article
 import androidx.compose.material.icons.rounded.Lan
 import androidx.compose.material.icons.rounded.Memory
-import androidx.compose.material.icons.rounded.PowerSettingsNew
+import androidx.compose.material.icons.rounded.Shield
 import androidx.compose.material.icons.rounded.RestartAlt
 import androidx.compose.material.icons.rounded.SmartToy
 import androidx.compose.material.icons.rounded.Storage
@@ -138,7 +138,6 @@ object Actions {
         RingItem(Icons.Rounded.SmartToy, "Боты", bots),
         RingItem(Icons.Rounded.RestartAlt, "Перезагр.", Target.Run(Cmd("Перезагрузка", "sudo -n systemctl reboot",
             confirm = "Перезагрузить сервер? Все сервисы будут недоступны пару минут.")), danger = true),
-        RingItem(Icons.Rounded.PowerSettingsNew, "Выключить", Target.Run(Cmd("Выключение", "sudo -n systemctl poweroff",
-            confirm = "ВЫКЛЮЧИТЬ сервер? Включить его удалённо будет нельзя — только кнопкой на самом устройстве.")), danger = true),
+        RingItem(Icons.Rounded.Shield, "Локдаун", Target.Page("lockdown"), danger = true),
     )
 }

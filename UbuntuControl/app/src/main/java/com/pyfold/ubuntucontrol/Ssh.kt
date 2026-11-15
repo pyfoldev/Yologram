@@ -166,7 +166,7 @@ object SshManager {
     /** Первичная настройка: вход по паролю, создание ключа, установка его на сервер. Пароль нигде не сохраняется. */
     suspend fun setup(
         host: String, port: Int, user: String, password: String, passwordlessSudo: Boolean,
-        progress: (String) -> Unit,
+        lockdownScript: String, progress: (String) -> Unit,
     ): Result<Unit> = withContext(Dispatchers.IO) {
         runCatching {
             disconnect()
@@ -203,6 +203,9 @@ object SshManager {
                             "install -m 440 -o root -g root \$t /etc/sudoers.d/ubuntu-control && rm -f \$t && echo SUDO_OK"
                     val sr = execOn(s, "sudo -S -p '' sh -c ${shq(script)}", stdin = password + "\n")
                     if (!sr.out.contains("SUDO_OK")) error("sudo не настроен: ${sr.out.take(200)}")
+                    progress("Устанавливаю помощник локдауна…")
+                    val hr = execOn(s, helperInstallCmd(user, lockdownScript), stdin = password + "\n")
+                    if (!hr.out.contains("HELPER_OK")) error("помощник локдауна не установлен: ${hr.out.take(200)}")
                 }
             } finally {
                 s.disconnect()
@@ -214,6 +217,22 @@ object SshManager {
             SecureStore.putSecret("priv", priv)
             progress("Готово")
         }
+    }
+
+    /** Команда установки скрипта uc-lockdown (+ правило sudoers только на него). Пароль sudo передаётся через stdin. */
+    fun helperInstallCmd(user: String, script: String): String {
+        val b64 = Base64.encodeToString(script.toByteArray(), Base64.NO_WRAP)
+        val root = "install -m 755 -o root -g root /tmp/uc-lockdown.new /usr/local/sbin/uc-lockdown && " +
+            "echo '$user ALL=(root) NOPASSWD: /usr/local/sbin/uc-lockdown' > /tmp/uc-ld.sudoers && " +
+            "visudo -cf /tmp/uc-ld.sudoers >/dev/null && " +
+            "install -m 440 -o root -g root /tmp/uc-ld.sudoers /etc/sudoers.d/ubuntu-control-lockdown && echo HELPER_OK"
+        return "printf %s '$b64' | base64 -d > /tmp/uc-lockdown.new && sudo -S -p '' sh -c ${shq(root)}; rm -f /tmp/uc-lockdown.new /tmp/uc-ld.sudoers"
+    }
+
+    /** Установка помощника локдауна на уже подключённый сервер (нужен пароль sudo, нигде не сохраняется). */
+    suspend fun installLockdownHelper(password: String, script: String): ExecResult = withContext(Dispatchers.IO) {
+        val s = session?.takeIf { it.isConnected } ?: return@withContext ExecResult(-1, "Нет подключения к серверу")
+        try { execOn(s, helperInstallCmd(user, script), stdin = password + "\n") } catch (e: Exception) { ExecResult(-1, "Ошибка: ${e.message}") }
     }
 
     fun shq(s: String) = "'" + s.replace("'", "'\\''") + "'"

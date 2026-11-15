@@ -551,6 +551,7 @@ fun OnboardingScreen(onDone: () -> Unit) {
     var error by remember { mutableStateOf<String?>(null) }
     var busy by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
+    val ctx = androidx.compose.ui.platform.LocalContext.current
 
     Column(Modifier.fillMaxSize().systemBarsPadding().imePadding().verticalScroll(rememberScrollState()).padding(horizontal = 20.dp),
         horizontalAlignment = Alignment.CenterHorizontally) {
@@ -606,7 +607,8 @@ fun OnboardingScreen(onDone: () -> Unit) {
             onClick = {
                 busy = true; error = null
                 scope.launch {
-                    val r = SshManager.setup(host.trim(), port.toIntOrNull() ?: 22, user.trim(), pass, sudo) { status = it }
+                    val script = ctx.resources.openRawResource(R.raw.uc_lockdown).bufferedReader().readText()
+                    val r = SshManager.setup(host.trim(), port.toIntOrNull() ?: 22, user.trim(), pass, sudo, script) { status = it }
                     busy = false
                     r.onSuccess { SshManager.startAutoConnect(); onDone() }
                         .onFailure { error = "Ошибка: ${it.message}"; status = null }
