@@ -18,6 +18,7 @@ from aiogram.types import (CallbackQuery, KeyboardButton, Message,
                            ReplyKeyboardMarkup)
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
+import ce
 import games
 import state
 import web
@@ -356,6 +357,7 @@ async def main():
     dp.include_router(router)
     await web.start(os.environ.get("WEB_HOST", "0.0.0.0"), int(os.environ.get("WEB_PORT", "8080")))
     asyncio.create_task(relax_loop())
+    await ce.setup(bot)
     await bot.delete_webhook()
     await dp.start_polling(bot)
 
