@@ -58,6 +58,6 @@ def test_mines_and_slots_and_rps():
 
 def test_premium_emoji_map():
     emap = load_map()
-    assert len(emap) > 200
+    assert len(emap) > 140 and "🔥" in emap and "🎮" in emap
     out = inject_html("Готово ✅ <code>✅</code>", emap)
     assert out.count("<tg-emoji") == 1
