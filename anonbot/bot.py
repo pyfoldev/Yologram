@@ -14,7 +14,7 @@ if Path(".env").exists():  # простейшая загрузка .env
 from aiogram import Bot, Dispatcher, F, Router
 from aiogram.exceptions import TelegramBadRequest, TelegramForbiddenError
 from aiogram.filters import Command, CommandStart
-from aiogram.types import (CallbackQuery, KeyboardButton, Message,
+from aiogram.types import (BotCommand, CallbackQuery, KeyboardButton, Message,
                            ReplyKeyboardMarkup)
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
@@ -23,7 +23,7 @@ import games
 import state
 import web
 from state import (BTN_CALL, BTN_END, BTN_NEXT, BTN_SEARCH, BTN_SETTINGS,
-                   BTN_STOP_SEARCH, BTN_VIDEO, db, last, partner,
+                   BTN_STOP_SEARCH, BTN_VIDEO, BTN_GENDER, BTN_INTERESTS, db, last, partner,
                    pending_call, queue)
 
 log = logging.getLogger("anonbot")
@@ -38,19 +38,36 @@ def kb(rows):
         keyboard=[[KeyboardButton(text=t) for t in r] for r in rows], resize_keyboard=True)
 
 
-IDLE_KB = kb([[BTN_SEARCH], [BTN_SETTINGS]])
+IDLE_KB = kb([[BTN_SEARCH], [BTN_GENDER], [BTN_INTERESTS]])
 SEARCH_KB = kb([[BTN_STOP_SEARCH]])
 CHAT_KB = kb([[BTN_NEXT, BTN_END], [BTN_CALL, BTN_VIDEO], [state.BTN_GAMES]])
 
 HELP = (
     "Я соединяю двух незнакомцев для анонимного общения. Никто не видит ни имени, ни username.\n\n"
+    "Команды можно писать и без слеша: <b>поиск</b>, <b>следующий</b>, <b>стоп</b>, <b>звонок</b>, "
+    "<b>видео</b>, <b>игры</b>, <b>интересы</b>, <b>пол</b>, <b>помощь</b>.\n\n"
     "/search — найти собеседника\n"
     "/next — следующий собеседник\n"
     "/stop — завершить диалог / остановить поиск\n"
-    "/settings — пол и интересы для поиска\n"
+    "/gender — поиск по полу\n"
+    "/interests — выбрать интересы\n"
+    "/settings — все настройки поиска\n"
     "/call — аудиозвонок, /video — видеозвонок (по ссылке)\n"
     "/games — мини-игры с собеседником"
 )
+
+COMMANDS = [
+    ("search", "🔎 Поиск собеседника"),
+    ("next", "⏭ Закончить диалог и искать нового"),
+    ("stop", "⛔ Закончить диалог с собеседником"),
+    ("gender", "🚻 Поиск по полу"),
+    ("interests", "📖 Выбрать интересы"),
+    ("call", "📞 Аудиозвонок"),
+    ("video", "🎥 Видеозвонок"),
+    ("games", "🎮 Мини-игры"),
+    ("settings", "⚙️ Все настройки"),
+    ("help", "🆘 Помощь по боту"),
+]
 
 
 async def send(uid, text, **kw):
@@ -173,12 +190,12 @@ async def do_next(uid: int):
 async def cmd_start(m: Message):
     db.get(m.from_user.id)
     await m.answer("👋 Привет!\n\n" + HELP + "\n\nСначала можешь указать пол и интересы в /settings.",
-                   reply_markup=IDLE_KB)
+                   reply_markup=IDLE_KB, parse_mode="HTML")
 
 
 @router.message(Command("help"))
 async def cmd_help(m: Message):
-    await m.answer(HELP)
+    await m.answer(HELP, parse_mode="HTML")
 
 
 @router.message(Command("search"))
@@ -205,35 +222,58 @@ GENDER = {"m": "👨 Парень", "f": "👩 Девушка"}
 WANT = {"any": "🎲 Любой", "m": "👨 Парня", "f": "👩 Девушку"}
 
 
-def settings_view(uid: int):
+def settings_view(uid: int, mode: str = "all"):
     p = db.get(uid)
-    text = (f"⚙️ Настройки поиска\n\nЯ: {GENDER.get(p['gender'], 'не указан')}\n"
-            f"Ищу: {WANT[p['want']]}\n"
-            f"Интересы: {', '.join(sorted(p['interests'])) or 'не выбраны'}\n"
-            f"Поиск по интересам: {'вкл' if p['by_interests'] else 'выкл'}")
+    lines = ["⚙️ Настройки поиска\n"]
+    if mode in ("all", "gender"):
+        lines += [f"Я: {GENDER.get(p['gender'], 'не указан')}", f"Ищу: {WANT[p['want']]}"]
+    if mode in ("all", "interests"):
+        lines += [f"Интересы: {', '.join(sorted(p['interests'])) or 'не выбраны'}",
+                  f"Поиск по интересам: {'вкл' if p['by_interests'] else 'выкл'}"]
     b = InlineKeyboardBuilder()
-    for k, v in GENDER.items():
-        b.button(text=("✓ " if p["gender"] == k else "") + "Я " + v.split()[1].lower(), callback_data=f"st:g:{k}")
-    for k, v in WANT.items():
-        b.button(text=("✓ " if p["want"] == k else "") + "Ищу: " + v.split()[-1].lower(), callback_data=f"st:w:{k}")
-    for i, name in enumerate(INTERESTS):
-        b.button(text=("✓ " if name in p["interests"] else "") + name, callback_data=f"st:i:{i}")
-    b.button(text=("✅ " if p["by_interests"] else "⬜ ") + "Искать по интересам", callback_data="st:bi")
-    b.button(text="Готово", callback_data="st:done")
-    b.adjust(2, 3, 3, 2, 2, 2, 1, 1)
-    return text, b.as_markup()
+    sizes = []
+    if mode in ("all", "gender"):
+        for k, v in GENDER.items():
+            b.button(text=("✓ " if p["gender"] == k else "") + "Я " + v.split()[1].lower(), callback_data=f"st:g:{k}:{mode}")
+        for k, v in WANT.items():
+            b.button(text=("✓ " if p["want"] == k else "") + "Ищу: " + v.split()[-1].lower(), callback_data=f"st:w:{k}:{mode}")
+        sizes += [2, 3]
+    if mode in ("all", "interests"):
+        for i, name in enumerate(INTERESTS):
+            b.button(text=("✓ " if name in p["interests"] else "") + name, callback_data=f"st:i:{i}:{mode}")
+        b.button(text=("✅ " if p["by_interests"] else "⬜ ") + "Искать по интересам", callback_data=f"st:bi:0:{mode}")
+        sizes += [3, 3, 3, 1, 1]
+    b.button(text="Готово", callback_data="st:done:0:" + mode)
+    sizes.append(1)
+    b.adjust(*sizes)
+    return "\n".join(lines), b.as_markup()
 
 
 @router.message(Command("settings"))
 @router.message(F.text == BTN_SETTINGS)
 async def cmd_settings(m: Message):
-    text, markup = settings_view(m.from_user.id)
+    text, markup = settings_view(m.from_user.id, "all")
+    await m.answer(text, reply_markup=markup)
+
+
+@router.message(Command("gender"))
+@router.message(F.text == BTN_GENDER)
+async def cmd_gender(m: Message):
+    text, markup = settings_view(m.from_user.id, "gender")
+    await m.answer(text, reply_markup=markup)
+
+
+@router.message(Command("interests"))
+@router.message(F.text == BTN_INTERESTS)
+async def cmd_interests(m: Message):
+    text, markup = settings_view(m.from_user.id, "interests")
     await m.answer(text, reply_markup=markup)
 
 
 @router.callback_query(F.data.startswith("st:"))
 async def cb_settings(cb: CallbackQuery):
     uid, parts = cb.from_user.id, cb.data.split(":")
+    mode = parts[3] if len(parts) > 3 else "all"
     p = db.get(uid)
     if parts[1] == "g":
         db.set(uid, gender=parts[2])
@@ -248,7 +288,7 @@ async def cb_settings(cb: CallbackQuery):
         await cb.message.delete()
         await cb.answer("Сохранено")
         return
-    text, markup = settings_view(uid)
+    text, markup = settings_view(uid, mode)
     try:
         await cb.message.edit_text(text, reply_markup=markup)
     except TelegramBadRequest:
@@ -327,6 +367,28 @@ async def call_no(cb: CallbackQuery):
     await cb.answer()
 
 
+# ---------- русские команды без слеша ----------
+
+ALIASES = {
+    cmd_search: ("поиск", "искать", "начать", "найти", "старт"),
+    cmd_next: ("следующий", "дальше", "далее", "некст", "next"),
+    cmd_stop: ("стоп", "завершить", "конец", "остановить", "хватит"),
+    cmd_call: ("звонок", "позвонить", "аудиозвонок"),
+    cmd_video: ("видео", "видеозвонок"),
+    games.games_menu: ("игры", "игра", "играть"),
+    cmd_interests: ("интересы",),
+    cmd_gender: ("пол", "поиск по полу"),
+    cmd_settings: ("настройки",),
+    cmd_help: ("помощь", "справка", "хелп"),
+}
+WORDS = {w: fn for fn, ws in ALIASES.items() for w in ws}
+
+
+@router.message(F.text.func(lambda t: t.strip().lower().strip("!.") in WORDS))
+async def cmd_words(m: Message):
+    await WORDS[m.text.strip().lower().strip("!.")](m)
+
+
 # ---------- пересылка сообщений ----------
 
 @router.message(F.chat.type == "private", ~F.text.startswith("/"))
@@ -358,6 +420,7 @@ async def main():
     await web.start(os.environ.get("WEB_HOST", "0.0.0.0"), int(os.environ.get("WEB_PORT", "8080")))
     asyncio.create_task(relax_loop())
     await ce.setup(bot)
+    await bot.set_my_commands([BotCommand(command=c, description=d) for c, d in COMMANDS])
     await bot.delete_webhook()
     await dp.start_polling(bot)
 

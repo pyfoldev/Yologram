@@ -12,7 +12,7 @@ last: dict[int, int] = {}         # с кем говорил в последни
 pending_call: dict[int, tuple] = {}   # callee -> (caller, video)
 pending_game: dict[int, tuple] = {}   # приглашённый -> (пригласивший, game)
 
-BTN_SEARCH = "🔍 Искать"
+BTN_SEARCH = "🚀 Начать диалог"
 BTN_STOP_SEARCH = "⛔ Остановить поиск"
 BTN_NEXT = "⏭ Следующий"
 BTN_END = "⛔ Завершить"
@@ -20,3 +20,5 @@ BTN_CALL = "📞 Звонок"
 BTN_VIDEO = "🎥 Видео"
 BTN_GAMES = "🎮 Игры"
 BTN_SETTINGS = "⚙️ Настройки"
+BTN_GENDER = "🔎 Поиск по полу"
+BTN_INTERESTS = "📖 Интересы поиска"

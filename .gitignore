@@ -25,3 +25,4 @@ server/data/
 anonbot/.env
 anonbot/*.sqlite3
 __pycache__/
+*.zip
