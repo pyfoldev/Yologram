@@ -23,7 +23,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-private const val DOM = "pyfold-drive.duckdns.org"
+private const val DOM = "pyfold.duckdns.org"
 
 /** Описание самохостируемого сервиса: где открыть, какие контейнеры/службы проверять, как перезапустить. */
 private data class AppDef(

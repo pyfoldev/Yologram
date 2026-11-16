@@ -470,4 +470,4 @@ fun SettingsScreen(onBack: () -> Unit, onReset: () -> Unit, onLockChanged: (Bool
     )
 }
 
-object BuildConfigVersion { const val NAME = "2.3" }
+object BuildConfigVersion { const val NAME = "2.4" }
