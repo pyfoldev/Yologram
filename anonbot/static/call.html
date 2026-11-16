@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Анонимный звонок</title>
+<style>
+  :root{color-scheme:dark;--bg:#0f1115;--card:#1a1d24;--fg:#eef1f6;--mut:#8a93a3;--acc:#4c9aff;--red:#ff5468}
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font:16px system-ui,sans-serif}
+  body{display:flex;flex-direction:column}
+  #stage{flex:1;position:relative;min-height:0;display:flex;align-items:center;justify-content:center}
+  #remote{width:100%;height:100%;object-fit:contain;background:#000}
+  #local{position:absolute;right:12px;bottom:12px;width:28vw;max-width:180px;border-radius:12px;border:2px solid #fff3;background:#000;transform:scaleX(-1)}
+  #status{position:absolute;top:0;left:0;right:0;padding:14px 16px;text-align:center;background:linear-gradient(#000a,#0000)}
+  #audioOnly{position:absolute;font-size:72px;display:none}
+  #bar{display:flex;gap:14px;justify-content:center;padding:14px 16px calc(14px + env(safe-area-inset-bottom));background:var(--card)}
+  button{border:0;border-radius:50%;width:56px;height:56px;font-size:24px;background:#2b303b;color:var(--fg);cursor:pointer}
+  button.off{background:#fff;color:#000}
+  button.hang{background:var(--red)}
+  #note{font-size:12px;color:var(--mut);text-align:center;padding:0 16px 8px;background:var(--card)}
+</style>
+</head>
+<body>
+<div id="stage">
+  <video id="remote" autoplay playsinline></video>
+  <div id="audioOnly">🎧</div>
+  <video id="local" autoplay playsinline muted></video>
+  <div id="status">Подключение…</div>
+</div>
+<div id="note">Анонимный звонок. Закрой вкладку, чтобы завершить.</div>
+<div id="bar">
+  <button id="mic" title="Микрофон">🎤</button>
+  <button id="cam" title="Камера">📷</button>
+  <button id="hang" class="hang" title="Завершить">📞</button>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const room = location.pathname.split('/').pop();
+let cfg, stream, pc, ws, chain = Promise.resolve(), ended = false;
+const status = t => $('status').textContent = t;
+
+function newPc() {
+  if (pc) pc.close();
+  pc = new RTCPeerConnection({
+    iceServers: cfg.iceServers,
+    iceTransportPolicy: cfg.relay ? 'relay' : 'all'
+  });
+  stream.getTracks().forEach(t => pc.addTrack(t, stream));
+  pc.ontrack = e => { $('remote').srcObject = e.streams[0]; };
+  pc.onicecandidate = e => e.candidate && send({type: 'ice', candidate: e.candidate});
+  pc.onconnectionstatechange = () => {
+    if (pc.connectionState === 'connected') status('Соединено');
+    if (pc.connectionState === 'failed') status('Не удалось соединиться (нужен TURN-сервер)');
+  };
+}
+const send = m => ws && ws.readyState === 1 && ws.send(JSON.stringify(m));
+
+async function handle(m) {
+  if (m.type === 'ready') {
+    status('Собеседник на связи, соединяю…');
+    const o = await pc.createOffer();
+    await pc.setLocalDescription(o);
+    send({type: 'offer', sdp: pc.localDescription});
+  } else if (m.type === 'offer') {
+    status('Соединяю…');
+    await pc.setRemoteDescription(m.sdp);
+    const a = await pc.createAnswer();
+    await pc.setLocalDescription(a);
+    send({type: 'answer', sdp: pc.localDescription});
+  } else if (m.type === 'answer') {
+    await pc.setRemoteDescription(m.sdp);
+  } else if (m.type === 'ice') {
+    try { await pc.addIceCandidate(m.candidate); } catch (e) {}
+  } else if (m.type === 'left') {
+    status('Собеседник вышел. Ждём возвращения…');
+    $('remote').srcObject = null;
+    newPc();
+  } else if (m.type === 'ended') {
+    ended = true; status('Диалог завершён'); finish();
+  } else if (m.type === 'full') {
+    ended = true; status('В звонке уже двое'); finish();
+  }
+}
+
+function finish() {
+  if (pc) pc.close();
+  if (stream) stream.getTracks().forEach(t => t.stop());
+  if (ws) ws.close();
+}
+
+async function main() {
+  const r = await fetch('/api/room/' + room);
+  cfg = await r.json();
+  if (cfg.error) { status(cfg.error); return; }
+  if (!cfg.video) { $('cam').style.display = 'none'; $('local').style.display = 'none'; $('audioOnly').style.display = 'block'; }
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({audio: true, video: cfg.video});
+  } catch (e) {
+    status('Нет доступа к микрофону/камере. Разреши доступ и обнови страницу.'); return;
+  }
+  $('local').srcObject = stream;
+  newPc();
+  ws = new WebSocket((location.protocol === 'https:' ? 'wss://' : 'ws://') + location.host + '/ws/' + room);
+  ws.onopen = () => status('Ждём собеседника…');
+  ws.onmessage = ev => { chain = chain.then(() => handle(JSON.parse(ev.data))).catch(console.error); };
+  ws.onclose = () => { if (!ended) status('Соединение потеряно'); };
+}
+
+$('mic').onclick = () => {
+  const t = stream && stream.getAudioTracks()[0]; if (!t) return;
+  t.enabled = !t.enabled; $('mic').classList.toggle('off', !t.enabled);
+  $('mic').textContent = t.enabled ? '🎤' : '🔇';
+};
+$('cam').onclick = () => {
+  const t = stream && stream.getVideoTracks()[0]; if (!t) return;
+  t.enabled = !t.enabled; $('cam').classList.toggle('off', !t.enabled);
+};
+$('hang').onclick = () => { ended = true; finish(); status('Звонок завершён'); };
+main();
+</script>
+</body>
+</html>

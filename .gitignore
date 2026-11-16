@@ -20,3 +20,8 @@ TMessagesProj/jni/ffmpeg/build_android
 buildSrc/.kotlin/
 server/data/
 *.apk
+
+# anonbot
+anonbot/.env
+anonbot/*.sqlite3
+__pycache__/
