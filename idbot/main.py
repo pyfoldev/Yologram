@@ -105,8 +105,11 @@ PROMPTS = {
     "date": ("date", "Пришли <b>@username</b>, <b>ID</b> или контакт — оценю дату регистрации."),
 }
 
-PICKER = ReplyKeyboardMarkup(
+MAIN_KB = ReplyKeyboardMarkup(
     keyboard=[
+        [KeyboardButton(text="🪪 Мой ID"), KeyboardButton(text="🔍 По username")],
+        [KeyboardButton(text="📇 По контакту"), KeyboardButton(text="🔗 По ссылке")],
+        [KeyboardButton(text="🔢 Открыть по ID"), KeyboardButton(text="📅 Дата регистрации")],
         [KeyboardButton(text="👤 Выбрать пользователя",
                         request_users=KeyboardButtonRequestUsers(request_id=1, request_username=True)),
          KeyboardButton(text="👥 Выбрать группу",
@@ -114,17 +117,83 @@ PICKER = ReplyKeyboardMarkup(
                                                                request_title=True, request_username=True))],
         [KeyboardButton(text="📢 Выбрать канал",
                         request_chat=KeyboardButtonRequestChat(request_id=3, chat_is_channel=True,
-                                                               request_title=True, request_username=True))],
+                                                               request_title=True, request_username=True)),
+         KeyboardButton(text="❓ Помощь")],
     ],
-    resize_keyboard=True, one_time_keyboard=True,
+    resize_keyboard=True, is_persistent=True, input_field_placeholder="@username, ссылка или ID",
 )
+
+# команды из меню «/» (set_my_commands) и русские слова без слеша
+COMMANDS = [
+    ("me", "🪪 Мой ID"), ("user", "🔍 Узнать ID по username"), ("contact", "📇 ID по контакту"),
+    ("link", "🔗 ID группы по ссылке"), ("id", "🔢 Открыть профиль/чат по ID"),
+    ("date", "📅 Дата регистрации аккаунта"), ("menu", "🏠 Главное меню"),
+    ("help", "❓ Помощь по боту"),
+]
+ALIASES = {
+    "me": ["мой id", "мой айди", "мой ид", "моё id", "айди", "ид"],
+    "user": ["по username", "по юзернейму", "юзернейм", "username", "юзер"],
+    "contact": ["по контакту", "контакт"],
+    "link": ["по ссылке", "ссылка"],
+    "id": ["открыть по id", "открыть по айди", "по id", "по айди"],
+    "date": ["дата регистрации", "дата", "регистрация"],
+    "menu": ["меню", "старт", "начать", "главное меню"],
+    "help": ["помощь", "справка", "help", "команды"],
+    "cancel": ["отмена", "отменить", "стоп"],
+}
+WORD2ACTION = {w: a for a, ws in ALIASES.items() for w in ws}
+
+
+def norm(t: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"[^\w\s]", "", t.lower())).strip()
+
+
+HELP = ("<b>Команды</b> (со слешем или русскими словами без него):\n"
+        "• <b>мой id</b> — /me\n• <b>по username</b> — /user\n• <b>по контакту</b> — /contact\n"
+        "• <b>по ссылке</b> — /link\n• <b>открыть по id</b> — /id\n"
+        "• <b>дата регистрации</b> — /date\n• <b>меню</b> — /menu\n• <b>отмена</b>\n\n"
+        "Можно просто прислать @username, ссылку, число-ID, контакт или пересланное сообщение. "
+        "Кнопки внизу работают так же.")
+
+
+async def go_menu(m: Message) -> None:
+    MODES.pop(m.from_user.id, None)
+    await m.answer("Клавиатура внизу включена ⌨️", reply_markup=MAIN_KB)
+    await show(m, lambda f: menu(f))
+
+
+async def enter_mode(m: Message, uid: int, mode: str) -> None:
+    """Выполнить действие меню (из слеш-команды, слов, кнопки внизу)."""
+    if mode == "me":
+        await show(m, lambda f: me_card(m.from_user, f))
+    elif mode == "menu":
+        await go_menu(m)
+    elif mode == "help":
+        await show(m, lambda f: (HELP, kb(back_row(f))))
+    elif mode == "cancel":
+        MODES.pop(uid, None)
+        await m.answer("Отменено.", reply_markup=MAIN_KB)
+    else:
+        MODES[uid] = mode
+        key, text = PROMPTS[mode]
+        await show(m, lambda f: (f"{e(key, f)} {text}", kb(back_row(f))))
 
 
 @router.message(CommandStart())
 @router.message(Command("menu"))
 async def cmd_start(m: Message) -> None:
-    MODES.pop(m.from_user.id, None)
-    await show(m, lambda f: menu(f))
+    await go_menu(m)
+
+
+@router.message(Command(*[c for c, _ in COMMANDS if c != "menu"]))
+async def cmd_actions(m: Message) -> None:
+    cmd = (m.text or "").split()[0][1:].split("@")[0].lower()
+    await enter_mode(m, m.from_user.id, cmd)
+
+
+@router.message(F.text.func(lambda t: norm(t) in WORD2ACTION))
+async def on_alias(m: Message) -> None:
+    await enter_mode(m, m.from_user.id, WORD2ACTION[norm(m.text)])
 
 
 @router.callback_query(F.data == "menu")
@@ -144,8 +213,6 @@ async def cb_mode(c: CallbackQuery) -> None:
     MODES[c.from_user.id] = mode
     key, text = PROMPTS[mode]
     await show(c, lambda f: (f"{e(key, f)} {text}", kb(back_row(f))), edit=True)
-    if mode in ("contact", "link"):
-        await c.message.answer("Или выбери из списка ↓", reply_markup=PICKER)
 
 
 # ───────────────────────── карточки ─────────────────────────
@@ -222,7 +289,7 @@ async def resolve_and_show(m: Message, text: str, want_date: bool) -> bool:
         await show(m, lambda f: (
             f"{e('warn', f)} <b>Пригласительная ссылка</b> — закрытый чат: Bot API не отдаёт "
             "его ID без вступления.\n\nПерешли сюда любое сообщение из этого чата или "
-            "нажми «Выбрать группу» — и получишь ID.", kb(back_row(f))), reply_markup=PICKER)
+            "нажми «Выбрать группу» — и получишь ID.", kb(back_row(f))))
         return True
 
     uid: int | None = None
@@ -389,6 +456,8 @@ async def main() -> None:
     logging.basicConfig(level=logging.INFO)
     bot = Bot(os.environ["BOT_TOKEN"], default=DefaultBotProperties(parse_mode=ParseMode.HTML))
     await emojis.load(bot, os.getenv("EMOJI_PACK", "solutions_project_by_Solutmark_bot"))
+    from aiogram.types import BotCommand
+    await bot.set_my_commands([BotCommand(command=c, description=d) for c, d in COMMANDS])
     dp = Dispatcher()
     dp.include_router(router)
     await bot.delete_webhook(drop_pending_updates=True)
