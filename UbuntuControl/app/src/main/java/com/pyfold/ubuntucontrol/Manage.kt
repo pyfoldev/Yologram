@@ -344,6 +344,7 @@ private data class MoreItem(val icon: ImageVector, val title: String, val sub: S
 fun MoreScreen(onMenu: (Target.Menu) -> Unit, onRun: (String, String) -> Unit, onPage: (String) -> Unit) {
     val sys = "hostnamectl 2>/dev/null | head -12; echo; lscpu | grep -E 'Model name|^CPU\\(s\\)|MHz' ; echo; free -h; echo; df -h / ; echo; ip -br a"
     val items = listOf(
+        MoreItem(Icons.Rounded.Apps, "Мои сервисы", "Nextcloud, Immich, Gitea и др.") { onPage("apps") },
         MoreItem(Icons.Rounded.Tune, "Службы", "systemd: запуск, остановка, логи") { onPage("services") },
         MoreItem(Icons.Rounded.ViewInAr, "Docker", "Контейнеры и их логи") { onPage("docker") },
         MoreItem(Icons.Rounded.Shield, "Локдаун сети", "Закрыть всё, кроме Tailscale") { onPage("lockdown") },
@@ -469,4 +470,4 @@ fun SettingsScreen(onBack: () -> Unit, onReset: () -> Unit, onLockChanged: (Bool
     )
 }
 
-object BuildConfigVersion { const val NAME = "2.1" }
+object BuildConfigVersion { const val NAME = "2.2" }

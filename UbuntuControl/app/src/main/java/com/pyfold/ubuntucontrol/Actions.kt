@@ -1,6 +1,7 @@
 package com.pyfold.ubuntucontrol
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Apps
 import androidx.compose.material.icons.rounded.Article
 import androidx.compose.material.icons.rounded.Lan
 import androidx.compose.material.icons.rounded.Memory
@@ -135,7 +136,7 @@ object Actions {
         RingItem(Icons.Rounded.Article, "Журналы", logs),
         RingItem(Icons.Rounded.SystemUpdateAlt, "Обновления", updates),
         RingItem(Icons.Rounded.VpnLock, "Tailscale", tailscale),
-        RingItem(Icons.Rounded.SmartToy, "Боты", bots),
+        RingItem(Icons.Rounded.Apps, "Сервисы", Target.Page("apps")),
         RingItem(Icons.Rounded.RestartAlt, "Перезагр.", Target.Run(Cmd("Перезагрузка", "sudo -n systemctl reboot",
             confirm = "Перезагрузить сервер? Все сервисы будут недоступны пару минут.")), danger = true),
         RingItem(Icons.Rounded.Shield, "Локдаун", Target.Page("lockdown"), danger = true),
