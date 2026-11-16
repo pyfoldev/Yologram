@@ -1,0 +1,14 @@
+[project]
+name = "nori-business-bot"
+version = "1.0.0"
+requires-python = ">=3.11"
+dependencies = ["aiogram>=3.31", "aiosqlite"]
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-asyncio"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+asyncio_default_fixture_loop_scope = "function"
+pythonpath = ["."]
