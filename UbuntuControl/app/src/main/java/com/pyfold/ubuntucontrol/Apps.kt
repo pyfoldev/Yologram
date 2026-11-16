@@ -23,7 +23,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-private const val HOST = "pyfold.tail8919f2.ts.net"
+private const val DOM = "pyfold-drive.duckdns.org"
 
 /** Описание самохостируемого сервиса: где открыть, какие контейнеры/службы проверять, как перезапустить. */
 private data class AppDef(
@@ -32,25 +32,25 @@ private data class AppDef(
 )
 
 private val APPS = listOf(
-    AppDef("Nextcloud", "Файлы, календарь, контакты", Icons.Rounded.Cloud, "https://$HOST:10000",
+    AppDef("Nextcloud", "Файлы, календарь, контакты", Icons.Rounded.Cloud, "https://cloud.$DOM",
         listOf("nextcloud-app-1", "nextcloud-db-1", "nextcloud-redis-1", "nextcloud-cron-1"),
         "cd /opt/nextcloud && docker compose restart", "docker logs --tail 100 nextcloud-app-1 2>&1 | cut -c1-200"),
-    AppDef("Immich", "Фото и видео", Icons.Rounded.PhotoLibrary, "https://$HOST:2283",
+    AppDef("Immich", "Фото и видео", Icons.Rounded.PhotoLibrary, "https://photos.$DOM",
         listOf("immich_server", "immich_machine_learning", "immich_postgres", "immich_redis"),
         "cd /opt/immich && docker compose restart", "docker logs --tail 100 immich_server 2>&1 | cut -c1-200"),
-    AppDef("Vaultwarden", "Менеджер паролей", Icons.Rounded.Key, "https://$HOST:8222",
+    AppDef("Vaultwarden", "Менеджер паролей", Icons.Rounded.Key, "https://pass.$DOM",
         listOf("vaultwarden"), "cd /opt/vaultwarden && docker compose restart", "docker logs --tail 100 vaultwarden 2>&1 | cut -c1-200"),
-    AppDef("AdGuard Home", "DNS и блокировка рекламы", Icons.Rounded.Shield, "https://$HOST:3000",
+    AppDef("AdGuard Home", "DNS и блокировка рекламы", Icons.Rounded.Shield, "https://dns.$DOM",
         listOf("adguardhome"), "cd /opt/adguard && docker compose restart", "docker logs --tail 100 adguardhome 2>&1 | cut -c1-200"),
-    AppDef("SearXNG", "Приватный поиск", Icons.Rounded.Search, "https://$HOST:8888",
+    AppDef("SearXNG", "Приватный поиск", Icons.Rounded.Search, "https://search.$DOM",
         listOf("searxng"), "cd /opt/searxng && docker compose restart", "docker logs --tail 100 searxng 2>&1 | cut -c1-200"),
-    AppDef("Gitea", "Git-репозитории", Icons.Rounded.Code, "https://$HOST:3200",
+    AppDef("Gitea", "Git-репозитории", Icons.Rounded.Code, "https://git.$DOM",
         listOf("gitea"), "cd /opt/gitea && docker compose restart", "docker logs --tail 100 gitea 2>&1 | cut -c1-200"),
-    AppDef("Homepage", "Стартовая страница", Icons.Rounded.Dashboard, "https://$HOST:3100",
+    AppDef("Homepage", "Стартовая страница", Icons.Rounded.Dashboard, "https://home.$DOM",
         listOf("homepage", "homepage-dockerproxy"), "cd /opt/homepage && docker compose restart", "docker logs --tail 100 homepage 2>&1 | cut -c1-200"),
-    AppDef("Uptime Kuma", "Мониторинг и оповещения", Icons.Rounded.MonitorHeart, "https://$HOST:3001",
+    AppDef("Uptime Kuma", "Мониторинг и оповещения", Icons.Rounded.MonitorHeart, "https://status.$DOM",
         listOf("uptime-kuma"), "cd /opt/uptime-kuma && docker compose restart", "docker logs --tail 100 uptime-kuma 2>&1 | cut -c1-200"),
-    AppDef("Dozzle", "Логи контейнеров", Icons.Rounded.Article, "https://$HOST:8090",
+    AppDef("Dozzle", "Логи контейнеров", Icons.Rounded.Article, "https://logs.$DOM",
         listOf("dozzle", "dozzle-dockerproxy"), "cd /opt/dozzle && docker compose restart", "docker logs --tail 100 dozzle 2>&1 | cut -c1-200"),
     AppDef("Бот chat-helper", "Telegram-бот Nori", Icons.Rounded.SmartToy, null,
         listOf("chat-helper-bot-1", "chat-helper-caddy-1", "chat-helper-postgres-1"),
