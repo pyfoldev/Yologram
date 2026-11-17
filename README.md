@@ -2,6 +2,15 @@
   <img src="docs/banner.svg" alt="Yologram" width="100%">
 </p>
 
+## Скриншоты
+
+<p align="center">
+  <img src="docs/screens/chats.jpg" width="23%" alt="Чаты">
+  <img src="docs/screens/yologram.jpg" width="23%" alt="Настройки Yologram">
+  <img src="docs/screens/settings.jpg" width="23%" alt="Настройки">
+  <img src="docs/screens/profile.jpg" width="23%" alt="Профиль">
+</p>
+
 ## Возможности
 
 - Material You: цвет темы, плотность, скругление, AMOLED
