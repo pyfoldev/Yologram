@@ -1,0 +1,15 @@
+yologram.duckdns.org {
+	encode zstd gzip
+	@api path /u/* /badges /notices /diag/* /update/* /diag /ws* /apiws*
+	handle @api {
+		reverse_proxy 127.0.0.1:8787
+	}
+	handle_path /web/* {
+		root * /opt/nullgram/web
+		file_server
+	}
+	handle {
+		root * /opt/yologram-site
+		file_server
+	}
+}
