@@ -1,0 +1,14 @@
+[Unit]
+Description=Yologram admin bot
+After=network-online.target nullgram.service
+ConditionPathExists=/opt/nullgram/bot.env
+
+[Service]
+EnvironmentFile=/opt/nullgram/bot.env
+ExecStart=/usr/bin/python3 /opt/nullgram/yologram_bot.py
+WorkingDirectory=/opt/nullgram
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

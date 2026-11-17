@@ -150,13 +150,18 @@ public class VoIPToggleButton extends FrameLayout {
         float cy = dp(diameter) / 2f;
         float radius = dp(diameter) / 2f;
         if (drawBackground) {
-            canvas.drawCircle(cx, cy, radius, circlePaint);
+            if (org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
+                final float rr = Math.min(radius, org.telegram.ui.ActionBar.MaterialYou.radius(diameter * 0.42f));
+                canvas.drawRoundRect(cx - radius, cy - radius, cx + radius, cy + radius, rr, rr, circlePaint);
+            } else {
+                canvas.drawCircle(cx, cy, radius, circlePaint);
+            }
         }
         if (rippleDrawable == null) {
             rippleDrawable = Theme.createSimpleSelectorCircleDrawable(dp(diameter), 0, Color.BLACK);
             rippleDrawable.setCallback(this);
         }
-        if (drawRipple) {
+        if (drawRipple && !org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
             rippleDrawable.setBounds((int) (cx - radius), (int) (cy - radius), (int) (cx + radius), (int) (cy + radius));
             rippleDrawable.draw(canvas);
         }

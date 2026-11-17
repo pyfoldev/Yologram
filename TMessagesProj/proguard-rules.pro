@@ -85,3 +85,7 @@
 # Use -keep to explicitly keep any other classes shrinking would remove
 #-dontoptimize
 #-dontobfuscate
+# Yologram plugins: Python calls these methods by name through Chaquopy
+-keep class org.telegram.messenger.PluginEngine$Api { public *; }
+-keep class com.chaquo.python.** { *; }
+-dontwarn com.chaquo.python.**

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="AppName">Nullgram</string>
-    <string name="AppNameBeta">Nullgram</string>
+    <string name="AppName">Yologram</string>
+    <string name="AppNameBeta">Yologram</string>
     <string name="LanguageName">Русский</string>
     <string name="English">Английский</string>
     <string name="LanguageNameInEnglish">Russian</string>
@@ -209,18 +209,18 @@
     <string name="CheckYourNewEmailSubtitle">Введите код, который пришёл на указанный Вами адрес %1$s.</string>
     <string name="LoginOrSingInWithGoogle">или</string>
     <!--Intro view-->
-    <string name="Page1Title">Telegram</string>
-    <string name="Page2Title">Быстрый</string>
-    <string name="Page3Title">Бесплатный</string>
-    <string name="Page4Title">Безопасный</string>
-    <string name="Page5Title">Мощный</string>
-    <string name="Page6Title">Облачный</string>
-    <string name="Page1Message">Самый **быстрый** мессенджер в мире.\n**Бесплатный** и **безопасный**.</string>
-    <string name="Page2Message">**Telegram** доставляет сообщения быстрее\nлюбого другого приложения.</string>
-    <string name="Page3Message">**Telegram** предоставляет бесплатное безлимитное облачное хранилище для чатов и медиа.\n</string>
-    <string name="Page4Message">**Telegram** защищает Вашу переписку от злоумышленников.</string>
-    <string name="Page5Message">**Telegram** не ограничивает размер\n Ваших медиафайлов и чатов.</string>
-    <string name="Page6Message">В **Telegram** можно переписываться с любого количества устройств.</string>
+    <string name="Page1Title">Yologram</string>
+    <string name="Page2Title">Твой</string>
+    <string name="Page3Title">Приватный</string>
+    <string name="Page4Title">Плавный</string>
+    <string name="Page5Title">Призрак</string>
+    <string name="Page6Title">Material You</string>
+    <string name="Page1Message">Клиент **Telegram** в стиле **Material You**.\nСкруглённый, плотный и твой.</string>
+    <string name="Page2Message">Выбери цвета, формы и значки:\nприложение подстраивается под твою тему.</string>
+    <string name="Page3Message">Прячь личные чаты и давай телефон\nс помощью **скрытых аккаунтов**.</string>
+    <string name="Page4Message">Быстрые загрузки, пружинящие анимации\nи плавная вкладка профиля.</string>
+    <string name="Page5Message">**Режим призрака**: без отметок о прочтении\nи набора, с сохранением удалённых.</string>
+    <string name="Page6Message">Снег, баннеры и мысли для\nдругих пользователей Yologram.</string>
     <string name="StartMessaging">Начать общение</string>
     <!--date formatters-->
     <string name="formatterBoostExpired">dd MMM yyyy</string>

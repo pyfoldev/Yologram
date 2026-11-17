@@ -127,6 +127,13 @@ public class PhotoEditorSeekBar extends View {
                 canvas.drawRect(thumbX, getMeasuredHeight() / 2 - AndroidUtilities.dp(1), getMeasuredWidth() / 2, getMeasuredHeight() / 2 + AndroidUtilities.dp(1), outerPaint);
             }
         }
-        canvas.drawCircle(thumbX + thumbSize / 2, y + thumbSize / 2, thumbSize / 2, outerPaint);
+        if (org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
+            final float hw = AndroidUtilities.dpf2(2.5f);
+            final float hh = AndroidUtilities.dp(13);
+            final float hx = thumbX + thumbSize / 2f;
+            canvas.drawRoundRect(hx - hw, y + thumbSize / 2f - hh, hx + hw, y + thumbSize / 2f + hh, hw, hw, outerPaint);
+        } else {
+            canvas.drawCircle(thumbX + thumbSize / 2, y + thumbSize / 2, thumbSize / 2, outerPaint);
+        }
     }
 }

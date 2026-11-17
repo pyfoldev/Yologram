@@ -452,6 +452,40 @@ public class SeekBarView extends FrameLayout implements Theme.Colorable {
     public boolean isDragging() {
         return pressed;
     }
+    // Material 3 Expressive: the played part of the line is a wave that calms down while you drag
+    private boolean wavy;
+    private float waveAmp = 1f;
+    private final android.graphics.Path wavePath = new android.graphics.Path();
+    private final Paint wavePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+    public void setWavy(boolean wavy) {
+        this.wavy = wavy;
+        invalidate();
+    }
+
+    private void drawWave(Canvas canvas, float from, float to, float cy, float stroke) {
+        final float target = pressed ? 0f : 1f;
+        waveAmp += (target - waveAmp) * 0.12f;
+        final float amp = AndroidUtilities.dp(2.2f) * waveAmp;
+        final float length = AndroidUtilities.dp(22);
+        final float phase = (SystemClock.uptimeMillis() % 1400L) / 1400f * (float) (Math.PI * 2);
+        wavePaint.setStyle(Paint.Style.STROKE);
+        wavePaint.setStrokeCap(Paint.Cap.ROUND);
+        wavePaint.setStrokeWidth(stroke);
+        wavePaint.setColor(outerPaint1.getColor());
+        wavePath.rewind();
+        final float step = AndroidUtilities.dp(2);
+        for (float x = from; x <= to; x += step) {
+            final float y = cy + amp * (float) Math.sin((x - from) / length * Math.PI * 2 - phase);
+            if (x == from) {
+                wavePath.moveTo(x, y);
+            } else {
+                wavePath.lineTo(x, y);
+            }
+        }
+        canvas.drawPath(wavePath, wavePaint);
+        postInvalidateOnAnimation();
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -468,7 +502,8 @@ public class SeekBarView extends FrameLayout implements Theme.Colorable {
 
         float centerY = getMeasuredHeight() / 2f;
         float left = selectorWidth / 2f, right = getMeasuredWidth() - selectorWidth / 2;
-        float top = centerY - AndroidUtilities.dp(lineWidthDp) / 2f, bottom = centerY + AndroidUtilities.dp(lineWidthDp) / 2f;
+        final float lineDp = org.telegram.ui.ActionBar.MaterialYou.isEnabled() ? Math.max(lineWidthDp, 4) : lineWidthDp;
+        float top = centerY - AndroidUtilities.dp(lineDp) / 2f, bottom = centerY + AndroidUtilities.dp(lineDp) / 2f;
 
         rect.set(left, top, right, bottom);
         drawProgressBar(canvas, rect, innerPaint1);
@@ -493,6 +528,8 @@ public class SeekBarView extends FrameLayout implements Theme.Colorable {
                 outerPaint1.setAlpha((int) (0.50f * wasAlpha));
                 drawProgressBar(canvas, rect, outerPaint1);
                 outerPaint1.setAlpha(wasAlpha);
+            } else if (wavy && org.telegram.ui.ActionBar.MaterialYou.isEnabled() && thumbX > AndroidUtilities.dp(6)) {
+                drawWave(canvas, left, left + thumbX, centerY, AndroidUtilities.dp(lineDp));
             } else {
                 rect.set(left, top, left + thumbX, bottom);
                 drawProgressBar(canvas, rect, outerPaint1);
@@ -542,6 +579,13 @@ public class SeekBarView extends FrameLayout implements Theme.Colorable {
                 canvas.drawCircle(transitionThumbX + selectorWidth / 2, y + thumbSize / 2, currentRadius * oldCircleProgress, outerPaint1);
             }
             canvas.drawCircle(thumbX + selectorWidth / 2, y + thumbSize / 2, currentRadius * newCircleProgress, outerPaint1);
+        } else if (org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
+            // Material You: a vertical pill handle, taller and thinner while dragged
+            final float hw = AndroidUtilities.dpf2(pressed ? 2.5f : 2f);
+            final float hh = AndroidUtilities.dp(pressed ? 15 : 12);
+            final float hx = thumbX + selectorWidth / 2f;
+            rect.set(hx - hw, y + thumbSize / 2f - hh, hx + hw, y + thumbSize / 2f + hh);
+            canvas.drawRoundRect(rect, hw, hw, outerPaint1);
         } else {
             canvas.drawCircle(thumbX + selectorWidth / 2, y + thumbSize / 2, currentRadius, outerPaint1);
         }

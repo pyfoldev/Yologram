@@ -83,16 +83,29 @@ public class BlurredBackgroundProviderBuilder implements BlurredBackgroundProvid
 
     @Override
     public int getBackgroundColor() {
-        return get(backgroundColor, 0);
+        final int c = get(backgroundColor, 0);
+        if (c != 0 && org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
+            // Material You: tonal surface instead of tinted glass, keeping the provider's transparency
+            return androidx.core.graphics.ColorUtils.setAlphaComponent(
+                org.telegram.ui.ActionBar.MaterialYou.role(org.telegram.ui.ActionBar.MaterialYou.R_SURFACE_HIGH),
+                Math.max(android.graphics.Color.alpha(c), 0xE6));
+        }
+        return c;
     }
 
     @Override
     public int getStrokeColorTop() {
+        if (org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
+            return 0;
+        }
         return get(strokeColorTop, 0);
     }
 
     @Override
     public int getStrokeColorBottom() {
+        if (org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
+            return 0;
+        }
         return get(strokeColorBottom, 0);
     }
 

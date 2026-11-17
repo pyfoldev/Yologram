@@ -4756,7 +4756,16 @@ public class Theme {
         return new BaseCell.RippleDrawableSafe(colorStateList, defaultDrawable, pressedDrawable);
     }
 
+    /** Material You: buttons and chips with Telegram's small corner radii become the rounder Material shapes. */
+    private static int materialRad(int rad) {
+        if (MaterialYou.isEnabled() && rad >= dp(5) && rad <= dp(14)) {
+            return Math.min(dp(28), Math.round(rad * 2.2f * MaterialYou.getCornerScale()));
+        }
+        return rad;
+    }
+
     public static ShapeDrawable createRoundRectDrawable(int rad, int defaultColor) {
+        rad = materialRad(rad);
         ShapeDrawable defaultDrawable = new ShapeDrawable(new RoundRectShape(new float[]{rad, rad, rad, rad, rad, rad, rad, rad}, null, null));
         defaultDrawable.getPaint().setColor(defaultColor);
         return defaultDrawable;
@@ -4840,6 +4849,7 @@ public class Theme {
     }
 
     public static Drawable createSimpleSelectorRoundRectDrawable(int rad, int defaultColor, int pressedColor, int maskColor) {
+        rad = materialRad(rad);
         return createSimpleSelectorRoundRectDrawable(rad, rad, rad, rad, defaultColor, pressedColor, maskColor);
     }
 

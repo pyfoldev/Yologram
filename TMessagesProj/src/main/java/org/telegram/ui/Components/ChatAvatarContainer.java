@@ -264,7 +264,7 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
             }
         }
         avatarImageView.setContentDescription(getString(R.string.AccDescrProfilePicture));
-        avatarImageView.setRoundRadius(dp(21));
+        avatarImageView.setRoundRadius(org.telegram.ui.ActionBar.MaterialYou.avatarRadius(21, 21));
         addView(avatarImageView);
         if (avatarClickable) {
             final TLRPC.Chat chat = parentFragment != null ? parentFragment.getCurrentChat() : null;
@@ -943,8 +943,15 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
 
     private boolean creatorBadge;
 
+    private boolean creatorBadgeIsCreator = true;
+
     public void setCreatorBadge(boolean value) {
         creatorBadge = value;
+    }
+
+    public void setCreatorBadge(boolean value, boolean creator) {
+        creatorBadge = value;
+        creatorBadgeIsCreator = creator;
     }
 
     public void setTitle(CharSequence value, boolean scam, boolean fake, boolean verified, boolean premium, TLRPC.EmojiStatus emojiStatus, boolean animated) {
@@ -968,7 +975,7 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
             ThemeBind.drawableColorFilter(this, verifiedBackground, Theme.key_profile_verifiedBackground, resourcesProvider, PorterDuff.Mode.MULTIPLY);
             verifiedCheck = getResources().getDrawable(R.drawable.verified_check).mutate();
             ThemeBind.drawableColorFilter(this, verifiedCheck, Theme.key_profile_verifiedCheck, resourcesProvider, PorterDuff.Mode.MULTIPLY);
-            Drawable verifiedDrawable = creatorBadge ? CreatorBadge.drawable(dp(20)) : new CombinedDrawable(verifiedBackground, verifiedCheck);
+            Drawable verifiedDrawable = creatorBadge ? CreatorBadge.drawable(dp(20), creatorBadgeIsCreator) : new CombinedDrawable(verifiedBackground, verifiedCheck);
             titleTextView.setRightDrawable2(verifiedDrawable);
             rightDrawableIsScamOrVerified = true;
             rightDrawable2ContentDescription = getString(R.string.AccDescrVerified);
@@ -1387,7 +1394,7 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
         avatarDrawable.setInfo(currentAccount, chat);
         if (avatarImageView != null) {
             avatarImageView.setForUserOrChat(chat, avatarDrawable);
-            avatarImageView.setRoundRadius(ChatObject.isForum(chat) ? dp(ChatObject.hasStories(chat) ? 11 : 16) : dp(21));
+            avatarImageView.setRoundRadius(ChatObject.isForum(chat) ? dp(ChatObject.hasStories(chat) ? 11 : 16) : org.telegram.ui.ActionBar.MaterialYou.avatarRadius(21, 21));
         }
     }
 
@@ -1495,7 +1502,7 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
                 avatarImageView.setAnimatedEmojiDrawable(null);
                 ForumUtilities.setMonoForumAvatar(currentAccount, chat, avatarDrawable, avatarImageView);
             }
-            avatarImageView.setRoundRadius(dp(21));
+            avatarImageView.setRoundRadius(org.telegram.ui.ActionBar.MaterialYou.avatarRadius(21, 21));
         } else if (chat != null) {
             avatarDrawable.setScaleSize(1f);
             avatarDrawable.setInfo(currentAccount, chat);
@@ -1503,7 +1510,7 @@ public class ChatAvatarContainer extends FrameLayout implements FactorAnimator.T
             if (avatarImageView != null) {
                 avatarImageView.setAnimatedEmojiDrawable(null);
                 avatarImageView.setForUserOrChat(chat, avatarDrawable);
-                avatarImageView.setRoundRadius(chat.forum ? dp(ChatObject.hasStories(chat) ? 11 : 16) : dp(21));
+                avatarImageView.setRoundRadius(chat.forum ? dp(ChatObject.hasStories(chat) ? 11 : 16) : org.telegram.ui.ActionBar.MaterialYou.avatarRadius(21, 21));
             }
         }
     }

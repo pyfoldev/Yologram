@@ -119,6 +119,62 @@ public class NullgramConfig {
     public static boolean confirmCalls() { return flag("confirm_calls", false); }
     public static void setConfirmCalls(boolean v) { flag("confirm_calls", v, true); }
     public static boolean screenGuard() { return flag("screen_guard", false); }
+
+    public static boolean hideNotificationText() { return flag("hide_notification_text", false); }
+    public static void setHideNotificationText(boolean v) { prefs().edit().putBoolean("hide_notification_text", v).apply(); }
+
+    public static boolean animations() { return flag("animations", true); }
+    public static void setAnimations(boolean v) { prefs().edit().putBoolean("animations", v).apply(); }
+
+    public static boolean stripExif() { return flag("strip_exif", true); }
+    public static void setStripExif(boolean v) { prefs().edit().putBoolean("strip_exif", v).apply(); }
+
+    public static boolean freeTranslate() { return flag("free_translate", true); }
+    public static void setFreeTranslate(boolean v) { prefs().edit().putBoolean("free_translate", v).apply(); }
+
+    public static boolean roundBackCamera() { return flag("round_back_camera", false); }
+    public static void setRoundBackCamera(boolean v) { prefs().edit().putBoolean("round_back_camera", v).apply(); }
+
+    public static boolean cameraFront() { return flag("camera_front", false); }
+    public static void setCameraFront(boolean v) { prefs().edit().putBoolean("camera_front", v).apply(); }
+    public static boolean cameraGrid() { return flag("camera_grid", false); }
+    public static void setCameraGrid(boolean v) { prefs().edit().putBoolean("camera_grid", v).apply(); }
+
+    public static boolean voiceHq() { return flag("voice_hq", true); }
+    public static void setVoiceHq(boolean v) { prefs().edit().putBoolean("voice_hq", v).apply(); }
+    public static boolean voiceNoise() { return flag("voice_noise", true); }
+    public static void setVoiceNoise(boolean v) { prefs().edit().putBoolean("voice_noise", v).apply(); }
+    public static boolean voiceAgc() { return flag("voice_agc", false); }
+    public static void setVoiceAgc(boolean v) { prefs().edit().putBoolean("voice_agc", v).apply(); }
+
+    public static boolean showIds() { return flag("show_ids", true); }
+    public static void setShowIds(boolean v) { prefs().edit().putBoolean("show_ids", v).apply(); }
+
+    public static boolean showBadge() { return flag("show_badge", true); }
+    public static void setShowBadge(boolean v) { prefs().edit().putBoolean("show_badge", v).apply(); }
+
+    public static boolean snow() { return flag("snow", false); }
+    public static void setSnow(boolean v) { prefs().edit().putBoolean("snow", v).apply(); }
+
+    public static boolean winterIcons() { return snow() && flag("winter_icons", true); }
+    public static void setWinterIcons(boolean v) { prefs().edit().putBoolean("winter_icons", v).apply(); }
+
+    /** true: dots always visible; false: auto, only while the phone is moving. */
+    public static boolean motionAlways() { return flag("motion_always", true); }
+    public static void setMotionAlways(boolean v) { prefs().edit().putBoolean("motion_always", v).apply(); }
+
+    /** 0 weak, 1 medium, 2 strong. */
+    public static int motionSens() { return prefs().getInt("motion_sens", 1); }
+    public static void setMotionSens(int v) { prefs().edit().putInt("motion_sens", Math.max(0, Math.min(2, v))).apply(); }
+
+    public static boolean motionCues() { return flag("motion_cues", false); }
+    public static void setMotionCues(boolean v) { prefs().edit().putBoolean("motion_cues", v).apply(); }
+
+    public static boolean fastMode() { return flag("fast_mode", true); }
+    public static void setFastMode(boolean v) { prefs().edit().putBoolean("fast_mode", v).apply(); }
+
+    public static boolean diagnostics() { return flag("diagnostics", true); }
+    public static void setDiagnostics(boolean v) { prefs().edit().putBoolean("diagnostics", v).apply(); }
     public static void setScreenGuard(boolean v) { flag("screen_guard", v, true); }
 
     public static String phone(String formatted) {

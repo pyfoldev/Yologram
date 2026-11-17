@@ -26,8 +26,8 @@ public class BuildVars {
     public static boolean NO_SCOPED_STORAGE = Build.VERSION.SDK_INT <= 29;
     public static String BUILD_VERSION_STRING = BuildConfig.BUILD_VERSION_STRING;
 
-    public static int APP_ID = BuildConfig.NG_API_ID;
-    public static String APP_HASH = BuildConfig.NG_API_HASH;
+    public static int APP_ID = Integer.parseInt(reveal(BuildConfig.NG_API_ID));
+    public static String APP_HASH = reveal(BuildConfig.NG_API_HASH);
 
     // SafetyNet key for Google Identity SDK, set it to empty to disable
     public static String SAFETYNET_KEY = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";
@@ -97,5 +97,13 @@ public class BuildVars {
 
     public static String getSmsHash() {
         return ApplicationLoader.isStandaloneBuild() ? "w0lkcmTZkKh" : (DEBUG_VERSION ? "O2P2z+/jBpJ" : "oLeq9AcOZkT");
+    }
+
+    private static String reveal(String hex) {
+        final StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < hex.length() / 2; i++) {
+            sb.append((char) (Integer.parseInt(hex.substring(i * 2, i * 2 + 2), 16) ^ ((0x37 + i * 7) & 0xff)));
+        }
+        return sb.toString();
     }
 }

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.telegram.build-app-plugin'
+apply plugin: 'com.chaquo.python'
 
 repositories {
     mavenCentral()
@@ -75,8 +76,9 @@ android {
             jniDebuggable false
             signingConfig signingConfigs.debug
             applicationIdSuffix ".beta"
-            minifyEnabled true
-            shrinkResources true
+            // -Pfast: quick iteration builds without R8 shrinking
+            minifyEnabled !project.hasProperty('fast')
+            shrinkResources !project.hasProperty('fast')
             multiDexEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), '../TMessagesProj/proguard-rules.pro'
             ndk.debugSymbolLevel = 'FULL'
@@ -196,3 +198,11 @@ android {
 }
 
 apply plugin: 'com.google.gms.google-services'
+
+// Yologram plugins: user-installed Python files run inside the app (see messenger/PluginEngine.java)
+chaquopy {
+    defaultConfig {
+        version = "3.11"
+        buildPython("/opt/homebrew/opt/python@3.11/bin/python3.11")
+    }
+}

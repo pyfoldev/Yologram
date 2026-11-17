@@ -34,12 +34,12 @@ public class LauncherIconController {
     }
 
     public enum LauncherIcon {
-        DEFAULT("DefaultIcon", R.drawable.icon_background_sa, R.mipmap.icon_foreground_sa, R.string.AppIconDefault),
-        VINTAGE("VintageIcon", R.drawable.icon_6_background_sa, R.mipmap.icon_6_foreground_sa, R.string.AppIconVintage),
-        AQUA("AquaIcon", R.drawable.icon_4_background_sa, R.mipmap.icon_foreground_sa, R.string.AppIconAqua),
-        PREMIUM("PremiumIcon", R.drawable.icon_3_background_sa, R.mipmap.icon_3_foreground_sa, R.string.AppIconPremium, true),
-        TURBO("TurboIcon", R.drawable.icon_5_background_sa, R.mipmap.icon_5_foreground_sa, R.string.AppIconTurbo, true),
-        NOX("NoxIcon", R.mipmap.icon_2_background_sa, R.mipmap.icon_foreground_sa, R.string.AppIconNox, true);
+        DEFAULT("DefaultIcon", R.drawable.nullgram_logo_bg, R.drawable.nullgram_logo_fg, R.string.AppIconDefault),
+        VINTAGE("VintageIcon", R.drawable.nullicon_bg_violet, R.drawable.nullgram_logo_fg, R.string.AppIconVintage),
+        AQUA("AquaIcon", R.drawable.nullicon_bg_teal, R.drawable.nullgram_logo_fg, R.string.AppIconAqua),
+        PREMIUM("PremiumIcon", R.drawable.nullicon_bg_graphite, R.drawable.nullgram_logo_fg, R.string.AppIconPremium),
+        TURBO("TurboIcon", R.drawable.nullicon_bg_coral, R.drawable.nullgram_logo_fg, R.string.AppIconTurbo),
+        NOX("NoxIcon", R.drawable.nullicon_bg_light, R.drawable.nullicon_fg_blue, R.string.AppIconNox);
 
         public final String key;
         public final int background;

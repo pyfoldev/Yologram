@@ -145,7 +145,7 @@ public class GroupCreateUserCell extends FrameLayout implements Theme.Colorable 
         avatarDrawable = new AvatarDrawable();
 
         avatarImageView = new BackupImageView(context);
-        avatarImageView.setRoundRadius(AndroidUtilities.dp(24));
+        avatarImageView.setRoundRadius(org.telegram.ui.ActionBar.MaterialYou.avatarRadius(24, 24));
         addView(avatarImageView, LayoutHelper.createFrame(46, 46, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, LocaleController.isRTL ? 0 : (13 + padding), 6, LocaleController.isRTL ? (13 + padding) : 0, 0));
 
         nameTextView = new SimpleTextView(context) {
@@ -542,7 +542,7 @@ public class GroupCreateUserCell extends FrameLayout implements Theme.Colorable 
             }
         }
 
-        avatarImageView.setRoundRadius(currentChat != null && currentChat.forum ? AndroidUtilities.dp(14) : AndroidUtilities.dp(24));
+        avatarImageView.setRoundRadius(currentChat != null && currentChat.forum ? AndroidUtilities.dp(14) : org.telegram.ui.ActionBar.MaterialYou.avatarRadius(24, 24));
         if (currentStatus != null) {
             statusTextView.setText(currentStatus, true);
             statusTextView.setTag(Theme.key_windowBackgroundWhiteGrayText);
@@ -560,6 +560,9 @@ public class GroupCreateUserCell extends FrameLayout implements Theme.Colorable 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        if (org.telegram.ui.ActionBar.MaterialYou.isEnabled() && !forceDarkTheme) {
+            org.telegram.ui.ActionBar.MaterialYou.drawRowCard(canvas, getMeasuredWidth(), getMeasuredHeight(), false);
+        }
         float lockT = premiumBlockedT.set(premiumBlocked);
         if (lockT > 0) {
 
@@ -569,7 +572,7 @@ public class GroupCreateUserCell extends FrameLayout implements Theme.Colorable 
             float cy = avatarImageView.getTop() + avatarImageView.getMeasuredHeight() / 2;
             canvas.drawCircle(cx, cy, AndroidUtilities.dp(18) + AndroidUtilities.dp(4) * checkProgress, paint);
         }
-        if (drawDivider) {
+        if (drawDivider && !(org.telegram.ui.ActionBar.MaterialYou.isEnabled() && !forceDarkTheme)) {
             int start = AndroidUtilities.dp(LocaleController.isRTL ? 0 : 72 + padding);
             int end = getMeasuredWidth() - AndroidUtilities.dp(!LocaleController.isRTL ? 0 : 72 + padding);
             if (forceDarkTheme) {

@@ -151,6 +151,9 @@ public class WsProxy {
         }
     }
 
+    private static final String RELAY_HOST = "yologram.duckdns.org";
+    private static final String RELAY_IP = "103.45.247.151";
+    private static final int RELAY_PORT = 8790;
     private static final Map<Integer, String> DC_OPT = new HashMap<>();
 
     static {
@@ -270,12 +273,16 @@ public class WsProxy {
         }
 
         static WebSocket connect(String ip, String domain, int timeoutMs) throws IOException {
+            return connect(ip, domain, 443, "/apiws", timeoutMs);
+        }
+
+        static WebSocket connect(String ip, String domain, int port, String path, int timeoutMs) throws IOException {
             final Socket raw = new Socket();
-            raw.connect(new InetSocketAddress(ip, 443), timeoutMs);
+            raw.connect(new InetSocketAddress(ip, port), timeoutMs);
             raw.setSoTimeout(timeoutMs);
             raw.setTcpNoDelay(true);
             final SSLSocketFactory factory = (SSLSocketFactory) SSLSocketFactory.getDefault();
-            final SSLSocket ssl = (SSLSocket) factory.createSocket(raw, domain, 443, true);
+            final SSLSocket ssl = (SSLSocket) factory.createSocket(raw, domain, port, true);
             ssl.startHandshake();
             if (!HttpsURLConnection.getDefaultHostnameVerifier().verify(domain, ssl.getSession())) {
                 ssl.close();
@@ -286,7 +293,7 @@ public class WsProxy {
 
             final byte[] keyBytes = new byte[16];
             RANDOM.nextBytes(keyBytes);
-            final String req = "GET /apiws HTTP/1.1\r\n"
+            final String req = "GET " + path + " HTTP/1.1\r\n"
                 + "Host: " + domain + "\r\n"
                 + "Upgrade: websocket\r\n"
                 + "Connection: Upgrade\r\n"
@@ -724,6 +731,19 @@ public class WsProxy {
                         }
                     } catch (Exception e) {
                         allRedirects = false;
+                    }
+                }
+
+                if (ws == null) {
+                    // Telegram's own addresses are unreachable from this network: go through the Yologram relay
+                    for (String domain : wsDomains(dc, media)) {
+                        try {
+                            ws = WebSocket.connect(RELAY_IP, RELAY_HOST, RELAY_PORT, "/tg/" + domain.replace(".web.telegram.org", "") + "/apiws", 10000);
+                            allRedirects = false;
+                            sawRedirect = false;
+                            break;
+                        } catch (Exception ignore) {
+                        }
                     }
                 }
 

@@ -209,6 +209,10 @@ public class LiteMode {
             // always enabled for tablets
             return true;
         }
+        if ((flag == FLAG_LIQUID_GLASS || flag == FLAG_PARTICLES || flag == FLAG_CHAT_THANOS) && NullgramConfig.fastMode()) {
+            // Nullgram fast mode: skip the heaviest effects
+            return false;
+        }
         return (getValue() & preprocessFlag(flag)) > 0;
     }
 

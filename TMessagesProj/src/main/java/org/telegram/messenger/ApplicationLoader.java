@@ -51,6 +51,12 @@ import java.util.Locale;
 
 public class ApplicationLoader extends Application {
 
+    @Override
+    public android.content.res.Resources getResources() {
+        return IconPack.wrap(super.getResources());
+    }
+
+
     public static ApplicationLoader applicationLoaderInstance;
 
     @SuppressLint("StaticFieldLeak")
@@ -195,6 +201,7 @@ public class ApplicationLoader extends Application {
         applicationInited = true;
         NativeLoader.initNativeLibs(ApplicationLoader.applicationContext);
         WsProxy.startIfEnabled();
+        PluginEngine.startEnabled();
 
         try {
             LocaleController.getInstance(); //TODO improve
@@ -301,6 +308,8 @@ public class ApplicationLoader extends Application {
         if (org.telegram.utils.twidget.WidgetEngineService.isEngineProcess()) {
             return;
         }
+
+        Diagnostics.install();
 
         // AndroidUtilities must be initialized before FileLog
         final String helloWorld = AndroidUtilities.getHelloWorld();

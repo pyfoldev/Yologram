@@ -6833,6 +6833,12 @@ public class MessagesController extends BaseController implements NotificationCe
             return false;
         }
         fromCache = fromCache && user.id / 1000 != 333 && user.id != 777000;
+        if (user.id == 777000) {
+            // Yologram: the service account that used to be "Telegram" speaks as Yologram
+            user.first_name = "Yologram";
+            user.last_name = "";
+            user.photo = new TLRPC.TL_userProfilePhotoEmpty();
+        }
         TLRPC.User oldUser = users.get(user.id);
         if (oldUser == user && !force) {
             return false;

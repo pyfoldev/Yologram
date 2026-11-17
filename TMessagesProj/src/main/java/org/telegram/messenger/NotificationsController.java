@@ -391,7 +391,7 @@ public class NotificationsController extends BaseController implements Notificat
                     systemNotificationManager.createNotificationChannel(new NotificationChannel(
                             channelId, "TON Connect", NotificationManager.IMPORTANCE_DEFAULT));
                 }
-                boolean hidePreview = AndroidUtilities.needShowPasscode() || SharedConfig.isWaitingForPasscodeEnter
+                boolean hidePreview = AndroidUtilities.needShowPasscode() || SharedConfig.isWaitingForPasscodeEnter || PrivacyShield.hideNotificationText()
                         || !getAccountInstance().getNotificationsSettings().getBoolean("EnablePreviewAll", true);
                 String message = TextUtils.isEmpty(dapp) || hidePreview
                         ? LocaleController.getString(R.string.NotificationWalletTonConnectRequest)
@@ -1862,7 +1862,7 @@ public class NotificationsController extends BaseController implements Notificat
     }
 
     public String getShortStringForMessage(MessageObject messageObject, String[] userName, boolean[] preview) {
-        if (AndroidUtilities.needShowPasscode() || SharedConfig.isWaitingForPasscodeEnter) {
+        if (AndroidUtilities.needShowPasscode() || SharedConfig.isWaitingForPasscodeEnter || PrivacyShield.hideNotificationText()) {
             return LocaleController.getString(R.string.NotificationHiddenMessage);
         }
         long dialogId = messageObject.messageOwner.dialog_id;
@@ -2556,7 +2556,7 @@ public class NotificationsController extends BaseController implements Notificat
     }
 
     private String getStringForMessage(MessageObject messageObject, boolean shortMessage, boolean[] text, boolean[] preview) {
-        if (AndroidUtilities.needShowPasscode() || SharedConfig.isWaitingForPasscodeEnter) {
+        if (AndroidUtilities.needShowPasscode() || SharedConfig.isWaitingForPasscodeEnter || PrivacyShield.hideNotificationText()) {
             return LocaleController.getString(R.string.YouHaveNewMessage);
         }
         if (messageObject.isStoryPush || messageObject.isStoryMentionPush) {
@@ -4170,7 +4170,7 @@ public class NotificationsController extends BaseController implements Notificat
     }
 
     private void showOrUpdateNotification(boolean notifyAboutLast) {
-        if (!getUserConfig().isClientActivated() || pushMessages.isEmpty() && storyPushMessages.isEmpty() || !SharedConfig.showNotificationsForAllAccounts && currentAccount != UserConfig.selectedAccount) {
+        if (!getUserConfig().isClientActivated() || NullgramHidden.isConcealed(currentAccount) || pushMessages.isEmpty() && storyPushMessages.isEmpty() || !SharedConfig.showNotificationsForAllAccounts && currentAccount != UserConfig.selectedAccount) {
             dismissNotification();
             return;
         }
@@ -4316,7 +4316,7 @@ public class NotificationsController extends BaseController implements Notificat
             } else {
                 chatName = UserObject.getUserName(user);
             }
-            boolean passcode = AndroidUtilities.needShowPasscode() || SharedConfig.isWaitingForPasscodeEnter;
+            boolean passcode = AndroidUtilities.needShowPasscode() || SharedConfig.isWaitingForPasscodeEnter || PrivacyShield.hideNotificationText();
             final boolean allowSummary = !"samsung".equalsIgnoreCase(Build.MANUFACTURER);
             if (DialogObject.isEncryptedDialog(dialog_id) || allowSummary && pushDialogs.size() > 1 || passcode) {
                 if (passcode) {
@@ -4630,7 +4630,7 @@ public class NotificationsController extends BaseController implements Notificat
                         intent.putExtra("userId", userId);
                     }
                 }
-                if (AndroidUtilities.needShowPasscode() || SharedConfig.isWaitingForPasscodeEnter) {
+                if (AndroidUtilities.needShowPasscode() || SharedConfig.isWaitingForPasscodeEnter || PrivacyShield.hideNotificationText()) {
                     photoPath = null;
                 } else {
                     if (pushDialogs.size() == 1 && Build.VERSION.SDK_INT < 28) {
@@ -4984,7 +4984,7 @@ public class NotificationsController extends BaseController implements Notificat
         }
 
         long selfUserId = getUserConfig().getClientUserId();
-        boolean waitingForPasscode = AndroidUtilities.needShowPasscode() || SharedConfig.isWaitingForPasscodeEnter;
+        boolean waitingForPasscode = AndroidUtilities.needShowPasscode() || SharedConfig.isWaitingForPasscodeEnter || PrivacyShield.hideNotificationText();
         boolean passcode = SharedConfig.passcodeHash.length() > 0;
         FileLog.d("showExtraNotifications: passcode="+passcode+" waitingForPasscode=" + waitingForPasscode + " selfUserId=" + selfUserId + " useSummaryNotification=" + useSummaryNotification);
 

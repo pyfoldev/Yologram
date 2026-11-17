@@ -140,6 +140,7 @@ import org.telegram.messenger.BillingController;
 import org.telegram.messenger.BirthdayController;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.NullgramConfig;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -675,6 +676,15 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     private int userInfoRow;
     private int channelInfoRow;
     private int usernameRow;
+    private int idRow;
+
+    /** Telegram id of the user, or the Bot API style id of the chat (-100… for channels and supergroups). */
+    private String yologramIdText() {
+        if (userId != 0) {
+            return String.valueOf(userId);
+        }
+        return ChatObject.isChannel(currentChat) ? "-100" + chatId : "-" + chatId;
+    }
     private int notificationsDividerRow;
     private int notificationsRow;
     private int bizHoursRow;
@@ -4462,6 +4472,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 onMemberClick(participant, false, view);
             } else if (position == addMemberRow) {
                 openAddMember();
+            } else if (position == idRow) {
+                AndroidUtilities.addToClipboard(yologramIdText());
+                BulletinFactory.of(this).createCopyBulletin(yologramIdText(), resourcesProvider).show();
             } else if (position == usernameRow) {
                 processOnClickOrPress(position, view, x, y);
             } else if (position == linkedCommunityRow) {
@@ -6586,7 +6599,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 return dp(needInsetForStories() ? 24 : 38);
             }
         }
-        return dp(50);
+        return org.telegram.ui.ActionBar.MaterialYou.avatarRadius(50, 50);
     }
 
     private void updateTtlIcon() {
@@ -8681,9 +8694,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
     private org.telegram.ui.Components.ThoughtView thoughtBubble;
     private boolean remoteRequested;
-    private static boolean syncPushed;
+    private static final java.util.HashSet<Long> syncPushed = new java.util.HashSet<>();
     private String remoteThought;
     private java.io.File remoteBanner;
+    private float lastBubbleRight = Float.NaN, lastBubbleTop = Float.NaN;
 
     private void needLayout(boolean animated) {
         needLayoutInner(animated);
@@ -8694,8 +8708,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         if (avatarContainer == null || avatarContainer2 == null) {
             return;
         }
-        if (myProfile && !syncPushed) {
-            syncPushed = true;
+        if (myProfile && syncPushed.add(getUserConfig().getClientUserId())) {
             org.telegram.messenger.NullgramSync.pushAll();
         }
         if (!myProfile) {
@@ -8743,6 +8756,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         final float size = avatarContainer.getWidth() * scale;
         final float right = a[0] - b[0] + size;
         final float top = a[1] - b[1];
+        if (Math.abs(right - lastBubbleRight) < 0.5f && Math.abs(top - lastBubbleTop) < 0.5f) {
+            return;
+        }
+        lastBubbleRight = right;
+        lastBubbleTop = top;
         thoughtBubble.follow(right, top, avatarContainer2.getWidth());
     }
 
@@ -9882,6 +9900,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
     @Override
     public void onResume() {
+        if (!myProfile && userId > 0) {
+            // the profile page can stay alive between visits: ask again so a new thought or banner shows up
+            remoteRequested = false;
+            AndroidUtilities.runOnUIThread(this::updateThoughtBubble, 200);
+        }
         super.onResume();
         if (sharedMediaLayout != null) {
             sharedMediaLayout.onResume();
@@ -10961,6 +10984,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         locationRow = -1;
         channelInfoRow = -1;
         usernameRow = -1;
+        idRow = -1;
         settingsTimerRow = -1;
         settingsKeyRow = -1;
         notificationsDividerRow = -1;
@@ -11159,6 +11183,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 if (user != null && username != null) {
                     usernameRow = rowCount++;
                 }
+                if (NullgramConfig.showIds()) {
+                    idRow = rowCount++;
+                }
                 if (userInfo != null) {
                     if (userInfo.birthday != null) {
                         birthdayRow = rowCount++;
@@ -11316,6 +11343,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 if (ChatObject.isPublic(currentChat)) {
                     usernameRow = rowCount++;
+                }
+                if (NullgramConfig.showIds()) {
+                    idRow = rowCount++;
                 }
             }
             if (emptyRow < 0 && emptyRow2 < 0) {
@@ -11695,6 +11725,14 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
     private MessagesController.PeerColor peerColor;
 
+    private boolean profileHasNullgramBadge(TLRPC.User user) {
+        if (user == null || UserObject.isUserSelf(user)) {
+            return false;
+        }
+        org.telegram.messenger.NullgramUsers.ensure(user.id, () -> updateProfileData(false));
+        return org.telegram.messenger.NullgramUsers.has(user.id);
+    }
+
     private void updateProfileData(boolean reload) {
         if (avatarContainer == null || nameTextView == null || getParentActivity() == null) {
             return;
@@ -11860,8 +11898,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 if (user.scam || user.fake) {
                     nameTextView.setRightDrawable2(getScamDrawable(user.scam ? 0 : 1));
                     nameTextViewRightDrawable2ContentDescription = LocaleController.getString(R.string.ScamMessage);
-                } else if (user.verified || org.telegram.messenger.CreatorBadge.isCreator(user)) {
-                    nameTextView.setRightDrawable2(user.verified ? getVerifiedCrossfadeDrawable() : org.telegram.messenger.CreatorBadge.drawable(AndroidUtilities.dp(22)));
+                } else if (user.verified || org.telegram.messenger.CreatorBadge.isCreator(user) || profileHasNullgramBadge(user)) {
+                    nameTextView.setRightDrawable2(user.verified ? getVerifiedCrossfadeDrawable() : org.telegram.messenger.CreatorBadge.drawable(AndroidUtilities.dp(22), org.telegram.messenger.CreatorBadge.isCreator(user)));
                     nameTextViewRightDrawable2ContentDescription = LocaleController.getString(R.string.AccDescrVerified);
                 } else {
                     nameTextView.setRightDrawable2(null);
@@ -13748,6 +13786,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
                             containsGift = !myProfile && today && !getMessagesController().premiumPurchaseBlocked();
                         }
+                    } else if (position == idRow) {
+                        detailCell.setTextAndValue(yologramIdText(), "ID", false);
                     } else if (position == phoneRow) {
                         String text;
                         TLRPC.User user = getMessagesController().getUser(userId);
@@ -14108,7 +14148,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     } else if (position == dataRow) {
                         textCell.setTextAndIcon(LocaleController.getString(R.string.DataSettings), R.drawable.msg2_data, true);
                     } else if (position == nullgramRow) {
-                        textCell.setTextAndIcon("Nullgram", R.drawable.msg_colors, true);
+                        textCell.setTextAndIcon("Yologram", R.drawable.msg_colors, true);
                     } else if (position == chatRow) {
                         textCell.setTextAndIcon(LocaleController.getString(R.string.ChatSettings), R.drawable.msg2_discussion, true);
                     } else if (position == filtersRow) {
@@ -14594,7 +14634,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (position == infoHeaderRow || position == membersHeaderRow || position == settingsSectionRow2 ||
                     position == numberSectionRow || position == helpHeaderRow || position == debugHeaderRow || position == botPermissionsHeader) {
                 return VIEW_TYPE_HEADER;
-            } else if (position == phoneRow || position == locationRow || position == numberRow || position == birthdayRow) {
+            } else if (position == phoneRow || position == locationRow || position == numberRow || position == birthdayRow || position == idRow) {
                 return VIEW_TYPE_TEXT_DETAIL;
             } else if (position == usernameRow || position == setUsernameRow) {
                 return VIEW_TYPE_TEXT_DETAIL_MULTILINE;

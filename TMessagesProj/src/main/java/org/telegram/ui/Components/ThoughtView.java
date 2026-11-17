@@ -58,8 +58,10 @@ public class ThoughtView extends View {
     public void follow(float right, float top, int parentWidth) {
         final float x = right - dp(22);
         final int avail = Math.max(dp(70), (int) (parentWidth - x - dp(30) - dp(12)));
-        if (avail != maxPillPx && avail < dp(MAX_PILL_DP) || (avail >= dp(MAX_PILL_DP) && maxPillPx != dp(MAX_PILL_DP))) {
-            maxPillPx = Math.min(avail, dp(MAX_PILL_DP));
+        final int wanted = Math.min(avail, dp(MAX_PILL_DP));
+        // only re-measure the text when the room changed noticeably, not on every scroll frame
+        if (Math.abs(wanted - maxPillPx) >= dp(10) || (wanted == dp(MAX_PILL_DP) && maxPillPx != wanted)) {
+            maxPillPx = wanted;
             update();
         }
         setTranslationX(x);
@@ -87,32 +89,6 @@ public class ThoughtView extends View {
         if (remote) {
             return;
         }
-        final EditText edit = new EditText(getContext());
-        edit.setInputType(InputType.TYPE_CLASS_TEXT);
-        edit.setSingleLine(true);
-        edit.setHint(MaterialYou.s("What's on your mind?", "О чём думаешь?"));
-        edit.setFilters(new android.text.InputFilter[]{new android.text.InputFilter.LengthFilter(Thoughts.MAX_LENGTH)});
-        if (text != null) {
-            edit.setText(text);
-            edit.setSelection(text.length());
-        }
-        final AlertDialog.Builder b = new AlertDialog.Builder(getContext());
-        b.setTitle(MaterialYou.s("Your thought", "Твоя мысль"));
-        b.setMessage(MaterialYou.s("Shown next to your avatar for 24 hours. Visible on this device only.", "Показывается рядом с аватаркой 24 часа. Видна только на этом устройстве."));
-        b.setView(edit);
-        b.setPositiveButton(MaterialYou.s("Save", "Сохранить"), (d, w) -> {
-            Thoughts.set(edit.getText().toString());
-            org.telegram.messenger.NullgramSync.pushThought(Thoughts.get());
-            update();
-        });
-        if (text != null) {
-            b.setNeutralButton(MaterialYou.s("Remove", "Убрать"), (d, w) -> {
-                Thoughts.clear();
-                org.telegram.messenger.NullgramSync.pushThought(null);
-                update();
-            });
-        }
-        b.setNegativeButton(MaterialYou.s("Cancel", "Отмена"), null);
-        b.show();
+        new ThoughtSheet(getContext(), text, this::update).show();
     }
 }

@@ -677,6 +677,9 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
+        if (org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
+            org.telegram.ui.ActionBar.MaterialYou.drawRowCard(canvas, getWidth(), getHeight(), currentMessageObject != null && org.telegram.messenger.MediaController.getInstance().isPlayingMessage(currentMessageObject));
+        }
         if (showName && showNameProgress != 1f) {
             showNameProgress += 16 / 150f;
             invalidate();
@@ -780,7 +783,7 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         radialProgress.setOverlayImageAlpha(showNameProgress);
         radialProgress.draw(canvas);
 
-        if (needDivider) {
+        if (needDivider && !org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
             if (LocaleController.isRTL) {
                 canvas.drawLine(0, getHeight() - 1, getWidth() - dp(72) - getPaddingRight(), getHeight() - 1, Theme.getThemePaint(Theme.key_paint_divider, resourcesProvider));
             } else {

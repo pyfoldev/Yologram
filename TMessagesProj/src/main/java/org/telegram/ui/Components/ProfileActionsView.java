@@ -469,7 +469,7 @@ public class ProfileActionsView extends View {
     }
 
     public float getRoundRadius() {
-        return dp(16);
+        return org.telegram.ui.ActionBar.MaterialYou.isEnabled() ? Math.min(dp(30), org.telegram.ui.ActionBar.MaterialYou.radius(24)) : dp(16);
     }
 
     private Action hit = null;

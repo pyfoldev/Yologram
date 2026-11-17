@@ -335,6 +335,9 @@ public class AudioPlayerCell extends FrameLayout implements DownloadController.F
 
     @Override
     protected void onDraw(Canvas canvas) {
+        if (org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
+            org.telegram.ui.ActionBar.MaterialYou.drawRowCard(canvas, getWidth(), getHeight(), currentMessageObject != null && org.telegram.messenger.MediaController.getInstance().isPlayingMessage(currentMessageObject));
+        }
         if (titleLayout != null) {
             canvas.save();
             canvas.translate(dp(LocaleController.isRTL ? 16 : AndroidUtilities.leftBaseline) + (LocaleController.isRTL && optionsButton.getVisibility() == View.VISIBLE ? dp(32) : 0), titleY);
@@ -357,7 +360,7 @@ public class AudioPlayerCell extends FrameLayout implements DownloadController.F
 
         super.onDraw(canvas);
 
-        if (needDivider) {
+        if (needDivider && !org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
             final Paint dividerPaint = Theme.getThemePaint(Theme.key_paint_divider, resourcesProvider);
             if (dividerPaint != null) {
                 if (LocaleController.isRTL) {

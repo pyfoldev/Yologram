@@ -1986,6 +1986,8 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     } else {
                         interpolated = CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(animationProgress);
                     }
+                } else if (org.telegram.messenger.NullgramConfig.animations() && open) {
+                    interpolated = overshootInterpolator.getInterpolation(animationProgress);
                 } else {
                     interpolated = decelerateInterpolator.getInterpolation(animationProgress);
                 }
@@ -2006,7 +2008,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                         containerView.invalidate();
                         invalidate();
                     } else {
-                        containerView.setTranslationX(dp(48) * (1.0f - interpolated));
+                        containerView.setTranslationX(dp(org.telegram.messenger.NullgramConfig.animations() ? 80 : 48) * (1.0f - interpolated));
                     }
                 } else {
                     float clampedReverseInterpolated = MathUtils.clamp(1f - interpolated, 0, 1);

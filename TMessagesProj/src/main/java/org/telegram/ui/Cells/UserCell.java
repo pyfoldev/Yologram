@@ -104,6 +104,8 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
     private int statusOnlineColor;
 
     public boolean needDivider;
+    private final android.graphics.Paint cardPaint = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
+    private final android.graphics.RectF cardRect = new android.graphics.RectF();
     public StoriesUtilities.AvatarStoryParams storyParams = new StoriesUtilities.AvatarStoryParams(false) {
         @Override
         public void openStory(long dialogId, Runnable onDone) {
@@ -182,7 +184,10 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
                 return super.onTouchEvent(event);
             }
         };
-        avatarImageView.setRoundRadius(dp(24));
+        avatarImageView.setRoundRadius(org.telegram.ui.ActionBar.MaterialYou.avatarRadius(23, 24));
+        if (org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
+            setWillNotDraw(false);
+        }
         addView(avatarImageView, LayoutHelper.createFrame(46, 46, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, LocaleController.isRTL ? 0 : 7 + padding, 6, LocaleController.isRTL ? 7 + padding : 0, 0));
         setClipChildren(false);
 
@@ -362,7 +367,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         currentObject = object;
         currentDrawable = resId;
         needDivider = divider;
-        setWillNotDraw(!needDivider);
+        setWillNotDraw(!needDivider && !org.telegram.ui.ActionBar.MaterialYou.isEnabled());
         update(0);
     }
 
@@ -486,7 +491,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         nameTextView.setLayoutParams(LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 20, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, LocaleController.isRTL ? 30 : (66 + padding), 10, LocaleController.isRTL ? (66 + padding) : 30, 0));
         statusTextView.setTextSize(13);
         statusTextView.setLayoutParams(LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 20, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, LocaleController.isRTL ? 30 : (66 + padding), 32, LocaleController.isRTL ? (66 + padding) : 30, 0));
-        avatarImageView.setRoundRadius(dp(22));
+        avatarImageView.setRoundRadius(org.telegram.ui.ActionBar.MaterialYou.avatarRadius(22, 22));
         avatarImageView.setLayoutParams(LayoutHelper.createFrame(44, 44, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, LocaleController.isRTL ? 0 : 8 + padding, 6, LocaleController.isRTL ? 8 + padding : 0, 0));
         if (checkBox != null) {
             checkBox.setLayoutParams(LayoutHelper.createFrame(24, 24, (LocaleController.isRTL ? Gravity.RIGHT : Gravity.LEFT) | Gravity.TOP, LocaleController.isRTL ? 0 : 37 + padding, 32, LocaleController.isRTL ? 37 + padding : 0, 0));
@@ -812,6 +817,14 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
 
     @Override
     protected void onDraw(Canvas canvas) {
+        if (org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
+            // Material You: each row is its own rounded card, so no divider line.
+            cardPaint.setColor(org.telegram.ui.ActionBar.MaterialYou.role(org.telegram.ui.ActionBar.MaterialYou.R_SURFACE_HIGH));
+            cardRect.set(dp(8), dp(2), getMeasuredWidth() - dp(8), getMeasuredHeight() - dp(2));
+            final float r = org.telegram.ui.ActionBar.MaterialYou.radius(22);
+            canvas.drawRoundRect(cardRect, r, r, cardPaint);
+            return;
+        }
         if (needDivider) {
             canvas.drawLine(LocaleController.isRTL ? 0 : dp(68), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? dp(68) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
         }

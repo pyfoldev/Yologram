@@ -121,6 +121,12 @@ public class MaterialYou {
         prefs().edit().putBoolean("enabled", enabled).putInt("seed", seed).putBoolean("amoled", amoled).putFloat("corner", cornerScale).apply();
         rebuildTables();
         Theme.refreshThemeColors();
+        // screens already on the stack keep colours they cached when they were built: rebuild them so the new accent is everywhere
+        AndroidUtilities.runOnUIThread(() -> {
+            if (org.telegram.ui.LaunchActivity.instance != null) {
+                org.telegram.ui.LaunchActivity.instance.rebuildAllFragments(true);
+            }
+        }, 150);
     }
 
     private static void rebuildTables() {
@@ -166,8 +172,8 @@ public class MaterialYou {
 
         final double[] primary = {hue, cp};
         final double[] secondary = {hue, 0.05};
-        final double[] neutral = {hue, 0.008};
-        final double[] variant = {hue, 0.016};
+        final double[] neutral = {hue, 0.022};
+        final double[] variant = {hue, 0.035};
         final double[] error = {29, 0.17};
 
         final int[] r = new int[ROLE_COUNT];
@@ -249,7 +255,7 @@ public class MaterialYou {
     }
 
     public static int density() {
-        return prefs().getInt("density", 1);
+        return prefs().getInt("density", 0);
     }
 
     public static void setDensity(int value) {
@@ -258,6 +264,17 @@ public class MaterialYou {
 
     public static int rowExtra() {
         return 2 + 2 * density();
+    }
+
+    private static final android.graphics.Paint rowCardPaint = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
+    private static final android.graphics.RectF rowCardRect = new android.graphics.RectF();
+
+    /** A rounded card behind a list row; the highlighted one (e.g. the playing track) uses the primary container. */
+    public static void drawRowCard(android.graphics.Canvas canvas, int width, int height, boolean highlight) {
+        rowCardPaint.setColor(role(highlight ? R_PRIMARY_CONTAINER : R_SURFACE_HIGH));
+        rowCardRect.set(AndroidUtilities.dp(8), AndroidUtilities.dp(2), width - AndroidUtilities.dp(8), height - AndroidUtilities.dp(2));
+        final float r = radius(22);
+        canvas.drawRoundRect(rowCardRect, r, r, rowCardPaint);
     }
 
     public static float radius(float dp) {
@@ -334,8 +351,8 @@ public class MaterialYou {
     }
 
     private static void buildKeyMap() {
-        m(Theme.key_windowBackgroundWhite, R_SURFACE, 255);
-        m(Theme.key_windowBackgroundGray, R_SURFACE_CONTAINER, 255);
+        m(Theme.key_windowBackgroundWhite, R_SURFACE_CONTAINER, 255);
+        m(Theme.key_windowBackgroundGray, R_SURFACE, 255);
         m(Theme.key_windowBackgroundWhiteBlackText, R_ON_SURFACE, 255);
         m(Theme.key_windowBackgroundWhiteGrayText, R_ON_SURFACE_VARIANT, 255);
         m(Theme.key_windowBackgroundWhiteGrayText2, R_ON_SURFACE_VARIANT, 255);
@@ -410,6 +427,9 @@ public class MaterialYou {
         m(Theme.key_chat_inBubble, R_SURFACE_HIGH, 255);
         m(Theme.key_chat_outBubble, R_PRIMARY_CONTAINER, 255);
         m(Theme.key_chat_outBubbleSelected, R_PRIMARY_CONTAINER, 255);
+        m(Theme.key_chat_outBubbleGradient1, R_PRIMARY_CONTAINER, 255);
+        m(Theme.key_chat_outBubbleGradient2, R_PRIMARY_CONTAINER, 255);
+        m(Theme.key_chat_outBubbleGradient3, R_PRIMARY_CONTAINER, 255);
         m(Theme.key_chat_messageTextIn, R_ON_SURFACE, 255);
         m(Theme.key_chat_inReplyMessageText, R_ON_SURFACE, 255);
         m(Theme.key_chat_inReplyMediaMessageText, R_ON_SURFACE, 255);
@@ -494,6 +514,13 @@ public class MaterialYou {
         m(Theme.key_chat_goDownButton, R_SURFACE_HIGH, 255);
         m(Theme.key_chat_goDownButtonCounterBackground, R_PRIMARY, 255);
         m(Theme.key_chat_goDownButtonCounter, R_ON_PRIMARY, 255);
+        m(Theme.key_glass_targetMainTabs, R_SURFACE_HIGH, 255);
+        m(Theme.key_glass_targetMainTopPanel, R_SURFACE_HIGH, 255);
+        m(Theme.key_glass_defaultIcon, R_ON_SURFACE, 255);
+        m(Theme.key_glass_defaultText, R_ON_SURFACE, 255);
+        m(Theme.key_glass_tabSelected, R_SECONDARY_CONTAINER, 255);
+        m(Theme.key_glass_tabSelectedText, R_ON_SECONDARY_CONTAINER, 255);
+        m(Theme.key_glass_tabUnselected, R_ON_SURFACE_VARIANT, 255);
         m(Theme.key_dialogBackground, R_SURFACE_HIGH, 255);
         m(Theme.key_dialogBackgroundGray, R_SURFACE_CONTAINER, 255);
         m(Theme.key_dialogTextBlack, R_ON_SURFACE, 255);
