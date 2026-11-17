@@ -27,8 +27,17 @@ _FLIP.update({
 })
 
 
+_API = None  # объект API, который рантайм передаёт в on_load
+
+
 def _api(name):
-    """Достаём функцию API независимо от того, как её отдаёт рантайм."""
+    """Достаём функцию API: из объекта, из dict или из глобалов."""
+    if _API is not None:
+        fn = getattr(_API, name, None)
+        if fn is None and isinstance(_API, dict):
+            fn = _API.get(name)
+        if callable(fn):
+            return fn
     fn = globals().get(name)
     return fn if callable(fn) else None
 
@@ -87,25 +96,36 @@ def _bump_counter():
 
 # ---------- хуки ----------
 
-def on_load():
+def _find_text(args, kwargs):
+    for v in args:
+        if isinstance(v, str):
+            return v
+    for k in ("text", "message", "msg"):
+        if isinstance(kwargs.get(k), str):
+            return kwargs[k]
+    return None
+
+
+def on_load(*args, **kwargs):
+    global _API
+    if args:
+        _API = args[0]
+    elif kwargs:
+        _API = next(iter(kwargs.values()))
     _call("toast", "%s %s загружен" % (NAME, VERSION))
     _log("loaded")
 
 
 def on_message(*args, **kwargs):
-    """Входящие сообщения. Здесь ничего не меняем, только логируем."""
-    try:
-        text = args[0] if args else kwargs.get("text", "")
-        if isinstance(text, str) and text:
-            _log("incoming: %s" % text[:50])
-    except Exception:
-        pass
+    """Входящие сообщения. Ничего не меняем."""
+    return None
 
 
-def on_send(text, *args, **kwargs):
+def on_send(*args, **kwargs):
     """Исходящие: обрабатываем команды. Возвращаем новый текст."""
-    if not isinstance(text, str):
-        return text
+    text = _find_text(args, kwargs)
+    if text is None:
+        return None
 
     stripped = text.strip()
 
@@ -116,7 +136,7 @@ def on_send(text, *args, **kwargs):
     if stripped == ".stats":
         n = _call("get", "sent_count") or "0"
         _call("toast", "Отправлено через плагин: %s" % n)
-        return ""  # не отправляем саму команду
+        return ""
 
     head, _, rest = stripped.partition(" ")
     handler = COMMANDS.get(head)
