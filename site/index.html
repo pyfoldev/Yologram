@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yologram — Telegram в стиле Material You</title>
+<meta name="description" content="Yologram — неофициальный клиент Telegram для Android: Material You, режим призрака, сохранение удалённых сообщений, до 16 аккаунтов, без рекламы.">
+<meta name="theme-color" content="#141218">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<style>
+:root{color-scheme:dark;--f:Roboto,system-ui,-apple-system,"Segoe UI",sans-serif;
+--bg:#141218;--s-low:#1D1B20;--s:#211F26;--s-high:#2B2930;--s-hi2:#36343B;
+--pri:#D0BCFF;--on-pri:#381E72;--pri-c:#4F378B;--on-pri-c:#EADDFF;
+--sec-c:#4A4458;--on-sec-c:#E8DEF8;--ter:#EFB8C8;--ter-c:#633B48;
+--on:#E6E0E9;--var:#CAC4D0;--out:#938F99;--out-v:#49454F;--err:#F2B8B5;--err-c:#8C1D18;
+--r-xl:28px;--r-l:16px;--ease:cubic-bezier(.2,0,0,1)}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--on);font:400 16px/24px Roboto,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+svg{width:1em;height:1em;fill:currentColor;flex:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--s-low) 85%,transparent);backdrop-filter:blur(16px)}
+nav .wrap{display:flex;align-items:center;gap:8px;height:64px}
+.brand{display:flex;align-items:center;gap:12px;font:500 22px/28px var(--f);margin-right:auto}
+.brand img{width:36px;height:36px}
+.nl{padding:10px 16px;border-radius:20px;color:var(--var);font:500 14px/20px var(--f);position:relative}
+.nl:hover{background:#d0bcff14;color:var(--on)}
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 24px;border-radius:24px;font:500 15px/20px var(--f);letter-spacing:.1px;overflow:hidden;transition:box-shadow .2s var(--ease),transform .2s var(--ease)}
+.btn svg{font-size:20px}
+.btn:before{content:"";position:absolute;inset:0;background:currentColor;opacity:0;transition:opacity .2s}
+.btn:hover:before{opacity:.08}.btn:active:before{opacity:.12}.btn:active{transform:scale(.97)}
+.btn.f{background:var(--pri);color:var(--on-pri)}.btn.f:hover{box-shadow:0 1px 3px 1px #0006}
+.btn.t{background:var(--sec-c);color:var(--on-sec-c)}
+.btn.o{border:1px solid var(--out);color:var(--pri)}
+.btn.sm{height:40px;padding:0 20px;font-size:14px}
+.btn.lg{height:56px;padding:0 32px;font-size:16px;border-radius:28px}
+.hero{padding:56px 0 24px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;right:-180px;top:-200px;width:760px;height:760px;border-radius:50%;background:radial-gradient(#6750A44d,transparent 68%);pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:32px;align-items:center;position:relative}
+.chip{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 12px;border-radius:8px;border:1px solid var(--out-v);color:var(--var);font:500 13px/20px var(--f);margin-bottom:24px}
+.chip svg{color:var(--pri);font-size:18px}
+h1{font:400 clamp(40px,6.2vw,64px)/1.08 var(--f);letter-spacing:-.5px}
+h1 em{font-style:normal;color:var(--pri)}
+.lead{color:var(--var);font-size:18px;line-height:28px;margin:24px 0 32px;max-width:520px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.facts{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
+.facts span{height:32px;padding:0 12px;border-radius:8px;background:var(--s-high);color:var(--var);font:500 13px/32px var(--f)}
+.phones{position:relative;height:660px}
+.phone{width:290px;height:600px;border-radius:44px;background:#000;padding:8px;box-shadow:0 0 0 1.5px #3a3740,0 40px 80px -20px #000c;position:absolute}
+.phone .scr{width:100%;height:100%;border-radius:36px;overflow:hidden;background:var(--bg);position:relative;display:flex;flex-direction:column;font-size:12px;line-height:16px}
+.phone .scr>img{width:100%;height:100%;object-fit:cover;display:block}
+.phone:before{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);width:11px;height:11px;border-radius:50%;background:#000;z-index:7;box-shadow:0 0 0 2px #17151b}
+.p1{left:50%;margin-left:-270px;top:36px;transform:rotate(-5deg);z-index:2;transition:transform .5s var(--ease)}
+.p2{left:50%;margin-left:-30px;top:12px;transform:rotate(4deg);transition:transform .5s var(--ease)}
+.phones:hover .p1{transform:rotate(-7deg) translateX(-12px)}.phones:hover .p2{transform:rotate(6deg) translateX(12px)}
+.sb{display:flex;justify-content:space-between;padding:14px 24px 4px;font:500 11px/16px var(--f);color:var(--on)}
+.tb{display:flex;align-items:center;gap:8px;padding:6px 12px 8px 16px;min-height:48px}
+.tb b{font:400 20px/28px var(--f);flex:1}
+.ib{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:var(--var);font-size:20px}
+.srch{margin:4px 14px 8px;height:44px;border-radius:22px;background:var(--s-high);display:flex;align-items:center;gap:10px;padding:0 14px;color:var(--var);font-size:13px}
+.srch svg{font-size:20px}
+.chips{display:flex;gap:6px;padding:0 14px 6px}.chips span{height:28px;padding:0 12px;border-radius:8px;border:1px solid var(--out-v);font:500 12px/26px var(--f);color:var(--var)}
+.chips span.a{background:var(--sec-c);color:var(--on-sec-c);border-color:transparent}
+.row{display:flex;gap:12px;padding:8px 16px;align-items:center}
+.av{width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;font:500 16px/1 var(--f);color:#fff}
+.row .t{flex:1;min-width:0}.row b{display:block;font:500 14px/20px var(--f)}
+.row small{color:var(--var);font-size:12px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row i{font:500 11px/16px var(--f);color:var(--out);font-style:normal;display:block;text-align:right}
+.bd{background:var(--pri);color:var(--on-pri);border-radius:9px;min-width:18px;height:18px;font:500 11px/18px var(--f);text-align:center;padding:0 5px;margin-top:4px;float:right}
+.fab{position:absolute;right:16px;bottom:78px;width:56px;height:56px;border-radius:16px;background:var(--pri-c);color:var(--on-pri-c);display:grid;place-items:center;font-size:24px;box-shadow:0 3px 8px #0008}
+.nb{margin-top:auto;display:flex;justify-content:space-around;padding:10px 8px 16px;background:var(--s)}
+.nb div{display:flex;flex-direction:column;align-items:center;gap:4px;font:500 11px/16px var(--f);color:var(--var)}
+.nb div span{width:56px;height:28px;border-radius:14px;display:grid;place-items:center;font-size:20px}
+.nb .a{color:var(--on)}.nb .a span{background:var(--sec-c)}
+.msgs{flex:1;display:flex;flex-direction:column;gap:4px;padding:10px 12px;justify-content:flex-end;background:linear-gradient(180deg,var(--bg),#1b1424)}
+.m{max-width:80%;padding:8px 12px;border-radius:18px;font-size:13px;line-height:18px}
+.m.in{background:var(--s-high);border-bottom-left-radius:6px}.m.out{background:var(--pri-c);color:var(--on-pri-c);align-self:flex-end;border-bottom-right-radius:6px}
+.m.del{background:#601410aa;color:var(--err)}
+.m .e{display:block;font-size:10.5px;opacity:.8;margin-top:2px}
+.inp{margin:8px 12px 14px;height:48px;border-radius:24px;background:var(--s-high);display:flex;align-items:center;gap:10px;padding:0 14px;color:var(--out);font-size:13px}
+.inp svg{font-size:20px}.inp span{flex:1}
+.sc{padding:0 16px;display:flex;flex-direction:column}
+.sh{color:var(--pri);font:500 12px/16px var(--f);letter-spacing:.5px;margin:14px 0 4px}
+.it{display:flex;align-items:center;gap:14px;padding:8px 0}
+.it .ci{width:36px;height:36px;border-radius:12px;background:var(--sec-c);color:var(--on-sec-c);display:grid;place-items:center;font-size:20px}
+.it div{flex:1}.it b{font:400 14px/20px var(--f);display:block}.it small{font-size:12px;color:var(--var);display:block}
+.sw{width:44px;height:26px;border-radius:13px;border:2px solid var(--out);position:relative;flex:none}
+.sw:after{content:"";position:absolute;top:5px;left:5px;width:12px;height:12px;border-radius:50%;background:var(--out)}
+.sw.on{background:var(--pri);border-color:var(--pri)}.sw.on:after{left:21px;top:3px;width:16px;height:16px;background:var(--on-pri)}
+.sw.on:after{top:3px}
+.cols{display:flex;gap:10px;padding:4px 0 8px 50px}.cols i{width:30px;height:30px;border-radius:50%}.cols i.a{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--pri)}
+section{padding:80px 0}
+.eyebrow{color:var(--pri);font:500 14px/20px var(--f);letter-spacing:.5px;margin-bottom:8px}
+h2{font:400 clamp(30px,4.2vw,45px)/1.15 var(--f);margin-bottom:12px}
+.sub{color:var(--var);font-size:18px;line-height:28px;max-width:640px;margin-bottom:40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.card{background:var(--s-low);border-radius:var(--r-xl);padding:24px;position:relative;overflow:hidden;transition:background .2s,transform .3s var(--ease)}
+.card:hover{background:var(--s-high);transform:translateY(-3px)}
+.card:nth-child(3n+2){background:#2a2438}.card:nth-child(3n+2):hover{background:#342c46}
+.card .ico{width:56px;height:56px;border-radius:18px;background:var(--sec-c);color:var(--on-sec-c);display:grid;place-items:center;font-size:28px;margin-bottom:20px}
+.card h3{font:400 22px/28px var(--f);margin-bottom:8px}.card p{color:var(--var);font-size:14px;line-height:20px}
+.shots{display:flex;flex-wrap:wrap;justify-content:center;gap:40px 28px;padding:8px 4px 24px}
+.shots figure .scr{text-align:left}.shots figure{flex:none;text-align:center;scroll-snap-align:center;color:var(--var);font:500 14px/20px var(--f)}
+.shots .phone{position:relative;margin-bottom:16px;width:252px;height:522px;border-radius:40px}.shots .scr{border-radius:33px}
+.cta-box{background:var(--pri-c);color:var(--on-pri-c);border-radius:48px;padding:56px;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;position:relative;overflow:hidden}
+.cta-box:before{content:"";position:absolute;right:-80px;top:-120px;width:420px;height:420px;border-radius:50%;background:#d0bcff22}
+.cta-box h2{margin-bottom:8px}.cta-box p{color:var(--on-sec-c);opacity:.9;max-width:520px}
+.cta-box .cta{flex-direction:column;align-items:stretch;position:relative}
+.cta-box .btn.f{background:var(--on-pri-c);color:var(--pri-c)}
+.cta-box .btn.o{border-color:#eaddff88;color:var(--on-pri-c)}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.link{display:flex;align-items:center;gap:16px;background:var(--s-low);border-radius:var(--r-xl);padding:20px 24px;transition:background .2s}
+.link:hover{background:var(--s-high)}
+.link .ico{width:48px;height:48px;border-radius:16px;background:var(--sec-c);color:var(--on-sec-c);display:grid;place-items:center;font-size:24px}
+.link b{font:500 16px/24px var(--f);display:block}.link small{color:var(--var);font-size:13px}
+.link svg:last-child{margin-left:auto;color:var(--out)}
+.about{display:flex;gap:24px;align-items:center;background:var(--s-low);border-radius:var(--r-xl);padding:28px}
+.about .av{width:80px;height:80px;font-size:32px;background:linear-gradient(135deg,#6750A4,#EFB8C8)}
+footer{padding:32px 0 56px;color:var(--out);font-size:13px;border-top:1px solid var(--out-v)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease)}.rv.v{opacity:1;transform:none}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.phones{height:620px;transform:scale(.9);margin:-10px 0 -30px}.cta-box{grid-template-columns:1fr;padding:32px;border-radius:36px}.nl{display:none}.about{flex-direction:column;text-align:center}}
+@media(max-width:430px){.phones{transform:scale(.68);height:470px;margin:-60px -80px -90px}.btn.lg{width:100%}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="i-dl" viewBox="8 8 47 47"><path d="M30.6908 41.267C30.4428 41.1725 30.2022 41.0084 29.969 40.7748L20.2125 31.019C19.775 30.5736 19.5672 30.0538 19.5891 29.4597C19.6109 28.8656 19.8277 28.3498 20.2394 27.9123C20.6883 27.4748 21.2153 27.2525 21.8203 27.2455C22.4254 27.2381 22.9467 27.4531 23.3842 27.8906L29.3127 33.8625V12.6873C29.3127 12.0678 29.5229 11.5483 29.9434 11.1287C30.3643 10.7096 30.8858 10.5 31.5079 10.5C32.1296 10.5 32.6482 10.7096 33.0638 11.1287C33.4795 11.5483 33.6873 12.0678 33.6873 12.6873V33.8625L39.6592 27.8906C40.091 27.4531 40.6037 27.2453 41.1974 27.2672C41.7907 27.2891 42.3117 27.5188 42.7606 27.9563C43.1723 28.3938 43.3818 28.9115 43.3893 29.5096C43.3963 30.1072 43.181 30.6248 42.7435 31.0623L33.031 40.7748C32.7978 41.0084 32.5553 41.1725 32.3033 41.267C32.0517 41.3619 31.782 41.4094 31.4941 41.4094C31.2062 41.4094 30.9385 41.3619 30.6908 41.267ZM14.8752 52.5C13.694 52.5 12.6693 52.0662 11.8013 51.1987C10.9338 50.3307 10.5 49.306 10.5 48.1248V41.431C10.5 40.8115 10.7104 40.292 11.1313 39.8724C11.5517 39.4533 12.073 39.2438 12.6952 39.2438C13.3173 39.2438 13.8362 39.4533 14.2518 39.8724C14.6674 40.292 14.8752 40.8115 14.8752 41.431V48.1248H48.1248V41.431C48.1248 40.8115 48.3352 40.292 48.7561 39.8724C49.177 39.4533 49.6983 39.2438 50.3199 39.2438C50.9421 39.2438 51.4609 39.4533 51.8766 39.8724C52.2922 40.292 52.5 40.8115 52.5 41.431V48.1248C52.5 49.306 52.0662 50.3307 51.1987 51.1987C50.3307 52.0662 49.306 52.5 48.1248 52.5H14.8752Z"/></symbol>
+<symbol id="i-web" viewBox="6 6 51 51"><path d="M21.2408 55.6828C18.0471 54.3047 15.2653 52.4307 12.8953 50.0607C10.5254 47.6912 8.65878 44.9022 7.29553 41.6935C5.93184 38.4853 5.25 35.0547 5.25 31.4016C5.25 27.7484 5.93184 24.3359 7.29553 21.1641C8.65878 17.9922 10.5254 15.2213 12.8953 12.8513C15.2653 10.4818 18.0471 8.62247 21.2408 7.27322C24.4346 5.92441 27.858 5.25 31.5112 5.25C35.1643 5.25 38.584 5.92441 41.7703 7.27322C44.9566 8.62247 47.7348 10.4818 50.1047 12.8513C52.4746 15.2213 54.3412 17.9922 55.7045 21.1641C57.0682 24.3359 57.75 27.7484 57.75 31.4016C57.75 35.0547 57.0682 38.4853 55.7045 41.6935C54.3412 44.9022 52.4746 47.6912 50.1047 50.0607C47.7348 52.4307 44.9566 54.3047 41.7703 55.6828C38.584 57.0609 35.1643 57.75 31.5112 57.75C27.858 57.75 24.4346 57.0609 21.2408 55.6828ZM31.5 53.4188C32.9 51.8438 34.0813 50.0938 35.0438 48.1688C36.0063 46.2438 36.7938 44.0272 37.4063 41.519H25.6377C26.2209 43.9104 26.9938 46.0904 27.9563 48.0592C28.9188 50.0279 30.1 51.8144 31.5 53.4188ZM25.5065 52.544C24.5147 50.9541 23.6578 49.2588 22.9359 47.458C22.2141 45.6568 21.6125 43.6772 21.1313 41.519H11.9877C13.519 44.319 15.3309 46.5793 17.4234 48.3C19.516 50.0207 22.2103 51.4353 25.5065 52.544ZM37.5375 52.5C40.4543 51.5668 43.0684 50.1596 45.3797 48.2783C47.691 46.3971 49.5685 44.144 51.0123 41.519H41.9127C41.4022 43.6479 40.7932 45.6129 40.0857 47.4141C39.3787 49.2153 38.5293 50.9106 37.5375 52.5ZM10.3688 37.1438H20.2998C20.1685 36.0644 20.0848 35.0691 20.0484 34.1578C20.0121 33.2465 19.994 32.3315 19.994 31.4127C19.994 30.3772 20.0193 29.4328 20.0701 28.5797C20.1213 27.7266 20.2125 26.8041 20.3438 25.8123H10.3688C10.0918 26.8041 9.89866 27.7193 9.78928 28.558C9.67991 29.3963 9.62522 30.3478 9.62522 31.4127C9.62522 32.4772 9.67991 33.4506 9.78928 34.333C9.89866 35.215 10.0918 36.1519 10.3688 37.1438ZM24.7623 37.1438H38.281C38.4416 35.9481 38.5475 34.9237 38.5987 34.0705C38.6494 33.2174 38.6748 32.3315 38.6748 31.4127C38.6748 30.5228 38.6494 29.666 38.5987 28.8422C38.5475 28.0184 38.4416 27.0084 38.281 25.8123H24.7623C24.6022 27.0084 24.4965 28.0184 24.4453 28.8422C24.3941 29.666 24.3685 30.5228 24.3685 31.4127C24.3685 32.3315 24.3941 33.2174 24.4453 34.0705C24.4965 34.9237 24.6022 35.9481 24.7623 37.1438ZM42.6563 37.1438H52.6313C52.9082 36.1519 53.1014 35.215 53.2107 34.333C53.3201 33.4506 53.3748 32.4772 53.3748 31.4127C53.3748 30.3478 53.3201 29.3963 53.2107 28.558C53.1014 27.7193 52.9082 26.8041 52.6313 25.8123H42.7002C42.8315 27.1248 42.9225 28.1932 42.9732 29.0174C43.0244 29.8412 43.05 30.6397 43.05 31.4127C43.05 32.3603 43.0172 33.2607 42.9516 34.1138C42.8859 34.967 42.7875 35.9769 42.6563 37.1438ZM41.8688 21.4377H51.0123C49.6272 18.6959 47.7787 16.3844 45.467 14.5031C43.1557 12.6219 40.4978 11.2728 37.4935 10.456C38.4853 12.0166 39.335 13.6828 40.0424 15.4547C40.7494 17.2266 41.3582 19.2209 41.8688 21.4377ZM25.6377 21.4377H37.4502C36.9541 19.2502 36.1885 17.1502 35.1533 15.1377C34.1178 13.1252 32.9 11.3022 31.5 9.66853C30.1875 10.981 29.0719 12.5635 28.1531 14.4158C27.2344 16.2678 26.3959 18.6084 25.6377 21.4377ZM11.9877 21.4377H21.1752C21.6272 19.3084 22.1994 17.365 22.892 15.6076C23.585 13.8506 24.4418 12.1481 25.4625 10.5C22.4582 11.3168 19.8223 12.6512 17.5547 14.5031C15.2871 16.3551 13.4315 18.6666 11.9877 21.4377Z"/></symbol>
+<symbol id="i-code" viewBox="0 -960 960 960"><path d="M320-240 80-480l240-240 57 57-184 184 183 183-56 56Zm320 0-57-57 184-184-183-183 56-56 240 240-240 240Z"/></symbol>
+<symbol id="i-send" viewBox="8 8 47 47"><path d="M52.9377 33.5344L10.9377 51.2092C10.2084 51.501 9.51563 51.4391 8.85938 51.0234C8.20312 50.6078 7.875 50.0063 7.875 49.2188V13.7813C7.875 12.9938 8.20312 12.3922 8.85938 11.9766C9.51563 11.5609 10.2084 11.499 10.9377 11.7908L52.9377 29.4656C53.8272 29.8594 54.2719 30.5375 54.2719 31.5C54.2719 32.4625 53.8272 33.1406 52.9377 33.5344ZM12.2502 45.8063L46.4185 31.5L12.2502 17.0625V27.4752L28.0875 31.5L12.2502 35.4375V45.8063Z"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 960 960"><g transform="translate(0 960)"><path d="M530-481 353-658q-9-9-8.5-21t9.5-21q9-9 21.5-9t21.5 9l198 198q5 5 7 10t2 11q0 6-2 11t-7 10L396-261q-9 9-21 8.5t-21-9.5q-9-9-9-21.5t9-21.5l176-176Z"/></g></symbol>
+<symbol id="i-pal" viewBox="8 8 47 47"><path d="M28.7438 57.75C27.5625 57.75 26.5381 57.3217 25.6705 56.4651C24.8025 55.608 24.3685 54.5779 24.3685 53.3748V41.1252H14.8752C13.694 41.1252 12.6693 40.6912 11.8013 39.8232C10.9338 38.9557 10.5 37.9313 10.5 36.75V17.369C10.5 14.8022 11.4209 12.5781 13.2628 10.6969C15.1051 8.81563 17.3195 7.875 19.906 7.875H50.3127C50.9322 7.875 51.4518 8.08456 51.8713 8.50369C52.2904 8.92325 52.5 9.44278 52.5 10.0623V36.75C52.5 37.9313 52.0662 38.9557 51.1987 39.8232C50.3307 40.6912 49.306 41.1252 48.1248 41.1252H38.6315V53.3748C38.6315 54.5779 38.1975 55.608 37.3295 56.4651C36.4619 57.3217 35.4375 57.75 34.2563 57.75H28.7438ZM14.8752 26.5125H48.1248V12.2502H44.8002V21.044C44.8002 21.6635 44.5898 22.183 44.1689 22.6026C43.748 23.0217 43.2268 23.2313 42.6051 23.2313C41.9829 23.2313 41.4641 23.0217 41.0484 22.6026C40.6328 22.183 40.425 21.6635 40.425 21.044V12.2502H36.4435V15.5315C36.4435 16.151 36.2333 16.6705 35.8129 17.0901C35.392 17.5092 34.8705 17.7188 34.2484 17.7188C33.6267 17.7188 33.108 17.5092 32.6924 17.0901C32.2768 16.6705 32.069 16.151 32.069 15.5315V12.2502H19.906C18.4916 12.2502 17.2994 12.7568 16.3295 13.7701C15.36 14.7838 14.8752 15.9834 14.8752 17.369V26.5125ZM14.8752 36.75H48.1248V30.8877H14.8752V36.75Z"/></symbol>
+<symbol id="i-ghost" viewBox="8 8 47 47"><path d="M14.8752 57.75C13.6721 57.75 12.642 57.3217 11.7849 56.4651C10.9283 55.608 10.5 54.5779 10.5 53.3748V25.6377C10.5 24.4346 10.9283 23.4045 11.7849 22.5474C12.642 21.6908 13.6721 21.2625 14.8752 21.2625H18.8127V15.3123C18.8127 11.8022 20.0502 8.81016 22.5251 6.33609C25.0001 3.86203 27.9932 2.625 31.5046 2.625C35.016 2.625 38.0076 3.86203 40.4795 6.33609C42.9513 8.81016 44.1873 11.8022 44.1873 15.3123V21.2625H48.1248C49.3279 21.2625 50.358 21.6908 51.2151 22.5474C52.0717 23.4045 52.5 24.4346 52.5 25.6377V53.3748C52.5 54.5779 52.0717 55.608 51.2151 56.4651C50.358 57.3217 49.3279 57.75 48.1248 57.75H14.8752ZM14.8752 53.3748H48.1248V25.6377H14.8752V53.3748ZM35.1205 43.1471C36.1193 42.1619 36.6188 40.9773 36.6188 39.5935C36.6188 38.2373 36.1167 37.0307 35.1127 35.9737C34.109 34.9162 32.9024 34.3875 31.4928 34.3875C30.0832 34.3875 28.8787 34.9162 27.8795 35.9737C26.8807 37.0307 26.3813 38.2447 26.3813 39.6158C26.3813 40.9865 26.8833 42.1641 27.8873 43.1484C28.891 44.1328 30.0976 44.625 31.5072 44.625C32.9168 44.625 34.1213 44.1324 35.1205 43.1471ZM23.1873 21.2625H39.8127V15.3123C39.8127 13.0036 39.0051 11.041 37.3898 9.42441C35.7742 7.80828 33.8126 7.00022 31.5052 7.00022C29.1974 7.00022 27.2342 7.80828 25.6154 9.42441C23.9967 11.041 23.1873 13.0036 23.1873 15.3123V21.2625Z"/></symbol>
+<symbol id="i-del" viewBox="8 8 47 47"><path d="M17.5435 55.125C16.3404 55.125 15.3105 54.6967 14.4539 53.8401C13.5973 52.983 13.169 51.9529 13.169 50.7498V14.4375H12.6873C12.0678 14.4375 11.5483 14.2271 11.1287 13.8062C10.7096 13.3858 10.5 12.8645 10.5 12.2423C10.5 11.6202 10.7096 11.1013 11.1287 10.6857C11.5483 10.2701 12.0678 10.0623 12.6873 10.0623H23.1C23.1 9.43535 23.3096 8.91406 23.7287 8.49844C24.1482 8.08281 24.6678 7.875 25.2873 7.875H37.7127C38.3322 7.875 38.8518 8.08456 39.2713 8.50369C39.6904 8.92325 39.9 9.44278 39.9 10.0623H50.3127C50.9322 10.0623 51.4518 10.2727 51.8713 10.6936C52.2904 11.1145 52.5 11.6358 52.5 12.2574C52.5 12.8796 52.2904 13.3984 51.8713 13.8141C51.4518 14.2297 50.9322 14.4375 50.3127 14.4375H49.831V50.7498C49.831 51.9529 49.4027 52.983 48.5461 53.8401C47.6895 54.6967 46.6596 55.125 45.4565 55.125H17.5435ZM45.4565 14.4375H17.5435V50.7498H45.4565V14.4375ZM27.6826 44.6086C28.0982 44.1895 28.306 43.6699 28.306 43.05V22.094C28.306 21.474 28.0958 20.9545 27.6754 20.5354C27.2545 20.1158 26.733 19.906 26.1109 19.906C25.4892 19.906 24.9705 20.1158 24.5549 20.5354C24.1393 20.9545 23.9315 21.474 23.9315 22.094V43.05C23.9315 43.6699 24.1417 44.1895 24.5621 44.6086C24.983 45.0277 25.5045 45.2373 26.1266 45.2373C26.7483 45.2373 27.267 45.0277 27.6826 44.6086ZM38.4451 44.6086C38.8607 44.1895 39.0685 43.6699 39.0685 43.05V22.094C39.0685 21.474 38.8583 20.9545 38.4379 20.5354C38.017 20.1158 37.4955 19.906 36.8734 19.906C36.2517 19.906 35.733 20.1158 35.3174 20.5354C34.9018 20.9545 34.694 21.474 34.694 22.094V43.05C34.694 43.6699 34.9042 44.1895 35.3246 44.6086C35.7455 45.0277 36.267 45.2373 36.8891 45.2373C37.5108 45.2373 38.0295 45.0277 38.4451 44.6086Z"/></symbol>
+<symbol id="i-bulb" viewBox="8 8 47 47"><path d="M25.5938 47.25C24.3906 47.25 23.3608 46.8217 22.5041 45.9651C21.6471 45.108 21.2185 44.0779 21.2185 42.8748V38.85C18.6557 37.114 16.6661 34.8884 15.2499 32.1733C13.8333 29.4582 13.125 26.565 13.125 23.4938C13.125 18.4118 14.915 14.1006 18.4951 10.5604C22.0756 7.02012 26.4178 5.25 31.5217 5.25C36.626 5.25 40.9609 7.03281 44.5266 10.5984C48.0922 14.1641 49.875 18.5063 49.875 23.625C49.875 26.7019 49.1641 29.5785 47.7422 32.2547C46.3203 34.9309 44.3334 37.1293 41.7815 38.85V42.8748C41.7815 44.0779 41.3529 45.108 40.4959 45.9651C39.6392 46.8217 38.6094 47.25 37.4062 47.25H25.5938ZM25.8123 42.8748H37.1877V37.9096C37.1877 37.5303 37.2715 37.1875 37.4391 36.8813C37.6066 36.575 37.8363 36.3125 38.1281 36.0938L39.5062 35.131C41.4111 33.8203 42.8864 32.1466 43.932 30.1101C44.9772 28.0731 45.4998 25.9074 45.4998 23.6132C45.4998 19.7273 44.14 16.4244 41.4205 13.7045C38.7006 10.985 35.3937 9.62522 31.5 9.62522C27.6063 9.62522 24.2994 10.9939 21.5795 13.7314C18.86 16.4688 17.5002 19.7796 17.5002 23.6637C17.5002 25.9567 18.0228 28.1153 19.068 30.1396C20.1136 32.1643 21.5889 33.8282 23.4937 35.131L24.8719 36.0938C25.1637 36.3125 25.3934 36.575 25.5609 36.8813C25.7285 37.1875 25.8123 37.5303 25.8123 37.9096V42.8748ZM26.1187 57.75C25.4988 57.75 24.9793 57.5396 24.5602 57.1187C24.141 56.6983 23.9315 56.177 23.9315 55.5549C23.9315 54.9327 24.141 54.4139 24.5602 53.9982C24.9793 53.5826 25.4988 53.3748 26.1187 53.3748H36.9252C37.5447 53.3748 38.0642 53.5852 38.4838 54.0061C38.9029 54.427 39.1125 54.9483 39.1125 55.5699C39.1125 56.1921 38.9029 56.7109 38.4838 57.1266C38.0642 57.5422 37.5447 57.75 36.9252 57.75H26.1187Z"/></symbol>
+<symbol id="i-plug" viewBox="8 8 47 47"><path d="M12.6873 55.125C12.0678 55.125 11.5483 54.9154 11.1287 54.4963C10.7096 54.0768 10.5 53.5572 10.5 52.9377V41.1252C10.5 39.9221 10.9283 38.892 11.7849 38.0349C12.642 37.1783 13.6721 36.75 14.8752 36.75H48.1248C49.3279 36.75 50.358 37.1783 51.2151 38.0349C52.0717 38.892 52.5 39.9221 52.5 41.1252V52.9377C52.5 53.5572 52.2904 54.0768 51.8713 54.4963C51.4518 54.9154 50.9322 55.125 50.3127 55.125H12.6873ZM23.625 34.125C19.9938 34.125 16.8984 32.8453 14.3391 30.2859C11.7797 27.7266 10.5 24.6313 10.5 21C10.5 17.3688 11.7797 14.2734 14.3391 11.7141C16.8984 9.15469 19.9938 7.875 23.625 7.875H39.375C43.0063 7.875 46.1016 9.15469 48.6609 11.7141C51.2203 14.2734 52.5 17.3688 52.5 21C52.5 24.6313 51.2203 27.7266 48.6609 30.2859C46.1016 32.8453 43.0063 34.125 39.375 34.125H23.625ZM14.8752 50.7498H48.1248V41.1252H14.8752V50.7498ZM23.625 29.7498H39.375C41.8058 29.7498 43.8716 28.9002 45.5726 27.2009C47.2741 25.5017 48.1248 23.4382 48.1248 21.0105C48.1248 18.5828 47.2741 16.5158 45.5726 14.8096C43.8716 13.1033 41.8058 12.2502 39.375 12.2502H23.625C21.1943 12.2502 19.1284 13.0998 17.4274 14.7991C15.7259 16.4983 14.8752 18.5618 14.8752 20.9895C14.8752 23.4172 15.7259 25.4842 17.4274 27.1904C19.1284 28.8967 21.1943 29.7498 23.625 29.7498ZM25.1888 22.5566C25.6045 22.1357 25.8123 21.6143 25.8123 20.9921C25.8123 20.3704 25.6021 19.8518 25.1816 19.4362C24.7608 19.0205 24.2393 18.8127 23.6171 18.8127C22.9954 18.8127 22.4768 19.0229 22.0612 19.4434C21.6455 19.8643 21.4377 20.3858 21.4377 21.0079C21.4377 21.6296 21.6479 22.1482 22.0684 22.5638C22.4893 22.9795 23.0108 23.1873 23.6329 23.1873C24.2546 23.1873 24.7732 22.9771 25.1888 22.5566ZM40.9388 22.5566C41.3545 22.1357 41.5623 21.6143 41.5623 20.9921C41.5623 20.3704 41.3521 19.8518 40.9316 19.4362C40.5108 19.0205 39.9893 18.8127 39.3671 18.8127C38.7454 18.8127 38.2268 19.0229 37.8112 19.4434C37.3955 19.8643 37.1877 20.3858 37.1877 21.0079C37.1877 21.6296 37.3979 22.1482 37.8184 22.5638C38.2393 22.9795 38.7608 23.1873 39.3829 23.1873C40.0046 23.1873 40.5232 22.9771 40.9388 22.5566Z"/></symbol>
+<symbol id="i-group" viewBox="8 8 47 47"><path d="M2.53772 45.9375C2.53772 44.4207 2.92775 43.0389 3.70781 41.792C4.48788 40.5451 5.55603 39.6082 6.91228 38.9813C9.94591 37.5957 12.7824 36.5857 15.4219 35.9514C18.0613 35.317 20.7666 34.9998 23.5377 34.9998C26.3084 34.9998 29.0063 35.317 31.6313 35.9514C34.2563 36.5857 37.0853 37.5957 40.1185 38.9813C41.4748 39.6082 42.5504 40.5451 43.3453 41.792C44.1403 43.0389 44.5377 44.4207 44.5377 45.9375V48.1248C44.5377 49.3354 44.1112 50.3672 43.258 51.2203C42.4049 52.0735 41.3731 52.5 40.1625 52.5H6.91228C5.70216 52.5 4.67053 52.0735 3.81741 51.2203C2.96428 50.3672 2.53772 49.3354 2.53772 48.1248V45.9375ZM56.0877 52.5H47.819C48.1252 51.8 48.384 51.0891 48.5953 50.3672C48.8066 49.6453 48.9123 48.8979 48.9123 48.1248V45.7623C48.9123 43.2834 48.3107 41.1871 47.1076 39.4735C45.9045 37.7598 44.1291 36.3123 41.7815 35.131C44.5377 35.4522 47.1334 35.9225 49.5685 36.542C52.0041 37.1619 54.0603 37.9166 55.7373 38.806C57.2248 39.6522 58.3842 40.6621 59.2154 41.836C60.0467 43.0098 60.4623 44.3185 60.4623 45.7623V48.1248C60.4623 49.3354 60.0357 50.3672 59.1826 51.2203C58.3295 52.0735 57.2978 52.5 56.0877 52.5ZM16.3406 28.5909C14.4301 26.6803 13.4748 24.2813 13.4748 21.3938C13.4748 18.5063 14.4301 16.1072 16.3406 14.1967C18.2512 12.2865 20.6502 11.3315 23.5377 11.3315C26.4252 11.3315 28.824 12.2865 30.7342 14.1967C32.6447 16.1072 33.6 18.5063 33.6 21.3938C33.6 24.2813 32.6447 26.6803 30.7342 28.5909C28.824 30.501 26.4252 31.456 23.5377 31.456C20.6502 31.456 18.2512 30.501 16.3406 28.5909ZM45.1717 28.5909C43.2615 30.501 40.8627 31.456 37.9752 31.456C37.494 31.456 36.9324 31.416 36.2906 31.336C35.6488 31.2559 35.0873 31.1356 34.606 30.975C35.6998 29.7793 36.5348 28.3647 37.1109 26.731C37.6871 25.0979 37.9752 23.3188 37.9752 21.3938C37.9752 19.4688 37.6871 17.7188 37.1109 16.1438C36.5348 14.5688 35.6998 13.125 34.606 11.8125C35.131 11.652 35.6926 11.5316 36.2906 11.4516C36.8887 11.3715 37.4502 11.3315 37.9752 11.3315C40.8627 11.3315 43.2615 12.2865 45.1717 14.1967C47.0822 16.1072 48.0375 18.5063 48.0375 21.3938C48.0375 24.2813 47.0822 26.6803 45.1717 28.5909ZM6.91228 48.1248H40.1625V45.9375C40.1625 45.3106 39.9838 44.7127 39.6263 44.144C39.2693 43.5752 38.8209 43.1668 38.281 42.9188C35.3935 41.5918 32.8342 40.6694 30.6029 40.1514C28.3717 39.6338 26.0166 39.375 23.5377 39.375C21.0584 39.375 18.6959 39.6338 16.4502 40.1514C14.2041 40.6694 11.6373 41.5918 8.74978 42.9188C8.21034 43.1668 7.76934 43.5752 7.42678 44.144C7.08378 44.7127 6.91228 45.3106 6.91228 45.9375V48.1248ZM27.5953 25.4514C28.6816 24.365 29.2248 23.0125 29.2248 21.3938C29.2248 19.775 28.6816 18.4225 27.5953 17.3362C26.509 16.2494 25.1565 15.706 23.5377 15.706C21.919 15.706 20.5662 16.2494 19.4795 17.3362C18.3932 18.4225 17.85 19.775 17.85 21.3938C17.85 23.0125 18.3932 24.365 19.4795 25.4514C20.5662 26.5381 21.919 27.0815 23.5377 27.0815C25.1565 27.0815 26.509 26.5381 27.5953 25.4514Z"/></symbol>
+<symbol id="i-chat" viewBox="8 8 47 47"><path d="M21 43L16.7833 47.2167C16.2028 47.7972 15.5382 47.9271 14.7896 47.6063C14.041 47.2854 13.6667 46.7125 13.6667 45.8875V17.3333C13.6667 16.325 14.0257 15.4618 14.7437 14.7438C15.4618 14.0257 16.325 13.6667 17.3333 13.6667H46.6667C47.675 13.6667 48.5382 14.0257 49.2562 14.7438C49.9743 15.4618 50.3333 16.325 50.3333 17.3333V39.3333C50.3333 40.3417 49.9743 41.2049 49.2562 41.9229C48.5382 42.641 47.675 43 46.6667 43H21ZM22.8333 35.6667H33.8333C34.3528 35.6667 34.7882 35.491 35.1396 35.1396C35.491 34.7882 35.6667 34.3528 35.6667 33.8333C35.6667 33.3139 35.491 32.8785 35.1396 32.5271C34.7882 32.1757 34.3528 32 33.8333 32H22.8333C22.3139 32 21.8785 32.1757 21.5271 32.5271C21.1757 32.8785 21 33.3139 21 33.8333C21 34.3528 21.1757 34.7882 21.5271 35.1396C21.8785 35.491 22.3139 35.6667 22.8333 35.6667ZM22.8333 30.1667H41.1667C41.6861 30.1667 42.1215 29.991 42.4729 29.6396C42.8243 29.2882 43 28.8528 43 28.3333C43 27.8139 42.8243 27.3785 42.4729 27.0271C42.1215 26.6757 41.6861 26.5 41.1667 26.5H22.8333C22.3139 26.5 21.8785 26.6757 21.5271 27.0271C21.1757 27.3785 21 27.8139 21 28.3333C21 28.8528 21.1757 29.2882 21.5271 29.6396C21.8785 29.991 22.3139 30.1667 22.8333 30.1667ZM22.8333 24.6667H41.1667C41.6861 24.6667 42.1215 24.491 42.4729 24.1396C42.8243 23.7882 43 23.3528 43 22.8333C43 22.3139 42.8243 21.8785 42.4729 21.5271C42.1215 21.1757 41.6861 21 41.1667 21H22.8333C22.3139 21 21.8785 21.1757 21.5271 21.5271C21.1757 21.8785 21 22.3139 21 22.8333C21 23.3528 21.1757 23.7882 21.5271 24.1396C21.8785 24.491 22.3139 24.6667 22.8333 24.6667Z"/></symbol>
+<symbol id="i-set" viewBox="8 8 47 47"><path d="M27.8906 57.75C27.0887 57.75 26.385 57.4875 25.7795 56.9625C25.1744 56.4375 24.8135 55.7813 24.6967 54.9938L23.8435 49.4373C23.0998 49.1604 22.3379 48.7959 21.5578 48.344C20.7777 47.8916 20.074 47.4176 19.4467 46.9219L14.3279 49.2404C13.5553 49.576 12.7824 49.6125 12.0094 49.35C11.2363 49.0875 10.631 48.599 10.1935 47.8846L6.62812 41.5406C6.19062 40.8262 6.06659 40.0752 6.25603 39.2877C6.4459 38.5002 6.86896 37.8512 7.52521 37.3406L12.1846 33.8842C12.1115 33.5197 12.0678 33.1225 12.0533 32.6924C12.0385 32.2619 12.031 31.8644 12.031 31.5C12.031 31.1356 12.0385 30.7381 12.0533 30.3076C12.0678 29.8775 12.1115 29.4803 12.1846 29.1158L7.52521 25.6594C6.86896 25.1488 6.4459 24.4998 6.25603 23.7123C6.06659 22.9248 6.19062 22.1738 6.62812 21.4594L10.1935 15.1154C10.631 14.401 11.2363 13.9125 12.0094 13.65C12.7824 13.3875 13.5553 13.424 14.3279 13.7596L19.4467 16.0781C20.074 15.5824 20.7815 15.1084 21.569 14.656C22.3565 14.2041 23.1147 13.8541 23.8435 13.606L24.6967 8.00625C24.8135 7.21875 25.1744 6.5625 25.7795 6.0375C26.385 5.5125 27.0887 5.25 27.8906 5.25H35.1094C35.9113 5.25 36.615 5.5125 37.2205 6.0375C37.8256 6.5625 38.1865 7.21875 38.3033 8.00625L39.1565 13.5627C39.9002 13.8397 40.6693 14.1969 41.4638 14.6344C42.2588 15.0719 42.9553 15.5531 43.5533 16.0781L48.6721 13.7596C49.4447 13.424 50.2103 13.3875 50.969 13.65C51.7272 13.9125 52.325 14.401 52.7625 15.1154L56.3719 21.4594C56.8094 22.1738 56.9334 22.9322 56.744 23.7346C56.5541 24.5365 56.131 25.1781 55.4748 25.6594L50.8154 29.0279C50.8885 29.4217 50.9322 29.8338 50.9467 30.2643C50.9615 30.6943 50.969 31.1063 50.969 31.5C50.969 31.8938 50.9615 32.2984 50.9467 32.7141C50.9322 33.1297 50.8813 33.5344 50.7938 33.9281L55.4531 37.3406C56.1094 37.8219 56.5322 38.4635 56.7217 39.2654C56.9115 40.0678 56.7877 40.8262 56.3502 41.5406L52.7625 47.8846C52.325 48.599 51.7197 49.0875 50.9467 49.35C50.174 49.6125 49.4012 49.576 48.6281 49.2404L43.5533 46.9219C42.926 47.4176 42.226 47.8988 41.4533 48.3656C40.6803 48.8324 39.9147 49.1897 39.1565 49.4373L38.3033 54.9938C38.1865 55.7813 37.8256 56.4375 37.2205 56.9625C36.615 57.4875 35.9113 57.75 35.1094 57.75H27.8906ZM28.6998 53.3748H34.2779L35.1967 46.156C36.6115 45.806 37.9424 45.2701 39.1893 44.5482C40.4362 43.8263 41.5699 42.9551 42.5906 41.9344L49.394 44.8435L51.9967 40.2065L46.0031 35.7656C46.1926 35.0656 46.3385 34.3619 46.4408 33.6545C46.5428 32.9475 46.5938 32.2293 46.5938 31.5C46.5938 30.7707 46.55 30.0525 46.4625 29.3455C46.375 28.6381 46.2219 27.9344 46.0031 27.2344L51.9967 22.7935L49.394 18.1565L42.5906 21.0873C41.5988 19.9935 40.4869 19.0785 39.2549 18.3422C38.0225 17.6059 36.6697 17.1065 35.1967 16.844L34.3002 9.62522H28.7221L27.8033 16.844C26.3596 17.1647 25.0143 17.6859 23.7674 18.4078C22.5205 19.1297 21.4012 20.0156 20.4094 21.0656L13.606 18.1565L11.0033 22.7935L16.9969 27.2127C16.8074 27.9272 16.6615 28.6344 16.5592 29.3344C16.4572 30.0344 16.4062 30.7563 16.4062 31.5C16.4062 32.2293 16.4572 32.944 16.5592 33.644C16.6615 34.344 16.8074 35.0512 16.9969 35.7656L11.0033 40.2065L13.606 44.8435L20.4094 41.9127C21.4301 42.9479 22.5638 43.8263 23.8107 44.5482C25.0576 45.2701 26.3885 45.806 27.8033 46.156L28.6998 53.3748ZM31.544 40.2498C33.9647 40.2498 36.0281 39.3967 37.7344 37.6904C39.4406 35.9842 40.2938 33.9207 40.2938 31.5C40.2938 29.0793 39.4406 27.0158 37.7344 25.3096C36.0281 23.6033 33.9647 22.7502 31.544 22.7502C29.1084 22.7502 27.0412 23.6033 25.3424 25.3096C23.6432 27.0158 22.7935 29.0793 22.7935 31.5C22.7935 33.9207 23.6432 35.9842 25.3424 37.6904C27.0412 39.3967 29.1084 40.2498 31.544 40.2498Z"/></symbol>
+<symbol id="i-srch" viewBox="0 -960 960 960"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.500-75.500T120-580q0-109 75.500-184.500T380-840q109 0 184.500 75.500T640-580q0 44-14 83t-38 69l252 252-56 56Z"/></symbol>
+<symbol id="i-edit" viewBox="8 8 47 47"><path d="M12.2502 50.7498H15.4219L44.625 21.5906L41.4533 18.4189L12.2502 47.5781V50.7498ZM10.0623 55.125C9.43534 55.125 8.91406 54.9172 8.49844 54.5015C8.08281 54.0859 7.875 53.5646 7.875 52.9377V47.6221C7.875 47.0384 7.99159 46.4732 8.22478 45.9263C8.45841 45.3794 8.77209 44.9091 9.16584 44.5154L44.581 9.16582C44.9897 8.77207 45.46 8.46582 45.992 8.24707C46.5244 8.02832 47.0822 7.91895 47.6654 7.91895C48.2197 7.91895 48.7666 8.02832 49.306 8.24707C49.8459 8.46582 50.3272 8.77929 50.7498 9.18748L53.8781 12.3375C54.3156 12.7605 54.6328 13.2418 54.8297 13.7812C55.0266 14.3207 55.125 14.8603 55.125 15.4002C55.125 15.9541 55.0193 16.5044 54.808 17.0513C54.5963 17.5982 54.2863 18.0759 53.8781 18.4846L18.4846 53.8341C18.0908 54.2279 17.6205 54.5416 17.0737 54.7752C16.5268 55.0084 15.9615 55.125 15.3779 55.125H10.0623ZM43.0283 20.0156L41.4533 18.4189L44.625 21.5906L43.0283 20.0156Z"/></symbol>
+<symbol id="i-mic" viewBox="0 -960 960 960"><path d="M480-400q-50 0-85-35t-35-85v-240q0-50 35-85t85-35q50 0 85 35t35 85v240q0 50-35 85t-85 35Zm-40 280v-83q-92-13-156-82.500T220-440h80q0 83 58.500 141.500T500-240q83 0 141.500-58.500T700-440h80q0 100-64 169.500T560-203v83h-120Z"/></symbol>
+<symbol id="i-clip" viewBox="0 -960 960 960"><path d="M720-330q0 104-73 177T470-80q-104 0-177-73t-73-177v-370q0-75 52.500-127.500T400-880q75 0 127.500 52.500T580-700v350q0 46-32 78t-78 32q-46 0-78-32t-32-78v-340h80v340q0 13 8.500 21.500T470-320q13 0 21.500-8.500T500-350v-350q-1-42-29.500-71T400-800q-42 0-71 29t-29 71v370q-1 71 49 120.500T470-160q70 0 119-49.500T640-330v-330h80v330Z"/></symbol>
+</defs></svg>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><img src="logo.svg" alt="">Yologram</a>
+  <a class="nl" href="#features">Возможности</a><a class="nl" href="#screens">Экраны</a><a class="nl" href="#links">Ссылки</a>
+  <a class="btn f sm" href="/update/app.apk" download><svg><use href="#i-dl"/></svg>Скачать</a>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <div>
+    <span class="chip"><svg><use href="#i-pal"/></svg>Неофициальный клиент Telegram · 13.2.2</span>
+    <h1>Telegram, который <em>подстраивается</em> под вас</h1>
+    <p class="lead">Material You, режим призрака, сохранение удалённых сообщений, до 16 аккаунтов и никакой рекламы.</p>
+    <div class="cta">
+      <a class="btn f lg" href="/update/app.apk" download><svg><use href="#i-dl"/></svg>Скачать APK</a>
+      <a class="btn t lg" href="/web/"><svg><use href="#i-web"/></svg>Открыть веб</a>
+      <a class="btn o lg" href="https://github.com/pyfoldev/Yologram"><svg><use href="#i-code"/></svg>Исходный код</a>
+    </div>
+    <div class="facts"><span>Android 7.0+</span><span>≈ 69 МБ</span><span>GPL v2</span><span>Автор: <a href="https://t.me/pyfold" style="color:var(--pri)">@pyfold</a></span></div>
+  </div>
+  <div class="phones">
+    <div class="phone p1"><div class="scr"><img src="shots/chats.jpg" alt="Список чатов"></div></div>
+    <div class="phone p2"><div class="scr"><img src="shots/profile.jpg" alt="Профиль"></div></div>
+  </div>
+</div></header>
+
+<section id="features"><div class="wrap">
+  <div class="eyebrow rv">ВОЗМОЖНОСТИ</div>
+  <h2 class="rv">Всё, что хочется в Telegram</h2>
+  <p class="sub rv">Настраивается в <b>Настройки → Yologram</b>.</p>
+  <div class="grid">
+    <div class="card rv"><div class="ico"><svg><use href="#i-pal"/></svg></div><h3>Material You</h3><p>Цвет темы, плотность списка, скругление, AMOLED-чёрный. Пружинящие анимации, звонки и панель ввода в новом стиле.</p></div>
+    <div class="card rv"><div class="ico"><svg><use href="#i-ghost"/></svg></div><h3>Режим призрака</h3><p>Скрывает статус «в сети», отметки о прочтении, набор текста и просмотры историй.</p></div>
+    <div class="card rv"><div class="ico"><svg><use href="#i-del"/></svg></div><h3>Ничего не пропадает</h3><p>Удалённые сообщения, история правок и самоуничтожающиеся фото и видео остаются у вас.</p></div>
+    <div class="card rv"><div class="ico"><svg><use href="#i-bulb"/></svg></div><h3>Мысли и баннер</h3><p>Баннер профиля, мысль на 24 часа и обои главного экрана — видно другим пользователям Yologram.</p></div>
+    <div class="card rv"><div class="ico"><svg><use href="#i-plug"/></svg></div><h3>Плагины на Python</h3><p>Расширяйте клиент своими .py-файлами. Плюс WebSocket-прокси, очистка ссылок и экспорт чата.</p></div>
+    <div class="card rv"><div class="ico"><svg><use href="#i-group"/></svg></div><h3>16 аккаунтов</h3><p>Без рекламы и спонсорских сообщений, быстрые загрузки, скрытие текста в уведомлениях, шесть значков.</p></div>
+  </div>
+</div></section>
+
+<section id="screens" style="padding-top:0"><div class="wrap">
+  <div class="eyebrow rv">ЭКРАНЫ</div>
+  <h2 class="rv">Так выглядит клиент</h2>
+  <p class="sub rv">Главный экран, профиль и настройки приложения.</p>
+  <div class="shots">
+    <figure><div class="phone"><div class="scr"><img src="shots/chats.jpg" alt="Чаты" loading="lazy"></div></div><figcaption>Чаты</figcaption></figure>
+    <figure><div class="phone"><div class="scr"><img src="shots/yologram.jpg" alt="Настройки Yologram" loading="lazy"></div></div><figcaption>Настройки Yologram</figcaption></figure>
+    <figure><div class="phone"><div class="scr"><img src="shots/settings.jpg" alt="Настройки" loading="lazy"></div></div><figcaption>Настройки Telegram</figcaption></figure>
+    <figure><div class="phone"><div class="scr"><img src="shots/profile.jpg" alt="Профиль" loading="lazy"></div></div><figcaption>Профиль с баннером и мыслью</figcaption></figure>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="cta-box rv">
+    <div><h2>Попробуйте Yologram</h2><p>Установите приложение на Android или откройте веб-версию прямо в браузере — ничего ставить не нужно.</p></div>
+    <div class="cta"><a class="btn f lg" href="/update/app.apk" download><svg><use href="#i-dl"/></svg>Скачать APK</a><a class="btn o lg" href="/web/"><svg><use href="#i-web"/></svg>Перейти в веб</a></div>
+  </div>
+</div></section>
+
+<section id="links" style="padding-top:0"><div class="wrap">
+  <div class="eyebrow rv">СООБЩЕСТВО</div>
+  <h2 class="rv" style="margin-bottom:32px">Ссылки</h2>
+  <div class="links">
+    <a class="link rv" href="https://github.com/pyfoldev/Yologram"><span class="ico"><svg><use href="#i-code"/></svg></span><span><b>Исходный код</b><small>GitHub · GPL v2</small></span><svg><use href="#i-arrow"/></svg></a>
+    <a class="link rv" href="https://t.me/pyfold" id="channel"><span class="ico"><svg><use href="#i-send"/></svg></span><span><b>Канал в Telegram</b><small>Новости и обновления</small></span><svg><use href="#i-arrow"/></svg></a>
+    <a class="link rv" href="/update/app.apk" download><span class="ico"><svg><use href="#i-dl"/></svg></span><span><b>Скачать APK</b><small>Последняя версия 13.2.2</small></span><svg><use href="#i-arrow"/></svg></a>
+  </div>
+  <div class="about rv" style="margin-top:12px">
+    <div class="av">П</div>
+    <div><h3 style="font:400 24px/32px var(--f)">Создатель — <a href="https://t.me/pyfold" style="color:var(--pri)">@pyfold</a></h3>
+    <p style="color:var(--var);font-size:14px;margin-top:4px">Неофициальный клиент на основе открытого кода <a href="https://github.com/DrKLO/Telegram" style="color:var(--pri)">Telegram для Android</a>. Анонимные отчёты об ошибках (без данных Telegram и содержимого чатов) отключаются в настройках.</p></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><span>© Yologram · GPL v2</span><span>Не связан с Telegram FZ-LLC</span></div></footer>
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('v');io.unobserve(x.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+</script>
+</body>
+</html>
