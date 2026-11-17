@@ -21,6 +21,89 @@ public class NullgramSync {
     }
 
     private static final HashMap<Long, Object[]> cache = new HashMap<>();
+    private static final HashMap<Long, Long> musicStamps = new HashMap<>();
+    private static final int MAX_MUSIC = 2_900_000;
+
+    /** Profile music of the selected account (one short track, up to about 3 MB). */
+    public static File musicFile() {
+        return new File(ApplicationLoader.getFilesDirFixed(), "profile_music_" + myId() + ".audio");
+    }
+
+    /** True once a fetch showed that this user published a profile track. */
+    public static boolean hasMusic(long uid) {
+        final Long v = musicStamps.get(uid);
+        return v != null && v > 0;
+    }
+
+    /** Copies a track the user picked, checks the size and sends it to the server. Returns false when it is refused. */
+    public static boolean importMusic(android.content.Context context, android.net.Uri uri) {
+        try (InputStream in = context.getContentResolver().openInputStream(uri)) {
+            final ByteArrayOutputStream bo = new ByteArrayOutputStream();
+            final byte[] buf = new byte[16384];
+            int n;
+            while ((n = in.read(buf)) > 0) {
+                bo.write(buf, 0, n);
+                if (bo.size() > MAX_MUSIC) {
+                    return false;
+                }
+            }
+            if (bo.size() < 1024) {
+                return false;
+            }
+            try (FileOutputStream out = new FileOutputStream(musicFile())) {
+                bo.writeTo(out);
+            }
+            put("/music", bo.toByteArray());
+            return true;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
+        }
+    }
+
+    public static void removeMusic() {
+        musicFile().delete();
+        put("/music", new byte[0]);
+    }
+
+    public interface FileCallback {
+        void onResult(File file);
+    }
+
+    /** Downloads another user's profile track into the cache (kept while the server's version stamp is unchanged). */
+    public static void fetchMusic(final long uid, final FileCallback cb) {
+        if (BASE.isEmpty()) {
+            cb.onResult(null);
+            return;
+        }
+        Utilities.globalQueue.postRunnable(() -> {
+            File result = null;
+            try {
+                final File f = new File(ApplicationLoader.applicationContext.getCacheDir(), "ng_music_" + uid + ".audio");
+                final long stamp = musicStamps.containsKey(uid) ? musicStamps.get(uid) : 0;
+                final String key = "music_ts_" + uid;
+                if (f.exists() && stamp > 0 && prefs().getLong(key, 0) == stamp) {
+                    result = f;
+                } else {
+                    final HttpURLConnection c = (HttpURLConnection) new URL(BASE + "/u/" + uid + "/music").openConnection();
+                    c.setConnectTimeout(6000);
+                    c.setReadTimeout(20000);
+                    if (c.getResponseCode() == 200) {
+                        try (FileOutputStream out = new FileOutputStream(f)) {
+                            out.write(readAll(c.getInputStream()));
+                        }
+                        prefs().edit().putLong(key, stamp).apply();
+                        result = f;
+                    }
+                    c.disconnect();
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+            final File done = result;
+            AndroidUtilities.runOnUIThread(() -> cb.onResult(done));
+        });
+    }
 
     private static SharedPreferences prefs() {
         return ApplicationLoader.applicationContext.getSharedPreferences("nullgram_sync", 0);
@@ -174,6 +257,7 @@ public class NullgramSync {
                 c.setReadTimeout(8000);
                 if (c.getResponseCode() == 200) {
                     final JSONObject o = new JSONObject(new String(readAll(c.getInputStream())));
+                    musicStamps.put(uid, o.optLong("music_ts", 0));
                     thought = o.isNull("thought") ? null : o.optString("thought", null);
                     final long bts = o.optLong("banner_ts", 0);
                     if (bts == 0) {

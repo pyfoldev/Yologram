@@ -8,12 +8,13 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 PORT = int(os.environ.get("PORT", "8787"))
 DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 os.makedirs(os.path.join(DATA, "banners"), exist_ok=True)
+os.makedirs(os.path.join(DATA, "music"), exist_ok=True)
 db = sqlite3.connect(os.path.join(DATA, "db.sqlite"), check_same_thread=False)
 db.execute("create table if not exists users(id integer primary key, token text, thought text, thought_ts integer, banner_ts integer)")
 db.execute("create table if not exists diag(id integer primary key autoincrement, ts integer, install text, kind text, version text, device text, sdk integer, sig text, thread text, trace text, features text, lang text)")
 db.execute("create index if not exists diag_kind on diag(kind, ts)")
 db.execute("create table if not exists notices(id integer primary key autoincrement, ts integer, text text)")
-for col in ("seen integer default 0", "badge integer default 1"):
+for col in ("seen integer default 0", "badge integer default 1", "music_ts integer default 0"):
     try:
         db.execute("alter table users add column " + col)
     except sqlite3.OperationalError:
@@ -29,6 +30,7 @@ os.makedirs(UPDATES, exist_ok=True)
 ADMIN_KEY = os.environ.get("NULLGRAM_ADMIN_KEY", "")
 _rate = {}
 MAX_BANNER = 1_500_000
+MAX_MUSIC = 3_000_000
 LIFETIME = 24 * 3600
 
 class H(BaseHTTPRequestHandler):
@@ -43,7 +45,7 @@ class H(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def uid(self):
-        m = re.match(r"^/u/(\d{1,15})(/banner\.jpg|/banner|/thought|/hello)?$", self.path.split("?")[0])
+        m = re.match(r"^/u/(\d{1,15})(/banner\.jpg|/banner|/thought|/hello|/music)?$", self.path.split("?")[0])
         return (int(m.group(1)), m.group(2) or "") if m else (None, None)
 
     def update(self, path):
@@ -102,15 +104,19 @@ class H(BaseHTTPRequestHandler):
         if path0 == "/notices": return self.notices()
         uid, sub = self.uid()
         if uid is None: return self.static(path0)
-        row = db.execute("select thought, thought_ts, banner_ts from users where id=?", (uid,)).fetchone()
+        row = db.execute("select thought, thought_ts, banner_ts, music_ts from users where id=?", (uid,)).fetchone()
+        if sub == "/music":
+            p = os.path.join(DATA, "music", f"{uid}.bin")
+            if not os.path.exists(p): return self.send(404)
+            return self.send(200, open(p, "rb").read(), "audio/mpeg")
         if sub == "/banner.jpg":
             p = os.path.join(DATA, "banners", f"{uid}.jpg")
             if not os.path.exists(p): return self.send(404)
             return self.send(200, open(p, "rb").read(), "image/jpeg")
-        if not row: return self.send(200, {"thought": None, "banner_ts": 0})
-        thought, ts, bts = row
+        if not row: return self.send(200, {"thought": None, "banner_ts": 0, "music_ts": 0})
+        thought, ts, bts, mts = row
         if thought and time.time() - (ts or 0) >= LIFETIME: thought = None
-        self.send(200, {"thought": thought, "thought_ts": ts or 0, "banner_ts": bts or 0})
+        self.send(200, {"thought": thought, "thought_ts": ts or 0, "banner_ts": bts or 0, "music_ts": mts or 0})
 
     def notices(self):
         # Service messages for the "Yologram" chat. ?since=N -> everything newer than id N; ?latest=1 -> only the newest id.
@@ -193,9 +199,9 @@ class H(BaseHTTPRequestHandler):
 
     def do_PUT(self):
         uid, sub = self.uid()
-        if uid is None or sub not in ("/banner", "/thought", "/hello"): return self.send(404)
+        if uid is None or sub not in ("/banner", "/thought", "/hello", "/music"): return self.send(404)
         n = int(self.headers.get("Content-Length", "0"))
-        if n > MAX_BANNER: return self.send(413)
+        if n > (MAX_MUSIC if sub == "/music" else MAX_BANNER): return self.send(413)
         body = self.rfile.read(n)
         token = self.headers.get("X-Token", "")
         row = db.execute("select token from users where id=?", (uid,)).fetchone()
@@ -218,8 +224,15 @@ class H(BaseHTTPRequestHandler):
         elif sub == "/thought":
             text = body.decode("utf8", "ignore").strip()[:60]
             db.execute("update users set thought=?, thought_ts=? where id=?", (text or None, int(time.time()) if text else 0, uid))
+        elif sub == "/music":
+            if n and not (body[:3] == b"ID3" or body[:2] in (b"\xff\xfb", b"\xff\xf3", b"\xff\xf2", b"\xff\xf1") or body[:4] in (b"OggS", b"fLaC") or body[4:8] == b"ftyp" or (body[:4] == b"RIFF" and body[8:12] == b"WAVE")):
+                return self.send(415)
+            p = os.path.join(DATA, "music", f"{uid}.bin")
+            if n: open(p, "wb").write(body)
+            elif os.path.exists(p): os.remove(p)
+            db.execute("update users set music_ts=? where id=?", (int(time.time()) if n else 0, uid))
         else:
-            if body[:3] != b"\xff\xd8\xff" and n:  # JPEG only
+            if n and not (body[:3] == b"\xff\xd8\xff" or body[:4] == b"GIF8" or (body[:4] == b"RIFF" and body[8:12] == b"WEBP")):  # JPEG, GIF or WebP (animated banners)
                 return self.send(415)
             p = os.path.join(DATA, "banners", f"{uid}.jpg")
             if n: open(p, "wb").write(body)

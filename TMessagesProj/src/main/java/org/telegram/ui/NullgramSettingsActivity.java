@@ -84,8 +84,8 @@ public class NullgramSettingsActivity extends BaseFragment {
 
     private static final int C_ENABLED = 1, C_AMOLED = 2, C_GHOST = 4, C_KEEP_DELETED = 5,
         C_EDIT_HISTORY = 6, C_SAVE_DISAPPEARING = 7, C_WS_PROXY = 8, C_FAST_DOWNLOADS = 9, C_NO_ADS = 10, C_CLEAN_LINKS = 11, C_HIDE_STORIES = 12, C_NO_SWIPE_REPLY = 13, C_HIDE_PHONE = 14, C_CONFIRM_CALLS = 15, C_SCREEN_GUARD = 16, C_DIAGNOSTICS = 17, C_HIDE_NOTIF_TEXT = 19, C_ANIMATIONS = 30, C_FAST_MODE = 31, C_SNOW = 32, C_MOTION = 33, C_WINTER_ICONS = 34, C_SHOW_BADGE = 35, C_STRIP_EXIF = 36, C_MOTION_ALWAYS = 37, C_SHOW_IDS = 38, C_FREE_TRANSLATE = 50, C_ROUND_BACK = 51, C_SYSTEM_EMOJI = 52, C_VOICE_HQ = 53, C_VOICE_NS = 54, C_VOICE_AGC = 55, C_CAMERA_FRONT = 56, C_CAMERA_GRID = 57;
-    private static final int B_WALLPAPER = 20, B_TOOLS_INFO = 21, B_HOME_WP = 22, B_HOME_WP_OFF = 23, B_UPDATE = 24, B_SET_PIN = 40, B_LOCK_NOW = 41, B_SET_DECOY = 42, B_ICON_IMPORT = 43, B_ICON_RESET = 44, B_PLUGIN_IMPORT = 45, B_CAMERA = 46, B_STORE = 47;
-    private static final int REQ_ICON_PACK = 4431, REQ_PLUGIN = 4432;
+    private static final int B_WALLPAPER = 20, B_TOOLS_INFO = 21, B_HOME_WP = 22, B_HOME_WP_OFF = 23, B_UPDATE = 24, B_SET_PIN = 40, B_LOCK_NOW = 41, B_SET_DECOY = 42, B_ICON_IMPORT = 43, B_ICON_RESET = 44, B_PLUGIN_IMPORT = 45, B_CAMERA = 46, B_STORE = 47, B_MUSIC_PICK = 48, B_MUSIC_REMOVE = 49;
+    private static final int REQ_ICON_PACK = 4431, REQ_PLUGIN = 4432, REQ_MUSIC = 4433;
     private final ArrayList<String> pluginFiles = new ArrayList<>();
 
     private final int page;
@@ -145,6 +145,18 @@ public class NullgramSettingsActivity extends BaseFragment {
                         android.widget.Toast.makeText(ctx, MaterialYou.s("Added: ", "Добавлен: ") + file + MaterialYou.s(". Switch it on below.", ". Включи его в списке."), android.widget.Toast.LENGTH_LONG).show();
                         buildItems();
                     }
+                });
+            });
+            return;
+        }
+        if (requestCode == REQ_MUSIC && resultCode == android.app.Activity.RESULT_OK && data != null && data.getData() != null) {
+            final android.net.Uri uri = data.getData();
+            final Context ctx = getParentActivity();
+            org.telegram.messenger.Utilities.globalQueue.postRunnable(() -> {
+                final boolean ok = org.telegram.messenger.NullgramSync.importMusic(ctx, uri);
+                org.telegram.messenger.AndroidUtilities.runOnUIThread(() -> {
+                    android.widget.Toast.makeText(ctx, ok ? MaterialYou.s("Profile music saved", "Музыка профиля сохранена") : MaterialYou.s("Pick a short audio file up to 2.8 MB", "Выбери короткий аудиофайл до 2,8 МБ"), android.widget.Toast.LENGTH_LONG).show();
+                    buildItems();
                 });
             });
             return;
@@ -220,6 +232,18 @@ public class NullgramSettingsActivity extends BaseFragment {
             final Item item = items.get(position);
             if (item.viewType == VT_BUTTON && item.page != 0) {
                 presentFragment(new NullgramSettingsActivity(item.page));
+                return;
+            }
+            if (item.viewType == VT_BUTTON && item.id == B_MUSIC_PICK) {
+                final android.content.Intent pick = new android.content.Intent(android.content.Intent.ACTION_GET_CONTENT);
+                pick.setType("audio/*");
+                pick.addCategory(android.content.Intent.CATEGORY_OPENABLE);
+                startActivityForResult(pick, REQ_MUSIC);
+                return;
+            }
+            if (item.viewType == VT_BUTTON && item.id == B_MUSIC_REMOVE) {
+                org.telegram.messenger.NullgramSync.removeMusic();
+                buildItems();
                 return;
             }
             if (item.viewType == VT_BUTTON && item.id == B_STORE) {
@@ -609,7 +633,14 @@ public class NullgramSettingsActivity extends BaseFragment {
                     items.add(new Item(VT_EXTRAS, 0, null));
                     footer("Extra usernames are shown on your profile in this app only; Telegram and other people don't see them.", "Доп. юзернеймы показываются на твоём профиле только в этом приложении; Telegram и другие люди их не видят.");
                 }
-                footer("Banner and thought: open the Profile tab and tap the banner card or the bubble near your avatar. Other Yologram users can see them.", "Баннер и мысль: открой вкладку «Профиль» и нажми карточку баннера или облачко у аватара. Их видят другие пользователи Yologram.");
+                footer("Banner and thought: open the Profile tab and tap the banner card or the bubble near your avatar. A banner can be a photo, a GIF or an animated WebP up to 1.4 MB. Other Yologram users can see them.", "Баннер и мысль: открой вкладку «Профиль» и нажми карточку баннера или облачко у аватара. Баннером может быть фото, GIF или анимированный WebP до 1,4 МБ. Их видят другие пользователи Yologram.");
+                items.add(new Item(VT_HEADER, 0, ru("Profile music", "Музыка профиля")));
+                final boolean hasMusic = org.telegram.messenger.NullgramSync.musicFile().exists();
+                items.add(new Item(VT_BUTTON, B_MUSIC_PICK, hasMusic ? ru("Replace track", "Заменить трек") : ru("Choose a track", "Выбрать трек")));
+                if (hasMusic) {
+                    items.add(new Item(VT_BUTTON, B_MUSIC_REMOVE, ru("Remove track", "Убрать трек")));
+                }
+                footer("A short track (up to 2.8 MB) that other Yologram users can play from the banner card on your profile. It never starts on its own.", "Короткий трек (до 2,8 МБ), который другие пользователи Yologram могут включить на карточке баннера в твоём профиле. Сам он не запускается.");
                 break;
             }
             case PAGE_HIDDEN: {

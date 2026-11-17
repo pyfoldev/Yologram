@@ -8723,7 +8723,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 remoteRequested = true;
                 org.telegram.messenger.NullgramSync.fetch(userId, (t, f) -> {
                     remoteThought = t;
-                    final boolean newBanner = f != null && remoteBanner == null;
+                    final boolean newBanner = (f != null && remoteBanner == null) || (bannerRow == -1 && org.telegram.messenger.NullgramSync.hasMusic(userId));
                     remoteBanner = f;
                     if (newBanner) {
                         updateRowsIds();
@@ -11162,7 +11162,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     unofficialSecurityRiskDividerRow = rowCount++;
                 }
 
-                if (myProfile || remoteBanner != null) {
+                if (myProfile || remoteBanner != null || org.telegram.messenger.NullgramSync.hasMusic(userId)) {
                     bannerRow = rowCount++;
                     bannerDividerRow = rowCount++;
                 }
@@ -14475,8 +14475,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ((org.telegram.ui.Components.ThoughtView) holder.itemView).update();
                     break;
                 case VIEW_TYPE_BANNER:
-                    if (!myProfile && remoteBanner != null) {
-                        ((org.telegram.ui.Components.ProfileBannerView) holder.itemView).setRemote(remoteBanner);
+                    if (!myProfile) {
+                        ((org.telegram.ui.Components.ProfileBannerView) holder.itemView).setRemote(remoteBanner, userId);
                     } else {
                         ((org.telegram.ui.Components.ProfileBannerView) holder.itemView).update();
                     }
