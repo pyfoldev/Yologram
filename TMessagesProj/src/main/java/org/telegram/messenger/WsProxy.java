@@ -152,8 +152,8 @@ public class WsProxy {
     }
 
     private static final String RELAY_HOST = "yologram.duckdns.org";
-    private static final String RELAY_IP = "103.45.247.151";
-    private static final int RELAY_PORT = 8790;
+    private static final String RELAY_IP = "yologram.duckdns.org";
+    private static final int RELAY_PORT = 443;
     private static final Map<Integer, String> DC_OPT = new HashMap<>();
 
     static {

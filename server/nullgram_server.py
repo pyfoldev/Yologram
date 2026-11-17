@@ -2,7 +2,7 @@
 """Nullgram profile sync: stores each user's banner photo and 24h "thought" so other Nullgram users can see them.
 Stdlib only. Run:  python3 nullgram_server.py   (listens on 0.0.0.0:8787, data in ./data)
 Ownership: the first client to write for a Telegram user id gets a secret token; later writes need that token."""
-import json, os, re, secrets, sqlite3, time
+import json, mimetypes, os, re, secrets, sqlite3, time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 PORT = int(os.environ.get("PORT", "8787"))
@@ -19,6 +19,10 @@ for col in ("seen integer default 0", "badge integer default 1"):
     except sqlite3.OperationalError:
         pass
 db.commit()
+WEB = os.environ.get("YOLOGRAM_WEB", os.path.join(os.path.dirname(os.path.abspath(__file__)), "web"))
+mimetypes.add_type("application/wasm", ".wasm")
+mimetypes.add_type("text/javascript", ".mjs")
+mimetypes.add_type("application/manifest+json", ".webmanifest")
 UPDATES = os.environ.get("NULLGRAM_UPDATES", os.path.join(os.path.dirname(os.path.abspath(__file__)), "updates"))
 os.makedirs(UPDATES, exist_ok=True)
 ADMIN_KEY = os.environ.get("NULLGRAM_ADMIN_KEY", "")
@@ -62,13 +66,33 @@ class H(BaseHTTPRequestHandler):
             return
         self.send(404)
 
+    def static(self, path):
+        # the Yologram Web client lives in WEB; anything that is not an API route is looked up there
+        rel = path.lstrip("/") or "index.html"
+        full = os.path.realpath(os.path.join(WEB, rel))
+        root = os.path.realpath(WEB)
+        if not (full == root or full.startswith(root + os.sep)) or not os.path.isfile(full):
+            return self.send(404)
+        ctype = mimetypes.guess_type(full)[0] or "application/octet-stream"
+        size = os.path.getsize(full)
+        self.send_response(200)
+        self.send_header("Content-Type", ctype)
+        self.send_header("Content-Length", str(size))
+        self.send_header("Cache-Control", "no-cache")
+        self.end_headers()
+        with open(full, "rb") as f:
+            while True:
+                chunk = f.read(262144)
+                if not chunk: break
+                self.wfile.write(chunk)
+
     def do_GET(self):
         path0 = self.path.split("?")[0]
         if path0.startswith("/update/"): return self.update(path0)
         if path0 == "/diag/admin": return self.admin()
         if path0 == "/notices": return self.notices()
         uid, sub = self.uid()
-        if uid is None: return self.send(404)
+        if uid is None: return self.static(path0)
         row = db.execute("select thought, thought_ts, banner_ts from users where id=?", (uid,)).fetchone()
         if sub == "/banner.jpg":
             p = os.path.join(DATA, "banners", f"{uid}.jpg")
