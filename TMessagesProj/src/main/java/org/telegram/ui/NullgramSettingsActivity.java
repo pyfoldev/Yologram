@@ -31,6 +31,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.WsProxy;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.MaterialYou;
 import org.telegram.ui.ActionBar.Theme;
@@ -39,9 +40,9 @@ import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.IconBackgroundColors;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.SeasonOverlayView;
 import org.telegram.ui.Components.SeekBarView;
 
 import java.util.ArrayList;
@@ -49,23 +50,65 @@ import java.util.ArrayList;
 public class NullgramSettingsActivity extends BaseFragment {
 
     private static final int VT_HEADER = 0, VT_CHECK = 1, VT_SHADOW = 2, VT_BUTTON = 3,
-        VT_SWATCHES = 4, VT_SEASONS = 5, VT_SEEK = 6, VT_EXTRAS = 7, VT_DENSITY = 8;
+        VT_SWATCHES = 4, VT_SEEK = 6, VT_EXTRAS = 7, VT_DENSITY = 8, VT_HUB = 9, VT_BANNER = 10, VT_MOTION_SENS = 11;
+
+    public static final int PAGE_HUB = 0, PAGE_APPEARANCE = 1, PAGE_PRIVACY = 2, PAGE_CHATS = 3, PAGE_CONNECTION = 4, PAGE_PROFILE = 5, PAGE_ABOUT = 6, PAGE_HIDDEN = 7, PAGE_PLUGINS = 8;
 
     private static class Item {
         final int viewType;
         final int id;
         final String text;
+        String sub;
+        int icon, c1, c2;
 
         Item(int viewType, int id, String text) {
             this.viewType = viewType;
             this.id = id;
             this.text = text;
         }
+
+        Item sub(String sub) {
+            this.sub = sub;
+            return this;
+        }
+
+        Item hub(int icon, IconBackgroundColors colors) {
+            this.icon = icon;
+            this.c1 = colors.top;
+            this.c2 = colors.bottom;
+            return this;
+        }
     }
 
-    private static final int C_ENABLED = 1, C_AMOLED = 2, C_SEASON_FX = 3, C_GHOST = 4, C_KEEP_DELETED = 5,
-        C_EDIT_HISTORY = 6, C_SAVE_DISAPPEARING = 7, C_WS_PROXY = 8, C_FAST_DOWNLOADS = 9, C_NO_ADS = 10, C_CLEAN_LINKS = 11, C_HIDE_STORIES = 12, C_NO_SWIPE_REPLY = 13, C_HIDE_PHONE = 14, C_CONFIRM_CALLS = 15, C_SCREEN_GUARD = 16;
-    private static final int B_WALLPAPER = 20, B_TOOLS_INFO = 21, B_HOME_WP = 22, B_HOME_WP_OFF = 23;
+    private static final int C_ENABLED = 1, C_AMOLED = 2, C_GHOST = 4, C_KEEP_DELETED = 5,
+        C_EDIT_HISTORY = 6, C_SAVE_DISAPPEARING = 7, C_WS_PROXY = 8, C_FAST_DOWNLOADS = 9, C_NO_ADS = 10, C_CLEAN_LINKS = 11, C_HIDE_STORIES = 12, C_NO_SWIPE_REPLY = 13, C_HIDE_PHONE = 14, C_CONFIRM_CALLS = 15, C_SCREEN_GUARD = 16, C_DIAGNOSTICS = 17, C_HIDE_NOTIF_TEXT = 19, C_ANIMATIONS = 30, C_FAST_MODE = 31, C_SNOW = 32, C_MOTION = 33, C_WINTER_ICONS = 34, C_SHOW_BADGE = 35, C_STRIP_EXIF = 36, C_MOTION_ALWAYS = 37, C_SHOW_IDS = 38, C_FREE_TRANSLATE = 50, C_ROUND_BACK = 51, C_SYSTEM_EMOJI = 52, C_VOICE_HQ = 53, C_VOICE_NS = 54, C_VOICE_AGC = 55, C_CAMERA_FRONT = 56, C_CAMERA_GRID = 57;
+    private static final int B_WALLPAPER = 20, B_TOOLS_INFO = 21, B_HOME_WP = 22, B_HOME_WP_OFF = 23, B_UPDATE = 24, B_SET_PIN = 40, B_LOCK_NOW = 41, B_SET_DECOY = 42, B_ICON_IMPORT = 43, B_ICON_RESET = 44, B_PLUGIN_IMPORT = 45, B_CAMERA = 46;
+    private static final int REQ_ICON_PACK = 4431, REQ_PLUGIN = 4432;
+    private final ArrayList<String> pluginFiles = new ArrayList<>();
+
+    private final int page;
+
+    public NullgramSettingsActivity() {
+        this(PAGE_HUB);
+    }
+
+    public NullgramSettingsActivity(int page) {
+        this.page = page;
+    }
+
+    private String pageTitle() {
+        switch (page) {
+            case PAGE_APPEARANCE: return MaterialYou.s("Appearance", "Внешний вид");
+            case PAGE_PRIVACY: return MaterialYou.s("Privacy and protection", "Приватность и защита");
+            case PAGE_CHATS: return MaterialYou.s("Chats", "Чаты");
+            case PAGE_CONNECTION: return MaterialYou.s("Connection and content", "Соединение и контент");
+            case PAGE_PROFILE: return MaterialYou.s("Profile", "Профиль");
+            case PAGE_ABOUT: return MaterialYou.s("Updates and diagnostics", "Обновления и диагностика");
+            case PAGE_HIDDEN: return MaterialYou.s("Hidden accounts", "Скрытые аккаунты");
+            case PAGE_PLUGINS: return MaterialYou.s("Plugins", "Плагины");
+            default: return "Yologram";
+        }
+    }
 
     private final ArrayList<Item> items = new ArrayList<>();
     private RecyclerListView listView;
@@ -78,6 +121,40 @@ public class NullgramSettingsActivity extends BaseFragment {
 
     @Override
     public void onActivityResultFragment(int requestCode, int resultCode, android.content.Intent data) {
+        if (requestCode == REQ_PLUGIN && resultCode == android.app.Activity.RESULT_OK && data != null && data.getData() != null) {
+            final android.net.Uri uri = data.getData();
+            final Context ctx = getParentActivity();
+            org.telegram.messenger.Utilities.globalQueue.postRunnable(() -> {
+                final String file = org.telegram.messenger.PluginEngine.importPlugin(ctx, uri);
+                org.telegram.messenger.AndroidUtilities.runOnUIThread(() -> {
+                    if (file == null) {
+                        android.widget.Toast.makeText(ctx, MaterialYou.s("Only .py plugins up to 512 KB", "Подходят только .py плагины до 512 КБ"), android.widget.Toast.LENGTH_LONG).show();
+                    } else {
+                        android.widget.Toast.makeText(ctx, MaterialYou.s("Added: ", "Добавлен: ") + file + MaterialYou.s(". Switch it on below.", ". Включи его в списке."), android.widget.Toast.LENGTH_LONG).show();
+                        buildItems();
+                    }
+                });
+            });
+            return;
+        }
+        if (requestCode == REQ_ICON_PACK && resultCode == android.app.Activity.RESULT_OK && data != null && data.getData() != null) {
+            final android.net.Uri uri = data.getData();
+            final Context ctx = getParentActivity();
+            org.telegram.messenger.Utilities.globalQueue.postRunnable(() -> {
+                final String name = org.telegram.messenger.IconPack.importPack(ctx, uri);
+                org.telegram.messenger.AndroidUtilities.runOnUIThread(() -> {
+                    if (name == null) {
+                        android.widget.Toast.makeText(ctx, MaterialYou.s("Not an icon pack", "Это не набор иконок"), android.widget.Toast.LENGTH_LONG).show();
+                    } else {
+                        android.widget.Toast.makeText(ctx, MaterialYou.s("Icon pack applied: ", "Набор иконок применён: ") + name, android.widget.Toast.LENGTH_LONG).show();
+                        if (LaunchActivity.instance != null) {
+                            LaunchActivity.instance.rebuildAllFragments(true);
+                        }
+                    }
+                });
+            });
+            return;
+        }
         if (requestCode == org.telegram.ui.Components.HomeWallpaper.REQUEST_CODE) {
             org.telegram.ui.Components.HomeWallpaper.onPicked(resultCode, data);
         }
@@ -88,7 +165,7 @@ public class NullgramSettingsActivity extends BaseFragment {
         setHasOwnBackground(true);
 
         simpleActionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        simpleActionBar.setTitle("Nullgram");
+        simpleActionBar.setTitle(pageTitle());
         simpleActionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public void onItemClick(int id) {
@@ -102,7 +179,6 @@ public class NullgramSettingsActivity extends BaseFragment {
         final FrameLayout frameLayout = (FrameLayout) fragmentView;
 
         listView = new RecyclerListView(context);
-        listView.setSections();
         listView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false) {
             @Override
             public boolean supportsPredictiveItemAnimations() {
@@ -110,7 +186,11 @@ public class NullgramSettingsActivity extends BaseFragment {
             }
         });
         listView.setVerticalScrollBarEnabled(false);
-        listView.setSectionsDrawBackground(true);
+        // grouped cards: rows between two headers/footers sit on one rounded card (drawn by the decoration below)
+        listView.setPadding(dp(12), 0, dp(12), dp(24));
+        listView.setClipToPadding(false);
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
+        listView.addItemDecoration(new CardDecoration());
         listView.setLayoutAnimation(null);
         listView.setAdapter(adapter = new ListAdapter());
         final DefaultItemAnimator itemAnimator = new DefaultItemAnimator();
@@ -134,67 +214,434 @@ public class NullgramSettingsActivity extends BaseFragment {
                 presentFragment(new WallpapersListActivity(WallpapersListActivity.TYPE_ALL));
             } else if (item.viewType == VT_BUTTON && item.id == B_HOME_WP) {
                 org.telegram.ui.Components.HomeWallpaper.pick(getParentActivity());
+            } else if (item.viewType == VT_BUTTON && item.id == B_CAMERA) {
+                presentFragment(new YologramCameraActivity());
+            } else if (item.viewType == VT_BUTTON && item.id == B_PLUGIN_IMPORT) {
+                final AlertDialog.Builder warn = new AlertDialog.Builder(getParentActivity());
+                warn.setTitle(MaterialYou.s("Plugins run code", "Плагины выполняют код"));
+                warn.setMessage(MaterialYou.s("A plugin is a Python program with access to everything Yologram can do, including your chats. Install only plugins from people you trust.", "Плагин — это программа на Python с доступом ко всему, что умеет Yologram, включая ваши чаты. Ставьте плагины только от тех, кому доверяете."));
+                warn.setPositiveButton(MaterialYou.s("Choose file", "Выбрать файл"), (d, w) -> {
+                    final android.content.Intent pick = new android.content.Intent(android.content.Intent.ACTION_GET_CONTENT);
+                    pick.setType("*/*");
+                    pick.addCategory(android.content.Intent.CATEGORY_OPENABLE);
+                    startActivityForResult(pick, REQ_PLUGIN);
+                });
+                warn.setNegativeButton(org.telegram.messenger.LocaleController.getString(R.string.Cancel), null);
+                showDialog(warn.create());
+            } else if (item.viewType == VT_BUTTON && item.id >= 3000 && item.id < 4000) {
+                final int idx = item.id - 3000;
+                if (idx < pluginFiles.size()) {
+                    org.telegram.messenger.PluginEngine.remove(pluginFiles.get(idx));
+                    buildItems();
+                }
+            } else if (item.viewType == VT_HUB && item.id == PAGE_PLUGINS) {
+                presentFragment(new NullgramSettingsActivity(PAGE_PLUGINS));
+            } else if (item.viewType == VT_BUTTON && item.id == B_ICON_IMPORT) {
+                final android.content.Intent pick = new android.content.Intent(android.content.Intent.ACTION_GET_CONTENT);
+                pick.setType("*/*");
+                pick.addCategory(android.content.Intent.CATEGORY_OPENABLE);
+                startActivityForResult(pick, REQ_ICON_PACK);
+            } else if (item.viewType == VT_BUTTON && item.id == B_ICON_RESET) {
+                org.telegram.messenger.IconPack.reset();
+                if (LaunchActivity.instance != null) {
+                    LaunchActivity.instance.rebuildAllFragments(true);
+                }
             } else if (item.viewType == VT_BUTTON && item.id == B_HOME_WP_OFF) {
                 org.telegram.ui.Components.HomeWallpaper.remove();
+            } else if (item.viewType == VT_BUTTON && item.id == B_SET_PIN) {
+                pinDialog(MaterialYou.s("New PIN (4-8 digits)", "Новый PIN (4–8 цифр)"), pin -> {
+                    org.telegram.messenger.NullgramHidden.setPin(pin);
+                    buildItems();
+                });
+            } else if (item.viewType == VT_BUTTON && item.id == B_SET_DECOY) {
+                pinDialog(MaterialYou.s("Decoy PIN (4-8 digits)", "Ложный PIN (4–8 цифр)"), pin -> {
+                    if (!org.telegram.messenger.NullgramHidden.setDecoyPin(pin)) {
+                        android.widget.Toast.makeText(getParentActivity(), MaterialYou.s("It must differ from the real PIN", "Он должен отличаться от настоящего PIN"), android.widget.Toast.LENGTH_SHORT).show();
+                    } else {
+                        buildItems();
+                    }
+                });
+            } else if (item.viewType == VT_BUTTON && item.id == B_LOCK_NOW) {
+                org.telegram.messenger.NullgramHidden.lock();
+                android.widget.Toast.makeText(getParentActivity(), MaterialYou.s("Accounts hidden", "Аккаунты скрыты"), android.widget.Toast.LENGTH_SHORT).show();
+                finishFragment();
+            } else if (item.viewType == VT_HUB) {
+                if (item.id == B_UPDATE) {
+                    checkForUpdate();
+                } else {
+                    presentFragment(new NullgramSettingsActivity(item.id));
+                }
             }
         });
 
         buildItems();
+        if (NullgramConfig.animations()) {
+            final android.view.animation.AnimationSet set = new android.view.animation.AnimationSet(true);
+            final android.view.animation.TranslateAnimation slide = new android.view.animation.TranslateAnimation(
+                android.view.animation.Animation.RELATIVE_TO_SELF, 0f, android.view.animation.Animation.RELATIVE_TO_SELF, 0f,
+                android.view.animation.Animation.ABSOLUTE, dp(36), android.view.animation.Animation.ABSOLUTE, 0f);
+            slide.setDuration(420);
+            slide.setInterpolator(new android.view.animation.OvershootInterpolator(1.4f));
+            final android.view.animation.AlphaAnimation fade = new android.view.animation.AlphaAnimation(0f, 1f);
+            fade.setDuration(260);
+            set.addAnimation(slide);
+            set.addAnimation(fade);
+            final android.view.animation.LayoutAnimationController lac = new android.view.animation.LayoutAnimationController(set, 0.07f);
+            listView.setLayoutAnimation(lac);
+            listView.scheduleLayoutAnimation();
+        }
         return fragmentView;
+    }
+
+    private void pinDialog(String title, java.util.function.Consumer<String> onOk) {
+        if (getParentActivity() == null) {
+            return;
+        }
+        final EditText edit = new EditText(getParentActivity());
+        edit.setInputType(android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+        edit.setFilters(new android.text.InputFilter[]{new android.text.InputFilter.LengthFilter(8)});
+        edit.setSingleLine(true);
+        edit.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
+        edit.setPadding(dp(4), dp(8), dp(4), dp(8));
+        final AlertDialog.Builder b = new AlertDialog.Builder(getParentActivity());
+        b.setTitle(title);
+        b.setView(edit);
+        b.setPositiveButton("OK", (d, w) -> {
+            final String pin = edit.getText().toString();
+            if (pin.length() < 4) {
+                android.widget.Toast.makeText(getParentActivity(), MaterialYou.s("At least 4 digits", "Минимум 4 цифры"), android.widget.Toast.LENGTH_SHORT).show();
+            } else {
+                onOk.accept(pin);
+            }
+        });
+        b.setNegativeButton(MaterialYou.s("Cancel", "Отмена"), null);
+        showDialog(b.create());
+    }
+
+    /** Opened by tapping the Yologram title five times on the main page. */
+    private void promptUnlock() {
+        if (!org.telegram.messenger.NullgramHidden.hasPin()) {
+            return;
+        }
+        pinDialog(MaterialYou.s("PIN", "PIN"), pin -> {
+            if (org.telegram.messenger.NullgramHidden.hasDecoyPin() && org.telegram.messenger.NullgramHidden.checkDecoyPin(pin)) {
+                org.telegram.messenger.NullgramHidden.unlockDecoy();
+                android.widget.Toast.makeText(getParentActivity(), MaterialYou.s("Hidden accounts are open", "Скрытые аккаунты открыты"), android.widget.Toast.LENGTH_SHORT).show();
+                buildItems();
+            } else if (org.telegram.messenger.NullgramHidden.checkPin(pin)) {
+                org.telegram.messenger.NullgramHidden.unlock();
+                android.widget.Toast.makeText(getParentActivity(), MaterialYou.s("Hidden accounts are open", "Скрытые аккаунты открыты"), android.widget.Toast.LENGTH_SHORT).show();
+                buildItems();
+            } else {
+                android.widget.Toast.makeText(getParentActivity(), MaterialYou.s("Wrong PIN", "Неверный PIN"), android.widget.Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void checkForUpdate() {
+        final android.app.Activity activity = getParentActivity();
+        if (activity == null) {
+            return;
+        }
+        android.widget.Toast.makeText(activity, MaterialYou.s("Checking for updates…", "Проверяем обновления…"), android.widget.Toast.LENGTH_SHORT).show();
+        org.telegram.messenger.NullgramUpdater.check((info, upToDate, error) -> {
+            if (getParentActivity() == null) {
+                return;
+            }
+            if (error != null) {
+                android.widget.Toast.makeText(getParentActivity(), MaterialYou.s("Update check failed: ", "Не удалось проверить: ") + error, android.widget.Toast.LENGTH_LONG).show();
+            } else if (info == null) {
+                android.widget.Toast.makeText(getParentActivity(), MaterialYou.s("You have the latest version", "У тебя последняя версия"), android.widget.Toast.LENGTH_SHORT).show();
+            } else {
+                final String size = info.size > 0 ? String.format(java.util.Locale.US, " (%.1f MB)", info.size / 1048576.0) : "";
+                final AlertDialog.Builder b = new AlertDialog.Builder(getParentActivity());
+                b.setTitle(MaterialYou.s("Update available: ", "Доступно обновление: ") + info.versionName);
+                b.setMessage((info.notes.isEmpty() ? "" : info.notes + "\n\n") + MaterialYou.s("Download and install", "Скачать и установить") + size + "?");
+                b.setPositiveButton(MaterialYou.s("Update", "Обновить"), (d, w) -> downloadUpdate(info));
+                b.setNegativeButton(MaterialYou.s("Later", "Позже"), null);
+                showDialog(b.create());
+            }
+        });
+    }
+
+    private void downloadUpdate(final org.telegram.messenger.NullgramUpdater.Info info) {
+        final android.app.Activity activity = getParentActivity();
+        if (activity == null) {
+            return;
+        }
+        final UpdateProgressView bar = new UpdateProgressView(activity);
+        final TextView percent = new TextView(activity);
+        percent.setTextSize(28);
+        percent.setTypeface(AndroidUtilities.bold());
+        percent.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
+        percent.setText("0%");
+        final TextView sizeText = new TextView(activity);
+        sizeText.setTextSize(14);
+        sizeText.setTextColor(Theme.getColor(Theme.key_dialogTextGray2));
+        final double totalMb = info.size / 1048576.0;
+        sizeText.setText(totalMb > 0 ? String.format(java.util.Locale.US, "0.0 / %.1f MB", totalMb) : "");
+        final LinearLayout box = new LinearLayout(activity);
+        box.setOrientation(LinearLayout.VERTICAL);
+        box.setPadding(dp(24), dp(4), dp(24), dp(8));
+        box.addView(percent, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT));
+        box.addView(bar, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, 12, 0, 10, 0, 8));
+        box.addView(sizeText, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT));
+        final AlertDialog progress = new AlertDialog.Builder(activity).setTitle(MaterialYou.s("Downloading update", "Загрузка обновления")).setView(box).create();
+        progress.setCanCancel(false);
+        progress.show();
+        org.telegram.messenger.NullgramUpdater.download(info, new org.telegram.messenger.NullgramUpdater.DownloadCallback() {
+            @Override
+            public void onProgress(int p) {
+                percent.setText(p + "%");
+                bar.setProgress(p / 100f);
+                if (totalMb > 0) {
+                    sizeText.setText(String.format(java.util.Locale.US, "%.1f / %.1f MB", totalMb * p / 100.0, totalMb));
+                }
+            }
+
+            @Override
+            public void onDone(java.io.File apk, String error) {
+                bar.setProgress(error == null ? 1f : bar.current());
+                progress.dismiss();
+                final android.app.Activity a = getParentActivity();
+                if (a == null) {
+                    return;
+                }
+                if (error != null) {
+                    android.widget.Toast.makeText(a, MaterialYou.s("Download failed: ", "Ошибка загрузки: ") + error, android.widget.Toast.LENGTH_LONG).show();
+                } else if (!org.telegram.messenger.NullgramUpdater.install(a, apk)) {
+                    android.widget.Toast.makeText(a, MaterialYou.s("Allow installs from Yologram, then tap Update again", "Разреши установку из Yologram и нажми «Обновить» ещё раз"), android.widget.Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    /** Material You progress slider: rounded track, rounded fill and a round handle that glides to the new value. */
+    private static class UpdateProgressView extends View {
+        private final Paint track = new Paint(Paint.ANTI_ALIAS_FLAG);
+        private final Paint fill = new Paint(Paint.ANTI_ALIAS_FLAG);
+        private final android.graphics.RectF rect = new android.graphics.RectF();
+        private float target, shown;
+
+        UpdateProgressView(Context context) {
+            super(context);
+        }
+
+        void setProgress(float p) {
+            target = Math.max(0f, Math.min(1f, p));
+            invalidate();
+        }
+
+        float current() {
+            return target;
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            shown += (target - shown) * 0.22f;
+            if (Math.abs(target - shown) > 0.001f) {
+                postInvalidateOnAnimation();
+            } else {
+                shown = target;
+            }
+            track.setColor(MaterialYou.role(MaterialYou.R_SECONDARY_CONTAINER));
+            fill.setColor(MaterialYou.role(MaterialYou.R_PRIMARY));
+            final float h = getHeight(), w = getWidth();
+            final float barH = dp(8), top = (h - barH) / 2f, r = barH / 2f;
+            rect.set(0, top, w, top + barH);
+            canvas.drawRoundRect(rect, r, r, track);
+            final float x = Math.max(r, w * shown);
+            rect.set(0, top, x, top + barH);
+            canvas.drawRoundRect(rect, r, r, fill);
+            // handle: a pill that sits on the end of the fill with a small gap, as in Material sliders
+            final float hx = Math.max(dp(3), Math.min(w - dp(3), x + dp(4)));
+            rect.set(hx - dp(2), h / 2f - dp(8), hx + dp(2), h / 2f + dp(8));
+            canvas.drawRoundRect(rect, dp(2), dp(2), fill);
+        }
+    }
+
+    @androidx.annotation.Nullable
+    @Override
+    protected RecyclerListView getListViewForSimpleGlass() {
+        return listView;
+    }
+
+    private static String ru(String en, String ru) {
+        return MaterialYou.s(en, ru);
+    }
+
+    private void check(int id, String en, String ruText, String subEn, String subRu) {
+        items.add(new Item(VT_CHECK, id, ru(en, ruText)).sub(subEn == null ? null : ru(subEn, subRu)));
+    }
+
+    private void footer(String en, String ruText) {
+        items.add(new Item(VT_SHADOW, 0, ru(en, ruText)));
     }
 
     private void buildItems() {
         items.clear();
-        final String sep = "";
-
-        items.add(new Item(VT_HEADER, 0, MaterialYou.s("Color", "Цвет")));
-        items.add(new Item(VT_SWATCHES, 0, null));
-        items.add(new Item(VT_HEADER, 0, MaterialYou.s("Chat list density", "Плотность списка чатов")));
-        items.add(new Item(VT_DENSITY, 0, null));
-        items.add(new Item(VT_HEADER, 0, MaterialYou.s("Roundness", "Скругление")));
-        items.add(new Item(VT_SEEK, 0, null));
-        items.add(new Item(VT_CHECK, C_AMOLED, MaterialYou.s("AMOLED black", "AMOLED-чёрный")));
-        items.add(new Item(VT_CHECK, C_ENABLED, MaterialYou.s("Material You design", "Дизайн Material You")));
-        items.add(new Item(VT_BUTTON, B_WALLPAPER, MaterialYou.s("Chat wallpaper", "Обои чата")));
-        items.add(new Item(VT_BUTTON, B_HOME_WP, MaterialYou.s("Main screen wallpaper", "Обои главного экрана")));
-        items.add(new Item(VT_BUTTON, B_HOME_WP_OFF, MaterialYou.s("Remove main screen wallpaper", "Убрать обои главного экрана")));
-        items.add(new Item(VT_SHADOW, 0, MaterialYou.s("Roundness applies to new dialogs, buttons and chat cards after reopening.", "Скругление применяется к новым окнам, кнопкам и карточкам чатов после повторного открытия.")));
-
-        items.add(new Item(VT_HEADER, 0, MaterialYou.s("Seasonal themes", "Сезонные темы")));
-        items.add(new Item(VT_SEASONS, 0, null));
-        items.add(new Item(VT_CHECK, C_SEASON_FX, MaterialYou.s("Falling snow and objects", "Падающий снег и объекты")));
-        items.add(new Item(VT_SHADOW, 0, MaterialYou.s("New Year: snow, snowman, tree, Santa, gifts. Halloween: pumpkins, ghosts, spiders, bats. The theme colour changes too.", "Новый год: снег, снеговик, ёлка, Санта, подарки. Хэллоуин: тыквы, призраки, пауки, летучие мыши. Цвет темы тоже меняется.")));
-
-        items.add(new Item(VT_HEADER, 0, MaterialYou.s("Privacy", "Приватность")));
-        items.add(new Item(VT_CHECK, C_GHOST, MaterialYou.s("Ghost mode", "Режим призрака")));
-        items.add(new Item(VT_CHECK, C_KEEP_DELETED, MaterialYou.s("Keep deleted messages", "Сохранять удалённые сообщения")));
-        items.add(new Item(VT_CHECK, C_EDIT_HISTORY, MaterialYou.s("Keep edit history", "История правок сообщений")));
-        items.add(new Item(VT_CHECK, C_SAVE_DISAPPEARING, MaterialYou.s("Save disappearing photos & videos", "Сохранять исчезающие фото и видео")));
-        items.add(new Item(VT_SHADOW, 0, MaterialYou.s("Ghost mode hides online status, read receipts, typing and story views. Silent read per chat: open a chat → ⋮. Edit history: long-press an edited message.", "Режим призрака скрывает «в сети», прочтение, набор текста и просмотры историй. Тихое прочтение для чата: открой чат → ⋮. История правок: долгое нажатие на изменённое сообщение.")));
-
-        items.add(new Item(VT_HEADER, 0, MaterialYou.s("Connection and content", "Соединение и контент")));
-        items.add(new Item(VT_CHECK, C_WS_PROXY, MaterialYou.s("WS proxy", "WS-прокси")));
-        items.add(new Item(VT_CHECK, C_FAST_DOWNLOADS, MaterialYou.s("Faster downloads", "Быстрые загрузки")));
-        items.add(new Item(VT_CHECK, C_HIDE_STORIES, MaterialYou.s("Hide stories bar", "Скрыть истории")));
-        items.add(new Item(VT_CHECK, C_NO_SWIPE_REPLY, MaterialYou.s("Disable swipe to reply", "Отключить свайп-ответ")));
-        items.add(new Item(VT_CHECK, C_HIDE_PHONE, MaterialYou.s("Hide my phone number", "Скрыть мой номер телефона")));
-        items.add(new Item(VT_CHECK, C_CONFIRM_CALLS, MaterialYou.s("Confirm before calling", "Подтверждать звонок")));
-        items.add(new Item(VT_CHECK, C_SCREEN_GUARD, MaterialYou.s("Block screenshots", "Запретить скриншоты")));
-        items.add(new Item(VT_CHECK, C_NO_ADS, MaterialYou.s("Remove ads", "Убрать рекламу")));
-        items.add(new Item(VT_CHECK, C_CLEAN_LINKS, MaterialYou.s("Strip tracking from links", "Чистить ссылки от трекеров")));
-        items.add(new Item(VT_SHADOW, 0, MaterialYou.s("WS proxy carries Telegram over a WebSocket to web.telegram.org and helps when the plain connection is blocked.", "WS-прокси пускает Telegram через WebSocket к web.telegram.org и помогает, когда обычное соединение блокируют.")));
-
-        final TLRPC.User me = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
-        items.add(new Item(VT_HEADER, 0, MaterialYou.s("Chat tools", "Инструменты чата")));
-        items.add(new Item(VT_BUTTON, B_TOOLS_INFO, MaterialYou.s("In a chat: ⋮ → Snippets, Export, Silent read", "В чате: ⋮ → Шаблоны, Экспорт, Тихое прочтение")));
-        items.add(new Item(VT_SHADOW, 0, MaterialYou.s("Long-press a message → Details (ID, dates, views) and Edit history.", "Долгое нажатие на сообщение → Подробности (ID, даты, просмотры) и История правок.")));
-
-        items.add(new Item(VT_HEADER, 0, MaterialYou.s("Profile", "Профиль")));
-        if (CreatorBadge.isCreator(me)) {
-            items.add(new Item(VT_EXTRAS, 0, null));
-            items.add(new Item(VT_SHADOW, 0, MaterialYou.s("Extra usernames are shown on your profile in this app only; Telegram and other people don't see them. Banner: open the Profile tab and tap the banner card (stored on this device only).", "Доп. юзернеймы показываются на твоём профиле только в этом приложении; Telegram и другие люди их не видят. Баннер: открой вкладку «Профиль» и нажми карточку баннера (хранится только на этом устройстве).")));
-        } else {
-            items.add(new Item(VT_SHADOW, 0, MaterialYou.s("Banner: open the Profile tab and tap the banner card. It is stored on this device only.", "Баннер: открой вкладку «Профиль» и нажми карточку баннера. Он хранится только на этом устройстве.")));
+        switch (page) {
+            case PAGE_APPEARANCE:
+                items.add(new Item(VT_HEADER, 0, ru("Color", "Цвет")));
+                items.add(new Item(VT_SWATCHES, 0, null));
+                items.add(new Item(VT_HEADER, 0, ru("Chat list density", "Плотность списка чатов")));
+                items.add(new Item(VT_DENSITY, 0, null));
+                items.add(new Item(VT_HEADER, 0, ru("Roundness", "Скругление")));
+                items.add(new Item(VT_SEEK, 0, null));
+                check(C_ENABLED, "Material You design", "Дизайн Material You", "Rounded shapes and colours from your theme", "Скруглённые формы и цвета из твоей темы");
+                check(C_AMOLED, "AMOLED black", "AMOLED-чёрный", "Pure black background in the dark theme", "Чисто чёрный фон в тёмной теме");
+                footer("Roundness applies to new dialogs, buttons and chat cards after reopening.", "Скругление применяется к новым окнам, кнопкам и карточкам чатов после повторного открытия.");
+                items.add(new Item(VT_HEADER, 0, ru("Effects", "Эффекты")));
+                check(C_SNOW, "Falling snow", "Падающий снег", "Snowfall over every screen", "Снегопад поверх всех экранов");
+                check(C_WINTER_ICONS, "Snowman and tree icons", "Значки снеговика и ёлки", "In the chat list title and Yologram settings; shown while snow is on. Reopen the screen to see the change", "В заголовке списка чатов и настройках Yologram, пока включён снег. Чтобы увидеть изменение, открой экран заново");
+                footer("", "");
+                items.add(new Item(VT_HEADER, 0, ru("Icon pack", "Набор иконок")));
+                items.add(new Item(VT_BUTTON, B_ICON_IMPORT, org.telegram.messenger.IconPack.isActive() ? ru("Replace pack (current: ", "Заменить набор (сейчас: ") + org.telegram.messenger.IconPack.activeName() + ")" : ru("Load an icon pack (.icons)", "Загрузить набор иконок (.icons)")));
+                if (org.telegram.messenger.IconPack.isActive()) {
+                    items.add(new Item(VT_BUTTON, B_ICON_RESET, ru("Back to built-in icons", "Вернуть встроенные иконки")));
+                }
+                footer("Packs made for exteraGram (.icons) work: icons are swapped by name while the app runs.", "Подходят наборы для exteraGram (.icons): иконки подменяются по имени прямо во время работы.");
+                items.add(new Item(VT_HEADER, 0, ru("Wallpapers", "Обои")));
+                items.add(new Item(VT_BUTTON, B_WALLPAPER, ru("Chat wallpaper", "Обои чата")));
+                items.add(new Item(VT_BUTTON, B_HOME_WP, ru("Main screen wallpaper", "Обои главного экрана")));
+                items.add(new Item(VT_BUTTON, B_HOME_WP_OFF, ru("Remove main screen wallpaper", "Убрать обои главного экрана")));
+                footer("", "");
+                break;
+            case PAGE_PRIVACY:
+                items.add(new Item(VT_HEADER, 0, ru("Traces", "Следы")));
+                check(C_GHOST, "Ghost mode", "Режим призрака", "Hides online status, read receipts, typing and story views", "Скрывает «в сети», прочтение, набор текста и просмотры историй");
+                check(C_KEEP_DELETED, "Keep deleted messages", "Удалённые сообщения", "Messages deleted by others stay in the chat", "Удалённые собеседником сообщения остаются в чате");
+                check(C_EDIT_HISTORY, "Keep edit history", "История правок", "Long-press an edited message to see earlier versions", "Долгое нажатие на изменённое сообщение покажет прежние версии");
+                check(C_SAVE_DISAPPEARING, "Save disappearing media", "Исчезающие фото и видео", "Self-destructing photos and videos are saved", "Фото и видео с таймером сохраняются");
+                footer("Silent read per chat: open a chat → ⋮.", "Тихое прочтение для отдельного чата: открой чат → ⋮.");
+                items.add(new Item(VT_HEADER, 0, ru("Screen", "Экран")));
+                check(C_SCREEN_GUARD, "Block screenshots", "Запретить скриншоты", "Also hides the app in the recent apps list", "Скрывает приложение и в списке недавних");
+                check(C_HIDE_NOTIF_TEXT, "Hide text in notifications", "Скрывать текст в уведомлениях", "Notifications show no message text", "В уведомлениях не показывается текст сообщений");
+                footer("", "");
+                items.add(new Item(VT_HEADER, 0, ru("Personal data", "Личные данные")));
+                check(C_SHOW_IDS, "Show IDs", "Показывать ID", "Telegram IDs of users, groups and channels in their profile; tap to copy", "ID пользователей, групп и каналов в профиле; нажми, чтобы скопировать");
+                check(C_STRIP_EXIF, "Strip photo metadata in files", "Стирать метаданные фото в файлах", "Removes location, camera model and time from JPEG files you send as a file", "Убирает геопозицию, модель камеры и время из JPEG, которые ты отправляешь файлом");
+                check(C_HIDE_PHONE, "Hide my phone number", "Скрыть мой номер телефона", "Masked in your profile and settings", "Скрыт в профиле и настройках");
+                check(C_CONFIRM_CALLS, "Confirm before calling", "Подтверждать звонок", "Ask before every call starts", "Спрашивать перед каждым звонком");
+                footer("", "");
+                break;
+            case PAGE_CHATS:
+                items.add(new Item(VT_HEADER, 0, ru("Performance", "Производительность")));
+                check(C_FAST_MODE, "Fast mode", "Быстрый режим", "Lighter glass effects, keeps the profile tab ready; smoother on weaker phones", "Облегчённые эффекты стекла, вкладка профиля всегда готова; плавнее на слабых телефонах");
+                footer("", "");
+                items.add(new Item(VT_HEADER, 0, ru("Comfort", "Комфорт")));
+                check(C_MOTION, "Motion sickness protection", "Защита от укачивания", "Dots at the screen edges shift with the phone's motion, like iPhone vehicle cues", "Точки по краям экрана смещаются вместе с движением телефона, как в iPhone");
+                check(C_MOTION_ALWAYS, "Always visible", "Показывать всегда", "Off: the dots appear only while you are moving (car, bus, train) and fade away when it calms down", "Выключено: точки появляются только в движении (машина, автобус, поезд) и гаснут, когда всё стихает");
+                items.add(new Item(VT_HEADER, 0, ru("Sensitivity", "Чувствительность")));
+                items.add(new Item(VT_MOTION_SENS, 0, null));
+                footer("Uses the motion sensor only while the app is open.", "Использует датчик движения только пока приложение открыто.");
+                items.add(new Item(VT_HEADER, 0, ru("Behaviour", "Поведение")));
+                check(C_ANIMATIONS, "Springy touch animations", "Пружинящие анимации касаний", "Chats and settings rows bounce when pressed", "Строки чатов и настроек пружинят при нажатии");
+                check(C_NO_SWIPE_REPLY, "Disable swipe to reply", "Отключить свайп-ответ", "No accidental replies while scrolling", "Нет случайных ответов при прокрутке");
+                check(C_HIDE_STORIES, "Hide stories bar", "Скрыть истории", "Removes the stories row from the chat list", "Убирает ряд историй над списком чатов");
+                check(C_FREE_TRANSLATE, "Translate without Premium", "Перевод без Premium", "Translating a chat sends its text to Google Translate", "Перевод чата отправляет его текст в Google Переводчик");
+                check(C_SYSTEM_EMOJI, "System emoji", "Системные эмодзи", "Use the phone's own emoji instead of Telegram's", "Эмодзи телефона вместо эмодзи Telegram");
+                check(C_VOICE_HQ, "High quality voice messages", "Голосовые высокого качества", "Records at 64 kbit/s instead of 30; files are about twice as big", "Запись 64 кбит/с вместо 30; файлы примерно вдвое больше");
+                check(C_VOICE_NS, "Microphone noise suppression", "Шумоподавление микрофона", "Uses the phone's own noise suppressor while recording voice messages", "Встроенное шумоподавление телефона при записи голосовых");
+                check(C_VOICE_AGC, "Microphone auto gain", "Автоусиление микрофона", "Evens out quiet and loud speech", "Выравнивает тихую и громкую речь");
+                items.add(new Item(VT_BUTTON, B_CAMERA, ru("Open Yologram camera", "Открыть камеру Yologram")));
+                check(C_CAMERA_FRONT, "Chat camera: front lens", "Камера в чате: фронтальная", "The camera in the attach menu opens on the front lens", "Камера в меню вложений открывается на фронтальном объективе");
+                check(C_CAMERA_GRID, "Chat camera: grid", "Камера в чате: сетка", "Rule-of-thirds lines over the open camera", "Линии третей поверх открытой камеры");
+                check(C_ROUND_BACK, "Round videos: back camera", "Кружки: задняя камера", "Start recording round videos with the back camera", "Запись кружков начинается с задней камеры");
+                check(C_CLEAN_LINKS, "Strip tracking from links", "Чистить ссылки от трекеров", "Removes utm and similar parameters", "Убирает utm и похожие параметры");
+                footer("In a chat: ⋮ → Snippets, Export, Silent read. Long-press a message → Details and Edit history.", "В чате: ⋮ → Шаблоны, Экспорт, Тихое прочтение. Долгое нажатие на сообщение → Подробности и История правок.");
+                break;
+            case PAGE_CONNECTION:
+                items.add(new Item(VT_HEADER, 0, ru("Network", "Сеть")));
+                check(C_WS_PROXY, "WS proxy", "WS-прокси", "Telegram over WebSocket; helps when the plain connection is blocked", "Telegram через WebSocket; помогает, когда обычное соединение блокируют");
+                check(C_FAST_DOWNLOADS, "Faster downloads", "Быстрые загрузки", "More parallel requests for large files", "Больше параллельных запросов для больших файлов");
+                footer("", "");
+                items.add(new Item(VT_HEADER, 0, ru("Content", "Контент")));
+                check(C_NO_ADS, "Remove ads", "Убрать рекламу", "Hides sponsored messages", "Скрывает рекламные сообщения");
+                footer("", "");
+                break;
+            case PAGE_PROFILE: {
+                final TLRPC.User me = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
+                items.add(new Item(VT_HEADER, 0, ru("Profile", "Профиль")));
+                check(C_SHOW_BADGE, "Yologram badge", "Значок Yologram", "Other Yologram users see an N badge next to your name", "Другие пользователи Yologram видят значок N рядом с твоим именем");
+                if (CreatorBadge.isCreator(me)) {
+                    items.add(new Item(VT_EXTRAS, 0, null));
+                    footer("Extra usernames are shown on your profile in this app only; Telegram and other people don't see them.", "Доп. юзернеймы показываются на твоём профиле только в этом приложении; Telegram и другие люди их не видят.");
+                }
+                footer("Banner and thought: open the Profile tab and tap the banner card or the bubble near your avatar. Other Yologram users can see them.", "Баннер и мысль: открой вкладку «Профиль» и нажми карточку баннера или облачко у аватара. Их видят другие пользователи Yologram.");
+                break;
+            }
+            case PAGE_HIDDEN: {
+                items.add(new Item(VT_HEADER, 0, ru("Accounts", "Аккаунты")));
+                for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
+                    if (UserConfig.getInstance(a).isClientActivated() && !(org.telegram.messenger.NullgramHidden.isDecoy() && org.telegram.messenger.NullgramHidden.isHidden(a))) {
+                        final String name = org.telegram.messenger.UserObject.getUserName(UserConfig.getInstance(a).getCurrentUser());
+                        items.add(new Item(VT_CHECK, 1000 + a, name).sub(org.telegram.messenger.NullgramHidden.isHidden(a) ? ru("Hidden until the PIN is entered", "Скрыт, пока не введён PIN") : ru("Visible to everyone", "Виден всем")));
+                    }
+                }
+                footer("A hidden account leaves the account list and stays silent: no notifications. At least one account has to stay visible.", "Скрытый аккаунт пропадает из списка аккаунтов и молчит: без уведомлений. Хотя бы один аккаунт должен остаться видимым.");
+                items.add(new Item(VT_HEADER, 0, ru("Access", "Доступ")));
+                items.add(new Item(VT_BUTTON, B_SET_PIN, org.telegram.messenger.NullgramHidden.hasPin() ? ru("Change PIN", "Сменить PIN") : ru("Set PIN", "Задать PIN")));
+                if (org.telegram.messenger.NullgramHidden.hasPin()) {
+                    items.add(new Item(VT_BUTTON, B_SET_DECOY, org.telegram.messenger.NullgramHidden.hasDecoyPin() ? ru("Change decoy PIN", "Сменить ложный PIN") : ru("Set decoy PIN", "Задать ложный PIN")));
+                    items.add(new Item(VT_BUTTON, B_LOCK_NOW, ru("Hide now", "Скрыть сейчас")));
+                }
+                footer("The decoy PIN opens this same screen but shows no hidden account. Give it up if someone makes you unlock.", "Ложный PIN открывает этот же экран, но не показывает ни одного скрытого аккаунта. Назови его, если тебя заставляют открыть.");
+                footer("To open hidden accounts later: tap the Yologram name on the main Yologram settings page 5 times and enter the PIN. They hide again 20 seconds after you leave the app.", "Чтобы открыть скрытые аккаунты: нажми 5 раз на название Yologram на главной странице настроек Yologram и введи PIN. Через 20 секунд после выхода из приложения они снова скрываются.");
+                break;
+            }
+            case PAGE_PLUGINS: {
+                pluginFiles.clear();
+                pluginFiles.addAll(org.telegram.messenger.PluginEngine.files());
+                items.add(new Item(VT_HEADER, 0, ru("Installed plugins", "Установленные плагины")));
+                if (pluginFiles.isEmpty()) {
+                    footer("No plugins yet. Add a .py file below.", "Плагинов пока нет. Добавь файл .py ниже.");
+                }
+                for (int i = 0; i < pluginFiles.size(); i++) {
+                    final org.telegram.messenger.PluginEngine.Info info = org.telegram.messenger.PluginEngine.info(pluginFiles.get(i));
+                    String sub = (info.version.isEmpty() ? "" : "v" + info.version + " · ") + (info.description.isEmpty() ? pluginFiles.get(i) : info.description);
+                    if (info.error != null) {
+                        sub = ru("Error: ", "Ошибка: ") + info.error;
+                    }
+                    items.add(new Item(VT_CHECK, 2000 + i, info.name).sub(sub));
+                }
+                if (!pluginFiles.isEmpty()) {
+                    footer("Plugins run in the background Python engine. A broken plugin never blocks sending.", "Плагины работают во встроенном движке Python. Сломанный плагин не мешает отправке сообщений.");
+                    items.add(new Item(VT_HEADER, 0, ru("Remove", "Удалить")));
+                    for (int i = 0; i < pluginFiles.size(); i++) {
+                        items.add(new Item(VT_BUTTON, 3000 + i, ru("Remove ", "Удалить ") + org.telegram.messenger.PluginEngine.info(pluginFiles.get(i)).name));
+                    }
+                    footer("", "");
+                }
+                items.add(new Item(VT_HEADER, 0, ru("Add", "Добавить")));
+                items.add(new Item(VT_BUTTON, B_PLUGIN_IMPORT, ru("Add a plugin (.py)", "Добавить плагин (.py)")));
+                footer("Hooks: on_load, on_message, on_send. API: toast, send_message, copy, my_id, get, set, log.", "Хуки: on_load, on_message, on_send. API: toast, send_message, copy, my_id, get, set, log.");
+                break;
+            }
+            case PAGE_ABOUT:
+                items.add(new Item(VT_HEADER, 0, ru("Updates", "Обновления")));
+                items.add(new Item(VT_HUB, B_UPDATE, ru("Check for updates", "Проверить обновления")).sub(ru("Current version ", "Текущая версия ") + org.telegram.messenger.NullgramUpdater.installedName()).hub(R.drawable.msg_download, IconBackgroundColors.BLUE_DEEP));
+                footer("Updates come from the Yologram server and are checked by signature.", "Обновления приходят с сервера Yologram и проверяются по подписи.");
+                items.add(new Item(VT_HEADER, 0, ru("Diagnostics", "Диагностика")));
+                check(C_DIAGNOSTICS, "Anonymous diagnostics", "Анонимная диагностика", "Crash reports, app version and device model", "Отчёты об ошибках, версия приложения и модель устройства");
+                footer("No Telegram ids, phone numbers, usernames or chat content are sent. Only a random install id, feature flags and error traces.", "Идентификаторы Telegram, номера, имена пользователей и содержимое чатов не отправляются. Только случайный id установки, включённые функции и стек ошибок.");
+                break;
+            default:
+                items.add(new Item(VT_BANNER, 0, null));
+                footer("", "");
+                items.add(new Item(VT_HUB, PAGE_APPEARANCE, ru("Appearance", "Внешний вид")).sub(ru("Colour, density, wallpapers", "Цвет, плотность, обои")).hub(R.drawable.msg_colors, IconBackgroundColors.PURPLE));
+                items.add(new Item(VT_HUB, PAGE_PRIVACY, ru("Privacy and protection", "Приватность и защита")).sub(ru("Ghost mode, hidden notifications", "Призрак, скрытые уведомления")).hub(R.drawable.settings_privacy, IconBackgroundColors.GREEN));
+                items.add(new Item(VT_HUB, PAGE_CHATS, ru("Chats", "Чаты")).sub(ru("Animations, swipes, links", "Анимации, свайпы, ссылки")).hub(R.drawable.settings_chat, IconBackgroundColors.ORANGE));
+                items.add(new Item(VT_HUB, PAGE_CONNECTION, ru("Connection and content", "Соединение и контент")).sub(ru("Proxy, downloads, ads", "Прокси, загрузки, реклама")).hub(R.drawable.settings_data, IconBackgroundColors.BLUE));
+                items.add(new Item(VT_HUB, PAGE_PLUGINS, ru("Plugins", "Плагины")).sub(ru("Python extensions", "Расширения на Python")).hub(R.drawable.msg_bot, IconBackgroundColors.PURPLE));
+                items.add(new Item(VT_HUB, PAGE_PROFILE, ru("Profile", "Профиль")).sub(ru("Banner, thoughts", "Баннер, мысли")).hub(R.drawable.settings_account, IconBackgroundColors.CYAN));
+                footer("", "");
+                if (!org.telegram.messenger.NullgramHidden.anyHidden() || org.telegram.messenger.NullgramHidden.isUnlocked() || org.telegram.messenger.NullgramHidden.isDecoy()) {
+                    items.add(new Item(VT_HUB, PAGE_HIDDEN, ru("Hidden accounts", "Скрытые аккаунты")).sub(ru("Lend your phone safely", "Режим «чужой телефон»")).hub(R.drawable.msg_secret, IconBackgroundColors.GRAY));
+                }
+                items.add(new Item(VT_HUB, PAGE_ABOUT, ru("Updates and diagnostics", "Обновления и диагностика")).sub(ru("Version ", "Версия ") + org.telegram.messenger.NullgramUpdater.installedName()).hub(R.drawable.settings_power, IconBackgroundColors.RED));
+                footer("", "");
+                break;
         }
         if (adapter != null) {
             adapter.notifyDataSetChanged();
@@ -202,10 +649,27 @@ public class NullgramSettingsActivity extends BaseFragment {
     }
 
     private static boolean isChecked(int id) {
+        if (id >= 2000) {
+            final java.util.List<String> files = org.telegram.messenger.PluginEngine.files();
+            return id - 2000 < files.size() && org.telegram.messenger.PluginEngine.isEnabled(files.get(id - 2000));
+        }
+        if (id >= 1000) {
+            return org.telegram.messenger.NullgramHidden.isHidden(id - 1000);
+        }
         switch (id) {
+            case C_SHOW_BADGE: return NullgramConfig.showBadge();
+            case C_STRIP_EXIF: return NullgramConfig.stripExif();
+            case C_SHOW_IDS: return NullgramConfig.showIds();
+            case C_VOICE_HQ: return NullgramConfig.voiceHq();
+            case C_VOICE_NS: return NullgramConfig.voiceNoise();
+            case C_VOICE_AGC: return NullgramConfig.voiceAgc();
+            case C_CAMERA_FRONT: return NullgramConfig.cameraFront();
+            case C_CAMERA_GRID: return NullgramConfig.cameraGrid();
+            case C_FREE_TRANSLATE: return NullgramConfig.freeTranslate();
+            case C_ROUND_BACK: return NullgramConfig.roundBackCamera();
+            case C_SYSTEM_EMOJI: return org.telegram.messenger.SharedConfig.useSystemEmoji;
             case C_ENABLED: return MaterialYou.isEnabled();
             case C_AMOLED: return MaterialYou.isAmoled();
-            case C_SEASON_FX: return NullgramConfig.seasonEffects();
             case C_GHOST: return GhostMode.isOn();
             case C_KEEP_DELETED: return GhostMode.isKeepDeleted();
             case C_EDIT_HISTORY: return NullgramConfig.editHistory();
@@ -219,18 +683,65 @@ public class NullgramSettingsActivity extends BaseFragment {
             case C_CONFIRM_CALLS: return NullgramConfig.confirmCalls();
             case C_SCREEN_GUARD: return NullgramConfig.screenGuard();
             case C_CLEAN_LINKS: return NullgramConfig.cleanLinks();
+            case C_DIAGNOSTICS: return NullgramConfig.diagnostics();
+            case C_ANIMATIONS: return NullgramConfig.animations();
+            case C_FAST_MODE: return NullgramConfig.fastMode();
+            case C_SNOW: return NullgramConfig.snow();
+            case C_WINTER_ICONS: return NullgramConfig.winterIcons() || (!NullgramConfig.snow() && false);
+            case C_MOTION: return NullgramConfig.motionCues();
+            case C_MOTION_ALWAYS: return NullgramConfig.motionAlways();
+            case C_HIDE_NOTIF_TEXT: return NullgramConfig.hideNotificationText();
             default: return false;
         }
     }
 
     private void setChecked(int id, boolean v) {
+        if (id >= 2000) {
+            final java.util.List<String> files = org.telegram.messenger.PluginEngine.files();
+            if (id - 2000 < files.size()) {
+                final Context ctx = getParentActivity();
+                org.telegram.messenger.PluginEngine.setEnabled(files.get(id - 2000), v, error -> {
+                    if (error != null && ctx != null) {
+                        android.widget.Toast.makeText(ctx, MaterialYou.s("Plugin failed: ", "Плагин не запустился: ") + error, android.widget.Toast.LENGTH_LONG).show();
+                    }
+                    buildItems();
+                });
+            }
+            return;
+        }
+        if (id >= 1000) {
+            if (org.telegram.messenger.NullgramHidden.isDecoy()) {
+                buildItems();
+                return;
+            }
+            if (v && !org.telegram.messenger.NullgramHidden.hasPin()) {
+                android.widget.Toast.makeText(getParentActivity(), MaterialYou.s("Set a PIN first", "Сначала задай PIN"), android.widget.Toast.LENGTH_SHORT).show();
+            } else if (!org.telegram.messenger.NullgramHidden.setHidden(id - 1000, v)) {
+                android.widget.Toast.makeText(getParentActivity(), MaterialYou.s("At least one account must stay visible", "Хотя бы один аккаунт должен остаться видимым"), android.widget.Toast.LENGTH_SHORT).show();
+            }
+            buildItems();
+            return;
+        }
         switch (id) {
+            case C_STRIP_EXIF: NullgramConfig.setStripExif(v); break;
+            case C_SHOW_IDS: NullgramConfig.setShowIds(v); break;
+            case C_VOICE_HQ: NullgramConfig.setVoiceHq(v); break;
+            case C_VOICE_NS: NullgramConfig.setVoiceNoise(v); break;
+            case C_VOICE_AGC: NullgramConfig.setVoiceAgc(v); break;
+            case C_CAMERA_FRONT: NullgramConfig.setCameraFront(v); break;
+            case C_CAMERA_GRID: NullgramConfig.setCameraGrid(v); break;
+            case C_FREE_TRANSLATE: NullgramConfig.setFreeTranslate(v); break;
+            case C_ROUND_BACK: NullgramConfig.setRoundBackCamera(v); break;
+            case C_SYSTEM_EMOJI:
+                org.telegram.messenger.SharedConfig.useSystemEmoji = v;
+                org.telegram.messenger.MessagesController.getGlobalMainSettings().edit().putBoolean("useSystemEmoji", v).apply();
+                break;
+            case C_SHOW_BADGE:
+                NullgramConfig.setShowBadge(v);
+                org.telegram.messenger.NullgramSync.refreshHello();
+                break;
             case C_ENABLED: MaterialYou.setEnabled(v); break;
             case C_AMOLED: MaterialYou.setAmoled(v); break;
-            case C_SEASON_FX:
-                NullgramConfig.setSeasonEffects(v);
-                SeasonOverlayView.refresh(getParentActivity());
-                break;
             case C_GHOST: GhostMode.setOn(v); break;
             case C_KEEP_DELETED: GhostMode.setKeepDeleted(v); break;
             case C_EDIT_HISTORY: NullgramConfig.setEditHistory(v); break;
@@ -250,7 +761,90 @@ public class NullgramSettingsActivity extends BaseFragment {
                 }
                 break;
             case C_CLEAN_LINKS: NullgramConfig.setCleanLinks(v); break;
+            case C_DIAGNOSTICS: NullgramConfig.setDiagnostics(v); break;
+            case C_ANIMATIONS: NullgramConfig.setAnimations(v); break;
+            case C_FAST_MODE: NullgramConfig.setFastMode(v); break;
+            case C_SNOW:
+                NullgramConfig.setSnow(v);
+                org.telegram.ui.Components.EffectsOverlayView.refresh(getParentActivity());
+                break;
+            case C_WINTER_ICONS: NullgramConfig.setWinterIcons(v); break;
+            case C_MOTION_ALWAYS: NullgramConfig.setMotionAlways(v); break;
+            case C_MOTION:
+                NullgramConfig.setMotionCues(v);
+                org.telegram.ui.Components.EffectsOverlayView.refresh(getParentActivity());
+                break;
+            case C_HIDE_NOTIF_TEXT: NullgramConfig.setHideNotificationText(v); break;
             default: break;
+        }
+    }
+
+    private static boolean isRowType(int t) {
+        return t == VT_CHECK || t == VT_BUTTON || t == VT_SWATCHES || t == VT_SEEK || t == VT_EXTRAS || t == VT_DENSITY || t == VT_MOTION_SENS || t == VT_HUB;
+    }
+
+    /** Draws one rounded card behind every run of rows, with hairlines between rows that do not draw their own. */
+    private class CardDecoration extends RecyclerView.ItemDecoration {
+        private final android.graphics.Paint card = new android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG);
+        private final android.graphics.Paint line = new android.graphics.Paint();
+        private final android.graphics.RectF rect = new android.graphics.RectF();
+
+        @Override
+        public void onDraw(android.graphics.Canvas c, RecyclerView parent, RecyclerView.State state) {
+            card.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+            line.setColor(Theme.getColor(Theme.key_divider));
+            final float r = MaterialYou.isEnabled() ? MaterialYou.radius(24) : AndroidUtilities.dp(16);
+            final float left = parent.getPaddingLeft(), right = parent.getWidth() - parent.getPaddingRight();
+            final float far = AndroidUtilities.dp(60);
+            float top = 0, bottom = 0;
+            boolean open = false;
+            int lastPos = -2, firstPos = -1;
+            for (int i = 0; i < parent.getChildCount(); i++) {
+                final View ch = parent.getChildAt(i);
+                final int pos = parent.getChildAdapterPosition(ch);
+                if (pos < 0 || pos >= items.size()) {
+                    continue;
+                }
+                final boolean row = isRowType(items.get(pos).viewType);
+                final float ty = ch.getTranslationY();
+                if (row && open && pos == lastPos + 1) {
+                    // hairline between two rows of different kinds (same-kind rows draw their own divider)
+                    final int a = items.get(pos - 1).viewType, b = items.get(pos).viewType;
+                    if (a != b && b != VT_HUB) {
+                        c.drawRect(left + AndroidUtilities.dp(20), ch.getTop() + ty, right - AndroidUtilities.dp(20), ch.getTop() + ty + 1, line);
+                    } else if (a == VT_HUB && b == VT_HUB) {
+                        c.drawRect(left + AndroidUtilities.dp(78), ch.getTop() + ty, right - AndroidUtilities.dp(20), ch.getTop() + ty + 1, line);
+                    }
+                    bottom = ch.getBottom() + ty;
+                    lastPos = pos;
+                    continue;
+                }
+                if (open) {
+                    flush(c, left, right, top, bottom, firstPos, lastPos, r, far);
+                    open = false;
+                }
+                if (row) {
+                    open = true;
+                    firstPos = lastPos = pos;
+                    top = ch.getTop() + ty;
+                    bottom = ch.getBottom() + ty;
+                }
+            }
+            if (open) {
+                flush(c, left, right, top, bottom, firstPos, lastPos, r, far);
+            }
+        }
+
+        private void flush(android.graphics.Canvas c, float left, float right, float top, float bottom, int first, int last, float r, float far) {
+            // a card that continues above or below the screen is drawn past the edge so no corner shows there
+            if (first > 0 && isRowType(items.get(first - 1).viewType)) {
+                top -= far;
+            }
+            if (last + 1 < items.size() && isRowType(items.get(last + 1).viewType)) {
+                bottom += far;
+            }
+            rect.set(left, top, right, bottom);
+            c.drawRoundRect(rect, r, r, card);
         }
     }
 
@@ -274,9 +868,6 @@ public class NullgramSettingsActivity extends BaseFragment {
                 case VT_SWATCHES:
                     view = new SwatchesRow(context);
                     break;
-                case VT_SEASONS:
-                    view = new SeasonsRow(context);
-                    break;
                 case VT_SEEK:
                     view = new RoundnessRow(context);
                     break;
@@ -285,6 +876,15 @@ public class NullgramSettingsActivity extends BaseFragment {
                     break;
                 case VT_DENSITY:
                     view = new DensityRow(context);
+                    break;
+                case VT_MOTION_SENS:
+                    view = new MotionSensRow(context);
+                    break;
+                case VT_HUB:
+                    view = new SettingsActivity.SettingCell(context, null);
+                    break;
+                case VT_BANNER:
+                    view = new BannerRow(context, NullgramSettingsActivity.this::promptUnlock);
                     break;
                 default:
                     view = new TextInfoPrivacyCell(context);
@@ -306,7 +906,14 @@ public class NullgramSettingsActivity extends BaseFragment {
                     ((HeaderCell) holder.itemView).setText(item.text);
                     break;
                 case VT_CHECK:
-                    ((TextCheckCell) holder.itemView).setTextAndCheck(item.text, isChecked(item.id), divider);
+                    if (item.sub != null) {
+                        ((TextCheckCell) holder.itemView).setTextAndValueAndCheck(item.text, item.sub, isChecked(item.id), true, divider);
+                    } else {
+                        ((TextCheckCell) holder.itemView).setTextAndCheck(item.text, isChecked(item.id), divider);
+                    }
+                    break;
+                case VT_HUB:
+                    ((SettingsActivity.SettingCell) holder.itemView).set(item.c1, item.c2, item.icon, item.text, item.sub, null);
                     break;
                 case VT_BUTTON:
                     ((TextSettingsCell) holder.itemView).setText(item.text, false);
@@ -322,14 +929,14 @@ public class NullgramSettingsActivity extends BaseFragment {
                     }
                     break;
                 }
-                case VT_SEASONS:
-                    ((SeasonsRow) holder.itemView).refresh();
-                    break;
                 case VT_SWATCHES:
                     ((SwatchesRow) holder.itemView).refresh();
                     break;
                 case VT_DENSITY:
                     ((DensityRow) holder.itemView).refresh();
+                    break;
+                case VT_MOTION_SENS:
+                    ((MotionSensRow) holder.itemView).refresh();
                     break;
                 default:
                     break;
@@ -349,7 +956,66 @@ public class NullgramSettingsActivity extends BaseFragment {
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder holder) {
             final int t = holder.getItemViewType();
-            return t == VT_CHECK || t == VT_BUTTON;
+            return t == VT_CHECK || t == VT_BUTTON || t == VT_HUB;
+        }
+    }
+
+    /** Logo, name and version at the top of the main Yologram settings page. */
+    private static class BannerRow extends LinearLayout {
+        private int taps;
+        private long lastTap;
+
+        BannerRow(Context context, Runnable onSecret) {
+            super(context);
+            setOrientation(VERTICAL);
+            setGravity(Gravity.CENTER_HORIZONTAL);
+            setPadding(dp(16), dp(22), dp(16), dp(18));
+            final android.widget.ImageView logo = new android.widget.ImageView(context);
+            logo.setImageDrawable(new android.graphics.drawable.LayerDrawable(new android.graphics.drawable.Drawable[]{
+                context.getResources().getDrawable(R.drawable.nullgram_logo_bg), context.getResources().getDrawable(R.drawable.nullgram_logo_fg)}));
+            logo.setScaleType(android.widget.ImageView.ScaleType.CENTER_CROP);
+            logo.setClipToOutline(true);
+            logo.setOutlineProvider(new android.view.ViewOutlineProvider() {
+                @Override
+                public void getOutline(View view, android.graphics.Outline outline) {
+                    outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), MaterialYou.radius(24));
+                }
+            });
+            if (NullgramConfig.winterIcons()) {
+                final LinearLayout row = new LinearLayout(context);
+                row.setOrientation(HORIZONTAL);
+                row.setGravity(Gravity.CENTER_VERTICAL);
+                final android.widget.ImageView tree = new android.widget.ImageView(context);
+                tree.setImageDrawable(org.telegram.ui.Components.WinterIcons.tree(context));
+                final android.widget.ImageView man = new android.widget.ImageView(context);
+                man.setImageDrawable(org.telegram.ui.Components.WinterIcons.snowman());
+                row.addView(tree, LayoutHelper.createLinear(44, 44, Gravity.CENTER_VERTICAL, 0, 0, 14, 0));
+                row.addView(logo, LayoutHelper.createLinear(84, 84));
+                row.addView(man, LayoutHelper.createLinear(44, 44, Gravity.CENTER_VERTICAL, 14, 0, 0, 0));
+                addView(row, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL));
+            } else {
+                addView(logo, LayoutHelper.createLinear(84, 84, Gravity.CENTER_HORIZONTAL));
+            }
+            final TextView title = new TextView(context);
+            title.setText("Yologram");
+            title.setTextSize(22);
+            title.setTypeface(AndroidUtilities.bold());
+            title.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+            title.setOnClickListener(v -> {
+                final long now = System.currentTimeMillis();
+                taps = now - lastTap < 1500 ? taps + 1 : 1;
+                lastTap = now;
+                if (taps >= 5) {
+                    taps = 0;
+                    onSecret.run();
+                }
+            });
+            addView(title, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL, 0, 12, 0, 0));
+            final TextView sub = new TextView(context);
+            sub.setText(org.telegram.messenger.NullgramUpdater.installedName() + " · " + MaterialYou.s("Telegram client in Material You", "клиент Telegram в стиле Material You"));
+            sub.setTextSize(14);
+            sub.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
+            addView(sub, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL, 0, 4, 0, 0));
         }
     }
 
@@ -360,7 +1026,7 @@ public class NullgramSettingsActivity extends BaseFragment {
             super(context);
             setOrientation(VERTICAL);
             setPadding(dp(14), dp(4), dp(14), dp(10));
-            setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+            setBackgroundColor(0);
             final int perRow = 6;
             for (int start = 0; start < MaterialYou.PRESETS.length; start += perRow) {
                 final LinearLayout row = new LinearLayout(context);
@@ -388,17 +1054,16 @@ public class NullgramSettingsActivity extends BaseFragment {
         }
     }
 
-    private class SeasonsRow extends LinearLayout {
+    private class MotionSensRow extends LinearLayout {
         private final TextView[] chips = new TextView[3];
 
-        SeasonsRow(Context context) {
+        MotionSensRow(Context context) {
             super(context);
             setOrientation(HORIZONTAL);
             setPadding(dp(12), dp(8), dp(12), dp(12));
-            setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
-            final String[] names = {MaterialYou.s("Off", "Выкл"), MaterialYou.s("New Year 🎄", "Новый год 🎄"), MaterialYou.s("Halloween 🎃", "Хэллоуин 🎃")};
+            final String[] names = {MaterialYou.s("Weak", "Слабая"), MaterialYou.s("Medium", "Средняя"), MaterialYou.s("Strong", "Сильная")};
             for (int i = 0; i < 3; i++) {
-                final int season = i;
+                final int level = i;
                 final TextView chip = new TextView(context);
                 chip.setText(names[i]);
                 chip.setGravity(Gravity.CENTER);
@@ -406,14 +1071,8 @@ public class NullgramSettingsActivity extends BaseFragment {
                 chip.setTypeface(AndroidUtilities.bold());
                 chip.setPadding(dp(8), dp(12), dp(8), dp(12));
                 chip.setOnClickListener(v -> {
-                    NullgramConfig.setSeason(season);
-                    if (season == NullgramConfig.SEASON_NEW_YEAR) {
-                        MaterialYou.setSeed(0xFFC62828);
-                    } else if (season == NullgramConfig.SEASON_HALLOWEEN) {
-                        MaterialYou.setSeed(0xFFE8590C);
-                    }
-                    SeasonOverlayView.refresh(getParentActivity());
-                    adapter.notifyDataSetChanged();
+                    NullgramConfig.setMotionSens(level);
+                    refresh();
                 });
                 chips[i] = chip;
                 addView(chip, LayoutHelper.createLinear(0, LayoutHelper.WRAP_CONTENT, 1f, 4, 0, 4, 0));
@@ -421,7 +1080,7 @@ public class NullgramSettingsActivity extends BaseFragment {
         }
 
         void refresh() {
-            final int current = NullgramConfig.season();
+            final int current = NullgramConfig.motionSens();
             for (int i = 0; i < chips.length; i++) {
                 final boolean on = i == current;
                 chips[i].setBackground(Theme.createRoundRectDrawable((int) MaterialYou.radius(18),
@@ -438,7 +1097,7 @@ public class NullgramSettingsActivity extends BaseFragment {
             super(context);
             setOrientation(HORIZONTAL);
             setPadding(dp(12), dp(8), dp(12), dp(12));
-            setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+            setBackgroundColor(0);
             final String[] names = {MaterialYou.s("Compact", "Компактно"), MaterialYou.s("Standard", "Стандартно"), MaterialYou.s("Roomy", "Просторно")};
             for (int i = 0; i < 3; i++) {
                 final int level = i;
@@ -471,7 +1130,7 @@ public class NullgramSettingsActivity extends BaseFragment {
     private class RoundnessRow extends FrameLayout {
         RoundnessRow(Context context) {
             super(context);
-            setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+            setBackgroundColor(0);
             final SeekBarView seek = new SeekBarView(context);
             seek.setReportChanges(true);
             seek.setProgress((MaterialYou.getCornerScale() - 0.3f) / 1.3f);
@@ -492,7 +1151,7 @@ public class NullgramSettingsActivity extends BaseFragment {
             super(context);
             setOrientation(VERTICAL);
             setPadding(dp(21), dp(4), dp(21), dp(12));
-            setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+            setBackgroundColor(0);
             final TextView label = new TextView(context);
             label.setText(MaterialYou.s("Extra usernames (visual only)", "Доп. юзернеймы (только визуально)"));
             label.setTextSize(15);

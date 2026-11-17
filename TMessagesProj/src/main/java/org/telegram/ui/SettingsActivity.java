@@ -400,7 +400,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
 
         avatarDrawable = new AvatarDrawable();
         avatarView = new BackupImageView(context);
-        avatarView.setRoundRadius(dp(90));
+        avatarView.setRoundRadius(MaterialYou.avatarRadius(45, 90));
         avatarContainer.addView(avatarView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT));
 
         avatarProgressView = new RadialProgressView(context) {
@@ -726,7 +726,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
 
         accountNumbers.clear();
         for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
-            if (UserConfig.getInstance(a).isClientActivated() && currentAccount != a) {
+            if (UserConfig.getInstance(a).isClientActivated() && currentAccount != a && !org.telegram.messenger.NullgramHidden.isConcealed(a)) {
                 accountNumbers.add(a);
             }
         }
@@ -798,10 +798,16 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
 
         items.add(SettingCell.Factory.of(1, IconBackgroundColors.BLUE.top, IconBackgroundColors.BLUE.bottom, R.drawable.settings_account, getString(R.string.SettingsAccount), getString(R.string.SettingsAccountInfo)));
         items.add(SettingCell.Factory.of(2, IconBackgroundColors.ORANGE.top, IconBackgroundColors.ORANGE.bottom, R.drawable.settings_chat, getString(R.string.SettingsChat), getString(R.string.SettingsChatInfo)));
-        items.add(SettingCell.Factory.of(90, IconBackgroundColors.PURPLE.top, IconBackgroundColors.PURPLE.bottom, R.drawable.msg_colors, "Nullgram", MaterialYou.s("Colors, themes, ghost mode, proxy", "Цвета, темы, призрак, прокси")));
+        items.add(SettingCell.Factory.of(90, IconBackgroundColors.PURPLE.top, IconBackgroundColors.PURPLE.bottom, R.drawable.msg_colors, "Yologram", MaterialYou.s("Colors, themes, ghost mode, proxy", "Цвета, темы, призрак, прокси")));
+        if (MaterialYou.isEnabled()) {
+            items.add(UItem.asShadow(null));
+        }
         items.add(SettingCell.Factory.of(3, IconBackgroundColors.GREEN.top, IconBackgroundColors.GREEN.bottom, R.drawable.settings_privacy, getString(R.string.SettingsPrivacySecurity), getString(R.string.SettingsPrivacySecurityInfo)));
         items.add(SettingCell.Factory.of(5, IconBackgroundColors.RED.top, IconBackgroundColors.RED.bottom, R.drawable.settings_sounds, getString(R.string.SettingsNotifications), getString(R.string.SettingsNotificationsInfo)));
         items.add(SettingCell.Factory.of(6, IconBackgroundColors.BLUE_DEEP.top, IconBackgroundColors.BLUE_DEEP.bottom, R.drawable.settings_data, getString(R.string.SettingsData), getString(R.string.SettingsDataInfo)));
+        if (MaterialYou.isEnabled()) {
+            items.add(UItem.asShadow(null));
+        }
         items.add(SettingCell.Factory.of(7, IconBackgroundColors.BLUE_ALT.top, IconBackgroundColors.BLUE_ALT.bottom, R.drawable.settings_folders, getString(R.string.SettingsFolders), getString(R.string.SettingsFoldersInfo)));
         items.add(SettingCell.Factory.of(8, IconBackgroundColors.CYAN.top, IconBackgroundColors.CYAN.bottom, R.drawable.settings_devices, getString(R.string.SettingsDevices), getString(R.string.SettingsDevicesInfo)));
         items.add(SettingCell.Factory.of(9, IconBackgroundColors.ORANGE_DEEP.top, IconBackgroundColors.ORANGE_DEEP.bottom, R.drawable.settings_power, getString(R.string.SettingsPowerSaving), getString(R.string.SettingsPowerSavingInfo)));
@@ -1328,9 +1334,9 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             if (LocaleController.isRTL) {
                 addView(valueView, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.CENTER_VERTICAL, 20, 0, 0, 0));
                 addView(textLayout, LayoutHelper.createLinear(0, LayoutHelper.WRAP_CONTENT, 1, Gravity.CENTER_VERTICAL | Gravity.FILL_HORIZONTAL, 20, 0, mini ? 12 : 18, 0));
-                addView(iconLayout, LayoutHelper.createLinear(28, 28, Gravity.CENTER_VERTICAL | Gravity.RIGHT, 0, 0, mini ? 9 : 18, 0));
+                addView(iconLayout, LayoutHelper.createLinear(MaterialYou.isEnabled() && !mini ? 40 : 28, MaterialYou.isEnabled() && !mini ? 40 : 28, Gravity.CENTER_VERTICAL | Gravity.RIGHT, 0, 0, mini ? 9 : 18, 0));
             } else {
-                addView(iconLayout, LayoutHelper.createLinear(28, 28, Gravity.CENTER_VERTICAL | Gravity.LEFT, mini ? 9 : 18, 0, 0, 0));
+                addView(iconLayout, LayoutHelper.createLinear(MaterialYou.isEnabled() && !mini ? 40 : 28, MaterialYou.isEnabled() && !mini ? 40 : 28, Gravity.CENTER_VERTICAL | Gravity.LEFT, mini ? 9 : 18, 0, 0, 0));
                 addView(textLayout, LayoutHelper.createLinear(0, LayoutHelper.WRAP_CONTENT, 1, Gravity.CENTER_VERTICAL | Gravity.FILL_HORIZONTAL,  mini ? 12 : 18, 0, 20, 0));
                 addView(valueView, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.CENTER_VERTICAL, 0, 0, 20, 0));
             }
@@ -1366,6 +1372,11 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
 
             iconBackground.setColor(iconColorTop, iconColorBottom);
             iconView.setImageResource(icon);
+            if (MaterialYou.isEnabled() && !mini && hasBackground) {
+                iconView.setColorFilter(new PorterDuffColorFilter(MaterialYou.role(MaterialYou.R_ON_PRIMARY_CONTAINER), PorterDuff.Mode.SRC_IN));
+            } else {
+                iconView.clearColorFilter();
+            }
             titleView.setText(title);
             subtitleView.setVisibility((twoLines = !TextUtils.isEmpty(subtitle)) ? View.VISIBLE : View.GONE);
             subtitleView.setText(subtitle);
@@ -1382,7 +1393,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
             super.onMeasure(
                 MeasureSpec.makeMeasureSpec(MeasureSpec.getSize(widthMeasureSpec), MeasureSpec.EXACTLY),
-                MeasureSpec.makeMeasureSpec(dp(mini ? 44 : twoLines ? 60 : 50), MeasureSpec.EXACTLY)
+                MeasureSpec.makeMeasureSpec(dp(mini ? 44 : twoLines ? (MaterialYou.isEnabled() ? 66 : 60) : (MaterialYou.isEnabled() ? 56 : 50)), MeasureSpec.EXACTLY)
             );
         }
 
@@ -1410,10 +1421,22 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
 
             @Override
             public void draw(@NonNull Canvas canvas) {
-                final float r = dp(10);
+                final boolean tonal = MaterialYou.isEnabled() && getBounds().width() > dp(34);
+                final float r = tonal ? Math.min(getBounds().width() * 0.34f, MaterialYou.radius(15)) : (MaterialYou.isEnabled() ? Math.min(dp(14), MaterialYou.radius(10) * 1.3f) : dp(10));
                 AndroidUtilities.rectTmp.set(getBounds());
                 matrix.reset();
                 matrix.postTranslate(AndroidUtilities.rectTmp.left, AndroidUtilities.rectTmp.top);
+                if (tonal) {
+                    // Material You: a calm tonal tile instead of the bright gradient
+                    final int prevColor = paint.getColor();
+                    final Shader prevShader = paint.getShader();
+                    paint.setShader(null);
+                    paint.setColor(MaterialYou.role(MaterialYou.R_PRIMARY_CONTAINER));
+                    canvas.drawRoundRect(AndroidUtilities.rectTmp, r, r, paint);
+                    paint.setShader(prevShader);
+                    paint.setColor(prevColor);
+                    return;
+                }
                 canvas.drawRoundRect(AndroidUtilities.rectTmp, r, r, paint);
 
                 if (border) {

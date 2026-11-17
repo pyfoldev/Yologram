@@ -624,7 +624,7 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
 
         accountNumbers.clear();
         for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
-            if (UserConfig.getInstance(a).isClientActivated()) {
+            if (UserConfig.getInstance(a).isClientActivated() && !org.telegram.messenger.NullgramHidden.isConcealed(a)) {
                 accountNumbers.add(a);
             }
         }
@@ -679,13 +679,15 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
                         LaunchActivity.instance.switchToAccount(account, true);
                     }
                 });
-                o.addView(btn, LayoutHelper.createLinear(230, 48));
+                o.addView(btn, org.telegram.ui.ActionBar.MaterialYou.isEnabled() ? LayoutHelper.createLinear(264, 60) : LayoutHelper.createLinear(230, 48));
             }
         }
 
         o.setBlur(true);
         o.translate(0, -dp(4));
-        final ShapeDrawable bg = Theme.createRoundRectDrawable(dp(28), getThemedColor(Theme.key_windowBackgroundWhite));
+        final ShapeDrawable bg = org.telegram.ui.ActionBar.MaterialYou.isEnabled()
+            ? Theme.createRoundRectDrawable((int) org.telegram.ui.ActionBar.MaterialYou.radius(28), org.telegram.ui.ActionBar.MaterialYou.role(org.telegram.ui.ActionBar.MaterialYou.R_SURFACE_HIGH))
+            : Theme.createRoundRectDrawable(dp(28), getThemedColor(Theme.key_windowBackgroundWhite));
         bg.getPaint().setShadowLayer(dp(6), 0, dp(1), Theme.multAlpha(0xFF000000, 0.15f));
         o.setScrimViewBackground(bg);
         o.show();
@@ -695,7 +697,77 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
         return true;
     }
 
+    /** Material You account row: squircle avatar, name and @username, tonal pill for the current account. */
+    private LinearLayout accountViewMaterial(int account, boolean selected) {
+        final LinearLayout btn = new LinearLayout(getContext());
+        btn.setOrientation(LinearLayout.HORIZONTAL);
+        btn.setGravity(Gravity.CENTER_VERTICAL);
+        if (selected) {
+            btn.setBackground(new android.graphics.drawable.InsetDrawable(
+                Theme.createRoundRectDrawable((int) org.telegram.ui.ActionBar.MaterialYou.radius(20), org.telegram.ui.ActionBar.MaterialYou.role(org.telegram.ui.ActionBar.MaterialYou.R_SECONDARY_CONTAINER)),
+                dp(6), dp(3), dp(6), dp(3)));
+        } else {
+            ThemeBind.selectorBackground(btn, Theme.createRadSelectorDrawable(getThemedColor(Theme.key_listSelector), 20, 20), null, ThemeBind.of(Theme.key_listSelector), getResourceProvider());
+        }
+        final TLRPC.User user = UserConfig.getInstance(account).getCurrentUser();
+        final AvatarDrawable avatarDrawable = new AvatarDrawable();
+        avatarDrawable.setInfo(user);
+        final BackupImageView avatarView = new BackupImageView(getContext());
+        avatarView.setRoundRadius(org.telegram.ui.ActionBar.MaterialYou.avatarRadius(20, 20));
+        avatarView.getImageReceiver().setCurrentAccount(account);
+        avatarView.setForUserOrChat(user, avatarDrawable);
+        btn.addView(avatarView, LayoutHelper.createLinear(40, 40, Gravity.CENTER_VERTICAL, 16, 0, 0, 0));
+
+        final int main = org.telegram.ui.ActionBar.MaterialYou.role(selected ? org.telegram.ui.ActionBar.MaterialYou.R_ON_SECONDARY_CONTAINER : org.telegram.ui.ActionBar.MaterialYou.R_ON_SURFACE);
+        final int variant = org.telegram.ui.ActionBar.MaterialYou.role(org.telegram.ui.ActionBar.MaterialYou.R_ON_SURFACE_VARIANT);
+        final LinearLayout texts = new LinearLayout(getContext());
+        texts.setOrientation(LinearLayout.VERTICAL);
+        final TextView name = new TextView(getContext());
+        name.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16);
+        name.setTypeface(AndroidUtilities.bold());
+        name.setTextColor(main);
+        name.setSingleLine(true);
+        name.setEllipsize(TextUtils.TruncateAt.END);
+        name.setText(UserObject.getUserName(user));
+        texts.addView(name, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
+        final String handle = user != null && !TextUtils.isEmpty(UserObject.getPublicUsername(user)) ? "@" + UserObject.getPublicUsername(user) : null;
+        if (handle != null) {
+            final TextView sub = new TextView(getContext());
+            sub.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 13);
+            sub.setTextColor(variant);
+            sub.setSingleLine(true);
+            sub.setEllipsize(TextUtils.TruncateAt.END);
+            sub.setText(handle);
+            texts.addView(sub, LayoutHelper.createLinear(LayoutHelper.MATCH_PARENT, LayoutHelper.WRAP_CONTENT));
+        }
+        btn.addView(texts, LayoutHelper.createLinear(0, LayoutHelper.WRAP_CONTENT, 1f, Gravity.CENTER_VERTICAL, 14, 0, 8, 0));
+
+        if (selected) {
+            final android.widget.ImageView check = new android.widget.ImageView(getContext());
+            check.setImageResource(R.drawable.ic_ab_done);
+            check.setColorFilter(new android.graphics.PorterDuffColorFilter(main, android.graphics.PorterDuff.Mode.SRC_IN));
+            btn.addView(check, LayoutHelper.createLinear(24, 24, Gravity.CENTER_VERTICAL, 0, 0, 16, 0));
+        } else {
+            final int unread = MessagesStorage.getInstance(account).getMainUnreadCount();
+            if (unread > 0) {
+                final TextView badge = new TextView(getContext());
+                badge.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
+                badge.setTypeface(AndroidUtilities.bold());
+                badge.setGravity(Gravity.CENTER);
+                badge.setPadding(dp(8), 0, dp(8), 0);
+                badge.setTextColor(org.telegram.ui.ActionBar.MaterialYou.role(org.telegram.ui.ActionBar.MaterialYou.R_ON_PRIMARY));
+                badge.setBackground(Theme.createRoundRectDrawable(dp(10), org.telegram.ui.ActionBar.MaterialYou.role(org.telegram.ui.ActionBar.MaterialYou.R_PRIMARY)));
+                badge.setText(LocaleController.formatNumber(unread, ','));
+                btn.addView(badge, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, 20, Gravity.CENTER_VERTICAL, 0, 0, 16, 0));
+            }
+        }
+        return btn;
+    }
+
     public LinearLayout accountView(int account, boolean selected) {
+        if (org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
+            return accountViewMaterial(account, selected);
+        }
         final LinearLayout btn = new LinearLayout(getContext());
         btn.setOrientation(LinearLayout.HORIZONTAL);
         ThemeBind.selectorBackground(btn, Theme.createRadSelectorDrawable(getThemedColor(Theme.key_listSelector), 0, 0), null, ThemeBind.of(Theme.key_listSelector), getResourceProvider());
@@ -755,7 +827,8 @@ public class MainTabsActivity extends ViewPagerActivity implements NotificationC
                 dropFragmentAtPosition(POSITION_CALLS_OR_SETTINGS);
                 dropCallsFragmentAfterPageScroll = false;
             }
-            if (currentPosition != POSITION_PROFILE) {
+            if (currentPosition != POSITION_PROFILE && !org.telegram.messenger.NullgramConfig.fastMode()) {
+                // fast mode keeps the profile page alive so reopening the tab is instant
                 dropFragmentAtPosition(POSITION_PROFILE);
             }
             if (pendingFolderId != null && currentPosition == POSITION_CHATS && dialogsActivity != null) {

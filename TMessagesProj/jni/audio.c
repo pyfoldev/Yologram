@@ -222,7 +222,7 @@ static int writeOggPage(ogg_page *page, FILE *os) {
     return written;
 }
 
-const opus_int32 bitrate = 30 * 1024;
+opus_int32 bitrate = 30 * 1024;
 static const int opus_application = OPUS_APPLICATION_AUDIO;
 const opus_int32 frame_size = 960;
 const int with_cvbr = 1;
@@ -513,6 +513,12 @@ int writeFrame(uint8_t *framePcmBytes, uint32_t frameByteCount, int end) {
     }
     
     return 1;
+}
+
+JNIEXPORT void Java_org_telegram_messenger_MediaController_setVoiceBitrate(JNIEnv *env, jclass class, jint bitsPerSecond) {
+    if (bitsPerSecond >= 16000 && bitsPerSecond <= 128000) {
+        bitrate = bitsPerSecond;
+    }
 }
 
 JNIEXPORT jint Java_org_telegram_messenger_MediaController_startRecord(JNIEnv *env, jclass class, jstring path, jint sampleRate) {

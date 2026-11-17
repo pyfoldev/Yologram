@@ -65,6 +65,7 @@ public class SeekBarWaveform {
 
     private Path path;
     private Path alphaPath;
+    private Paint handlePaint;
     private boolean loading;
     private long loadingStart;
     private AnimatedFloat loadingFloat = new AnimatedFloat(150, CubicBezierInterpolator.DEFAULT);
@@ -397,6 +398,20 @@ public class SeekBarWaveform {
         canvas.clipPath(path);
         drawFill(canvas, this.alpha);
         canvas.restore();
+
+        if (org.telegram.ui.ActionBar.MaterialYou.isEnabled() && !exploding && explosionRate <= 0 && (this.progress > 0.002f || pressed)) {
+            // Material You slider handle: a rounded vertical pill that grows while dragged
+            if (handlePaint == null) {
+                handlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            }
+            handlePaint.setColor(outerColor);
+            handlePaint.setAlpha((int) (255 * this.alpha));
+            final float hw = AndroidUtilities.dpf2(pressed ? 5f : 3.5f);
+            final float hh = dp(pressed ? 32 : 26);
+            final float hx = Math.min(this.progress, 1f) * (width + AndroidUtilities.dpf2(2));
+            AndroidUtilities.rectTmp.set(hx - hw / 2f, height / 2f - hh / 2f, hx + hw / 2f, height / 2f + hh / 2f);
+            canvas.drawRoundRect(AndroidUtilities.rectTmp, hw / 2f, hw / 2f, handlePaint);
+        }
 
         if (exploding || explosionRate > 0) {
             canvas.restore();

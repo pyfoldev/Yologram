@@ -4803,10 +4803,20 @@ public class ChatActivityEnterView extends FrameLayout implements
                 blurBounds.set(0, bottom, getWidth(), getHeight());
                 sizeNotifierLayout.drawBlurRect(canvas, getTop(), blurBounds, backgroundPaint, false);
             } else {
-                canvas.drawRect(0, bottom, getWidth(), getHeight(), backgroundPaint);
+                drawComposeRect(canvas, bottom, backgroundPaint);
             }
         } else {
-            canvas.drawRect(0, bottom, getWidth(), getHeight(), getThemedPaint(Theme.key_paint_chatComposeBackground));
+            drawComposeRect(canvas, bottom, getThemedPaint(Theme.key_paint_chatComposeBackground));
+        }
+    }
+
+    /** Material You: the compose panel gets rounded top corners (the bottom ones are pushed off-screen). */
+    private void drawComposeRect(Canvas canvas, int top, Paint paint) {
+        if (org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
+            final float r = org.telegram.ui.ActionBar.MaterialYou.radius(20);
+            canvas.drawRoundRect(0, top, getWidth(), getHeight() + r, r, r, paint);
+        } else {
+            canvas.drawRect(0, top, getWidth(), getHeight(), paint);
         }
     }
 

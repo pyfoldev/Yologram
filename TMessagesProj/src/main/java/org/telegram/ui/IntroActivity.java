@@ -156,9 +156,8 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
     public View createView(Context context) {
         logoDrawable = context.getResources().getDrawable(R.drawable.telegram_logo).mutate();
         logoDrawable.setBounds(0, dp(8.666f), dp(115), dp(35));
-        SpannableStringBuilder ssb = new SpannableStringBuilder(LocaleController.getString(R.string.Page1Title));
-        ssb.setSpan(new ImageSpan(logoDrawable), 0, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        titles[0] = ssb;
+        // plain text: the old logo drawable spelled the previous app name
+        titles[0] = LocaleController.getString(R.string.Page1Title);
 
 
         actionBar.setAddToContainer(false);
@@ -670,7 +669,44 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             c.drawColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-            c.drawCircle(bm.getWidth() / 2f, bm.getHeight() / 2f, size / 2f, paint);
+            final float left = (bm.getWidth() - size) / 2f;
+            c.drawRoundRect(left, 0, left + size, size, size * 0.24f, size * 0.24f, paint);
+            return bm;
+        };
+
+        private android.graphics.Path roundedClip(int size) {
+            final android.graphics.Path p = new android.graphics.Path();
+            p.addRoundRect(0, 0, size, size, size * 0.24f, size * 0.24f, android.graphics.Path.Direction.CW);
+            return p;
+        }
+
+        /** The Nullgram paper plane, drawn in code so it matches the app icon. */
+        private final GenericProvider<Void, Bitmap> nullgramPlaneProvider = v -> {
+            final int w = dp(82), h = dp(74);
+            final Bitmap bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+            final Canvas c = new Canvas(bm);
+            // plane spans x 29..82, y 32..77 in the 108-unit icon grid
+            final float k = Math.min(w / 56f, h / 48f);
+            final float ox = (w - 53f * k) / 2f - 29f * k, oy = (h - 45f * k) / 2f - 32f * k;
+            final Paint p = new Paint(Paint.ANTI_ALIAS_FLAG);
+            p.setStrokeJoin(Paint.Join.ROUND);
+            p.setStrokeWidth(3f * k);
+            final float[][][] faces = {
+                {{82, 32}, {29, 52}, {47, 59}},
+                {{82, 32}, {47, 59}, {52, 77}},
+                {{52, 77}, {59, 67}, {47, 59}},
+            };
+            final int[] colors = {0xFFFFFFFF, 0xFFD3E2FF, 0xFF9DBBF5};
+            for (int i = 0; i < faces.length; i++) {
+                final android.graphics.Path path = new android.graphics.Path();
+                path.moveTo(ox + faces[i][0][0] * k, oy + faces[i][0][1] * k);
+                path.lineTo(ox + faces[i][1][0] * k, oy + faces[i][1][1] * k);
+                path.lineTo(ox + faces[i][2][0] * k, oy + faces[i][2][1] * k);
+                path.close();
+                p.setColor(colors[i]);
+                p.setStyle(Paint.Style.FILL_AND_STROKE);
+                c.drawPath(path, p);
+            }
             return bm;
         };
 
@@ -796,14 +832,26 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             loadTexture(R.drawable.intro_powerful_star, 18);
             loadTexture(R.drawable.intro_private_door, 19);
             loadTexture(R.drawable.intro_private_screw, 20);
-            loadTexture(R.drawable.intro_tg_plane, 21);
+            loadTexture(nullgramPlaneProvider, 21);
             loadTexture(v -> {
+                // the logo tile: a rounded square in the brand blue instead of the round Telegram disc
                 Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-                paint.setColor(ThemeColors.TELEGRAM_COLOR); // It's logo color, it should not be colored by the theme
+                paint.setColor(0xFF2F6FE0);
                 int size = dp(ICON_HEIGHT_DP);
                 Bitmap bm = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
                 Canvas c = new Canvas(bm);
-                c.drawCircle(size / 2f, size / 2f, size / 2f, paint);
+                c.drawRoundRect(0, 0, size, size, size * 0.24f, size * 0.24f, paint);
+                paint.setColor(0x33FFFFFF);
+                android.graphics.Path shine = new android.graphics.Path();
+                shine.moveTo(size, 0);
+                shine.lineTo(size, size * 0.56f);
+                shine.quadTo(size * 0.74f, size * 0.44f, size * 0.57f, size * 0.24f);
+                shine.quadTo(size * 0.5f, size * 0.12f, size * 0.52f, 0);
+                shine.close();
+                c.save();
+                c.clipPath(roundedClip(size));
+                c.drawPath(shine, paint);
+                c.restore();
                 return bm;
             }, 22);
             loadTexture(telegramMaskProvider, 23);

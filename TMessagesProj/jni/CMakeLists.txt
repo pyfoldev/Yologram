@@ -12,6 +12,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ffunction-sections -fdata-sections -fvi
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -flto=full -Wl,--gc-sections -Wl,--icf=safe -Wl,-Bsymbolic")
 set(CMAKE_C_FLAGS_RELEASE "-Os -DNDEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE "-Os -DNDEBUG")
+# Yologram: the app ships as the Gradle "debug" variant, which compiled all native code with -O0 (sluggish stickers, images, crypto);
+# optimise it exactly like release.
+set(CMAKE_C_FLAGS_DEBUG "-Os -DNDEBUG")
+set(CMAKE_CXX_FLAGS_DEBUG "-Os -DNDEBUG")
 
 if (${ANDROID_ABI} STREQUAL "armeabi-v7a" OR ${ANDROID_ABI} STREQUAL "arm64-v8a")
     enable_language(ASM)

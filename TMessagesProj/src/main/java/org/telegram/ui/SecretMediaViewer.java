@@ -1481,6 +1481,8 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         NotificationCenter.getInstance(currentAccount).addObserver(this, NotificationCenter.didCreatedNewDeleteTask);
         currentDialogId = MessageObject.getPeerId(messageObject.messageOwner.peer_id);
         currentMessageObject = messageObject;
+        org.telegram.messenger.DisappearingMedia.saveFromMessage(messageObject);
+        AndroidUtilities.runOnUIThread(() -> org.telegram.messenger.DisappearingMedia.saveFromMessage(messageObject), 1500);
         TLRPC.Document document = messageObject.getDocument();
         if (currentThumb != null) {
             currentThumb.release();

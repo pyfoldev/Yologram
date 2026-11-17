@@ -645,6 +645,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             }
         };
         seekBarView.setLineWidth(4);
+        seekBarView.setWavy(true);
         seekBarView.setDelegate(new SeekBarView.SeekBarViewDelegate() {
             @Override
             public void onSeekBarDrag(boolean stop, float progress) {
@@ -974,6 +975,11 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         playPauseDrawable.setPause(!MediaController.getInstance().isMessagePaused(), false);
         ThemeBind.colorFilter(playButton, Theme.key_player_button, resourcesProvider, PorterDuff.Mode.MULTIPLY);
         ThemeBind.selectorBackground(playButton, Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 1, dp(24)), null, ThemeBind.of(Theme.key_listSelector), resourcesProvider);
+        if (org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
+            // Material You: the play button is a tonal squircle
+            playButton.setBackground(Theme.createRoundRectDrawable(dp(16), org.telegram.ui.ActionBar.MaterialYou.role(org.telegram.ui.ActionBar.MaterialYou.R_PRIMARY_CONTAINER)));
+            playButton.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.MaterialYou.role(org.telegram.ui.ActionBar.MaterialYou.R_ON_PRIMARY_CONTAINER), PorterDuff.Mode.SRC_IN));
+        }
         bottomView.addView(playButton, LayoutHelper.createFrame(48, 48, Gravity.LEFT | Gravity.TOP));
         playButton.setOnClickListener(v -> {
             if (MediaController.getInstance().isDownloadingCurrentMessage()) {
@@ -1475,7 +1481,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
 
         bigAlbumConver = new BackupImageView(context);
         bigAlbumConver.setAspectFit(true);
-        bigAlbumConver.setRoundRadius(dp(8));
+        bigAlbumConver.setRoundRadius(org.telegram.ui.ActionBar.MaterialYou.isEnabled() ? (int) org.telegram.ui.ActionBar.MaterialYou.radius(24) : dp(8));
         bigAlbumConver.setScaleX(0.9f);
         bigAlbumConver.setScaleY(0.9f);
         blurredView.addView(bigAlbumConver, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT, Gravity.LEFT | Gravity.TOP, 30, 30, 30, 30));
@@ -3218,7 +3224,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                         onImageUpdated(imageReceiver);
                     }
                 });
-                imageViews[i].setRoundRadius(dp(4));
+                imageViews[i].setRoundRadius(org.telegram.ui.ActionBar.MaterialYou.isEnabled() ? (int) org.telegram.ui.ActionBar.MaterialYou.radius(20) : dp(4));
                 if (i == 1) {
                     imageViews[i].setVisibility(GONE);
                 }

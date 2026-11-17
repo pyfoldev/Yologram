@@ -90,8 +90,18 @@ public class TranslateController extends BaseController {
         AndroidUtilities.runOnUIThread(this::loadTranslatingDialogsCached, 150);
     }
 
+    private int sendTranslation(TLRPC.TL_messages_translateText req, org.telegram.tgnet.RequestDelegate delegate) {
+        if (NullgramTranslate.useFree(currentAccount)) {
+            if ((req.flags & 2) != 0) {
+                NullgramTranslate.translate(req, delegate);
+                return 0;
+            }
+        }
+        return getConnectionsManager().sendRequest(req, delegate);
+    }
+
     public boolean isFeatureAvailable() {
-        return isChatTranslateEnabled() && UserConfig.getInstance(currentAccount).isPremium();
+        return isChatTranslateEnabled() && (UserConfig.getInstance(currentAccount).isPremium() || NullgramConfig.freeTranslate());
     }
 
     public boolean isFeatureAvailable(long dialogId) {
@@ -100,7 +110,7 @@ public class TranslateController extends BaseController {
         }
         final TLRPC.Chat chat = getMessagesController().getChat(-dialogId);
         return (
-            UserConfig.getInstance(currentAccount).isPremium() ||
+            UserConfig.getInstance(currentAccount).isPremium() || NullgramConfig.freeTranslate() ||
             chat != null && chat.autotranslation
         );
     }
@@ -1143,7 +1153,7 @@ public class TranslateController extends BaseController {
                 }*/
 
                 final TLRPC.TL_messages_translateText req = new TLRPC.TL_messages_translateText();
-                if (isTranscription) {
+                if (isTranscription || NullgramTranslate.useFree(currentAccount)) {
                     req.flags |= 2;
                     req.text.addAll(pendingTranslation1.messageTexts);
                 } else {
@@ -1153,7 +1163,7 @@ public class TranslateController extends BaseController {
                 }
                 req.to_lang = normalizeLanguage(pendingTranslation1.language);
 
-                final int reqId = getConnectionsManager().sendRequest(req, (res, err) -> AndroidUtilities.runOnUIThread(() -> {
+                final int reqId = sendTranslation(req, (res, err) -> AndroidUtilities.runOnUIThread(() -> {
                     final ArrayList<Integer> ids;
                     final ArrayList<Utilities.Callback4<Boolean, Integer, TLRPC.TL_textWithEntities, String>> callbacks;
                     final ArrayList<TLRPC.TL_textWithEntities> texts;
@@ -1409,7 +1419,7 @@ public class TranslateController extends BaseController {
                 }
                 req.to_lang = normalizeLanguage(pendingTranslation1.language);
 
-                final int reqId = getConnectionsManager().sendRequest(req, (res, err) -> AndroidUtilities.runOnUIThread(() -> {
+                final int reqId = sendTranslation(req, (res, err) -> AndroidUtilities.runOnUIThread(() -> {
                     final ArrayList<Integer> ids;
                     final ArrayList<Utilities.Callback3<Integer, PollText, String>> callbacks;
                     final ArrayList<Pair<PollText, PollText>> texts;
@@ -1943,7 +1953,7 @@ public class TranslateController extends BaseController {
         text.entities = storyItem.entities;
         req.text.add(text);
         req.to_lang = normalizeLanguage(toLang);
-        getConnectionsManager().sendRequest(req, (res, err) -> {
+        sendTranslation(req, (res, err) -> {
             if (res instanceof TLRPC.TL_messages_translateResult) {
                 ArrayList<TLRPC.TL_textWithEntities> result = ((TLRPC.TL_messages_translateResult) res).result;
                 if (result.size() <= 0) {
@@ -2081,7 +2091,7 @@ public class TranslateController extends BaseController {
         req.text.add(text);
         req.to_lang = normalizeLanguage(toLang);
         final long start = System.currentTimeMillis();
-        getConnectionsManager().sendRequest(req, (res, err) -> {
+        sendTranslation(req, (res, err) -> {
             if (res instanceof TLRPC.TL_messages_translateResult) {
                 ArrayList<TLRPC.TL_textWithEntities> result = ((TLRPC.TL_messages_translateResult) res).result;
                 if (result.size() <= 0) {

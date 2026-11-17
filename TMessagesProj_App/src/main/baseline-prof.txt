@@ -1,0 +1,15 @@
+# Yologram baseline profile (hand-written, wildcard): ART compiles these classes ahead of time at install,
+# so the first launches start faster and scroll/animation paths do not run in the interpreter.
+HSPLorg/telegram/messenger/**;->**(**)**
+HSPLorg/telegram/tgnet/**;->**(**)**
+HSPLorg/telegram/ui/ActionBar/**;->**(**)**
+HSPLorg/telegram/ui/Cells/**;->**(**)**
+HSPLorg/telegram/ui/Components/**;->**(**)**
+HSPLorg/telegram/ui/*;->**(**)**
+HSPLandroidx/recyclerview/**;->**(**)**
+HSPLandroidx/core/**;->**(**)**
+HSPLandroidx/dynamicanimation/**;->**(**)**
+Lorg/telegram/messenger/**;
+Lorg/telegram/tgnet/**;
+Lorg/telegram/ui/**;
+Landroidx/recyclerview/**;

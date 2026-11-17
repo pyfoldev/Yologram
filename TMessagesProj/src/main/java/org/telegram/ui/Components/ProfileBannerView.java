@@ -33,7 +33,6 @@ import java.io.InputStream;
 public class ProfileBannerView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
 
     public static final int REQUEST_CODE = 7311;
-    private static final String FILE = "profile_banner.jpg";
 
     private final BaseFragment fragment;
     private final TextView hint;
@@ -90,26 +89,72 @@ public class ProfileBannerView extends FrameLayout implements NotificationCenter
     }
 
     private static File bannerFile() {
-        return new File(ApplicationLoader.getFilesDirFixed(), FILE);
+        return org.telegram.messenger.NullgramSync.bannerFile();
     }
 
-    public void update() {
-        final File f = remoteFile != null ? remoteFile : bannerFile();
-        Bitmap bmp = null;
-        if (f.exists()) {
-            try {
-                bmp = BitmapFactory.decodeFile(f.getAbsolutePath());
-            } catch (Throwable t) {
-                FileLog.e(t);
-            }
+    private static final android.util.LruCache<String, Bitmap> CACHE = new android.util.LruCache<String, Bitmap>(6 * 1024 * 1024) {
+        @Override
+        protected int sizeOf(String key, Bitmap value) {
+            return value.getByteCount();
         }
+    };
+    private String currentKey;
+
+    private void apply(Bitmap bmp) {
         bitmap = bmp;
         shader = bmp != null ? new BitmapShader(bmp, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP) : null;
         imagePaint.setShader(shader);
         hint.setVisibility(bmp != null || remoteFile != null ? GONE : VISIBLE);
+        invalidate();
+    }
+
+    public void update() {
+        final File f = remoteFile != null ? remoteFile : bannerFile();
         hint.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4));
         dashPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4));
-        invalidate();
+        if (!f.exists()) {
+            currentKey = null;
+            apply(null);
+            return;
+        }
+        final String key = f.getAbsolutePath() + ":" + f.lastModified();
+        if (key.equals(currentKey) && bitmap != null) {
+            return;
+        }
+        currentKey = key;
+        final Bitmap cached = CACHE.get(key);
+        if (cached != null) {
+            apply(cached);
+            return;
+        }
+        hint.setVisibility(GONE);
+        // decode off the UI thread, scaled down to roughly the screen width
+        org.telegram.messenger.Utilities.globalQueue.postRunnable(() -> {
+            Bitmap bmp = null;
+            try {
+                final BitmapFactory.Options bounds = new BitmapFactory.Options();
+                bounds.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(f.getAbsolutePath(), bounds);
+                int sample = 1;
+                while (bounds.outWidth / (sample * 2) >= 1080) {
+                    sample *= 2;
+                }
+                final BitmapFactory.Options o = new BitmapFactory.Options();
+                o.inSampleSize = sample;
+                bmp = BitmapFactory.decodeFile(f.getAbsolutePath(), o);
+                if (bmp != null) {
+                    CACHE.put(key, bmp);
+                }
+            } catch (Throwable t) {
+                FileLog.e(t);
+            }
+            final Bitmap result = bmp;
+            org.telegram.messenger.AndroidUtilities.runOnUIThread(() -> {
+                if (key.equals(currentKey)) {
+                    apply(result);
+                }
+            });
+        });
     }
 
     @Override
@@ -147,7 +192,7 @@ public class ProfileBannerView extends FrameLayout implements NotificationCenter
     @Override
     protected void onDraw(Canvas canvas) {
         rect.set(dp(8), dp(8), getWidth() - dp(8), getHeight() - dp(8));
-        final float r = MaterialYou.radius(16);
+        final float r = MaterialYou.radius(26);
         if (bitmap != null && shader != null) {
             final float scale = Math.max(rect.width() / bitmap.getWidth(), rect.height() / bitmap.getHeight());
             matrix.reset();

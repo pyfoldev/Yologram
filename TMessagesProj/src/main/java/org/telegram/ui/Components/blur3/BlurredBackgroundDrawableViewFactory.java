@@ -158,7 +158,7 @@ public class BlurredBackgroundDrawableViewFactory {
 
     public BlurredBackgroundDrawable create(View view, BlurredBackgroundColorProvider provider, boolean multiwindow) {
         final BlurredBackgroundDrawable drawable = createDrawable();
-        if (isLiquidGlassEffectAllowed) {
+        if (isLiquidGlassEffectAllowed && !org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
             // drawn while the glass settings have it on
             drawable.setLiquidGlassEffectAllowed();
         }

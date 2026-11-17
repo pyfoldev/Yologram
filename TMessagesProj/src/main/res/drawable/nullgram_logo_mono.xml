@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
-    <!-- a single-stroke N with round caps and joins, inside the 66dp adaptive-icon safe zone -->
-    <path android:pathData="M39,73 L39,35 L69,73 L69,35"
-        android:strokeColor="#FF000000" android:strokeWidth="8"
-        android:strokeLineCap="round" android:strokeLineJoin="round"/>
+    <path android:fillColor="#FFFFFFFF" android:strokeColor="#FFFFFFFF" android:strokeWidth="3" android:strokeLineJoin="round"
+        android:pathData="M82,32 L29,52 L47,59 L52,77 L59,67 L47,59 Z"/>
 </vector>

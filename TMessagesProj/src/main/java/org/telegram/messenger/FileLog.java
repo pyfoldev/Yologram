@@ -442,6 +442,7 @@ public class FileLog {
     }
 
     public static void e(final Throwable e, boolean logToAppCenter) {
+        Diagnostics.nonFatal(e);
         if (!BuildVars.LOGS_ENABLED) {
             return;
         }

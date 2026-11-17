@@ -376,9 +376,46 @@ public class Switch extends View implements Theme.Colorable {
         invalidate();
     }
 
+    private final Paint materialPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+
+    /** Material You switch: pill track, small outlined thumb when off, larger thumb when on. */
+    private void drawMaterial(Canvas canvas) {
+        final float h = Math.min(AndroidUtilities.dp(24), getMeasuredHeight());
+        final float w = Math.min(getMeasuredWidth(), h * 1.7f);
+        final float left = (getMeasuredWidth() - w) / 2f, top = (getMeasuredHeight() - h) / 2f;
+        final float p = progress;
+        final int on = org.telegram.ui.ActionBar.MaterialYou.role(org.telegram.ui.ActionBar.MaterialYou.R_PRIMARY);
+        final int off = org.telegram.ui.ActionBar.MaterialYou.role(org.telegram.ui.ActionBar.MaterialYou.R_SURFACE_HIGHEST);
+        final int outline = org.telegram.ui.ActionBar.MaterialYou.role(org.telegram.ui.ActionBar.MaterialYou.R_OUTLINE);
+        final int onThumb = org.telegram.ui.ActionBar.MaterialYou.role(org.telegram.ui.ActionBar.MaterialYou.R_ON_PRIMARY);
+        materialPaint.setStyle(Paint.Style.FILL);
+        materialPaint.setColor(androidx.core.graphics.ColorUtils.blendARGB(off, on, p));
+        rectF.set(left, top, left + w, top + h);
+        canvas.drawRoundRect(rectF, h / 2f, h / 2f, materialPaint);
+        if (p < 1f) {
+            materialPaint.setStyle(Paint.Style.STROKE);
+            materialPaint.setStrokeWidth(AndroidUtilities.dpf2(1.5f));
+            materialPaint.setColor(outline);
+            materialPaint.setAlpha((int) (255 * (1f - p)));
+            rectF.inset(AndroidUtilities.dpf2(0.75f), AndroidUtilities.dpf2(0.75f));
+            canvas.drawRoundRect(rectF, h / 2f, h / 2f, materialPaint);
+            materialPaint.setStyle(Paint.Style.FILL);
+            materialPaint.setAlpha(255);
+        }
+        final float rOff = h * 0.27f, rOn = h * 0.38f;
+        final float r = rOff + (rOn - rOff) * p;
+        final float cx = (left + h / 2f) + ((left + w - h / 2f) - (left + h / 2f)) * p;
+        materialPaint.setColor(androidx.core.graphics.ColorUtils.blendARGB(outline, onThumb, p));
+        canvas.drawCircle(cx, top + h / 2f, r, materialPaint);
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         if (getVisibility() != VISIBLE) {
+            return;
+        }
+        if (org.telegram.ui.ActionBar.MaterialYou.isEnabled() && iconDrawable == null && overrideColorProgress == 0) {
+            drawMaterial(canvas);
             return;
         }
 

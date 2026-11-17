@@ -236,7 +236,16 @@ public class SeekBar {
             }
         }
 
-        canvas.drawCircle((pressed ? draggingThumbX : thumbX) + thumbWidth / 2, height / 2, currentRadius, paint);
+        if (org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
+            // Material You: a vertical pill handle instead of the round knob
+            final float hx = (pressed ? draggingThumbX : thumbX) + thumbWidth / 2;
+            final float hw = AndroidUtilities.dp(pressed ? 2.5f : 2f);
+            final float hh = AndroidUtilities.dp(pressed ? 15 : 12);
+            rect.set(hx - hw, height / 2f - hh, hx + hw, height / 2f + hh);
+            canvas.drawRoundRect(rect, hw, hw, paint);
+        } else {
+            canvas.drawCircle((pressed ? draggingThumbX : thumbX) + thumbWidth / 2, height / 2, currentRadius, paint);
+        }
 
         if (alpha < 1) {
             canvas.restore();

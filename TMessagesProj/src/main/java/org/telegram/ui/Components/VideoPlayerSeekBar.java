@@ -460,7 +460,13 @@ public class VideoPlayerSeekBar {
 
         // circle
         setPaintColor(ColorUtils.blendARGB(circleColor, getProgress() == 0 ? Color.TRANSPARENT : smallLineColor, transitionProgress), 1f - transitionProgress);
-        canvas.drawCircle(rect.right, rect.centerY(), circleRadius * (1f - loopBack), paint);
+        if (org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
+            final float hw = AndroidUtilities.dpf2(2f) * (1f - loopBack);
+            final float hh = AndroidUtilities.dp(11) * (1f - loopBack);
+            canvas.drawRoundRect(rect.right - hw, rect.centerY() - hh, rect.right + hw, rect.centerY() + hh, hw, hw, paint);
+        } else {
+            canvas.drawCircle(rect.right, rect.centerY(), circleRadius * (1f - loopBack), paint);
+        }
 
         drawTimestampLabel(canvas);
     }

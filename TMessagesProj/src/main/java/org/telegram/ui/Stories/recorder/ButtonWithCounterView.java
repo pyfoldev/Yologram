@@ -42,7 +42,7 @@ public class ButtonWithCounterView extends FrameLayout implements Loadable, Them
 
     private Theme.ResourcesProvider resourcesProvider;
 
-    private int radiusDp = 8;
+    private int radiusDp = org.telegram.ui.ActionBar.MaterialYou.isEnabled() ? 24 : 8;
 
     private final Paint paint;
     public final AnimatedTextView.AnimatedTextDrawable text;

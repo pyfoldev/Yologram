@@ -2581,7 +2581,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
         if (cameraView == null) {
             final boolean lazy = !LiteMode.isEnabled(LiteMode.FLAGS_CHAT);
-            cameraView = new CameraViewInternal(getContext(), isCameraFrontfaceBeforeEnteringEditMode != null ? isCameraFrontfaceBeforeEnteringEditMode : parentAlert.openWithFrontFaceCamera, lazy);
+            cameraView = new CameraViewInternal(getContext(), isCameraFrontfaceBeforeEnteringEditMode != null ? isCameraFrontfaceBeforeEnteringEditMode : (parentAlert.openWithFrontFaceCamera || org.telegram.messenger.NullgramConfig.cameraFront()), lazy);
             //if (lazy) {
             //    cameraView.setThumbDrawable(cameraViewItemDecoration.placeholderDrawable);
             //}
@@ -4884,6 +4884,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
 
         public boolean drawInDecoration;
+        private final android.graphics.Paint yoGridPaint = new android.graphics.Paint();
 
         @Override
         protected void dispatchDraw(Canvas canvas) {
@@ -4893,6 +4894,15 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
             if (drawInDecoration || !cameraAnimationInProgress && cameraOpened) {
                 super.dispatchDraw(canvas);
+                if (cameraOpened && !drawInDecoration && org.telegram.messenger.NullgramConfig.cameraGrid()) {
+                    final int w = getMeasuredWidth(), h = getMeasuredHeight();
+                    yoGridPaint.setColor(0x66FFFFFF);
+                    yoGridPaint.setStrokeWidth(Math.max(1, dp(0.75f)));
+                    for (int i = 1; i <= 2; i++) {
+                        canvas.drawLine(w * i / 3f, 0, w * i / 3f, h, yoGridPaint);
+                        canvas.drawLine(0, h * i / 3f, w, h * i / 3f, yoGridPaint);
+                    }
+                }
                 return;
             }
 

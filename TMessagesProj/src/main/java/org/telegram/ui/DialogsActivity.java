@@ -121,6 +121,7 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NullgramConfig;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
@@ -3445,7 +3446,17 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 // theme hook only recolors when the color differs from the last one applied
                 logoDrawable.setColorFilter(lastLogoDrawableColor = getThemedColor(Theme.key_telegram_color_dialogsLogo), PorterDuff.Mode.MULTIPLY);
                 SpannableStringBuilder ssb = new SpannableStringBuilder(getString(R.string.AppName));
-                ssb.setSpan(new ImageSpan(logoDrawable), 0, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                // the old logo drawable spelled the previous name, so the title is plain bold text now
+                ssb.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), 0, ssb.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                if (NullgramConfig.winterIcons()) {
+                    final Drawable[] icons = {org.telegram.ui.Components.WinterIcons.snowman(), org.telegram.ui.Components.WinterIcons.tree(context)};
+                    for (Drawable d : icons) {
+                        d.setBounds(dp(3), dp(3), dp(27), dp(27));
+                        final int at = ssb.length();
+                        ssb.append(' ');
+                        ssb.setSpan(new ImageSpan(d), at, at + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    }
+                }
                 actionBar.setTitle(ssb, statusDrawable);
                 updateStatus(UserConfig.getInstance(currentAccount).getCurrentUser(), false);
             }
@@ -14043,7 +14054,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
         accountNumbers.clear();
         for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
-            if (UserConfig.getInstance(a).isClientActivated()) {
+            if (UserConfig.getInstance(a).isClientActivated() && !org.telegram.messenger.NullgramHidden.isConcealed(a)) {
                 accountNumbers.add(a);
             }
         }

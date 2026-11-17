@@ -139,6 +139,7 @@ import java.util.concurrent.CountDownLatch;
 public class MediaController implements AudioManager.OnAudioFocusChangeListener, NotificationCenter.NotificationCenterDelegate, SensorEventListener {
 
     private native int startRecord(String path, int sampleRate);
+    private static native void setVoiceBitrate(int bitsPerSecond);
 
     private native int writeFrame(ByteBuffer frame, int len);
 
@@ -1571,6 +1572,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 if (mgr != null) {
                     mgr.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
                 }
+            } catch (SecurityException ignore) {
+                // no READ_PHONE_STATE (Android 12+): calls are simply not detected, nothing to report
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -5044,7 +5047,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 recordingAudioFile.delete();
                 recordingAudioFile = null;
                 try {
-                    audioRecorder.release();
+                    NullgramVoice.release();
+                audioRecorder.release();
                     audioRecorder = null;
                 } catch (Exception e2) {
                     FileLog.e(e2);
@@ -5192,6 +5196,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 }
                 sendAfterDone = 4;
                 audioRecorder.stop();
+                NullgramVoice.release();
                 audioRecorder.release();
                 audioRecorder = null;
                 recordQueue.postRunnable(() -> {
@@ -5238,6 +5243,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             return super.delete();
                         }
                     };
+                    setVoiceBitrate(NullgramVoice.bitrate());
                     if (startRecord(recordingAudioFile.getPath(), sampleRate) == 0) {
                         AndroidUtilities.runOnUIThread(() -> {
                             recordStartRunnable = null;
@@ -5254,6 +5260,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 //                        MediaDataController.getInstance(recordingCurrentAccount).pushDraftVoiceMessage(recordDialogId, recordTopicId, null);
 //
                         audioRecorder = new AudioRecord(MediaRecorder.AudioSource.DEFAULT, sampleRate, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT, recordBufferSize);
+                        NullgramVoice.attach(audioRecorder);
                         recordStartTime = System.currentTimeMillis();
                         writtenFrame = 0;
                         samplesCount = 0;
@@ -5344,7 +5351,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             }
             AutoDeleteMediaTask.lockFile(recordingAudioFile);
             try {
-                if (startRecord(recordingAudioFile.getPath(), sampleRate) == 0) {
+                setVoiceBitrate(NullgramVoice.bitrate());
+                    if (startRecord(recordingAudioFile.getPath(), sampleRate) == 0) {
                     AndroidUtilities.runOnUIThread(() -> {
                         recordStartRunnable = null;
                         NotificationCenter.getInstance(currentAccount).postNotificationName(NotificationCenter.recordStartError, guid);
@@ -5357,6 +5365,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
                 audioRecorderPaused = false;
                 audioRecorder = new AudioRecord(MediaRecorder.AudioSource.DEFAULT, sampleRate, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT, recordBufferSize);
+                        NullgramVoice.attach(audioRecorder);
                 recordStartTime = System.currentTimeMillis();
                 recordTimeCount = 0;
                 writtenFrame = 0;
@@ -5385,7 +5394,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     recordingPrevAudioFile = null;
                 }
                 try {
-                    audioRecorder.release();
+                    NullgramVoice.release();
+                audioRecorder.release();
                     audioRecorder = null;
                 } catch (Exception e2) {
                     FileLog.e(e2);
@@ -5556,6 +5566,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
         try {
             if (audioRecorder != null) {
+                NullgramVoice.release();
                 audioRecorder.release();
                 audioRecorder = null;
             }

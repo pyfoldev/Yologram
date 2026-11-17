@@ -102,6 +102,13 @@ public class VideoSeekBarView extends View {
         int y = (getMeasuredHeight() - thumbHeight) / 2;
         int thumbX = (int)((getMeasuredWidth() - thumbWidth) * progress);
         canvas.drawRect(thumbWidth / 2, getMeasuredHeight() / 2 - AndroidUtilities.dp(1), getMeasuredWidth() - thumbWidth / 2, getMeasuredHeight() / 2 + AndroidUtilities.dp(1), paint);
-        canvas.drawCircle(thumbX + thumbWidth / 2, y + thumbHeight / 2, thumbWidth / 2, paint2);
+        if (org.telegram.ui.ActionBar.MaterialYou.isEnabled()) {
+            final float hw = AndroidUtilities.dpf2(2f);
+            final float hh = AndroidUtilities.dp(12);
+            final float hx = thumbX + thumbWidth / 2f;
+            canvas.drawRoundRect(hx - hw, y + thumbHeight / 2f - hh, hx + hw, y + thumbHeight / 2f + hh, hw, hw, paint2);
+        } else {
+            canvas.drawCircle(thumbX + thumbWidth / 2, y + thumbHeight / 2, thumbWidth / 2, paint2);
+        }
     }
 }

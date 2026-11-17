@@ -4442,6 +4442,14 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         final SendMessageChatArguments sendMessageChatArguments = sendMessageParams.sendMessageChatArguments != null ?
                 sendMessageParams.sendMessageChatArguments : SendMessageChatArguments.EMPTY;
         String message = sendMessageParams.message;
+        if (message != null && !message.isEmpty() && sendMessageParams.photo == null && sendMessageParams.document == null && sendMessageParams.location == null && sendMessageParams.user == null && sendMessageParams.poll == null && sendMessageParams.videoEditedInfo == null && PluginEngine.hasEnabled()) {
+            final String filtered = PluginEngine.filterOutgoing(sendMessageParams.peer, message);
+            if (filtered == null) {
+                return;
+            }
+            message = filtered;
+            sendMessageParams.message = filtered;
+        }
         String caption = sendMessageParams.caption;
         TLRPC.MessageMedia location = sendMessageParams.location;
         TLRPC.TL_photo photo = sendMessageParams.photo;
@@ -10167,7 +10175,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                     mediaCount++;
                     long prevGroupId = groupId[0];
                     final boolean isGroupFinal = !forcedPollDoNotSendFinal && (pollSendParams == null && mediaCount == 10 || a == count - 1);
-                    error = prepareSendingDocumentInternal(accountInstance, paths.get(a), originalPaths.get(a), null, mime, dialogId, replyToMsg, replyToTopMsg, storyItem, quote, a == 0 ? captionEntities : null, editingMessageObject, groupId, isGroupFinal, captionFinal, notify, scheduleDate, scheduleRepeatPeriod, docType, inputContent == null, sendMessageChatArguments, first ? effectId : 0, invertMedia, payStars, monoForumPeerId, suggestionParams, pollSendParams, pollSendIndexes!= null ? pollSendIndexes.get(a) : -1);
+                    error = prepareSendingDocumentInternal(accountInstance, NullgramExif.clean(paths.get(a)), originalPaths.get(a), null, mime, dialogId, replyToMsg, replyToTopMsg, storyItem, quote, a == 0 ? captionEntities : null, editingMessageObject, groupId, isGroupFinal, captionFinal, notify, scheduleDate, scheduleRepeatPeriod, docType, inputContent == null, sendMessageChatArguments, first ? effectId : 0, invertMedia, payStars, monoForumPeerId, suggestionParams, pollSendParams, pollSendIndexes!= null ? pollSendIndexes.get(a) : -1);
                     first = false;
                     if (prevGroupId != groupId[0] || groupId[0] == -1) {
                         mediaCount = 1;

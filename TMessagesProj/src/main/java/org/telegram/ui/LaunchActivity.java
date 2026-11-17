@@ -266,6 +266,12 @@ import java.util.zip.ZipInputStream;
 import java.util.HashSet;
 
 public class LaunchActivity extends BasePermissionsActivity implements INavigationLayout.INavigationLayoutDelegate, NotificationCenter.NotificationCenterDelegate, DialogsActivity.DialogsActivityDelegate {
+
+    @Override
+    public android.content.res.Resources getResources() {
+        return org.telegram.messenger.IconPack.wrap(super.getResources());
+    }
+
     public final static String EXTRA_FORCE_NOT_INTERNAL_APPS = "force_not_internal_apps";
     public final static String EXTRA_VOIP_ANSWER_TOKEN = "voip_answer_token";
     // only our own call notifications know it, so other apps can't answer calls via the exported activity
@@ -1226,7 +1232,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     public void switchToAccount(int account, boolean removeAll, GenericProvider<Void, MainTabsActivity> dialogsActivityProvider) {
-        if (account == UserConfig.selectedAccount || !UserConfig.isValidAccount(account)) {
+        if (account == UserConfig.selectedAccount || !UserConfig.isValidAccount(account) || org.telegram.messenger.NullgramHidden.isConcealed(account)) {
             return;
         }
         switchingAccount = true;
@@ -6897,6 +6903,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     @Override
     protected void onPause() {
         super.onPause();
+        org.telegram.messenger.NullgramHidden.onPause();
+        org.telegram.messenger.NullgramNotices.setForeground(false);
         isResumed = false;
         WidgetMedia.onAppPaused(true);
         PipCoordinator.getInstance().onActivityPause(this);
@@ -7209,7 +7217,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     @Override
     protected void onResume() {
         super.onResume();
-        org.telegram.ui.Components.SeasonOverlayView.refresh(this);
+        org.telegram.messenger.Diagnostics.flush();
+        org.telegram.messenger.NullgramSync.hello();
+        org.telegram.messenger.NullgramNotices.poll();
+        org.telegram.messenger.NullgramHidden.onResume();
+        org.telegram.messenger.NullgramNotices.setForeground(true);
+        org.telegram.ui.Components.EffectsOverlayView.refresh(this);
         if (org.telegram.messenger.NullgramConfig.screenGuard()) {
             getWindow().addFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE);
         } else {

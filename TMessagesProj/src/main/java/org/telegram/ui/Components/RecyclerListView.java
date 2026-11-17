@@ -1404,6 +1404,17 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
             return;
         }
         child.setPressed(pressed);
+        if (org.telegram.messenger.NullgramConfig.animations() && (child instanceof org.telegram.ui.Cells.DialogCell
+                || child instanceof org.telegram.ui.Cells.TextSettingsCell || child instanceof org.telegram.ui.Cells.TextCell
+                || child instanceof org.telegram.ui.Cells.TextCheckCell || child instanceof org.telegram.ui.Cells.UserCell
+                || child instanceof org.telegram.ui.Cells.TextDetailSettingsCell || child instanceof org.telegram.ui.Cells.ProfileSearchCell)) {
+            child.animate().cancel();
+            if (pressed) {
+                child.animate().scaleX(0.94f).scaleY(0.94f).setDuration(120).setInterpolator(CubicBezierInterpolator.EASE_OUT).start();
+            } else {
+                child.animate().scaleX(1f).scaleY(1f).setDuration(380).setInterpolator(new android.view.animation.OvershootInterpolator(3.2f)).start();
+            }
+        }
     }
 
     protected boolean allowSelectChildAtPosition(float x, float y) {
@@ -2514,6 +2525,17 @@ public class RecyclerListView extends RecyclerView implements IBlur3Capture {
             child.setAccessibilityDelegate(null);
         }
         super.onChildAttachedToWindow(child);
+    }
+
+    /** A recycled row must never keep the press-scale of an interrupted animation. */
+    @Override
+    public void onChildDetachedFromWindow(View child) {
+        if (child.getScaleX() != 1f || child.getScaleY() != 1f) {
+            child.animate().cancel();
+            child.setScaleX(1f);
+            child.setScaleY(1f);
+        }
+        super.onChildDetachedFromWindow(child);
     }
 
     @Override

@@ -41,7 +41,12 @@ public class CreatorBadge {
     }
 
     public static Drawable drawable(int sizePx) {
-        return new BadgeDrawable(sizePx);
+        return new BadgeDrawable(sizePx, true);
+    }
+
+    /** The creator's badge is filled with the theme colour; everyone else's Nullgram badge is a tonal one. */
+    public static Drawable drawable(int sizePx, boolean creator) {
+        return new BadgeDrawable(sizePx, creator);
     }
 
     private static class BadgeDrawable extends Drawable {
@@ -50,8 +55,11 @@ public class CreatorBadge {
         private final Paint text = new Paint(Paint.ANTI_ALIAS_FLAG);
         private final RectF rect = new RectF();
 
-        BadgeDrawable(int size) {
+        private final boolean creator;
+
+        BadgeDrawable(int size, boolean creator) {
             this.size = size;
+            this.creator = creator;
             text.setTextAlign(Paint.Align.CENTER);
             text.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
         }
@@ -69,13 +77,13 @@ public class CreatorBadge {
         @Override
         public void draw(Canvas canvas) {
             final android.graphics.Rect b = getBounds();
-            fill.setColor(MaterialYou.role(MaterialYou.R_PRIMARY));
+            fill.setColor(MaterialYou.role(creator ? MaterialYou.R_PRIMARY : MaterialYou.R_SECONDARY_CONTAINER));
             rect.set(b);
             final float r = Math.min(b.width(), b.height()) * 0.32f;
             canvas.drawRoundRect(rect, r, r, fill);
-            text.setColor(MaterialYou.role(MaterialYou.R_ON_PRIMARY));
+            text.setColor(MaterialYou.role(creator ? MaterialYou.R_ON_PRIMARY : MaterialYou.R_ON_SECONDARY_CONTAINER));
             text.setTextSize(b.height() * 0.66f);
-            canvas.drawText("N", b.centerX(), b.centerY() - (text.descent() + text.ascent()) / 2f, text);
+            canvas.drawText("Y", b.centerX(), b.centerY() - (text.descent() + text.ascent()) / 2f, text);
         }
 
         @Override public void setAlpha(int alpha) { fill.setAlpha(alpha); text.setAlpha(alpha); }

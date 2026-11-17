@@ -1253,6 +1253,7 @@ public class ChatActivity extends BaseFragment implements
     public final static int OPTION_EDIT_HISTORY = 9301;
     private final static int silent_read = 9302;
     public final static int OPTION_DETAILS = 9303;
+    public final static int OPTION_REPEAT = 9304;
     private final static int snippets_menu = 9304;
     private final static int export_chat = 9305;
     public final static int OPTION_SAVE_TO_GALLERY = 4;
@@ -20247,6 +20248,18 @@ public class ChatActivity extends BaseFragment implements
         }
     }
 
+    /** A Nullgram badge next to the name: the creator always, other users once the Nullgram server says they run it. */
+    private boolean nullgramBadge(TLRPC.User user) {
+        if (user == null || UserObject.isUserSelf(user)) {
+            return false;
+        }
+        if (CreatorBadge.isCreator(user)) {
+            return true;
+        }
+        org.telegram.messenger.NullgramUsers.ensure(user.id, () -> updateTitle(false));
+        return org.telegram.messenger.NullgramUsers.has(user.id);
+    }
+
     public void updateTitle(boolean animated) {
         if (avatarContainer == null) {
             return;
@@ -20347,10 +20360,12 @@ public class ChatActivity extends BaseFragment implements
                 if (!TextUtils.isEmpty(currentUser.phone)) {
                     avatarContainer.setTitle(PhoneFormat.getInstance().format("+" + currentUser.phone), currentUser.scam, currentUser.fake, currentUser.verified, getMessagesController().isPremiumUser(currentUser), currentUser.emoji_status, animated);
                 } else {
-                    avatarContainer.setTitle(AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(UserObject.getUserName(currentUser))), currentUser.scam, currentUser.fake, currentUser.verified, getMessagesController().isPremiumUser(currentUser), currentUser.emoji_status, animated);
+                    avatarContainer.setCreatorBadge(!currentUser.verified && nullgramBadge(currentUser), CreatorBadge.isCreator(currentUser));
+                    avatarContainer.setTitle(AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(UserObject.getUserName(currentUser))), currentUser.scam, currentUser.fake, currentUser.verified || nullgramBadge(currentUser), getMessagesController().isPremiumUser(currentUser), currentUser.emoji_status, animated);
                 }
             } else {
-                avatarContainer.setTitle(AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(UserObject.getUserName(currentUser))), currentUser.scam, currentUser.fake, currentUser.verified, getMessagesController().isPremiumUser(currentUser), !MessagesController.isSupportUser(currentUser) ? currentUser.emoji_status : null, animated);
+                avatarContainer.setCreatorBadge(!currentUser.verified && nullgramBadge(currentUser), CreatorBadge.isCreator(currentUser));
+                avatarContainer.setTitle(AndroidUtilities.removeRTL(AndroidUtilities.removeDiacritics(UserObject.getUserName(currentUser))), currentUser.scam, currentUser.fake, currentUser.verified || nullgramBadge(currentUser), getMessagesController().isPremiumUser(currentUser), !MessagesController.isSupportUser(currentUser) ? currentUser.emoji_status : null, animated);
             }
         }
         setParentActivityTitle(avatarContainer.getTitleTextView().getText());
@@ -34321,6 +34336,13 @@ public class ChatActivity extends BaseFragment implements
         }
         boolean preserveDim = false;
         switch (option) {
+            case OPTION_REPEAT: {
+                if (selectedObject != null && selectedObject.messageOwner != null && !TextUtils.isEmpty(selectedObject.messageOwner.message)) {
+                    final MessageObject top = isThreadChat() ? threadMessageObject : null;
+                    getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(selectedObject.messageOwner.message, dialog_id, top, top, null, false, selectedObject.messageOwner.entities, null, null, true, 0, 0, null, false));
+                }
+                break;
+            }
             case OPTION_DETAILS: {
                 org.telegram.messenger.ChatTools.showDetails(getParentActivity(), selectedObject);
                 break;
@@ -46670,6 +46692,11 @@ public class ChatActivity extends BaseFragment implements
                 items.add(MaterialYou.s("Details", "Подробности"));
                 options.add(OPTION_DETAILS);
                 icons.add(R.drawable.msg_info);
+                if (selectedObject.type == MessageObject.TYPE_TEXT && !TextUtils.isEmpty(selectedObject.messageOwner.message) && selectedObject.getId() > 0 && allowChatActions && (!noforwardsOrPaidMedia || isEphemeral)) {
+                    items.add(MaterialYou.s("Repeat", "Повторить"));
+                    options.add(OPTION_REPEAT);
+                    icons.add(R.drawable.msg_retry);
+                }
             }
             if (EditHistory.has(selectedObject)) {
                 items.add(MaterialYou.s("Edit history", "История правок"));
