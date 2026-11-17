@@ -50,7 +50,8 @@ import java.util.ArrayList;
 public class NullgramSettingsActivity extends BaseFragment {
 
     private static final int VT_HEADER = 0, VT_CHECK = 1, VT_SHADOW = 2, VT_BUTTON = 3,
-        VT_SWATCHES = 4, VT_SEEK = 6, VT_EXTRAS = 7, VT_DENSITY = 8, VT_HUB = 9, VT_BANNER = 10, VT_MOTION_SENS = 11;
+        VT_SWATCHES = 4, VT_SEEK = 6, VT_EXTRAS = 7, VT_DENSITY = 8, VT_HUB = 9, VT_BANNER = 10, VT_MOTION_SENS = 11,
+        VT_SEARCH = 12, VT_STATUS = 13, VT_PREVIEW = 14, VT_EMPTY = 15;
 
     public static final int PAGE_HUB = 0, PAGE_APPEARANCE = 1, PAGE_PRIVACY = 2, PAGE_CHATS = 3, PAGE_CONNECTION = 4, PAGE_PROFILE = 5, PAGE_ABOUT = 6, PAGE_HIDDEN = 7, PAGE_PLUGINS = 8;
 
@@ -60,6 +61,7 @@ public class NullgramSettingsActivity extends BaseFragment {
         final String text;
         String sub;
         int icon, c1, c2;
+        int page;
 
         Item(int viewType, int id, String text) {
             this.viewType = viewType;
@@ -97,7 +99,11 @@ public class NullgramSettingsActivity extends BaseFragment {
     }
 
     private String pageTitle() {
-        switch (page) {
+        return pageTitleOf(page);
+    }
+
+    private static String pageTitleOf(int p) {
+        switch (p) {
             case PAGE_APPEARANCE: return MaterialYou.s("Appearance", "Внешний вид");
             case PAGE_PRIVACY: return MaterialYou.s("Privacy and protection", "Приватность и защита");
             case PAGE_CHATS: return MaterialYou.s("Chats", "Чаты");
@@ -111,6 +117,8 @@ public class NullgramSettingsActivity extends BaseFragment {
     }
 
     private final ArrayList<Item> items = new ArrayList<>();
+    private String query = "";
+    private PreviewRow previewRow;
     private RecyclerListView listView;
     private ListAdapter adapter;
 
@@ -206,10 +214,18 @@ public class NullgramSettingsActivity extends BaseFragment {
                 return;
             }
             final Item item = items.get(position);
+            if (item.viewType == VT_BUTTON && item.page != 0) {
+                presentFragment(new NullgramSettingsActivity(item.page));
+                return;
+            }
             if (item.viewType == VT_CHECK) {
                 final boolean value = !isChecked(item.id);
                 setChecked(item.id, value);
                 ((TextCheckCell) view).setChecked(value);
+                tick(view, value);
+                if (previewRow != null) {
+                    previewRow.invalidate();
+                }
             } else if (item.viewType == VT_BUTTON && item.id == B_WALLPAPER) {
                 presentFragment(new WallpapersListActivity(WallpapersListActivity.TYPE_ALL));
             } else if (item.viewType == VT_BUTTON && item.id == B_HOME_WP) {
@@ -479,9 +495,19 @@ public class NullgramSettingsActivity extends BaseFragment {
     }
 
     private void buildItems() {
+        fillItems(page);
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    private void fillItems(int p) {
         items.clear();
-        switch (page) {
+        switch (p) {
             case PAGE_APPEARANCE:
+                items.add(new Item(VT_HEADER, 0, ru("Preview", "Предпросмотр")));
+                items.add(new Item(VT_PREVIEW, 0, null));
+                footer("", "");
                 items.add(new Item(VT_HEADER, 0, ru("Color", "Цвет")));
                 items.add(new Item(VT_SWATCHES, 0, null));
                 items.add(new Item(VT_HEADER, 0, ru("Chat list density", "Плотность списка чатов")));
@@ -573,11 +599,19 @@ public class NullgramSettingsActivity extends BaseFragment {
             }
             case PAGE_HIDDEN: {
                 items.add(new Item(VT_HEADER, 0, ru("Accounts", "Аккаунты")));
+                int shownAccounts = 0;
                 for (int a = 0; a < UserConfig.MAX_ACCOUNT_COUNT; a++) {
                     if (UserConfig.getInstance(a).isClientActivated() && !(org.telegram.messenger.NullgramHidden.isDecoy() && org.telegram.messenger.NullgramHidden.isHidden(a))) {
                         final String name = org.telegram.messenger.UserObject.getUserName(UserConfig.getInstance(a).getCurrentUser());
                         items.add(new Item(VT_CHECK, 1000 + a, name).sub(org.telegram.messenger.NullgramHidden.isHidden(a) ? ru("Hidden until the PIN is entered", "Скрыт, пока не введён PIN") : ru("Visible to everyone", "Виден всем")));
+                        shownAccounts++;
                     }
+                }
+                if (shownAccounts < 2) {
+                    final Item empty = new Item(VT_EMPTY, 0, ru("Only one account", "Пока один аккаунт"));
+                    empty.sub = ru("Add a second account in Telegram settings, then you can hide one of them", "Добавь второй аккаунт в настройках Telegram, и один из них можно будет скрыть");
+                    empty.icon = R.drawable.msg_secret;
+                    items.add(empty);
                 }
                 footer("A hidden account leaves the account list and stays silent: no notifications. At least one account has to stay visible.", "Скрытый аккаунт пропадает из списка аккаунтов и молчит: без уведомлений. Хотя бы один аккаунт должен остаться видимым.");
                 items.add(new Item(VT_HEADER, 0, ru("Access", "Доступ")));
@@ -595,7 +629,10 @@ public class NullgramSettingsActivity extends BaseFragment {
                 pluginFiles.addAll(org.telegram.messenger.PluginEngine.files());
                 items.add(new Item(VT_HEADER, 0, ru("Installed plugins", "Установленные плагины")));
                 if (pluginFiles.isEmpty()) {
-                    footer("No plugins yet. Add a .py file below.", "Плагинов пока нет. Добавь файл .py ниже.");
+                    final Item empty = new Item(VT_EMPTY, 0, ru("No plugins yet", "Плагинов пока нет"));
+                    empty.sub = ru("Add a .py file below and switch it on", "Добавь файл .py ниже и включи его");
+                    empty.icon = R.drawable.msg_bot;
+                    items.add(empty);
                 }
                 for (int i = 0; i < pluginFiles.size(); i++) {
                     final org.telegram.messenger.PluginEngine.Info info = org.telegram.messenger.PluginEngine.info(pluginFiles.get(i));
@@ -628,24 +665,104 @@ public class NullgramSettingsActivity extends BaseFragment {
                 break;
             default:
                 items.add(new Item(VT_BANNER, 0, null));
-                footer("", "");
-                items.add(new Item(VT_HUB, PAGE_APPEARANCE, ru("Appearance", "Внешний вид")).sub(ru("Colour, density, wallpapers", "Цвет, плотность, обои")).hub(R.drawable.msg_colors, IconBackgroundColors.PURPLE));
-                items.add(new Item(VT_HUB, PAGE_PRIVACY, ru("Privacy and protection", "Приватность и защита")).sub(ru("Ghost mode, hidden notifications", "Призрак, скрытые уведомления")).hub(R.drawable.settings_privacy, IconBackgroundColors.GREEN));
-                items.add(new Item(VT_HUB, PAGE_CHATS, ru("Chats", "Чаты")).sub(ru("Animations, swipes, links", "Анимации, свайпы, ссылки")).hub(R.drawable.settings_chat, IconBackgroundColors.ORANGE));
-                items.add(new Item(VT_HUB, PAGE_CONNECTION, ru("Connection and content", "Соединение и контент")).sub(ru("Proxy, downloads, ads", "Прокси, загрузки, реклама")).hub(R.drawable.settings_data, IconBackgroundColors.BLUE));
-                items.add(new Item(VT_HUB, PAGE_PLUGINS, ru("Plugins", "Плагины")).sub(ru("Python extensions", "Расширения на Python")).hub(R.drawable.msg_bot, IconBackgroundColors.PURPLE));
-                items.add(new Item(VT_HUB, PAGE_PROFILE, ru("Profile", "Профиль")).sub(ru("Banner, thoughts", "Баннер, мысли")).hub(R.drawable.settings_account, IconBackgroundColors.CYAN));
-                footer("", "");
-                if (!org.telegram.messenger.NullgramHidden.anyHidden() || org.telegram.messenger.NullgramHidden.isUnlocked() || org.telegram.messenger.NullgramHidden.isDecoy()) {
-                    items.add(new Item(VT_HUB, PAGE_HIDDEN, ru("Hidden accounts", "Скрытые аккаунты")).sub(ru("Lend your phone safely", "Режим «чужой телефон»")).hub(R.drawable.msg_secret, IconBackgroundColors.GRAY));
-                }
-                items.add(new Item(VT_HUB, PAGE_ABOUT, ru("Updates and diagnostics", "Обновления и диагностика")).sub(ru("Version ", "Версия ") + org.telegram.messenger.NullgramUpdater.installedName()).hub(R.drawable.settings_power, IconBackgroundColors.RED));
-                footer("", "");
+                items.add(new Item(VT_SEARCH, 0, null));
+                addHubBody();
                 break;
         }
-        if (adapter != null) {
-            adapter.notifyDataSetChanged();
+    }
+
+    private static final int[] SEARCH_PAGES = {PAGE_APPEARANCE, PAGE_PRIVACY, PAGE_CHATS, PAGE_CONNECTION, PAGE_PROFILE, PAGE_ABOUT};
+    private static final int[] SEARCH_SECTIONS = {PAGE_APPEARANCE, PAGE_PRIVACY, PAGE_CHATS, PAGE_CONNECTION, PAGE_PLUGINS, PAGE_PROFILE, PAGE_HIDDEN, PAGE_ABOUT};
+
+    /** Everything under the banner and the search field on the main page: the status card and sections, or search results. */
+    private void addHubBody() {
+        if (!query.isEmpty()) {
+            addSearchResults();
+            return;
         }
+        items.add(new Item(VT_STATUS, 0, null));
+        footer("", "");
+        items.add(new Item(VT_HUB, PAGE_APPEARANCE, ru("Appearance", "Внешний вид")).sub(ru("Colour, density, wallpapers", "Цвет, плотность, обои")).hub(R.drawable.msg_colors, IconBackgroundColors.PURPLE));
+        items.add(new Item(VT_HUB, PAGE_PRIVACY, ru("Privacy and protection", "Приватность и защита")).sub(ru("Ghost mode, hidden notifications", "Призрак, скрытые уведомления")).hub(R.drawable.settings_privacy, IconBackgroundColors.GREEN));
+        items.add(new Item(VT_HUB, PAGE_CHATS, ru("Chats", "Чаты")).sub(ru("Animations, swipes, links", "Анимации, свайпы, ссылки")).hub(R.drawable.settings_chat, IconBackgroundColors.ORANGE));
+        items.add(new Item(VT_HUB, PAGE_CONNECTION, ru("Connection and content", "Соединение и контент")).sub(ru("Proxy, downloads, ads", "Прокси, загрузки, реклама")).hub(R.drawable.settings_data, IconBackgroundColors.BLUE));
+        items.add(new Item(VT_HUB, PAGE_PLUGINS, ru("Plugins", "Плагины")).sub(ru("Python extensions", "Расширения на Python")).hub(R.drawable.msg_bot, IconBackgroundColors.PURPLE));
+        items.add(new Item(VT_HUB, PAGE_PROFILE, ru("Profile", "Профиль")).sub(ru("Banner, thoughts", "Баннер, мысли")).hub(R.drawable.settings_account, IconBackgroundColors.CYAN));
+        footer("", "");
+        if (!org.telegram.messenger.NullgramHidden.anyHidden() || org.telegram.messenger.NullgramHidden.isUnlocked() || org.telegram.messenger.NullgramHidden.isDecoy()) {
+            items.add(new Item(VT_HUB, PAGE_HIDDEN, ru("Hidden accounts", "Скрытые аккаунты")).sub(ru("Lend your phone safely", "Режим «чужой телефон»")).hub(R.drawable.msg_secret, IconBackgroundColors.GRAY));
+        }
+        items.add(new Item(VT_HUB, PAGE_ABOUT, ru("Updates and diagnostics", "Обновления и диагностика")).sub(ru("Version ", "Версия ") + org.telegram.messenger.NullgramUpdater.installedName()).hub(R.drawable.settings_power, IconBackgroundColors.RED));
+        footer("", "");
+    }
+
+    private boolean matches(String text) {
+        return text != null && text.toLowerCase(java.util.Locale.getDefault()).contains(query);
+    }
+
+    private void addSearchResults() {
+        final ArrayList<Item> head = new ArrayList<>(items);
+        final ArrayList<Item> found = new ArrayList<>();
+        for (int sec : SEARCH_SECTIONS) {
+            if (sec == PAGE_HIDDEN && org.telegram.messenger.NullgramHidden.anyHidden() && !org.telegram.messenger.NullgramHidden.isUnlocked() && !org.telegram.messenger.NullgramHidden.isDecoy()) {
+                continue;
+            }
+            if (matches(pageTitleOf(sec))) {
+                final Item r = new Item(VT_BUTTON, 0, pageTitleOf(sec));
+                r.page = sec;
+                found.add(r);
+            }
+        }
+        for (int p : SEARCH_PAGES) {
+            fillItems(p);
+            for (Item it : new ArrayList<>(items)) {
+                if ((it.viewType != VT_CHECK && it.viewType != VT_BUTTON) || it.text == null || it.id >= 1000) {
+                    continue;
+                }
+                if (!matches(it.text) && !matches(it.sub)) {
+                    continue;
+                }
+                final Item r = new Item(it.viewType, it.id, it.text);
+                r.sub = pageTitleOf(p) + (it.sub != null ? " · " + it.sub : "");
+                r.page = p;
+                found.add(r);
+            }
+        }
+        items.clear();
+        items.addAll(head);
+        if (found.isEmpty()) {
+            final Item empty = new Item(VT_EMPTY, 0, ru("Nothing found", "Ничего не найдено"));
+            empty.sub = ru("Try another word, for example ghost, proxy or theme", "Попробуй другое слово, например призрак, прокси или тема");
+            empty.icon = R.drawable.msg_search;
+            items.add(empty);
+        } else {
+            items.addAll(found);
+            footer("", "");
+        }
+    }
+
+    private void onQueryChanged(String text) {
+        final String next = text.trim().toLowerCase(java.util.Locale.getDefault());
+        if (next.equals(query) || adapter == null || page != PAGE_HUB) {
+            return;
+        }
+        query = next;
+        final int keep = 2;
+        final int old = items.size();
+        while (items.size() > keep) {
+            items.remove(items.size() - 1);
+        }
+        adapter.notifyItemRangeRemoved(keep, old - keep);
+        addHubBody();
+        adapter.notifyItemRangeInserted(keep, items.size() - keep);
+    }
+
+    private static void tick(View v, boolean on) {
+        int kind = android.view.HapticFeedbackConstants.CLOCK_TICK;
+        if (android.os.Build.VERSION.SDK_INT >= 30) {
+            kind = on ? android.view.HapticFeedbackConstants.CONFIRM : android.view.HapticFeedbackConstants.REJECT;
+        }
+        v.performHapticFeedback(kind);
     }
 
     private static boolean isChecked(int id) {
@@ -886,6 +1003,18 @@ public class NullgramSettingsActivity extends BaseFragment {
                 case VT_BANNER:
                     view = new BannerRow(context, NullgramSettingsActivity.this::promptUnlock);
                     break;
+                case VT_SEARCH:
+                    view = new SearchRow(context, NullgramSettingsActivity.this::onQueryChanged);
+                    break;
+                case VT_STATUS:
+                    view = new StatusRow(context);
+                    break;
+                case VT_PREVIEW:
+                    view = previewRow = new PreviewRow(context);
+                    break;
+                case VT_EMPTY:
+                    view = new EmptyRow(context);
+                    break;
                 default:
                     view = new TextInfoPrivacyCell(context);
                     break;
@@ -938,6 +1067,12 @@ public class NullgramSettingsActivity extends BaseFragment {
                 case VT_MOTION_SENS:
                     ((MotionSensRow) holder.itemView).refresh();
                     break;
+                case VT_STATUS:
+                    ((StatusRow) holder.itemView).refresh();
+                    break;
+                case VT_EMPTY:
+                    ((EmptyRow) holder.itemView).set(item.icon, item.text, item.sub);
+                    break;
                 default:
                     break;
             }
@@ -957,6 +1092,212 @@ public class NullgramSettingsActivity extends BaseFragment {
         public boolean isEnabled(RecyclerView.ViewHolder holder) {
             final int t = holder.getItemViewType();
             return t == VT_CHECK || t == VT_BUTTON || t == VT_HUB;
+        }
+    }
+
+    /** Search field at the top of the main page; the rows below turn into matches from every section as you type. */
+    private class SearchRow extends FrameLayout {
+        SearchRow(Context context, java.util.function.Consumer<String> onText) {
+            super(context);
+            setPadding(dp(0), dp(4), dp(0), dp(8));
+            final LinearLayout pill = new LinearLayout(context);
+            pill.setOrientation(LinearLayout.HORIZONTAL);
+            pill.setGravity(Gravity.CENTER_VERTICAL);
+            pill.setBackground(Theme.createRoundRectDrawable((int) MaterialYou.radius(28), Theme.getColor(Theme.key_windowBackgroundWhite)));
+            final android.widget.ImageView icon = new android.widget.ImageView(context);
+            icon.setImageResource(R.drawable.msg_search);
+            icon.setColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon));
+            pill.addView(icon, LayoutHelper.createLinear(24, 24, Gravity.CENTER_VERTICAL, 16, 0, 0, 0));
+            final EditText input = new EditText(context);
+            input.setSingleLine(true);
+            input.setBackground(null);
+            input.setHint(MaterialYou.s("Search settings", "Поиск по настройкам"));
+            input.setTextSize(16);
+            input.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+            input.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText));
+            input.setImeOptions(android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH);
+            input.setPadding(dp(12), dp(14), dp(8), dp(14));
+            pill.addView(input, LayoutHelper.createLinear(0, LayoutHelper.WRAP_CONTENT, 1f));
+            final android.widget.ImageView clear = new android.widget.ImageView(context);
+            clear.setImageResource(R.drawable.msg_close);
+            clear.setColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon));
+            clear.setScaleType(android.widget.ImageView.ScaleType.CENTER);
+            clear.setVisibility(GONE);
+            clear.setOnClickListener(v -> input.setText(""));
+            pill.addView(clear, LayoutHelper.createLinear(48, 48, Gravity.CENTER_VERTICAL, 0, 0, 4, 0));
+            input.addTextChangedListener(new TextWatcher() {
+                @Override public void beforeTextChanged(CharSequence s, int a, int b, int c) {}
+                @Override public void onTextChanged(CharSequence s, int a, int b, int c) {}
+                @Override public void afterTextChanged(Editable s) {
+                    clear.setVisibility(s.length() > 0 ? VISIBLE : GONE);
+                    onText.accept(s.toString());
+                }
+            });
+            addView(pill, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, 52));
+        }
+    }
+
+    /** Three tiles at the top of the main page: ghost mode, kept deleted messages and the proxy, each switched with one tap. */
+    private class StatusRow extends LinearLayout {
+        private final int[] ids = {C_GHOST, C_KEEP_DELETED, C_WS_PROXY};
+        private final int[] icons = {R.drawable.msg_secret, R.drawable.msg_delete, R.drawable.settings_data};
+        private final String[] names = {MaterialYou.s("Ghost", "Призрак"), MaterialYou.s("Deleted", "Удалённые"), MaterialYou.s("Proxy", "Прокси")};
+        private final LinearLayout[] tiles = new LinearLayout[3];
+        private final android.widget.ImageView[] glyphs = new android.widget.ImageView[3];
+        private final TextView[] titles = new TextView[3];
+        private final TextView[] states = new TextView[3];
+
+        StatusRow(Context context) {
+            super(context);
+            setOrientation(HORIZONTAL);
+            setPadding(0, dp(4), 0, dp(4));
+            for (int i = 0; i < 3; i++) {
+                final int index = i;
+                final LinearLayout tile = new LinearLayout(context);
+                tile.setOrientation(VERTICAL);
+                tile.setPadding(dp(14), dp(14), dp(14), dp(14));
+                final android.widget.ImageView glyph = new android.widget.ImageView(context);
+                glyph.setImageResource(icons[i]);
+                tile.addView(glyph, LayoutHelper.createLinear(26, 26));
+                final TextView title = new TextView(context);
+                title.setText(names[i]);
+                title.setTextSize(15);
+                title.setTypeface(AndroidUtilities.bold());
+                title.setSingleLine(true);
+                tile.addView(title, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, 0, 10, 0, 0));
+                final TextView state = new TextView(context);
+                state.setTextSize(13);
+                tile.addView(state, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT));
+                tile.setOnClickListener(v -> {
+                    final boolean value = !isChecked(ids[index]);
+                    setChecked(ids[index], value);
+                    tick(v, value);
+                    refresh();
+                    v.animate().cancel();
+                    v.setScaleX(0.9f);
+                    v.setScaleY(0.9f);
+                    v.animate().scaleX(1f).scaleY(1f).setDuration(380).setInterpolator(new android.view.animation.OvershootInterpolator(3f)).start();
+                });
+                tiles[i] = tile;
+                glyphs[i] = glyph;
+                titles[i] = title;
+                states[i] = state;
+                addView(tile, LayoutHelper.createLinear(0, LayoutHelper.WRAP_CONTENT, 1f, i == 0 ? 0 : 4, 0, i == 2 ? 0 : 4, 0));
+            }
+            refresh();
+        }
+
+        void refresh() {
+            for (int i = 0; i < 3; i++) {
+                final boolean on = isChecked(ids[i]);
+                final int fg = MaterialYou.role(on ? MaterialYou.R_ON_PRIMARY_CONTAINER : MaterialYou.R_ON_SURFACE);
+                tiles[i].setBackground(Theme.createRoundRectDrawable((int) MaterialYou.radius(24), MaterialYou.role(on ? MaterialYou.R_PRIMARY_CONTAINER : MaterialYou.R_SURFACE_HIGH)));
+                glyphs[i].setColorFilter(fg);
+                titles[i].setTextColor(fg);
+                states[i].setTextColor(MaterialYou.role(on ? MaterialYou.R_ON_PRIMARY_CONTAINER : MaterialYou.R_ON_SURFACE_VARIANT));
+                states[i].setText(on ? MaterialYou.s("On", "Вкл") : MaterialYou.s("Off", "Выкл"));
+            }
+        }
+    }
+
+    /** A small chat drawn with the current theme colours; follows the colour pick and the roundness slider while it is dragged. */
+    private static class PreviewRow extends View {
+        private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        private final android.text.TextPaint text = new android.text.TextPaint(Paint.ANTI_ALIAS_FLAG);
+        private final android.graphics.RectF rect = new android.graphics.RectF();
+        private float scale = -1f;
+
+        PreviewRow(Context context) {
+            super(context);
+            text.setTextSize(dp(13));
+        }
+
+        void setScale(float value) {
+            scale = value;
+            invalidate();
+        }
+
+        private float rr(float dpValue) {
+            return AndroidUtilities.dpf2(dpValue) * (scale > 0 ? scale : MaterialYou.getCornerScale());
+        }
+
+        private void box(Canvas canvas, float l, float t, float r, float b, float radius, int color) {
+            paint.setColor(color);
+            rect.set(l, t, r, b);
+            final float cap = Math.min(radius, Math.min(rect.width(), rect.height()) / 2f);
+            canvas.drawRoundRect(rect, cap, cap, paint);
+        }
+
+        @Override
+        protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+            super.onMeasure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(dp(190), MeasureSpec.EXACTLY));
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            final float w = getWidth(), h = getHeight();
+            box(canvas, 0, 0, w, h, rr(24), MaterialYou.role(MaterialYou.R_SURFACE));
+            final float pad = dp(14);
+            // header: avatar and two lines
+            paint.setColor(MaterialYou.role(MaterialYou.R_PRIMARY));
+            canvas.drawCircle(pad + dp(14), pad + dp(14), dp(14), paint);
+            box(canvas, pad + dp(38), pad + dp(6), pad + dp(110), pad + dp(14), dp(4), MaterialYou.role(MaterialYou.R_ON_SURFACE));
+            box(canvas, pad + dp(38), pad + dp(19), pad + dp(80), pad + dp(25), dp(3), MaterialYou.role(MaterialYou.R_OUTLINE_VARIANT));
+            // incoming bubble
+            final String in = MaterialYou.s("How do you like the theme?", "Как тебе тема?");
+            final String out = MaterialYou.s("Looks great", "Выглядит отлично");
+            final float inW = text.measureText(in) + dp(28), outW = text.measureText(out) + dp(28);
+            final float top1 = pad + dp(44), bh = dp(36);
+            box(canvas, pad, top1, pad + inW, top1 + bh, rr(18), MaterialYou.role(MaterialYou.R_SURFACE_HIGHEST));
+            text.setColor(MaterialYou.role(MaterialYou.R_ON_SURFACE));
+            canvas.drawText(in, pad + dp(14), top1 + bh / 2f + dp(5), text);
+            // outgoing bubble
+            final float top2 = top1 + bh + dp(8);
+            box(canvas, w - pad - outW, top2, w - pad, top2 + bh, rr(18), MaterialYou.role(MaterialYou.R_PRIMARY_CONTAINER));
+            text.setColor(MaterialYou.role(MaterialYou.R_ON_PRIMARY_CONTAINER));
+            canvas.drawText(out, w - pad - outW + dp(14), top2 + bh / 2f + dp(5), text);
+            // input pill and the action button
+            final float inputTop = h - pad - dp(40);
+            box(canvas, pad, inputTop, w - pad - dp(52), inputTop + dp(40), rr(24), MaterialYou.role(MaterialYou.R_SURFACE_HIGH));
+            box(canvas, pad + dp(16), inputTop + dp(16), pad + dp(90), inputTop + dp(24), dp(4), MaterialYou.role(MaterialYou.R_OUTLINE_VARIANT));
+            box(canvas, w - pad - dp(44), inputTop - dp(2), w - pad, inputTop + dp(42), rr(16), MaterialYou.role(MaterialYou.R_PRIMARY));
+        }
+    }
+
+    /** A friendly empty state: round icon, title and a line of help. */
+    private static class EmptyRow extends LinearLayout {
+        private final android.widget.ImageView icon;
+        private final TextView title, hint;
+
+        EmptyRow(Context context) {
+            super(context);
+            setOrientation(VERTICAL);
+            setGravity(Gravity.CENTER_HORIZONTAL);
+            setPadding(dp(32), dp(28), dp(32), dp(28));
+            icon = new android.widget.ImageView(context);
+            icon.setScaleType(android.widget.ImageView.ScaleType.CENTER);
+            icon.setBackground(Theme.createRoundRectDrawable(dp(36), MaterialYou.role(MaterialYou.R_SECONDARY_CONTAINER)));
+            icon.setColorFilter(MaterialYou.role(MaterialYou.R_ON_SECONDARY_CONTAINER));
+            addView(icon, LayoutHelper.createLinear(72, 72, Gravity.CENTER_HORIZONTAL));
+            title = new TextView(context);
+            title.setTextSize(17);
+            title.setTypeface(AndroidUtilities.bold());
+            title.setGravity(Gravity.CENTER);
+            title.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+            addView(title, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL, 0, 14, 0, 0));
+            hint = new TextView(context);
+            hint.setTextSize(14);
+            hint.setGravity(Gravity.CENTER);
+            hint.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
+            addView(hint, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL, 0, 6, 0, 0));
+        }
+
+        void set(int iconRes, String titleText, String hintText) {
+            if (iconRes != 0) {
+                icon.setImageResource(iconRes);
+            }
+            title.setText(titleText);
+            hint.setText(hintText);
         }
     }
 
@@ -1025,7 +1366,7 @@ public class NullgramSettingsActivity extends BaseFragment {
         SwatchesRow(Context context) {
             super(context);
             setOrientation(VERTICAL);
-            setPadding(dp(14), dp(4), dp(14), dp(10));
+            setPadding(dp(16), dp(4), dp(16), dp(10));
             setBackgroundColor(0);
             final int perRow = 6;
             for (int start = 0; start < MaterialYou.PRESETS.length; start += perRow) {
@@ -1038,6 +1379,10 @@ public class NullgramSettingsActivity extends BaseFragment {
                     s.setOnClickListener(v -> {
                         MaterialYou.setSeed(color);
                         refresh();
+                        tick(v, true);
+                        if (previewRow != null) {
+                            previewRow.invalidate();
+                        }
                     });
                     row.addView(s, LayoutHelper.createLinear(0, 48, 1f, Gravity.CENTER, 0, 4, 0, 4));
                 }
@@ -1060,7 +1405,7 @@ public class NullgramSettingsActivity extends BaseFragment {
         MotionSensRow(Context context) {
             super(context);
             setOrientation(HORIZONTAL);
-            setPadding(dp(12), dp(8), dp(12), dp(12));
+            setPadding(dp(16), dp(8), dp(16), dp(12));
             final String[] names = {MaterialYou.s("Weak", "Слабая"), MaterialYou.s("Medium", "Средняя"), MaterialYou.s("Strong", "Сильная")};
             for (int i = 0; i < 3; i++) {
                 final int level = i;
@@ -1069,10 +1414,12 @@ public class NullgramSettingsActivity extends BaseFragment {
                 chip.setGravity(Gravity.CENTER);
                 chip.setTextSize(14);
                 chip.setTypeface(AndroidUtilities.bold());
-                chip.setPadding(dp(8), dp(12), dp(8), dp(12));
+                chip.setPadding(dp(8), dp(14), dp(8), dp(14));
+                chip.setMinHeight(dp(48));
                 chip.setOnClickListener(v -> {
                     NullgramConfig.setMotionSens(level);
                     refresh();
+                    tick(v, true);
                 });
                 chips[i] = chip;
                 addView(chip, LayoutHelper.createLinear(0, LayoutHelper.WRAP_CONTENT, 1f, 4, 0, 4, 0));
@@ -1096,7 +1443,7 @@ public class NullgramSettingsActivity extends BaseFragment {
         DensityRow(Context context) {
             super(context);
             setOrientation(HORIZONTAL);
-            setPadding(dp(12), dp(8), dp(12), dp(12));
+            setPadding(dp(16), dp(8), dp(16), dp(12));
             setBackgroundColor(0);
             final String[] names = {MaterialYou.s("Compact", "Компактно"), MaterialYou.s("Standard", "Стандартно"), MaterialYou.s("Roomy", "Просторно")};
             for (int i = 0; i < 3; i++) {
@@ -1106,10 +1453,12 @@ public class NullgramSettingsActivity extends BaseFragment {
                 chip.setGravity(Gravity.CENTER);
                 chip.setTextSize(14);
                 chip.setTypeface(AndroidUtilities.bold());
-                chip.setPadding(dp(8), dp(12), dp(8), dp(12));
+                chip.setPadding(dp(8), dp(14), dp(8), dp(14));
+                chip.setMinHeight(dp(48));
                 chip.setOnClickListener(v -> {
                     MaterialYou.setDensity(level);
                     refresh();
+                    tick(v, true);
                 });
                 chips[i] = chip;
                 addView(chip, LayoutHelper.createLinear(0, LayoutHelper.WRAP_CONTENT, 1f, 4, 0, 4, 0));
@@ -1135,8 +1484,18 @@ public class NullgramSettingsActivity extends BaseFragment {
             seek.setReportChanges(true);
             seek.setProgress((MaterialYou.getCornerScale() - 0.3f) / 1.3f);
             seek.setDelegate(new SeekBarView.SeekBarViewDelegate() {
+                private int lastStep = -1;
+
                 @Override
                 public void onSeekBarDrag(boolean stop, float progress) {
+                    if (previewRow != null) {
+                        previewRow.setScale(0.3f + 1.3f * progress);
+                    }
+                    final int step = Math.round(progress * 10f);
+                    if (step != lastStep) {
+                        lastStep = step;
+                        seek.performHapticFeedback(android.view.HapticFeedbackConstants.CLOCK_TICK);
+                    }
                     if (stop) {
                         MaterialYou.setCornerScale(0.3f + 1.3f * progress);
                     }
