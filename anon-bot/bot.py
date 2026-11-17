@@ -92,8 +92,14 @@ async def load_pack(bot: Bot) -> None:
     for st in pack.stickers:
         if st.custom_emoji_id:
             EMOJI_BY_CHAR.setdefault(st.emoji or "", st.custom_emoji_id)
-    PAW_ID = EMOJI_BY_CHAR.get("🐾") or next(iter(EMOJI_BY_CHAR.values()), None)
-    log.info("Загружен набор %s: %d эмодзи", PACK, len(EMOJI_BY_CHAR))
+    PAW_ID = (
+        os.getenv("PAW_EMOJI_ID")
+        or EMOJI_BY_CHAR.get("🐾")
+        or next(iter(EMOJI_BY_CHAR.values()), None)
+    )
+    log.info("Набор %s: %d эмодзи, лапка id=%s", PACK, len(EMOJI_BY_CHAR), PAW_ID)
+    if not PAW_ID:
+        log.warning("Кастомные эмодзи НЕ загружены — будут обычные. Проверь EMOJI_PACK и токен.")
 
 
 def E(char: str = "🐾") -> str:
@@ -356,6 +362,24 @@ async def start(m: Message, command: CommandObject, bot: Bot):
 @router.message(Command("link", "share", "stats", "newlink", "help", "menu"))
 async def slash_cmds(m: Message, command: CommandObject, bot: Bot):
     await run_action(bot, m.from_user.id, command.command)
+
+
+@router.message(Command("emoji"))
+async def emoji_diag(m: Message, bot: Bot):
+    """Диагностика кастомных эмодзи."""
+    if not PAW_ID:
+        return await m.answer(
+            f"Набор <code>{PACK}</code> не загрузился (см. логи бота) — эмодзи не из чего брать."
+        )
+    sample = " ".join(f'<tg-emoji emoji-id="{i}">{ch or "▫️"}</tg-emoji>' for ch, i in list(EMOJI_BY_CHAR.items())[:10])
+    await m.answer(
+        f"Набор: <code>{PACK}</code>, эмодзи: {len(EMOJI_BY_CHAR)}\n"
+        f"Лапка: <code>{PAW_ID}</code>\nИконки на кнопках: {'вкл' if icons_ok else 'выкл (Telegram отклонил)'}\n\n"
+        f"Тест: {sample}\n\n"
+        "Если выше обычные эмодзи, а не из набора — Telegram разрешает боту кастомные эмодзи "
+        "только если у владельца бота (аккаунта, создавшего его в @BotFather) есть Telegram Premium "
+        "или у бота куплен доп. username на Fragment."
+    )
 
 
 @router.message(Command("cancel"))
