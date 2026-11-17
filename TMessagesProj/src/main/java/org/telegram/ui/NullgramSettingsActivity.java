@@ -53,7 +53,7 @@ public class NullgramSettingsActivity extends BaseFragment {
         VT_SWATCHES = 4, VT_SEEK = 6, VT_EXTRAS = 7, VT_DENSITY = 8, VT_HUB = 9, VT_BANNER = 10, VT_MOTION_SENS = 11,
         VT_SEARCH = 12, VT_STATUS = 13, VT_PREVIEW = 14, VT_EMPTY = 15;
 
-    public static final int PAGE_HUB = 0, PAGE_APPEARANCE = 1, PAGE_PRIVACY = 2, PAGE_CHATS = 3, PAGE_CONNECTION = 4, PAGE_PROFILE = 5, PAGE_ABOUT = 6, PAGE_HIDDEN = 7, PAGE_PLUGINS = 8;
+    public static final int PAGE_HUB = 0, PAGE_APPEARANCE = 1, PAGE_PRIVACY = 2, PAGE_CHATS = 3, PAGE_CONNECTION = 4, PAGE_PROFILE = 5, PAGE_ABOUT = 6, PAGE_HIDDEN = 7, PAGE_PLUGINS = 8, PAGE_STORE = 9;
 
     private static class Item {
         final int viewType;
@@ -84,7 +84,7 @@ public class NullgramSettingsActivity extends BaseFragment {
 
     private static final int C_ENABLED = 1, C_AMOLED = 2, C_GHOST = 4, C_KEEP_DELETED = 5,
         C_EDIT_HISTORY = 6, C_SAVE_DISAPPEARING = 7, C_WS_PROXY = 8, C_FAST_DOWNLOADS = 9, C_NO_ADS = 10, C_CLEAN_LINKS = 11, C_HIDE_STORIES = 12, C_NO_SWIPE_REPLY = 13, C_HIDE_PHONE = 14, C_CONFIRM_CALLS = 15, C_SCREEN_GUARD = 16, C_DIAGNOSTICS = 17, C_HIDE_NOTIF_TEXT = 19, C_ANIMATIONS = 30, C_FAST_MODE = 31, C_SNOW = 32, C_MOTION = 33, C_WINTER_ICONS = 34, C_SHOW_BADGE = 35, C_STRIP_EXIF = 36, C_MOTION_ALWAYS = 37, C_SHOW_IDS = 38, C_FREE_TRANSLATE = 50, C_ROUND_BACK = 51, C_SYSTEM_EMOJI = 52, C_VOICE_HQ = 53, C_VOICE_NS = 54, C_VOICE_AGC = 55, C_CAMERA_FRONT = 56, C_CAMERA_GRID = 57;
-    private static final int B_WALLPAPER = 20, B_TOOLS_INFO = 21, B_HOME_WP = 22, B_HOME_WP_OFF = 23, B_UPDATE = 24, B_SET_PIN = 40, B_LOCK_NOW = 41, B_SET_DECOY = 42, B_ICON_IMPORT = 43, B_ICON_RESET = 44, B_PLUGIN_IMPORT = 45, B_CAMERA = 46;
+    private static final int B_WALLPAPER = 20, B_TOOLS_INFO = 21, B_HOME_WP = 22, B_HOME_WP_OFF = 23, B_UPDATE = 24, B_SET_PIN = 40, B_LOCK_NOW = 41, B_SET_DECOY = 42, B_ICON_IMPORT = 43, B_ICON_RESET = 44, B_PLUGIN_IMPORT = 45, B_CAMERA = 46, B_STORE = 47;
     private static final int REQ_ICON_PACK = 4431, REQ_PLUGIN = 4432;
     private final ArrayList<String> pluginFiles = new ArrayList<>();
 
@@ -112,12 +112,16 @@ public class NullgramSettingsActivity extends BaseFragment {
             case PAGE_ABOUT: return MaterialYou.s("Updates and diagnostics", "Обновления и диагностика");
             case PAGE_HIDDEN: return MaterialYou.s("Hidden accounts", "Скрытые аккаунты");
             case PAGE_PLUGINS: return MaterialYou.s("Plugins", "Плагины");
+            case PAGE_STORE: return MaterialYou.s("Plugin store", "Магазин плагинов");
             default: return "Yologram";
         }
     }
 
     private final ArrayList<Item> items = new ArrayList<>();
     private String query = "";
+    private final ArrayList<org.telegram.messenger.PluginStore.Entry> storeEntries = new ArrayList<>();
+    private boolean storeLoading;
+    private String storeError;
     private PreviewRow previewRow;
     private RecyclerListView listView;
     private ListAdapter adapter;
@@ -218,6 +222,14 @@ public class NullgramSettingsActivity extends BaseFragment {
                 presentFragment(new NullgramSettingsActivity(item.page));
                 return;
             }
+            if (item.viewType == VT_BUTTON && item.id == B_STORE) {
+                presentFragment(new NullgramSettingsActivity(PAGE_STORE));
+                return;
+            }
+            if (item.viewType == VT_BUTTON && item.id >= 5000 && item.id < 6000) {
+                installFromStore(item.id - 5000);
+                return;
+            }
             if (item.viewType == VT_CHECK) {
                 final boolean value = !isChecked(item.id);
                 setChecked(item.id, value);
@@ -291,6 +303,9 @@ public class NullgramSettingsActivity extends BaseFragment {
         });
 
         buildItems();
+        if (page == PAGE_STORE) {
+            loadStore();
+        }
         if (NullgramConfig.animations()) {
             final android.view.animation.AnimationSet set = new android.view.animation.AnimationSet(true);
             final android.view.animation.TranslateAnimation slide = new android.view.animation.TranslateAnimation(
@@ -651,8 +666,36 @@ public class NullgramSettingsActivity extends BaseFragment {
                     footer("", "");
                 }
                 items.add(new Item(VT_HEADER, 0, ru("Add", "Добавить")));
+                items.add(new Item(VT_BUTTON, B_STORE, ru("Plugin store", "Магазин плагинов")));
                 items.add(new Item(VT_BUTTON, B_PLUGIN_IMPORT, ru("Add a plugin (.py)", "Добавить плагин (.py)")));
                 footer("Hooks: on_load, on_message, on_send. API: toast, send_message, copy, my_id, get, set, log.", "Хуки: on_load, on_message, on_send. API: toast, send_message, copy, my_id, get, set, log.");
+                break;
+            }
+            case PAGE_STORE: {
+                items.add(new Item(VT_HEADER, 0, ru("Catalog", "Каталог")));
+                if (storeLoading) {
+                    final Item e = new Item(VT_EMPTY, 0, ru("Loading…", "Загрузка…"));
+                    e.icon = R.drawable.msg_download;
+                    items.add(e);
+                } else if (storeError != null) {
+                    final Item e = new Item(VT_EMPTY, 0, ru("Could not load the catalog", "Не удалось загрузить каталог"));
+                    e.sub = storeError;
+                    e.icon = R.drawable.msg_close;
+                    items.add(e);
+                } else if (storeEntries.isEmpty()) {
+                    final Item e = new Item(VT_EMPTY, 0, ru("The catalog is empty", "Каталог пока пуст"));
+                    e.icon = R.drawable.msg_bot;
+                    items.add(e);
+                } else {
+                    final java.util.List<String> have = org.telegram.messenger.PluginEngine.files();
+                    for (int i = 0; i < storeEntries.size(); i++) {
+                        final org.telegram.messenger.PluginStore.Entry e = storeEntries.get(i);
+                        final String meta = (e.version.isEmpty() ? "" : "v" + e.version + " · ") + (e.author.isEmpty() ? "" : e.author + " · ");
+                        final String sub = (have.contains(e.file) ? ru("Installed · ", "Установлен · ") : "") + meta + e.description;
+                        items.add(new Item(VT_BUTTON, 5000 + i, e.name).sub(sub));
+                    }
+                }
+                footer("Catalog plugins are checked against a checksum, but they still run code. Tap one to install it, then switch it on in Plugins.", "Плагины каталога проверяются по контрольной сумме, но всё равно выполняют код. Нажми на плагин, чтобы установить его, и включи в разделе «Плагины».");
                 break;
             }
             case PAGE_ABOUT:
@@ -755,6 +798,47 @@ public class NullgramSettingsActivity extends BaseFragment {
         adapter.notifyItemRangeRemoved(keep, old - keep);
         addHubBody();
         adapter.notifyItemRangeInserted(keep, items.size() - keep);
+    }
+
+    private void loadStore() {
+        storeLoading = true;
+        storeError = null;
+        buildItems();
+        org.telegram.messenger.PluginStore.load((entries, error) -> {
+            storeLoading = false;
+            storeEntries.clear();
+            if (entries != null) {
+                storeEntries.addAll(entries);
+            }
+            storeError = error;
+            if (adapter != null && getParentActivity() != null) {
+                buildItems();
+            }
+        });
+    }
+
+    private void installFromStore(int index) {
+        if (index < 0 || index >= storeEntries.size() || getParentActivity() == null) {
+            return;
+        }
+        final org.telegram.messenger.PluginStore.Entry entry = storeEntries.get(index);
+        final AlertDialog.Builder b = new AlertDialog.Builder(getParentActivity());
+        b.setTitle(entry.name);
+        b.setMessage(entry.description + "\n\n" + MaterialYou.s("A plugin is a Python program with access to everything Yologram can do, including your chats. It stays switched off until you turn it on in Plugins.", "Плагин — это программа на Python с доступом ко всему, что умеет Yologram, включая ваши чаты. Он остаётся выключенным, пока вы не включите его в разделе «Плагины»."));
+        b.setPositiveButton(MaterialYou.s("Install", "Установить"), (d, w) -> org.telegram.messenger.PluginStore.install(entry, error -> {
+            final Context ctx = getParentActivity();
+            if (ctx == null) {
+                return;
+            }
+            if (error != null) {
+                android.widget.Toast.makeText(ctx, MaterialYou.s("Could not install: ", "Не удалось установить: ") + error, android.widget.Toast.LENGTH_LONG).show();
+            } else {
+                android.widget.Toast.makeText(ctx, MaterialYou.s("Installed. Switch it on in Plugins.", "Установлен. Включи его в разделе «Плагины»."), android.widget.Toast.LENGTH_LONG).show();
+                buildItems();
+            }
+        }));
+        b.setNegativeButton(MaterialYou.s("Cancel", "Отмена"), null);
+        showDialog(b.create());
     }
 
     private static void tick(View v, boolean on) {
@@ -1045,7 +1129,11 @@ public class NullgramSettingsActivity extends BaseFragment {
                     ((SettingsActivity.SettingCell) holder.itemView).set(item.c1, item.c2, item.icon, item.text, item.sub, null);
                     break;
                 case VT_BUTTON:
-                    ((TextSettingsCell) holder.itemView).setText(item.text, false);
+                    if (item.sub != null) {
+                        ((TextSettingsCell) holder.itemView).setTextAndValue(item.text, item.sub, divider);
+                    } else {
+                        ((TextSettingsCell) holder.itemView).setText(item.text, false);
+                    }
                     break;
                 case VT_SHADOW: {
                     final TextInfoPrivacyCell cell = (TextInfoPrivacyCell) holder.itemView;

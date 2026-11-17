@@ -1,0 +1,28 @@
+{
+  "plugins": [
+    {
+      "file": "message_counter.py",
+      "name": "Счётчик сообщений",
+      "version": "1.0",
+      "description": "Считает входящие сообщения; при запуске показывает, сколько их было",
+      "author": "pyfold",
+      "sha256": "4086cf863a9fee393df8ad9b861f4fe292156eae2e2453231fa8abd1dc8f980f"
+    },
+    {
+      "file": "shrug.py",
+      "name": "Шраг и эмоции",
+      "version": "1.0",
+      "description": "Команды /shrug, /tableflip и /unflip заменяются на смайлы",
+      "author": "pyfold",
+      "sha256": "1da7ce242c06aecb104bd452424d7a9cd7d4d1ae4e522e544e8e3a1a5dbc08c6"
+    },
+    {
+      "file": "tidy_text.py",
+      "name": "Аккуратный текст",
+      "version": "1.0",
+      "description": "Убирает двойные пробелы и пробелы в конце сообщения перед отправкой",
+      "author": "pyfold",
+      "sha256": "0e4716c48a908d6ad409d3db03bf61a3735751dced4cf1518b659cda61127b8d"
+    }
+  ]
+}

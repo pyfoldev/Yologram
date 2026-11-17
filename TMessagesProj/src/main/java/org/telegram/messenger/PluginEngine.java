@@ -222,6 +222,23 @@ public class PluginEngine implements NotificationCenter.NotificationCenterDelega
         }
     }
 
+    /** Saves a plugin that came from the catalog; the name must be a plain "name.py". Returns false when it is refused. */
+    public static boolean install(String file, byte[] data) {
+        if (file == null || !file.matches("[A-Za-z0-9_\\-]{1,64}\\.py") || data == null || data.length == 0 || data.length > MAX_SIZE) {
+            return false;
+        }
+        try (FileOutputStream out = new FileOutputStream(new File(dir(), file))) {
+            out.write(data);
+        } catch (Throwable t) {
+            FileLog.e(t);
+            return false;
+        }
+        synchronized (PluginEngine.class) {
+            infos.remove(file);
+        }
+        return true;
+    }
+
     public static void remove(String file) {
         prefs().edit().remove("on_" + file).apply();
         new File(dir(), file).delete();

@@ -23,6 +23,7 @@ WEB = os.environ.get("YOLOGRAM_WEB", os.path.join(os.path.dirname(os.path.abspat
 mimetypes.add_type("application/wasm", ".wasm")
 mimetypes.add_type("text/javascript", ".mjs")
 mimetypes.add_type("application/manifest+json", ".webmanifest")
+PLUGINS = os.environ.get("NULLGRAM_PLUGINS", os.path.join(os.path.dirname(os.path.abspath(__file__)), "plugins"))
 UPDATES = os.environ.get("NULLGRAM_UPDATES", os.path.join(os.path.dirname(os.path.abspath(__file__)), "updates"))
 os.makedirs(UPDATES, exist_ok=True)
 ADMIN_KEY = os.environ.get("NULLGRAM_ADMIN_KEY", "")
@@ -66,6 +67,13 @@ class H(BaseHTTPRequestHandler):
             return
         self.send(404)
 
+    def plugins(self, path):
+        name = path[len("/plugins/"):]
+        if not re.match(r"^[A-Za-z0-9_\-]{1,64}\.py$|^index\.json$", name): return self.send(404)
+        p = os.path.join(PLUGINS, name)
+        if not os.path.isfile(p): return self.send(404)
+        self.send(200, open(p, "rb").read(), "application/json" if name.endswith(".json") else "text/x-python; charset=utf-8")
+
     def static(self, path):
         # the Yologram Web client lives in WEB; anything that is not an API route is looked up there
         rel = path.lstrip("/") or "index.html"
@@ -89,6 +97,7 @@ class H(BaseHTTPRequestHandler):
     def do_GET(self):
         path0 = self.path.split("?")[0]
         if path0.startswith("/update/"): return self.update(path0)
+        if path0.startswith("/plugins/"): return self.plugins(path0)
         if path0 == "/diag/admin": return self.admin()
         if path0 == "/notices": return self.notices()
         uid, sub = self.uid()
