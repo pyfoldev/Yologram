@@ -11,17 +11,23 @@
 5. `yt-dlp`, Pillow-карточки, nudenet — вызывать как внешние процессы/крейты на этапе «интеграции», не переписывать.
 
 ## Состояние
-| Модуль Python | Rust | Проверка | Статус |
-|---|---|---|---|
-| `bot/games/*` (rps, slots, tictactoe, garden) | `src/games.rs` | rust-anything: 1604/1606 записанных случаев (2 — bigint-ставки) | ✅ |
-| `bot/parsing.py` | `src/parsing.rs` | 1055 фраз из Python-корпуса, 0 расхождений | ✅ |
-| `bot/spam.py` | `src/spam.rs` | юнит-тесты по `tests/test_spam_raid.py` | ✅ |
-| `bot/fmt.py` | `src/fmt.rs` | юнит-тесты по `tests/test_fmt.py` | ✅ |
-| `bot/ttl.py` | `src/ttl.rs` | юнит-тест | ✅ |
-| `bot/config.py`, `db.py`, `filters.py`, `ranks.py`, `targets.py`, `raid.py`, … | — | — | ⏳ |
-| `bot/middlewares/*`, `bot/handlers/*` (37 файлов) | — | — | ⏳ (после БД + teloxide-каркаса) |
-| `captcha_server`, `panel_server`, `webhook`, `giveaway_server` | — | — | ⏳ (axum) |
-| `ai.py`, `imagegen.py`, `downloader.py` (yt-dlp), `cards.py` (PIL), `nsfw*` | — | — | ⏳ |
+Сделано ✅ (всё собирается, `cargo test` зелёный, 40+ тестов):
+
+| Модуль Python | Rust | Проверка |
+|---|---|---|
+| `bot/games/*` | `src/games.rs` | rust-anything: 1604/1606 записанных случаев (2 — bigint-ставки) |
+| `bot/parsing.py` | `src/parsing.rs` | 1055 фраз из Python-корпуса, 0 расхождений |
+| `bot/filters.py`, `bot/links.py` | `src/filters.rs`, `src/links.rs` | корпус `tests/fixtures/text.json` (нормализация, валидация regex, домены, белый список), 0 расхождений |
+| `bot/db.py` (SQLite, ~180 методов) | `src/db.rs`, `src/schema.sql` | Rust читает БД, созданную Python (`tests/fixtures/py.db`), + сценарии экономики/варнов/промокодов |
+| `spam`, `fmt`, `ttl`, `ranks`, `raid`, `plans`, `cleanup`, `targets`, `emoji`, `config`, `runtime` | одноимённые `src/*.rs` | юнит-тесты по логике Python-тестов |
+| каркас: middleware (блок-лист, учёт, счётчик), роутинг, `Ctx` | `src/app.rs`, `src/handlers/mod.rs`, `src/bin/chat-helper.rs` | компилируется; polling запускается |
+| `handlers/stats.py` + `keyboards` | `src/handlers/stats.rs`, `src/keyboards.rs` | юнит-тест форматирования |
+
+Не перенесено ⏳ (порядок — как `include_router` в `bot/main.py`):
+`mod_service`, `handlers/{owner, captcha, webpanel, giveaway, suggest, premium, images, download, menu, settings, setup, ranks, cleanup, chatinfo, scan, social, moderation, history, logchat, reports, chatfilters, aimod, quotes, mog, games, duels, economy, votes, rp, family, garden, entertainment, fun, ai}`,
+`middlewares/{guard, memory, prefix}`, `captcha_server`, `panel_server`, `giveaway_server`, `webhook` + `updatequeue`, `ai`, `chatmind`, `aimod`, `imagegen`, `downloader` (yt-dlp), `cards` (PIL → `image`/`resvg`), `nsfw`, `audit`, `alerts`, `backup`, `members`, `metrics`, `diagnostics`, `emoji_inject`, `family`, `mog`, `rp_data`, `weather`, `media`.
+
+Как добавлять обработчик: файл `src/handlers/<имя>.rs` с `on_message(ctx, m) -> HandlerResult` / `on_callback`, подключить в `handlers::route_*` в порядке оригинала; чистую логику — в отдельный модуль с корпус-тестом против Python (`tools/gen_*_fixture.py`).
 
 ## Как проверять
 ```bash
