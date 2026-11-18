@@ -1,0 +1,311 @@
+{
+  "schema": "rust-anything/bridge@1",
+  "root": "/tmp/claude-0/-home-user-Yologram/85006f12-ff71-5efd-a36f-b4193e1e812f/scratchpad/work",
+  "unit": "bot/games/",
+  "language": "python",
+  "kind": "pyo3",
+  "crate_name": "games-rs",
+  "exports": [
+    {
+      "name": "find_crop",
+      "file": "bot/games/garden.py",
+      "line": 32,
+      "params": [
+        {
+          "name": "word",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "string | undefined",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "new_garden",
+      "file": "bot/games/garden.py",
+      "line": 40,
+      "params": [],
+      "returns": "dict",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "plant",
+      "file": "bot/games/garden.py",
+      "line": 44,
+      "params": [
+        {
+          "name": "g",
+          "ts_type": "dict",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "crop",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "now",
+          "ts_type": "int",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "int | undefined",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "harvest",
+      "file": "bot/games/garden.py",
+      "line": 53,
+      "params": [
+        {
+          "name": "g",
+          "ts_type": "dict",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "now",
+          "ts_type": "int",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "tuple[]",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "water",
+      "file": "bot/games/garden.py",
+      "line": 62,
+      "params": [
+        {
+          "name": "g",
+          "ts_type": "dict",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "now",
+          "ts_type": "int",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "tuple",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "expand_cost",
+      "file": "bot/games/garden.py",
+      "line": 77,
+      "params": [
+        {
+          "name": "g",
+          "ts_type": "dict",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "int | undefined",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "expand",
+      "file": "bot/games/garden.py",
+      "line": 83,
+      "params": [
+        {
+          "name": "g",
+          "ts_type": "dict",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "boolean",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "fmt_left",
+      "file": "bot/games/garden.py",
+      "line": 91,
+      "params": [
+        {
+          "name": "seconds",
+          "ts_type": "int",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "string",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "render",
+      "file": "bot/games/garden.py",
+      "line": 99,
+      "params": [
+        {
+          "name": "g",
+          "ts_type": "dict",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "now",
+          "ts_type": "int",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "string",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "judge",
+      "file": "bot/games/rps.py",
+      "line": 6,
+      "params": [
+        {
+          "name": "a",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "b",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "int",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "slots_payout",
+      "file": "bot/games/slots.py",
+      "line": 7,
+      "params": [
+        {
+          "name": "dice_value",
+          "ts_type": "int",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "bet",
+          "ts_type": "int",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "int",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "new_board",
+      "file": "bot/games/tictactoe.py",
+      "line": 4,
+      "params": [],
+      "returns": "string[]",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "move",
+      "file": "bot/games/tictactoe.py",
+      "line": 8,
+      "params": [
+        {
+          "name": "board",
+          "ts_type": "string[]",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "idx",
+          "ts_type": "int",
+          "optional": false,
+          "rest": false
+        },
+        {
+          "name": "mark",
+          "ts_type": "string",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "boolean",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    },
+    {
+      "name": "winner",
+      "file": "bot/games/tictactoe.py",
+      "line": 15,
+      "params": [
+        {
+          "name": "board",
+          "ts_type": "string[]",
+          "optional": false,
+          "rest": false
+        }
+      ],
+      "returns": "string | undefined",
+      "is_async": false,
+      "is_generator": false,
+      "type_params": [],
+      "uses_instanceof": false
+    }
+  ],
+  "classes": [],
+  "js_only": [
+    {
+      "name": "Crop",
+      "file": "bot/games/garden.py",
+      "line": 15,
+      "reason": "class: decorated with `@dataclass`, public class attribute `cost`, public class attribute `emoji`, public class attribute `name`, public class attribute `reward`, public class attribute `seconds`"
+    }
+  ]
+}

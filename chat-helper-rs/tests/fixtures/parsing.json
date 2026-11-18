@@ -1,0 +1,9269 @@
+[
+{
+"text": "",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "   ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!ПУРГ  0М  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!ПУРГ  @ИВАН 1Д  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!ПУРГ  НА 3 ДНЯ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "!пург ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "!пург   ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "!пург 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург 10000 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург 1234",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "1234"
+},
+"stats": null
+},
+{
+"text": "!пург 123456",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "123456"
+},
+"stats": null
+},
+{
+"text": "!пург 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург 1н",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург 2 недели",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург 2ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург 30м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург 5 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург 50",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "50"
+},
+"stats": null
+},
+{
+"text": "!пург 999999д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург @User",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург @a_b",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург два часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург на 3 дня",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург на неделю",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург на час",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург один день",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург перманентно",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург причина флуд тут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург причина: спам",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург пять дней",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "!пург ٣ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-СМС  @USER 2Ч ПРИЧИНА: ТЕСТ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-СМС  @ИВАН 1Д  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-СМС  ПРИЧИНА: СПАМ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "-смс ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "-смс   ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "-смс 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс 10000 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс 1234",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "1234"
+},
+"stats": null
+},
+{
+"text": "-смс 123456",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "123456"
+},
+"stats": null
+},
+{
+"text": "-смс 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс 1н",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс 2 недели",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс 2ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс 30м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс 5 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс 50",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "50"
+},
+"stats": null
+},
+{
+"text": "-смс 999999д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс @User",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс @a_b",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс два часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс на 3 дня",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс на неделю",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс на час",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс один день",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс перманентно",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс причина флуд тут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс причина: спам",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс пять дней",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "-смс ٣ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/BAN  0  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "0"
+},
+"stats": null
+},
+{
+"text": "/BAN  АБВ  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "АБВ"
+},
+"stats": null
+},
+{
+"text": "/BAN  МУТ  НАВСЕГДА  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "МУТ НАВСЕГДА"
+},
+"stats": null
+},
+{
+"text": "/MUTE@BOT  2 НЕДЕЛИ  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "2 НЕДЕЛИ"
+},
+"stats": null
+},
+{
+"text": "/MUTE@BOT  30М  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 1800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/MUTE@BOT  5 МИНУТ  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "5 МИНУТ"
+},
+"stats": null
+},
+{
+"text": "/MUTE@BOT  50  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "50"
+},
+"stats": null
+},
+{
+"text": "/MUTE@BOT  И ВСЁ  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "И ВСЁ"
+},
+"stats": null
+},
+{
+"text": "/MUTE@BOT  ПЯТЬ ДНЕЙ  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "ПЯТЬ ДНЕЙ"
+},
+"stats": null
+},
+{
+"text": "/PURGE      ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/PURGE  30М  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "30М"
+},
+"stats": null
+},
+{
+"text": "/PURGE  ² ЧАСА  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "² ЧАСА"
+},
+"stats": null
+},
+{
+"text": "/PURGE  НА ЧАС  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "НА ЧАС"
+},
+"stats": null
+},
+{
+"text": "/PURGE  ПРИЧИНА:  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "ПРИЧИНА:"
+},
+"stats": null
+},
+{
+"text": "/START  1Д  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/START  30М  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/UNWARN  30М  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "30М"
+},
+"stats": null
+},
+{
+"text": "/UNWARN  ПЯТЬ ДНЕЙ  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "ПЯТЬ ДНЕЙ"
+},
+"stats": null
+},
+{
+"text": "/ban",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/ban ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/ban   ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/ban 0",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "0"
+},
+"stats": null
+},
+{
+"text": "/ban 0м",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "0м"
+},
+"stats": null
+},
+{
+"text": "/ban 10000 минут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "10000",
+"duration": null,
+"reason": "минут"
+},
+"stats": null
+},
+{
+"text": "/ban 1234",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "1234"
+},
+"stats": null
+},
+{
+"text": "/ban 123456",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "123456",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/ban 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "123456",
+"duration": null,
+"reason": "навсегда"
+},
+"stats": null
+},
+{
+"text": "/ban 1д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 86400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/ban 1н",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 604800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/ban 2 недели",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "2 недели"
+},
+"stats": null
+},
+{
+"text": "/ban 2ч",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 7200000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/ban 30м",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 1800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/ban 5 минут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "5 минут"
+},
+"stats": null
+},
+{
+"text": "/ban 50",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "50"
+},
+"stats": null
+},
+{
+"text": "/ban 999999д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 31622400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/ban @User",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "@User",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/ban @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "@User",
+"duration": 7200000000,
+"reason": "причина: тест"
+},
+"stats": null
+},
+{
+"text": "/ban @a_b",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "@a_b",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/ban @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "@ИВАН",
+"duration": 86400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/ban ² часа",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "² часа"
+},
+"stats": null
+},
+{
+"text": "/ban Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "Мут Навсегда"
+},
+"stats": null
+},
+{
+"text": "/ban ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "ПРИЧИНА: Х"
+},
+"stats": null
+},
+{
+"text": "/ban абв",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "абв"
+},
+"stats": null
+},
+{
+"text": "/ban два часа",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "два часа"
+},
+"stats": null
+},
+{
+"text": "/ban и всё",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "и всё"
+},
+"stats": null
+},
+{
+"text": "/ban на",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "на"
+},
+"stats": null
+},
+{
+"text": "/ban на 3 дня",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "на 3 дня"
+},
+"stats": null
+},
+{
+"text": "/ban на неделю",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "на неделю"
+},
+"stats": null
+},
+{
+"text": "/ban на час",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "на час"
+},
+"stats": null
+},
+{
+"text": "/ban навсегда",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "навсегда"
+},
+"stats": null
+},
+{
+"text": "/ban один день",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "один день"
+},
+"stats": null
+},
+{
+"text": "/ban перманентно",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "перманентно"
+},
+"stats": null
+},
+{
+"text": "/ban причина флуд тут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "причина флуд тут"
+},
+"stats": null
+},
+{
+"text": "/ban причина:",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "причина:"
+},
+"stats": null
+},
+{
+"text": "/ban причина: спам",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "причина: спам"
+},
+"stats": null
+},
+{
+"text": "/ban пять дней",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "пять дней"
+},
+"stats": null
+},
+{
+"text": "/ban ٣ч",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 10800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/mute@bot",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/mute@bot ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/mute@bot   ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/mute@bot 0",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "0"
+},
+"stats": null
+},
+{
+"text": "/mute@bot 0м",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "0м"
+},
+"stats": null
+},
+{
+"text": "/mute@bot 10000 минут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": "10000",
+"duration": null,
+"reason": "минут"
+},
+"stats": null
+},
+{
+"text": "/mute@bot 1234",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "1234"
+},
+"stats": null
+},
+{
+"text": "/mute@bot 123456",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": "123456",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/mute@bot 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": "123456",
+"duration": null,
+"reason": "навсегда"
+},
+"stats": null
+},
+{
+"text": "/mute@bot 1д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 86400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/mute@bot 1н",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 604800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/mute@bot 2 недели",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "2 недели"
+},
+"stats": null
+},
+{
+"text": "/mute@bot 2ч",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 7200000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/mute@bot 30м",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 1800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/mute@bot 5 минут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "5 минут"
+},
+"stats": null
+},
+{
+"text": "/mute@bot 50",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "50"
+},
+"stats": null
+},
+{
+"text": "/mute@bot 999999д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 31622400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/mute@bot @User",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": "@User",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/mute@bot @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": "@User",
+"duration": 7200000000,
+"reason": "причина: тест"
+},
+"stats": null
+},
+{
+"text": "/mute@bot @a_b",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": "@a_b",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/mute@bot @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": "@ИВАН",
+"duration": 86400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/mute@bot ² часа",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "² часа"
+},
+"stats": null
+},
+{
+"text": "/mute@bot Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "Мут Навсегда"
+},
+"stats": null
+},
+{
+"text": "/mute@bot ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "ПРИЧИНА: Х"
+},
+"stats": null
+},
+{
+"text": "/mute@bot абв",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "абв"
+},
+"stats": null
+},
+{
+"text": "/mute@bot два часа",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "два часа"
+},
+"stats": null
+},
+{
+"text": "/mute@bot и всё",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "и всё"
+},
+"stats": null
+},
+{
+"text": "/mute@bot на",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "на"
+},
+"stats": null
+},
+{
+"text": "/mute@bot на 3 дня",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "на 3 дня"
+},
+"stats": null
+},
+{
+"text": "/mute@bot на неделю",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "на неделю"
+},
+"stats": null
+},
+{
+"text": "/mute@bot на час",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "на час"
+},
+"stats": null
+},
+{
+"text": "/mute@bot навсегда",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "навсегда"
+},
+"stats": null
+},
+{
+"text": "/mute@bot один день",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "один день"
+},
+"stats": null
+},
+{
+"text": "/mute@bot перманентно",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "перманентно"
+},
+"stats": null
+},
+{
+"text": "/mute@bot причина флуд тут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "причина флуд тут"
+},
+"stats": null
+},
+{
+"text": "/mute@bot причина:",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "причина:"
+},
+"stats": null
+},
+{
+"text": "/mute@bot причина: спам",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "причина: спам"
+},
+"stats": null
+},
+{
+"text": "/mute@bot пять дней",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "пять дней"
+},
+"stats": null
+},
+{
+"text": "/mute@bot ٣ч",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 10800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/purge",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/purge ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/purge 0",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "0"
+},
+"stats": null
+},
+{
+"text": "/purge 0м",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "0м"
+},
+"stats": null
+},
+{
+"text": "/purge 10000 минут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": "10000",
+"duration": null,
+"reason": "минут"
+},
+"stats": null
+},
+{
+"text": "/purge 1234",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "1234"
+},
+"stats": null
+},
+{
+"text": "/purge 123456",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": "123456",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/purge 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": "123456",
+"duration": null,
+"reason": "навсегда"
+},
+"stats": null
+},
+{
+"text": "/purge 1д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "1д"
+},
+"stats": null
+},
+{
+"text": "/purge 1н",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "1н"
+},
+"stats": null
+},
+{
+"text": "/purge 2 недели",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "2 недели"
+},
+"stats": null
+},
+{
+"text": "/purge 2ч",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "2ч"
+},
+"stats": null
+},
+{
+"text": "/purge 30м",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "30м"
+},
+"stats": null
+},
+{
+"text": "/purge 5 минут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "5 минут"
+},
+"stats": null
+},
+{
+"text": "/purge 50",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "50"
+},
+"stats": null
+},
+{
+"text": "/purge 999999д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "999999д"
+},
+"stats": null
+},
+{
+"text": "/purge @User",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": "@User",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/purge @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": "@User",
+"duration": null,
+"reason": "2ч причина: тест"
+},
+"stats": null
+},
+{
+"text": "/purge @a_b",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": "@a_b",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/purge @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": "@ИВАН",
+"duration": null,
+"reason": "1д"
+},
+"stats": null
+},
+{
+"text": "/purge ² часа",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "² часа"
+},
+"stats": null
+},
+{
+"text": "/purge Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "Мут Навсегда"
+},
+"stats": null
+},
+{
+"text": "/purge ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "ПРИЧИНА: Х"
+},
+"stats": null
+},
+{
+"text": "/purge абв",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "абв"
+},
+"stats": null
+},
+{
+"text": "/purge два часа",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "два часа"
+},
+"stats": null
+},
+{
+"text": "/purge и всё",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "и всё"
+},
+"stats": null
+},
+{
+"text": "/purge на",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "на"
+},
+"stats": null
+},
+{
+"text": "/purge на 3 дня",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "на 3 дня"
+},
+"stats": null
+},
+{
+"text": "/purge на неделю",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "на неделю"
+},
+"stats": null
+},
+{
+"text": "/purge на час",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "на час"
+},
+"stats": null
+},
+{
+"text": "/purge навсегда",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "навсегда"
+},
+"stats": null
+},
+{
+"text": "/purge один день",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "один день"
+},
+"stats": null
+},
+{
+"text": "/purge перманентно",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "перманентно"
+},
+"stats": null
+},
+{
+"text": "/purge причина флуд тут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "причина флуд тут"
+},
+"stats": null
+},
+{
+"text": "/purge причина:",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "причина:"
+},
+"stats": null
+},
+{
+"text": "/purge причина: спам",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "причина: спам"
+},
+"stats": null
+},
+{
+"text": "/purge пять дней",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "пять дней"
+},
+"stats": null
+},
+{
+"text": "/purge ٣ч",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "٣ч"
+},
+"stats": null
+},
+{
+"text": "/start",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start   ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start 10000 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start 1234",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start 123456",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start 1н",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start 2 недели",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start 2ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start 30м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start 5 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start 50",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start 999999д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start @User",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start @a_b",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start два часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start на 3 дня",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start на неделю",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start на час",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start один день",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start перманентно",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start причина флуд тут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start причина: спам",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start пять дней",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/start ٣ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "/unwarn",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/unwarn ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/unwarn   ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/unwarn 0",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "0"
+},
+"stats": null
+},
+{
+"text": "/unwarn 0м",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "0м"
+},
+"stats": null
+},
+{
+"text": "/unwarn 10000 минут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": "10000",
+"duration": null,
+"reason": "минут"
+},
+"stats": null
+},
+{
+"text": "/unwarn 1234",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "1234"
+},
+"stats": null
+},
+{
+"text": "/unwarn 123456",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": "123456",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/unwarn 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": "123456",
+"duration": null,
+"reason": "навсегда"
+},
+"stats": null
+},
+{
+"text": "/unwarn 1д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "1д"
+},
+"stats": null
+},
+{
+"text": "/unwarn 1н",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "1н"
+},
+"stats": null
+},
+{
+"text": "/unwarn 2 недели",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "2 недели"
+},
+"stats": null
+},
+{
+"text": "/unwarn 2ч",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "2ч"
+},
+"stats": null
+},
+{
+"text": "/unwarn 30м",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "30м"
+},
+"stats": null
+},
+{
+"text": "/unwarn 5 минут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "5 минут"
+},
+"stats": null
+},
+{
+"text": "/unwarn 50",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "50"
+},
+"stats": null
+},
+{
+"text": "/unwarn 999999д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "999999д"
+},
+"stats": null
+},
+{
+"text": "/unwarn @User",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": "@User",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/unwarn @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": "@User",
+"duration": null,
+"reason": "2ч причина: тест"
+},
+"stats": null
+},
+{
+"text": "/unwarn @a_b",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": "@a_b",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "/unwarn @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": "@ИВАН",
+"duration": null,
+"reason": "1д"
+},
+"stats": null
+},
+{
+"text": "/unwarn ² часа",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "² часа"
+},
+"stats": null
+},
+{
+"text": "/unwarn Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "Мут Навсегда"
+},
+"stats": null
+},
+{
+"text": "/unwarn ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "ПРИЧИНА: Х"
+},
+"stats": null
+},
+{
+"text": "/unwarn абв",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "абв"
+},
+"stats": null
+},
+{
+"text": "/unwarn два часа",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "два часа"
+},
+"stats": null
+},
+{
+"text": "/unwarn и всё",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "и всё"
+},
+"stats": null
+},
+{
+"text": "/unwarn на",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "на"
+},
+"stats": null
+},
+{
+"text": "/unwarn на 3 дня",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "на 3 дня"
+},
+"stats": null
+},
+{
+"text": "/unwarn на неделю",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "на неделю"
+},
+"stats": null
+},
+{
+"text": "/unwarn на час",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "на час"
+},
+"stats": null
+},
+{
+"text": "/unwarn навсегда",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "навсегда"
+},
+"stats": null
+},
+{
+"text": "/unwarn один день",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "один день"
+},
+"stats": null
+},
+{
+"text": "/unwarn перманентно",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "перманентно"
+},
+"stats": null
+},
+{
+"text": "/unwarn причина флуд тут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "причина флуд тут"
+},
+"stats": null
+},
+{
+"text": "/unwarn причина:",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "причина:"
+},
+"stats": null
+},
+{
+"text": "/unwarn причина: спам",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "причина: спам"
+},
+"stats": null
+},
+{
+"text": "/unwarn пять дней",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "пять дней"
+},
+"stats": null
+},
+{
+"text": "/unwarn ٣ч",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": "٣ч"
+},
+"stats": null
+},
+{
+"text": "0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "1д",
+"duration": 86400000000,
+"period": 86400000000,
+"mod": null,
+"stats": null
+},
+{
+"text": "1н",
+"duration": 604800000000,
+"period": 604800000000,
+"mod": null,
+"stats": null
+},
+{
+"text": "2 недели",
+"duration": null,
+"period": 1209600000000,
+"mod": null,
+"stats": null
+},
+{
+"text": "2ч",
+"duration": 7200000000,
+"period": 7200000000,
+"mod": null,
+"stats": null
+},
+{
+"text": "30м",
+"duration": 1800000000,
+"period": 1800000000,
+"mod": null,
+"stats": null
+},
+{
+"text": "7д",
+"duration": 604800000000,
+"period": 604800000000,
+"mod": null,
+"stats": null
+},
+{
+"text": "99999999999999999999д",
+"duration": 31622400000000,
+"period": 31622400000000,
+"mod": null,
+"stats": null
+},
+{
+"text": "БАН  0М  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "БАН  1234  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "БАН  1Д  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 86400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "БАН  @USER 2Ч ПРИЧИНА: ТЕСТ  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "@USER",
+"duration": 7200000000,
+"reason": "ТЕСТ"
+},
+"stats": null
+},
+{
+"text": "БАН  НА  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "БАН  НА ЧАС  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 3600000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "БАН  ПРИЧИНА:  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "БАН  ПРИЧИНА: СПАМ  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "СПАМ"
+},
+"stats": null
+},
+{
+"text": "БАН  ПРИЧИНА: Х  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "Х"
+},
+"stats": null
+},
+{
+"text": "БАНАНЫ  1Н  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "БАНАНЫ  АБВ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "БАНАНЫ  ОДИН ДЕНЬ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "БАНАНЫ  ПРИЧИНА: Х  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "БАНКА  5 МИНУТ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "БАНКА  НА  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "БАНКА  НА ЧАС  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "БАНКА  ПРИЧИНА: Х  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "Бан",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан   ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "Бан 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "Бан 10000 минут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 600000000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан 1234",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "Бан 123456",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "123456",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "123456",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан 1д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 86400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан 1н",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 604800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан 2 недели",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 1209600000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан 2ч",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 7200000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан 30м",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 1800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан 5 минут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 300000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан 50",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "Бан 999999д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 31622400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан @User",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "@User",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "@User",
+"duration": 7200000000,
+"reason": "тест"
+},
+"stats": null
+},
+{
+"text": "Бан @a_b",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "@a_b",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "@ИВАН",
+"duration": 86400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "Бан Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "Бан ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "Х"
+},
+"stats": null
+},
+{
+"text": "Бан абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "Бан два часа",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 7200000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "Бан на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "Бан на 3 дня",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 259200000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан на неделю",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 604800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан на час",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 3600000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан навсегда",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан один день",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 86400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан перманентно",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан причина флуд тут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "флуд тут"
+},
+"stats": null
+},
+{
+"text": "Бан причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "Бан причина: спам",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "спам"
+},
+"stats": null
+},
+{
+"text": "Бан пять дней",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 432000000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "Бан ٣ч",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 10800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "ВАРН  30М  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": 1800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "ВАРН  ПРИЧИНА:  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "ВАРН  ٣Ч  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": 10800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "ВАРНЫ      ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варны",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "ЗАКРЕП  10000 МИНУТ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "ЗАКРЕП  50  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "ЗАКРЕП  @USER 2Ч ПРИЧИНА: ТЕСТ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "ЗАКРЕП  АБВ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "ЗАКРЕП  НА 3 ДНЯ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "КИК  10000 МИНУТ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "МУТ      ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "МУТ  2Ч  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 7200000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "МУТ  50  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "МУТ  ДВА ЧАСА  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 7200000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "МУТ  ОДИН ДЕНЬ  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 86400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "МУТ  ПЕРМАНЕНТНО  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 31622400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "МУТ  ПРИЧИНА: СПАМ  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "СПАМ"
+},
+"stats": null
+},
+{
+"text": "ОТКРЕПИТЬ  2Ч  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "ОТКРЕПИТЬ  @USER 2Ч ПРИЧИНА: ТЕСТ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "ОТКРЕПИТЬ  ٣Ч  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "ПУРГ  123456 НАВСЕГДА  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "ПУРГ  @USER  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "ПУРГ  @USER 2Ч ПРИЧИНА: ТЕСТ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "ПУРГ  ² ЧАСА  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "РАЗБАН  0М  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "РАЗБАН  2Ч  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "РАЗБАН  @ИВАН 1Д  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "РАЗБАН  ДВА ЧАСА  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "РАЗМУТ  2Ч  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "РАЗМУТ  999999Д  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "РАЗМУТ  @ИВАН 1Д  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "РАЗМУТ  ٣Ч  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "СНЯТЬ  ВАРН  10000 МИНУТ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "СНЯТЬ  ВАРН  @USER 2Ч ПРИЧИНА: ТЕСТ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "СНЯТЬ  ВАРН  НА  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "СНЯТЬ  ВАРН  НА НЕДЕЛЮ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "СНЯТЬ  ВАРН  ПРИЧИНА: СПАМ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "СНЯТЬ  ВАРН  ПРИЧИНА: Х  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "СНЯТЬ ВАРН  50  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "СНЯТЬ ВАРН  @USER  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": "@USER",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "СНЯТЬ ВАРН  ² ЧАСА  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "СНЯТЬ ВАРН  МУТ  НАВСЕГДА  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "СНЯТЬ ВАРН  НА 3 ДНЯ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "Стата день",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": [
+"hours",
+24
+]
+},
+{
+"text": "УДАЛИТЬ  1Н  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "УДАЛИТЬ  2 НЕДЕЛИ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "УДАЛИТЬ  30М  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "УДАЛИТЬ  ² ЧАСА  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "УДАЛИТЬ  ПРИЧИНА:  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "ЧИСТКА  1234  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "1234"
+},
+"stats": null
+},
+{
+"text": "ЧИСТКА  123456 НАВСЕГДА  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "ЧИСТКА  5 МИНУТ  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "ЧИСТКА  50  ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "50"
+},
+"stats": null
+},
+{
+"text": "ЧИСТКА  @USER  ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бан",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан   ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бан 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бан 10000 минут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 600000000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан 1234",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бан 123456",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "123456",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "123456",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан 1д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 86400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан 1н",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 604800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан 2 недели",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 1209600000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан 2ч",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 7200000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан 30м",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 1800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан 5 минут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 300000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан 50",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бан 999999д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 31622400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан @User",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "@User",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "@User",
+"duration": 7200000000,
+"reason": "тест"
+},
+"stats": null
+},
+{
+"text": "бан @a_b",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "@a_b",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": "@ИВАН",
+"duration": 86400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бан Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бан ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "Х"
+},
+"stats": null
+},
+{
+"text": "бан абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бан два часа",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 7200000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бан на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бан на 3 дня",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 259200000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан на неделю",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 604800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан на час",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 3600000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан навсегда",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан один день",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 86400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан перманентно",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан причина флуд тут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "флуд тут"
+},
+"stats": null
+},
+{
+"text": "бан причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бан причина: спам",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": null,
+"reason": "спам"
+},
+"stats": null
+},
+{
+"text": "бан пять дней",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 432000000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бан ٣ч",
+"duration": null,
+"period": null,
+"mod": {
+"name": "бан",
+"target": null,
+"duration": 10800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "бананы",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы   ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы 10000 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы 1234",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы 123456",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы 1н",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы 2 недели",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы 2ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы 30м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы 5 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы 50",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы 999999д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы @User",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы @a_b",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы два часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы на 3 дня",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы на неделю",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы на час",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы один день",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы перманентно",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы причина флуд тут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы причина: спам",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы пять дней",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "бананы ٣ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка   ",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка 10000 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка 1234",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка 123456",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка 1н",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка 2 недели",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка 2ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка 30м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка 5 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка 50",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка 999999д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка @User",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка @a_b",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка два часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка на 3 дня",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка на неделю",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка на час",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка один день",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка перманентно",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка причина флуд тут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка причина: спам",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка пять дней",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "банка ٣ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варн",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн   ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варн 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варн 10000 минут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": 600000000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн 1234",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варн 123456",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": "123456",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варн 1д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": 86400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн 1н",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": 604800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн 2 недели",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": 1209600000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн 2ч",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": 7200000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн 30м",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": 1800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн 5 минут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": 300000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн 50",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варн 999999д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": 31622400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн @User",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": "@User",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": "@User",
+"duration": 7200000000,
+"reason": "тест"
+},
+"stats": null
+},
+{
+"text": "варн @a_b",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": "@a_b",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": "@ИВАН",
+"duration": 86400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варн Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варн ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": null,
+"reason": "Х"
+},
+"stats": null
+},
+{
+"text": "варн абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варн два часа",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": 7200000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варн на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варн на 3 дня",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": 259200000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн на неделю",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": 604800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн на час",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": 3600000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варн один день",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": 86400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн перманентно",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варн причина флуд тут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": null,
+"reason": "флуд тут"
+},
+"stats": null
+},
+{
+"text": "варн причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варн причина: спам",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": null,
+"reason": "спам"
+},
+"stats": null
+},
+{
+"text": "варн пять дней",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": 432000000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варн ٣ч",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варн",
+"target": null,
+"duration": 10800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варны",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варны",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варны ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варны",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варны 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны 10000 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны 1234",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны 123456",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варны",
+"target": "123456",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варны 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны 1н",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны 2 недели",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны 2ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны 30м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны 5 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны 50",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны 999999д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны @User",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варны",
+"target": "@User",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варны @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны @a_b",
+"duration": null,
+"period": null,
+"mod": {
+"name": "варны",
+"target": "@a_b",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "варны @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны два часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны на 3 дня",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны на неделю",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны на час",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны один день",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны перманентно",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны причина флуд тут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны причина: спам",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны пять дней",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "варны ٣ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп",
+"duration": null,
+"period": null,
+"mod": {
+"name": "закреп",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "закреп ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "закреп",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "закреп   ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "закреп",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "закреп 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп 10000 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп 1234",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп 123456",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп 1н",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп 2 недели",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп 2ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп 30м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп 5 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп 50",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп 999999д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп @User",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп @a_b",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп два часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп на 3 дня",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп на неделю",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп на час",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп один день",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп перманентно",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп причина флуд тут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп причина: спам",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп пять дней",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "закреп ٣ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик",
+"duration": null,
+"period": null,
+"mod": {
+"name": "кик",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "кик ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "кик",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "кик   ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "кик",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "кик 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик 10000 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик 1234",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик 123456",
+"duration": null,
+"period": null,
+"mod": {
+"name": "кик",
+"target": "123456",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "кик 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик 1н",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик 2 недели",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик 2ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик 30м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик 5 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик 50",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик 999999д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик @User",
+"duration": null,
+"period": null,
+"mod": {
+"name": "кик",
+"target": "@User",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "кик @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик @a_b",
+"duration": null,
+"period": null,
+"mod": {
+"name": "кик",
+"target": "@a_b",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "кик @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": {
+"name": "кик",
+"target": null,
+"duration": null,
+"reason": "Х"
+},
+"stats": null
+},
+{
+"text": "кик абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик два часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик на 3 дня",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик на неделю",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик на час",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик один день",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик перманентно",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик причина флуд тут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "кик",
+"target": null,
+"duration": null,
+"reason": "флуд тут"
+},
+"stats": null
+},
+{
+"text": "кик причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик причина: спам",
+"duration": null,
+"period": null,
+"mod": {
+"name": "кик",
+"target": null,
+"duration": null,
+"reason": "спам"
+},
+"stats": null
+},
+{
+"text": "кик пять дней",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "кик ٣ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "мут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "мут 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "мут 10000 минут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 600000000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут 1234",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "мут 123456",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": "123456",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": "123456",
+"duration": 31622400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут 1д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 86400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут 1н",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 604800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут 2 недели",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 1209600000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут 2ч",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 7200000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут 30м",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 1800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут 5 минут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 300000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут 50",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "мут 999999д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 31622400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут @User",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": "@User",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": "@User",
+"duration": 7200000000,
+"reason": "тест"
+},
+"stats": null
+},
+{
+"text": "мут @a_b",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": "@a_b",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": "@ИВАН",
+"duration": 86400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "мут Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "мут ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "Х"
+},
+"stats": null
+},
+{
+"text": "мут абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "мут два часа",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 7200000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "мут на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "мут на 3 дня",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 259200000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут на неделю",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 604800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут на час",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 3600000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут навсегда",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 31622400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут один день",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 86400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут перманентно",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 31622400000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут причина флуд тут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "флуд тут"
+},
+"stats": null
+},
+{
+"text": "мут причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "мут причина: спам",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": null,
+"reason": "спам"
+},
+"stats": null
+},
+{
+"text": "мут пять дней",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 432000000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "мут ٣ч",
+"duration": null,
+"period": null,
+"mod": {
+"name": "мут",
+"target": null,
+"duration": 10800000000,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "на месяц",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "на час",
+"duration": null,
+"period": 3600000000,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить",
+"duration": null,
+"period": null,
+"mod": {
+"name": "открепить",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "открепить ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "открепить",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "открепить   ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "открепить",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "открепить 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить 10000 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить 1234",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить 123456",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить 1н",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить 2 недели",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить 2ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить 30м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить 5 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить 50",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить 999999д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить @User",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить @a_b",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить два часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить на 3 дня",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить на неделю",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить на час",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить один день",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить перманентно",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить причина флуд тут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить причина: спам",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить пять дней",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "открепить ٣ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "привет",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "пург ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "пург   ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "пург 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург 10000 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург 1234",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "1234"
+},
+"stats": null
+},
+{
+"text": "пург 123456",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "123456"
+},
+"stats": null
+},
+{
+"text": "пург 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург 1н",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург 2 недели",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург 2ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург 30м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург 5 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург 50",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "50"
+},
+"stats": null
+},
+{
+"text": "пург 999999д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург @User",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург @a_b",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург два часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург на 3 дня",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург на неделю",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург на час",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург один день",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург перманентно",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург причина флуд тут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург причина: спам",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург пять дней",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "пург ٣ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан",
+"duration": null,
+"period": null,
+"mod": {
+"name": "разбан",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "разбан ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "разбан",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "разбан   ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "разбан",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "разбан 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан 10000 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан 1234",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан 123456",
+"duration": null,
+"period": null,
+"mod": {
+"name": "разбан",
+"target": "123456",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "разбан 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан 1н",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан 2 недели",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан 2ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан 30м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан 5 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан 50",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан 999999д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан @User",
+"duration": null,
+"period": null,
+"mod": {
+"name": "разбан",
+"target": "@User",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "разбан @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан @a_b",
+"duration": null,
+"period": null,
+"mod": {
+"name": "разбан",
+"target": "@a_b",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "разбан @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан два часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан на 3 дня",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан на неделю",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан на час",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан один день",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан перманентно",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан причина флуд тут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан причина: спам",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан пять дней",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "разбан ٣ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут",
+"duration": null,
+"period": null,
+"mod": {
+"name": "размут",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "размут ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "размут",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "размут   ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "размут",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "размут 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут 10000 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут 1234",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут 123456",
+"duration": null,
+"period": null,
+"mod": {
+"name": "размут",
+"target": "123456",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "размут 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут 1н",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут 2 недели",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут 2ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут 30м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут 5 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут 50",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут 999999д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут @User",
+"duration": null,
+"period": null,
+"mod": {
+"name": "размут",
+"target": "@User",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "размут @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут @a_b",
+"duration": null,
+"period": null,
+"mod": {
+"name": "размут",
+"target": "@a_b",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "размут @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут два часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут на 3 дня",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут на неделю",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут на час",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут один день",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут перманентно",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут причина флуд тут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут причина: спам",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут пять дней",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "размут ٣ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "снять  варн ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "снять  варн   ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "снять  варн 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн 10000 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн 1234",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн 123456",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": "123456",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "снять  варн 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн 1н",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн 2 недели",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн 2ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн 30м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн 5 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн 50",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн 999999д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн @User",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": "@User",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "снять  варн @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн @a_b",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": "@a_b",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "снять  варн @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн два часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн на 3 дня",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн на неделю",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн на час",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн один день",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн перманентно",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн причина флуд тут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн причина: спам",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн пять дней",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять  варн ٣ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "снять варн ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "снять варн   ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "снять варн 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн 10000 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн 1234",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн 123456",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": "123456",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "снять варн 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн 1н",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн 2 недели",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн 2ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн 30м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн 5 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн 50",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн 999999д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн @User",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": "@User",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "снять варн @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн @a_b",
+"duration": null,
+"period": null,
+"mod": {
+"name": "снять варн",
+"target": "@a_b",
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "снять варн @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн два часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн на 3 дня",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн на неделю",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн на час",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн один день",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн перманентно",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн причина флуд тут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн причина: спам",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн пять дней",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "снять варн ٣ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "стата",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": [
+"hours",
+24
+]
+},
+{
+"text": "стата  3 ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": [
+"hours",
+3
+]
+},
+{
+"text": "стата 0ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "стата 12 часов",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": [
+"hours",
+12
+]
+},
+{
+"text": "стата 169ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "стата 5ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": [
+"hours",
+5
+]
+},
+{
+"text": "стата абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "стата вся",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": [
+"all",
+null
+]
+},
+{
+"text": "стата неделю",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": [
+"hours",
+168
+]
+},
+{
+"text": "статистика",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": [
+"hours",
+24
+]
+},
+{
+"text": "статистика месяц",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": [
+"hours",
+720
+]
+},
+{
+"text": "статистикаx",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить",
+"duration": null,
+"period": null,
+"mod": {
+"name": "удалить",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "удалить ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "удалить",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "удалить   ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "удалить",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "удалить 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить 10000 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить 1234",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить 123456",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить 1н",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить 2 недели",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить 2ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить 30м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить 5 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить 50",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить 999999д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить @User",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить @a_b",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить два часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить на 3 дня",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить на неделю",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить на час",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить один день",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить перманентно",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить причина флуд тут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить причина: спам",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить пять дней",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "удалить ٣ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "чистка ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "чистка   ",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": ""
+},
+"stats": null
+},
+{
+"text": "чистка 0",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка 0м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка 10000 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка 1234",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "1234"
+},
+"stats": null
+},
+{
+"text": "чистка 123456",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "123456"
+},
+"stats": null
+},
+{
+"text": "чистка 123456 навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка 1н",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка 2 недели",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка 2ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка 30м",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка 5 минут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка 50",
+"duration": null,
+"period": null,
+"mod": {
+"name": "чистка",
+"target": null,
+"duration": null,
+"reason": "50"
+},
+"stats": null
+},
+{
+"text": "чистка 999999д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка @User",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка @User 2ч причина: тест",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка @a_b",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка @ИВАН 1д",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка ² часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка Мут  Навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка ПРИЧИНА: Х",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка абв",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка два часа",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка и всё",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка на",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка на 3 дня",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка на неделю",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка на час",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка навсегда",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка один день",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка перманентно",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка причина флуд тут",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка причина:",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка причина: спам",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка пять дней",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "чистка ٣ч",
+"duration": null,
+"period": null,
+"mod": null,
+"stats": null
+},
+{
+"text": "٣ч",
+"duration": 10800000000,
+"period": 10800000000,
+"mod": null,
+"stats": null
+}
+]

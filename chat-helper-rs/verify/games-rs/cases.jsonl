@@ -1,0 +1,1606 @@
+{"fn": "find_crop", "args": ["😀"], "ok": null}
+{"fn": "find_crop", "args": ["a"], "ok": null}
+{"fn": "find_crop", "args": ["ünïcödé"], "ok": null}
+{"fn": "find_crop", "args": [".leading"], "ok": null}
+{"fn": "find_crop", "args": ["key_name-1"], "ok": null}
+{"fn": "find_crop", "args": ["tab\tseparatedline1\nline2"], "ok": null}
+{"fn": "find_crop", "args": ["tab\tseparated"], "ok": null}
+{"fn": "find_crop", "args": ["a.b.cab"], "ok": null}
+{"fn": "find_crop", "args": ["日本語のテキスト"], "ok": null}
+{"fn": "find_crop", "args": ["İstanbul😀"], "ok": null}
+{"fn": "find_crop", "args": ["Hello World"], "ok": null}
+{"fn": "find_crop", "args": ["ns:key.path"], "ok": null}
+{"fn": "find_crop", "args": ["﻿bom"], "ok": null}
+{"fn": "find_crop", "args": ["tab\tseparatedsrc/a/b.ts"], "ok": null}
+{"fn": "find_crop", "args": ["straße"], "ok": null}
+{"fn": "find_crop", "args": ["hello"], "ok": null}
+{"fn": "find_crop", "args": ["emoji 👍🏽 mix"], "ok": null}
+{"fn": "find_crop", "args": ["ab"], "ok": null}
+{"fn": "find_crop", "args": ["  padded  "], "ok": null}
+{"fn": "find_crop", "args": ["HELLOhello"], "ok": null}
+{"fn": "find_crop", "args": ["src/a/b.ts"], "ok": null}
+{"fn": "find_crop", "args": ["a:b:c"], "ok": null}
+{"fn": "find_crop", "args": ["trailing."], "ok": null}
+{"fn": "find_crop", "args": [""], "ok": null}
+{"fn": "find_crop", "args": ["abc./x/**/*.json"], "ok": null}
+{"fn": "find_crop", "args": [":"], "ok": null}
+{"fn": "find_crop", "args": ["😀{name} has {count} items"], "ok": null}
+{"fn": "find_crop", "args": ["  padded  a.b.c"], "ok": null}
+{"fn": "find_crop", "args": ["line1\nline2"], "ok": null}
+{"fn": "find_crop", "args": ["😀straße"], "ok": null}
+{"fn": "find_crop", "args": ["abca:b:c"], "ok": null}
+{"fn": "find_crop", "args": ["ünïcödéHello World"], "ok": null}
+{"fn": "find_crop", "args": ["é"], "ok": null}
+{"fn": "find_crop", "args": ["a.b.c"], "ok": null}
+{"fn": "find_crop", "args": ["a😀b😀c"], "ok": null}
+{"fn": "find_crop", "args": [":key_name-1"], "ok": null}
+{"fn": "find_crop", "args": ["hellotab\tseparated"], "ok": null}
+{"fn": "find_crop", "args": ["HELLO./x/**/*.json"], "ok": null}
+{"fn": "find_crop", "args": ["HELLO"], "ok": null}
+{"fn": "find_crop", "args": ["{name} has {count} items"], "ok": null}
+{"fn": "find_crop", "args": ["hello world"], "ok": null}
+{"fn": "find_crop", "args": ["src/a/b.tsa.b.c"], "ok": null}
+{"fn": "find_crop", "args": ["Hello Worldab"], "ok": null}
+{"fn": "find_crop", "args": ["ΣΊΣΥΦΟΣ"], "ok": null}
+{"fn": "find_crop", "args": ["./x/**/*.json"], "ok": null}
+{"fn": "find_crop", "args": ["a..b"], "ok": null}
+{"fn": "find_crop", "args": ["::"], "ok": null}
+{"fn": "find_crop", "args": ["{name} has {count} itemstrailing."], "ok": null}
+{"fn": "find_crop", "args": ["İstanbul"], "ok": null}
+{"fn": "find_crop", "args": ["./x/**/*.jsonİstanbul"], "ok": null}
+{"fn": "find_crop", "args": ["straßeHello World"], "ok": null}
+{"fn": "find_crop", "args": ["a:b:c{name} has {count} items"], "ok": null}
+{"fn": "find_crop", "args": ["hello:"], "ok": null}
+{"fn": "find_crop", "args": ["./x/**/*.jsona😀b😀c"], "ok": null}
+{"fn": "find_crop", "args": ["ΣΊΣΥΦΟΣns:key.path"], "ok": null}
+{"fn": "find_crop", "args": ["line1\nline2İstanbul"], "ok": null}
+{"fn": "find_crop", "args": ["HELLOtab\tseparated"], "ok": null}
+{"fn": "find_crop", "args": ["helloabc"], "ok": null}
+{"fn": "find_crop", "args": ["a.b.c日本語のテキスト"], "ok": null}
+{"fn": "find_crop", "args": ["hello worldabc"], "ok": null}
+{"fn": "find_crop", "args": ["abc"], "ok": null}
+{"fn": "find_crop", "args": ["hello world﻿bom"], "ok": null}
+{"fn": "find_crop", "args": ["emoji 👍🏽 mix./x/**/*.json"], "ok": null}
+{"fn": "find_crop", "args": ["a:b:cabc"], "ok": null}
+{"fn": "find_crop", "args": ["😀key_name-1"], "ok": null}
+{"fn": "find_crop", "args": ["emoji 👍🏽 mixns:key.path"], "ok": null}
+{"fn": "find_crop", "args": ["abstraße"], "ok": null}
+{"fn": "find_crop", "args": ["日本語のテキスト﻿bom"], "ok": null}
+{"fn": "find_crop", "args": ["a..bstraße"], "ok": null}
+{"fn": "find_crop", "args": ["line1\nline2hello"], "ok": null}
+{"fn": "find_crop", "args": [".leading{name} has {count} items"], "ok": null}
+{"fn": "find_crop", "args": ["ns:key.pathline1\nline2"], "ok": null}
+{"fn": "find_crop", "args": ["trailing.ab"], "ok": null}
+{"fn": "find_crop", "args": ["emoji 👍🏽 mixa😀b😀c"], "ok": null}
+{"fn": "find_crop", "args": ["aİstanbul"], "ok": null}
+{"fn": "find_crop", "args": ["日本語のテキストünïcödé"], "ok": null}
+{"fn": "find_crop", "args": ["hello worldsrc/a/b.ts"], "ok": null}
+{"fn": "find_crop", "args": ["tab\tseparatedΣΊΣΥΦΟΣ"], "ok": null}
+{"fn": "find_crop", "args": ["a..bHello World"], "ok": null}
+{"fn": "find_crop", "args": ["😀﻿bom"], "ok": null}
+{"fn": "find_crop", "args": ["a:b:c:"], "ok": null}
+{"fn": "find_crop", "args": ["hello worldHello World"], "ok": null}
+{"fn": "find_crop", "args": ["./x/**/*.jsonab"], "ok": null}
+{"fn": "find_crop", "args": ["key_name-1ns:key.path"], "ok": null}
+{"fn": "find_crop", "args": ["Hello WorldHELLO"], "ok": null}
+{"fn": "find_crop", "args": ["İstanbula"], "ok": null}
+{"fn": "find_crop", "args": ["hello worldhello"], "ok": null}
+{"fn": "find_crop", "args": ["a.b.c😀"], "ok": null}
+{"fn": "find_crop", "args": ["ns:key.pathé"], "ok": null}
+{"fn": "find_crop", "args": ["a.b.c{name} has {count} items"], "ok": null}
+{"fn": "find_crop", "args": ["ΣΊΣΥΦΟΣemoji 👍🏽 mix"], "ok": null}
+{"fn": "find_crop", "args": ["Hello Worlda😀b😀c"], "ok": null}
+{"fn": "find_crop", "args": ["a..ba.b.c"], "ok": null}
+{"fn": "find_crop", "args": ["HELLOa.b.c"], "ok": null}
+{"fn": "find_crop", "args": ["a.b.cns:key.path"], "ok": null}
+{"fn": "find_crop", "args": ["ΣΊΣΥΦΟΣabc"], "ok": null}
+{"fn": "find_crop", "args": ["ab  padded  "], "ok": null}
+{"fn": "find_crop", "args": ["ns:key.path./x/**/*.json"], "ok": null}
+{"fn": "find_crop", "args": ["﻿bomstraße"], "ok": null}
+{"fn": "find_crop", "args": ["Hello World日本語のテキスト"], "ok": null}
+{"fn": "find_crop", "args": ["./x/**/*.json日本語のテキスト"], "ok": null}
+{"fn": "find_crop", "args": ["straßeİstanbul"], "ok": null}
+{"fn": "find_crop", "args": ["line1\nline2.leading"], "ok": null}
+{"fn": "find_crop", "args": ["{name} has {count} itemsemoji 👍🏽 mix"], "ok": null}
+{"fn": "find_crop", "args": ["{name} has {count} items:"], "ok": null}
+{"fn": "find_crop", "args": ["İstanbulkey_name-1"], "ok": null}
+{"fn": "find_crop", "args": ["HELLOHello World"], "ok": null}
+{"fn": "find_crop", "args": ["hello worlda😀b😀c"], "ok": null}
+{"fn": "find_crop", "args": ["emoji 👍🏽 mixtab\tseparated"], "ok": null}
+{"fn": "find_crop", "args": ["{name} has {count} items  padded  "], "ok": null}
+{"fn": "find_crop", "args": ["éé"], "ok": null}
+{"fn": "find_crop", "args": ["Hello World./x/**/*.json"], "ok": null}
+{"fn": "find_crop", "args": ["hello worlda"], "ok": null}
+{"fn": "find_crop", "args": ["éa:b:c"], "ok": null}
+{"fn": "find_crop", "args": ["ésrc/a/b.ts"], "ok": null}
+{"fn": "find_crop", "args": ["İstanbula😀b😀c"], "ok": null}
+{"fn": "find_crop", "args": ["ns:key.path:"], "ok": null}
+{"fn": "find_crop", "args": ["a  padded  "], "ok": null}
+{"fn": "find_crop", "args": ["HELLOa..b"], "ok": null}
+{"fn": "find_crop", "args": ["key_name-1İstanbul"], "ok": null}
+{"fn": "find_crop", "args": ["line1\nline2Hello World"], "ok": null}
+{"fn": "find_crop", "args": ["HELLOa😀b😀c"], "ok": null}
+{"fn": "find_crop", "args": ["tab\tseparated﻿bom"], "ok": null}
+{"fn": "find_crop", "args": ["ΣΊΣΥΦΟΣ﻿bom"], "ok": null}
+{"fn": "find_crop", "args": ["HELLOabc"], "ok": null}
+{"fn": "find_crop", "args": ["tab\tseparatedkey_name-1"], "ok": null}
+{"fn": "find_crop", "args": [":a..b"], "ok": null}
+{"fn": "find_crop", "args": ["HELLOab"], "ok": null}
+{"fn": "find_crop", "args": ["😀HELLO"], "ok": null}
+{"fn": "find_crop", "args": ["line1\nline2a"], "ok": null}
+{"fn": "find_crop", "args": ["abHELLO"], "ok": null}
+{"fn": "find_crop", "args": ["key_name-1﻿bom"], "ok": null}
+{"fn": "find_crop", "args": ["a😀b😀ca.b.c"], "ok": null}
+{"fn": "find_crop", "args": ["ns:key.pathHELLO"], "ok": null}
+{"fn": "find_crop", "args": ["key_name-1ab"], "ok": null}
+{"fn": "find_crop", "args": ["./x/**/*.jsonHELLO"], "ok": null}
+{"fn": "find_crop", "args": ["ünïcödé:"], "ok": null}
+{"fn": "find_crop", "args": ["ns:key.pathab"], "ok": null}
+{"fn": "find_crop", "args": ["./x/**/*.jsonstraße"], "ok": null}
+{"fn": "find_crop", "args": ["a:b:cns:key.path"], "ok": null}
+{"fn": "find_crop", "args": ["a..b./x/**/*.json"], "ok": null}
+{"fn": "find_crop", "args": ["line1\nline2ünïcödé"], "ok": null}
+{"fn": "find_crop", "args": ["  padded  abc"], "ok": null}
+{"fn": "find_crop", "args": ["HELLOé"], "ok": null}
+{"fn": "find_crop", "args": ["{name} has {count} items./x/**/*.json"], "ok": null}
+{"fn": "find_crop", "args": ["straßeab"], "ok": null}
+{"fn": "find_crop", "args": [".leadingkey_name-1"], "ok": null}
+{"fn": "find_crop", "args": ["abcHello World"], "ok": null}
+{"fn": "find_crop", "args": ["{name} has {count} itemsab"], "ok": null}
+{"fn": "find_crop", "args": ["  padded  hello"], "ok": null}
+{"fn": "find_crop", "args": ["abcns:key.path"], "ok": null}
+{"fn": "find_crop", "args": ["a.b.ca😀b😀c"], "ok": null}
+{"fn": "find_crop", "args": ["abcab"], "ok": null}
+{"fn": "find_crop", "args": ["hellohello"], "ok": null}
+{"fn": "find_crop", "args": ["﻿bomline1\nline2"], "ok": null}
+{"fn": "find_crop", "args": ["{name} has {count} itemsünïcödé"], "ok": null}
+{"fn": "find_crop", "args": ["日本語のテキストns:key.path"], "ok": null}
+{"fn": "find_crop", "args": ["HELLO{name} has {count} items"], "ok": null}
+{"fn": "find_crop", "args": ["İstanbulünïcödé"], "ok": null}
+{"fn": "find_crop", "args": ["abİstanbul"], "ok": null}
+{"fn": "find_crop", "args": ["ns:key.pathhello world"], "ok": null}
+{"fn": "find_crop", "args": ["emoji 👍🏽 mixemoji 👍🏽 mix"], "ok": null}
+{"fn": "find_crop", "args": ["{name} has {count} itemsa..b"], "ok": null}
+{"fn": "find_crop", "args": ["tab\tseparatedstraße"], "ok": null}
+{"fn": "find_crop", "args": ["ünïcödéns:key.path"], "ok": null}
+{"fn": "find_crop", "args": ["a.b.ctrailing."], "ok": null}
+{"fn": "find_crop", "args": ["a😀b😀chello world"], "ok": null}
+{"fn": "find_crop", "args": ["line1\nline2straße"], "ok": null}
+{"fn": "find_crop", "args": ["ünïcödé﻿bom"], "ok": null}
+{"fn": "find_crop", "args": ["a..b日本語のテキスト"], "ok": null}
+{"fn": "find_crop", "args": [":日本語のテキスト"], "ok": null}
+{"fn": "find_crop", "args": ["a.b.cé"], "ok": null}
+{"fn": "find_crop", "args": ["😀a..b"], "ok": null}
+{"fn": "find_crop", "args": ["trailing.{name} has {count} items"], "ok": null}
+{"fn": "find_crop", "args": ["ns:key.path  padded  "], "ok": null}
+{"fn": "find_crop", "args": ["a:b:c.leading"], "ok": null}
+{"fn": "find_crop", "args": ["ünïcödéstraße"], "ok": null}
+{"fn": "find_crop", "args": ["😀ΣΊΣΥΦΟΣ"], "ok": null}
+{"fn": "find_crop", "args": ["key_name-1line1\nline2"], "ok": null}
+{"fn": "find_crop", "args": ["line1\nline2HELLO"], "ok": null}
+{"fn": "find_crop", "args": ["ab./x/**/*.json"], "ok": null}
+{"fn": "find_crop", "args": ["hellohello world"], "ok": null}
+{"fn": "find_crop", "args": ["tab\tseparatedé"], "ok": null}
+{"fn": "find_crop", "args": ["abcé"], "ok": null}
+{"fn": "find_crop", "args": ["tab\tseparatedHELLO"], "ok": null}
+{"fn": "find_crop", "args": ["日本語のテキストhello"], "ok": null}
+{"fn": "find_crop", "args": [".leadinghello world"], "ok": null}
+{"fn": "find_crop", "args": ["é./x/**/*.json"], "ok": null}
+{"fn": "find_crop", "args": ["a:b:cΣΊΣΥΦΟΣ"], "ok": null}
+{"fn": "find_crop", "args": [".leadingİstanbul"], "ok": null}
+{"fn": "find_crop", "args": ["a😀b😀cİstanbul"], "ok": null}
+{"fn": "find_crop", "args": ["abkey_name-1"], "ok": null}
+{"fn": "find_crop", "args": ["abchello world"], "ok": null}
+{"fn": "find_crop", "args": ["﻿bom﻿bom"], "ok": null}
+{"fn": "find_crop", "args": ["İstanbulHELLO"], "ok": null}
+{"fn": "find_crop", "args": ["﻿bomHELLO"], "ok": null}
+{"fn": "find_crop", "args": ["line1\nline2ab"], "ok": null}
+{"fn": "find_crop", "args": ["trailing.hello"], "ok": null}
+{"fn": "find_crop", "args": ["😀line1\nline2"], "ok": null}
+{"fn": "find_crop", "args": ["helloemoji 👍🏽 mix"], "ok": null}
+{"fn": "find_crop", "args": ["héllo wörld"], "ok": null}
+{"fn": "find_crop", "args": ["👍🏽 thumbs"], "ok": null}
+{"fn": "find_crop", "args": ["日本語"], "ok": null}
+{"fn": "find_crop", "args": ["ılık ırmak"], "ok": null}
+{"fn": "find_crop", "args": ["👨‍👩‍👧 family"], "ok": null}
+{"fn": "find_crop", "args": ["a b"], "ok": null}
+{"fn": "find_crop", "args": ["a😀b"], "ok": null}
+{"fn": "new_garden", "args": [], "ok": {"slots": 3, "plots": [null, null, null], "last_water": null}}
+{"fn": "plant", "args": ["x", "key_name-1", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", ".leading", 100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [["a", 1], "HELLOΣΊΣΥΦΟΣ", 9223372036854775807], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": ["x", "a.b.c", 2], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [null, "a😀b😀cΣΊΣΥΦΟΣ", 7], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [{"a": "b"}, "", 0], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{"a": "b"}, "./x/**/*.json", 1], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [["a", 1], "tab\tseparated", 255], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [{"a": "b"}, "😀é", -2147483648], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{}, "ns:key.path", -2147483648], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{}, "﻿bomé", 0], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [true, "{name} has {count} items", 7], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": ["x", "emoji 👍🏽 mix", 2], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "./x/**/*.json", 2], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [0, "a.b.c", 255], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [{}, "a:b:c", 2], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [true, ":", 9223372036854775807], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [0, "{name} has {count} items", 2], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [["a", 1], "  padded  ", -2147483648], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [{}, "abcHELLO", -2147483648], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, ":", -2147483648], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [0, "{name} has {count} items", 2147483647], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": ["x", "a:", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [0, "  padded  ", 9223372036854775807], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [[], "hello world", -2147483648], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": ["x", "./x/**/*.json", 1], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "tab\tseparated", 9223372036854775807], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "key_name-1", 9223372036854775807], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": ["x", "a..b", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [null, "ünïcödé", 2], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [{"a": "b"}, "./x/**/*.json", 2147483647], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{"a": "b"}, "key_name-1Hello World", 7], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [["a", 1], "日本語のテキストab", 100], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [{}, "aa.b.c", 42], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{"a": "b"}, "ünïcödé", 255], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{}, "ünïcödé", 0], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [null, "{name} has {count} items", 0], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [[], ":", 255], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [true, "line1\nline2", 2147483647], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [true, "./x/**/*.json", 255], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [{"a": "b"}, "﻿bom", 100], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [0, "a.b.c", 7], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [null, "  padded  ", 9223372036854775807], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": ["x", ":hello", 2147483647], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [true, "ΣΊΣΥΦΟΣ", 9223372036854775807], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [0, "日本語のテキスト", -1], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [0, ":ünïcödé", 9223372036854775807], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [true, "a😀b😀c", -1], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [null, "tab\tseparated", -1], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "src/a/b.ts", 2147483647], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [null, "  padded  ünïcödé", -100], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "İstanbul", 9223372036854775807], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [[], "Hello World", -100], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [[], ".leading", 0], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [0, "﻿bom", -100], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": ["x", "tab\tseparated", 2], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "é", 1], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [null, ".leading", 7], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [{}, "line1\nline2", 2147483647], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "hello world", -2147483648], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [["a", 1], "a..b", 7], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [[], "﻿bom", 2], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [{}, "﻿bom", 7], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [["a", 1], "HELLO", 100], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [true, "straße", 1], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [["a", 1], "a..b", -100], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [0, ":", 2147483647], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [null, "﻿bom", 100], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "ΣΊΣΥΦΟΣ", 0], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{}, "straße", 7], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [true, "a..b", -100], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [null, "日本語のテキスト", -2147483648], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [["a", 1], "İstanbul", 7], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [{}, "a:b:c", 7], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [null, "a😀b😀c", 9223372036854775807], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [{"a": "b"}, "  padded  HELLO", -1], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [["a", 1], "é", -1], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [{"a": "b"}, "Hello World", -1], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [0, "key_name-1", -2147483648], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [true, "a..b", 2147483647], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "﻿bom", 9223372036854775807], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{}, "😀", -100], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "HELLO", 2], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{"a": "b"}, "trailing.", 7], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "﻿bom", -2147483648], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [0, "abc", 1], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [0, "src/a/b.ts", 2147483647], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [{"a": "b"}, "hello world", 9223372036854775807], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [null, "a", 255], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "  padded  😀", -2147483648], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [[], "hello", 1], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [{}, "emoji 👍🏽 mix", 9223372036854775807], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{}, "İstanbul  padded  ", 100], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": ["x", "HELLO", 1], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [{"a": "b"}, "ΣΊΣΥΦΟΣ", 2], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [true, "emoji 👍🏽 mix", 2], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [0, "İstanbul", 255], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [{}, ":", -1], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [["a", 1], ":", 2], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [null, "hello world", 42], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [["a", 1], "aa..b", 1], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [{"a": "b"}, "a:b:c", 9223372036854775807], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [["a", 1], "ab", 9223372036854775807], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [{}, "a:b:chello", 2], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [0, "a😀b😀cemoji 👍🏽 mix", -2147483648], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [0, "hello", 100], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [{"a": "b"}, "a.b.c{name} has {count} items", 100], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [null, "a..b", 2], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [0, "key_name-1.leading", -100], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [{"a": "b"}, "hello", 2], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [null, "a.b.csrc/a/b.ts", 100], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [null, "abc", 7], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [{}, "hello", 255], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [["a", 1], "İstanbul:", -1], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "﻿bom", -1], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [null, "abc", -100], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [{}, "straße", -100], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [0, "a😀b😀c", 1], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [{}, "ünïcödé", 7], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [true, "a😀b😀chello", 2], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": ["x", ":", 9223372036854775807], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [{}, "emoji 👍🏽 mix", 7], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": ["x", "hello", 0], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "tab\tseparated", 1], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": ["x", "X", 2], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [{}, "line1\nline2", 1], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [0, ":", 42], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "line1\nline2", 9223372036854775807], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{"a": "b"}, ":", 7], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [true, "hello worldhello", -1], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "hello", -1], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [true, "abchello world", -1], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [{"a": "b"}, "HELLO", 42], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [true, "a.b.cstraße", 1], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [0, "ns:key.pathsrc/a/b.ts", 2147483647], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [true, "  padded  a.b.c", 2], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [true, "ΣΊΣΥΦΟΣ", -100], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [0, "", -1], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "{name} has {count} items", 2147483647], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": ["x", "tab\tseparated", 42], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [{"a": "b"}, "Hello World", -2147483648], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "line1\nline2", 2], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [["a", 1], "emoji 👍🏽 mix", 2], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [{}, "a..b", -1], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{"a": "b"}, "é", -1], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [["a", 1], "﻿bom", 2], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [true, "😀", 2], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": ["x", "ünïcödé", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [null, "  padded  ", 100], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [[], "  padded  key_name-1", -2147483648], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [["a", 1], "a", 42], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [0, "tab\tseparated", 42], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [[], "﻿bomünïcödé", 2], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "{name} has {count} items", 0], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [["a", 1], "HELLO", 7], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [null, "﻿bom", 9223372036854775807], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": ["x", ".leading", 2147483647], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "ns:key.path", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [null, "hello", 2147483647], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [["a", 1], "hello", 9223372036854775807], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [null, "hellons:key.path", 100], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [{"a": "b"}, ".leading", -2147483648], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{"a": "b"}, "a", 42], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [["a", 1], "ünïcödé", 2147483647], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "./x/**/*.jsonünïcödé", 1], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "trailing.", 2], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [0, "./x/**/*.json", 2], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [{}, "﻿bom", 100], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [true, "", 255], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [null, ":", -1], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [["a", 1], "a", 255], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [["a", 1], "./x/**/*.json", 0], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [true, "﻿bom", 2], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [null, "ünïcödé", -100], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [null, "﻿bom", 1], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": ["x", "a:b:c", 2147483647], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [0, ".leadingemoji 👍🏽 mix", 42], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [["a", 1], "", 100], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [0, "﻿bom", 0], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "plant", "args": [null, "  padded  ", -1], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": ["x", "HELLOsrc/a/b.ts", 7], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "hello日本語のテキスト", 7], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [true, "HELLO", -2147483648], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": ["x", "./x/**/*.json", 2147483647], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [["a", 1], "src/a/b.ts", -1], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": ["x", "  padded  ", 1], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [{}, "tab\tseparated", 2147483647], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [true, "hello world  padded  ", -1], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [true, "", 1], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [true, "İstanbul", 100], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "plant", "args": [null, "﻿bom", 0], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [["a", 1], "a:b:c./x/**/*.json", 0], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": [[], "hello world", 0], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "plant", "args": ["x", "{name} has {count} items", 100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "HELLOabc", 100], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": ["./x/**/*.j", "./x/**/*.json", -2147483648], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": [null, "tab\tseparated", 42], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": [{"a": "b"}, "line1\nline2", 255], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [{"a": {"b": "c"}}, "HELLO", 1], "error": "KeyError: 'plots'"}
+{"fn": "plant", "args": [null, "ab", 42], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "plant", "args": ["x", "héllo wörld", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "👍🏽 thumbs", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "日本語", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "é", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "İstanbul", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "straße", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "ılık ırmak", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "👨‍👩‍👧 family", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "a b", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "ΣΊΣΥΦΟΣ", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "a😀b", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "﻿bom", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "key_name-1", -7], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "key_name-1", -1], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "key_name-1", 0], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "key_name-1", 2147483648], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "key_name-1", -2147483649], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "key_name-1", 9007199254740993], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "key_name-1", 9223372036854775807], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "plant", "args": ["x", "key_name-1", -9223372036854775808], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "harvest", "args": ["x", 9223372036854775807], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "harvest", "args": [true, 255], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "harvest", "args": ["x", 7], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "harvest", "args": [{"a": "b"}, -1], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [[], 1], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [{"a": {"b": "c"}}, -100], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [{}, 1], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [["a", 1], 7], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [null, 0], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "harvest", "args": [true, 100], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "harvest", "args": [[], 7], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [{"a": "b"}, 42], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": ["x", -1], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "harvest", "args": [{"a": {"b": "c"}}, -1], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [{}, 42], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [{"a": {"b": "c"}}, 2], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [[], -2147483648], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [{"a": "b"}, 0], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [["a", 1], -1], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [null, 2147483647], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "harvest", "args": [{"a": {"b": "c"}}, 100], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [true, -100], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "harvest", "args": [true, 2], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "harvest", "args": [true, -1], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "harvest", "args": [null, 255], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "harvest", "args": [true, 7], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "harvest", "args": [{}, 255], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [0, 0], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "harvest", "args": [{"a": {"b": "c"}}, 255], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [{"a": "b"}, 255], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [0, 1], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "harvest", "args": [["a", 1], 100], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [{"a": "b"}, 100], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [[], 255], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [{}, -100], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [{"a": "b"}, -2147483648], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [{"a": {"b": "c"}}, 2147483647], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [0, 255], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "harvest", "args": ["x", 1], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "harvest", "args": [0, 9223372036854775807], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "harvest", "args": [{"a": {"b": "c"}}, -2147483648], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [true, 1], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "harvest", "args": [0, 2], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "harvest", "args": [null, -1], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "harvest", "args": [true, 0], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "harvest", "args": [0, 7], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "harvest", "args": ["x", 42], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "harvest", "args": [{}, 2], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [{"a": {"b": "c"}}, 7], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [null, 9223372036854775807], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "harvest", "args": [["a", 1], -100], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [[], 0], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [{}, -1], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": ["x", 2], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "harvest", "args": [[], 42], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [{"a": {"b": "c"}}, 9223372036854775807], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [[], 2147483647], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [0, -100], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "harvest", "args": [["a", 1], 1], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [[], 9223372036854775807], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [null, 42], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "harvest", "args": [{}, 2147483647], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [null, 100], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "harvest", "args": [{"a": "b"}, 2], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [{"a": "b"}, 2147483647], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [["a", 1], 9223372036854775807], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [["a", 1], -2147483648], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [true, 9223372036854775807], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "harvest", "args": [{}, 9223372036854775807], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [0, 2147483647], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "harvest", "args": [{"a": "b"}, 9223372036854775807], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": ["x", 255], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "harvest", "args": ["x", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "harvest", "args": [{"a": "b"}, 1], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [[], 100], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [["a", 1], 255], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [null, 2], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "harvest", "args": [null, 7], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "harvest", "args": [0, -1], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "harvest", "args": [{"a": "b"}, -100], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [["a", 1], 42], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [{"a": {"b": "c"}}, 1], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [[], -1], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [null, -100], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "harvest", "args": [{}, 100], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [["a", 1], 2147483647], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": ["x", -2147483648], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "harvest", "args": [{}, 7], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [{}, 0], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [true, -2147483648], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "harvest", "args": [null, -2147483648], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "harvest", "args": [true, 2147483647], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "harvest", "args": [[], 2], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": ["x", 2147483647], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "harvest", "args": [{"a": {"b": "c"}}, 0], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [[], -100], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [true, 42], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "harvest", "args": [["a", 1], 2], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": [null, 1], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "harvest", "args": [0, 42], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "harvest", "args": [0, -2147483648], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "harvest", "args": ["x", 100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "harvest", "args": [{"a": {"b": "c"}}, 42], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [{"a": "b"}, 7], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [{}, -2147483648], "error": "KeyError: 'plots'"}
+{"fn": "harvest", "args": [0, 100], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "harvest", "args": [["a", 1], 0], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "harvest", "args": ["x", 0], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "harvest", "args": ["x", -7], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "harvest", "args": ["x", 2147483648], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "harvest", "args": ["x", -2147483649], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "harvest", "args": ["x", 9007199254740993], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "harvest", "args": ["x", -9223372036854775808], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "water", "args": [{}, 0], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [0, -2147483648], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "water", "args": [{"a": "b"}, 1], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [{"a": {"b": "c"}}, 2147483647], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [{"a": {"b": "c"}}, 0], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [{"a": "b"}, 7], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [{"a": {"b": "c"}}, 255], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [true, 2147483647], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "water", "args": ["x", 0], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "water", "args": [{"a": "b"}, 255], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [null, 100], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "water", "args": [["a", 1], -100], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [{}, 2], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [null, 2], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "water", "args": [true, 0], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "water", "args": [null, 1], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "water", "args": [0, 0], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "water", "args": [[], 0], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [true, 100], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "water", "args": [null, 255], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "water", "args": [0, 2], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "water", "args": [{}, 1], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [0, 2147483647], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "water", "args": [{}, 7], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [{"a": "b"}, 42], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": ["x", -1], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "water", "args": [["a", 1], 7], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [{"a": {"b": "c"}}, -100], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [{"a": {"b": "c"}}, 7], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [{}, 42], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [0, -1], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "water", "args": ["x", 7], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "water", "args": [null, -100], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "water", "args": [{"a": {"b": "c"}}, -2147483648], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [{}, -100], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [null, 2147483647], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "water", "args": [{"a": {"b": "c"}}, 100], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [true, 1], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "water", "args": [null, -2147483648], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "water", "args": [true, -1], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "water", "args": [{"a": "b"}, -1], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [{"a": {"b": "c"}}, 9223372036854775807], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": ["x", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "water", "args": [{}, 2147483647], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [true, 2], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "water", "args": ["x", 1], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "water", "args": [null, 9223372036854775807], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "water", "args": [true, 255], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "water", "args": [[], -100], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [[], 255], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [{}, -1], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [true, -100], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "water", "args": [0, 42], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "water", "args": [{"a": "b"}, 0], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [{"a": "b"}, -100], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [0, 9223372036854775807], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "water", "args": [[], 2], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [{"a": "b"}, 2147483647], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [[], -1], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [{"a": {"b": "c"}}, 2], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [[], 100], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [0, 1], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "water", "args": [0, 255], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "water", "args": [["a", 1], -2147483648], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [{}, 100], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": ["x", -2147483648], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "water", "args": [["a", 1], 2147483647], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [["a", 1], 2], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [{"a": "b"}, 2], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [[], 9223372036854775807], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [{"a": {"b": "c"}}, 42], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [{"a": {"b": "c"}}, -1], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [null, 0], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "water", "args": [{}, 9223372036854775807], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [{}, 255], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [0, -100], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "water", "args": [null, 42], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "water", "args": [0, 100], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "water", "args": [["a", 1], 255], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": ["x", 2], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "water", "args": [[], 42], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [true, 9223372036854775807], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "water", "args": ["x", 9223372036854775807], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "water", "args": [[], 1], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [[], 7], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [{}, -2147483648], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": ["x", 2147483647], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "water", "args": ["x", 255], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "water", "args": ["x", 100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "water", "args": [[], 2147483647], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [true, 42], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "water", "args": [null, -1], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "water", "args": [["a", 1], 1], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [["a", 1], 0], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [{"a": {"b": "c"}}, 1], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [true, -2147483648], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "water", "args": [[], -2147483648], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [{"a": "b"}, 9223372036854775807], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [0, 7], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "water", "args": [true, 7], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "water", "args": ["x", 42], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "water", "args": [["a", 1], 100], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [["a", 1], 9223372036854775807], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [{"a": "b"}, -2147483648], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [{"a": "b"}, 100], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [["a", 1], -1], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [null, 7], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "water", "args": [["a", 1], 42], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "water", "args": [{}, -7], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [{}, 2147483648], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [{}, -2147483649], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [{}, 9007199254740993], "error": "KeyError: 'plots'"}
+{"fn": "water", "args": [{}, -9223372036854775808], "error": "KeyError: 'plots'"}
+{"fn": "expand_cost", "args": [[]], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "expand_cost", "args": [true], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "expand_cost", "args": ["x"], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "expand_cost", "args": [{"a": {"b": "c"}}], "error": "KeyError: 'slots'"}
+{"fn": "expand_cost", "args": [["a", 1]], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "expand_cost", "args": [0], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "expand_cost", "args": [{}], "error": "KeyError: 'slots'"}
+{"fn": "expand_cost", "args": [{"a": "b"}], "error": "KeyError: 'slots'"}
+{"fn": "expand_cost", "args": [null], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "expand", "args": [0], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "expand", "args": ["x"], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "expand", "args": [["a", 1]], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "expand", "args": [[]], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "expand", "args": [{"a": "b"}], "error": "KeyError: 'slots'"}
+{"fn": "expand", "args": [{"a": {"b": "c"}}], "error": "KeyError: 'slots'"}
+{"fn": "expand", "args": [{}], "error": "KeyError: 'slots'"}
+{"fn": "expand", "args": [null], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "expand", "args": [true], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "fmt_left", "args": [42], "ok": "1 мин"}
+{"fn": "fmt_left", "args": [9223372036854775807], "ok": "2562047788015215 ч 30 мин"}
+{"fn": "fmt_left", "args": [1], "ok": "1 мин"}
+{"fn": "fmt_left", "args": [7], "ok": "1 мин"}
+{"fn": "fmt_left", "args": [255], "ok": "4 мин"}
+{"fn": "fmt_left", "args": [2147483647], "ok": "596523 ч 14 мин"}
+{"fn": "fmt_left", "args": [-2147483648], "ok": "1 мин"}
+{"fn": "fmt_left", "args": [-1], "ok": "1 мин"}
+{"fn": "fmt_left", "args": [0], "ok": "1 мин"}
+{"fn": "fmt_left", "args": [2], "ok": "1 мин"}
+{"fn": "fmt_left", "args": [-100], "ok": "1 мин"}
+{"fn": "fmt_left", "args": [100], "ok": "1 мин"}
+{"fn": "fmt_left", "args": [-7], "ok": "1 мин"}
+{"fn": "fmt_left", "args": [2147483648], "ok": "596523 ч 14 мин"}
+{"fn": "fmt_left", "args": [-2147483649], "ok": "1 мин"}
+{"fn": "fmt_left", "args": [9007199254740993], "ok": "2501999792983 ч 36 мин"}
+{"fn": "fmt_left", "args": [-9223372036854775808], "ok": "1 мин"}
+{"fn": "render", "args": [true, -100], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "render", "args": [true, -1], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "render", "args": [0, -1], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "render", "args": [{"a": {"b": "c"}}, -1], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [{"a": {"b": "c"}}, 9223372036854775807], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [0, 255], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "render", "args": ["x", 2147483647], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "render", "args": [{}, 1], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [0, 2147483647], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "render", "args": [["a", 1], -2147483648], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [["a", 1], 2147483647], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [true, 100], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "render", "args": [{"a": {"b": "c"}}, 255], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [{"a": {"b": "c"}}, 2], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [0, 0], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "render", "args": [true, 1], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "render", "args": [[], 2147483647], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [true, 255], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "render", "args": [{"a": "b"}, 255], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [[], 100], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [[], 0], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [0, 9223372036854775807], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "render", "args": [["a", 1], 1], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [true, 2], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "render", "args": [0, 1], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "render", "args": ["x", 42], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "render", "args": [null, 7], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "render", "args": [{}, 7], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [["a", 1], 9223372036854775807], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [true, 9223372036854775807], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "render", "args": [{}, -2147483648], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [{}, 9223372036854775807], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [{"a": {"b": "c"}}, 1], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [null, 255], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "render", "args": [[], 7], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [0, 7], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "render", "args": [0, -2147483648], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "render", "args": [true, 2147483647], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "render", "args": [{"a": "b"}, 0], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [{"a": {"b": "c"}}, 2147483647], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [{"a": "b"}, 7], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [{"a": {"b": "c"}}, 42], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [{"a": "b"}, 9223372036854775807], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [0, -100], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "render", "args": [{}, 100], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [0, 2], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "render", "args": [{}, 2], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [{}, -1], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [true, 7], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "render", "args": [null, 2], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "render", "args": [[], -2147483648], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [{"a": {"b": "c"}}, -100], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [null, 100], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "render", "args": [{"a": "b"}, 2], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": ["x", 7], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "render", "args": [{"a": "b"}, 42], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [{"a": "b"}, -100], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [{"a": "b"}, -2147483648], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [[], 9223372036854775807], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [{}, 0], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": ["x", 9223372036854775807], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "render", "args": [true, -2147483648], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "render", "args": [["a", 1], 100], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [null, 1], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "render", "args": [null, -1], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "render", "args": ["x", -2147483648], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "render", "args": [["a", 1], 255], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [null, -100], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "render", "args": ["x", 0], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "render", "args": [[], 1], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [{}, -100], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [{}, 2147483647], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [{}, 255], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [null, 0], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "render", "args": [{}, 42], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": ["x", 1], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "render", "args": [{"a": {"b": "c"}}, 7], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [{"a": {"b": "c"}}, 0], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": ["x", 2], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "render", "args": ["x", -1], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "render", "args": [[], -1], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [{"a": "b"}, -1], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [true, 42], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "render", "args": [0, 100], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "render", "args": [["a", 1], 7], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [null, -2147483648], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "render", "args": [["a", 1], 2], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [0, 42], "error": "TypeError: 'int' object is not subscriptable"}
+{"fn": "render", "args": ["x", 100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "render", "args": [[], -100], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [{"a": {"b": "c"}}, 100], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [null, 2147483647], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "render", "args": [["a", 1], -100], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [{"a": "b"}, 1], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [null, 9223372036854775807], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "render", "args": ["x", 255], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "render", "args": [true, 0], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "render", "args": ["x", -100], "error": "TypeError: string indices must be integers, not 'str'"}
+{"fn": "render", "args": [[], 255], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [{"a": "b"}, 100], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [{"a": "b"}, 2147483647], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [{"a": {"b": "c"}}, -2147483648], "error": "KeyError: 'plots'"}
+{"fn": "render", "args": [["a", 1], -1], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [[], 42], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [["a", 1], 42], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [null, 42], "error": "TypeError: 'NoneType' object is not subscriptable"}
+{"fn": "render", "args": [["a", 1], 0], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [[], 2], "error": "TypeError: list indices must be integers or slices, not str"}
+{"fn": "render", "args": [true, -7], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "render", "args": [true, 2147483648], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "render", "args": [true, -2147483649], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "render", "args": [true, 9007199254740993], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "render", "args": [true, -9223372036854775808], "error": "TypeError: 'bool' object is not subscriptable"}
+{"fn": "judge", "args": ["key_name-1", "ame-"], "error": "KeyError: 'key_name-1'"}
+{"fn": "judge", "args": ["a..b", "a:b:c"], "error": "KeyError: 'a..b'"}
+{"fn": "judge", "args": ["{name} has {count} items", "t"], "error": "KeyError: '{name} has {count} items'"}
+{"fn": "judge", "args": ["trailing.", "tab\tseparated"], "error": "KeyError: 'trailing.'"}
+{"fn": "judge", "args": ["﻿bom", "bo"], "error": "KeyError: '\\ufeffbom'"}
+{"fn": "judge", "args": ["hello worldab", "HELLO"], "error": "KeyError: 'hello worldab'"}
+{"fn": "judge", "args": ["hello worlda:b:c", ":"], "error": "KeyError: 'hello worlda:b:c'"}
+{"fn": "judge", "args": ["﻿bo", "﻿bom"], "error": "KeyError: '\\ufeffbo'"}
+{"fn": "judge", "args": ["é", "tab\tseparated"], "error": "KeyError: 'é'"}
+{"fn": "judge", "args": ["ns:key.path", "y"], "error": "KeyError: 'ns:key.path'"}
+{"fn": "judge", "args": ["ΣΊΣΥΦΟΣ", "abc"], "error": "KeyError: 'ΣΊΣΥΦΟΣ'"}
+{"fn": "judge", "args": ["éa", "ns:key.path"], "error": "KeyError: 'éa'"}
+{"fn": "judge", "args": ["abc", "Hello World"], "error": "KeyError: 'abc'"}
+{"fn": "judge", "args": ["Υ", "ΣΊΣΥΦΟΣ"], "error": "KeyError: 'Υ'"}
+{"fn": "judge", "args": ["a.b.cİstanbul", "a..bemoji 👍🏽 mix"], "error": "KeyError: 'a.b.cİstanbul'"}
+{"fn": "judge", "args": ["./x/**/*.jsonline1\nline2", "ab"], "error": "KeyError: './x/**/*.jsonline1\\nline2'"}
+{"fn": "judge", "args": ["s.l", "src/a/b.ts.leading"], "error": "KeyError: 's.l'"}
+{"fn": "judge", "args": ["a..b", "Hello World:"], "error": "KeyError: 'a..b'"}
+{"fn": "judge", "args": ["﻿bom", "a..b"], "error": "KeyError: '\\ufeffbom'"}
+{"fn": "judge", "args": ["Hello World", "HELLO"], "error": "KeyError: 'Hello World'"}
+{"fn": "judge", "args": ["straßehello world", "tab\tseparated"], "error": "KeyError: 'straßehello world'"}
+{"fn": "judge", "args": ["ns:key.path", "😀"], "error": "KeyError: 'ns:key.path'"}
+{"fn": "judge", "args": ["  padded  ", "a"], "error": "KeyError: '  padded  '"}
+{"fn": "judge", "args": ["Hello World", "ΣΊΣΥΦΟΣ"], "error": "KeyError: 'Hello World'"}
+{"fn": "judge", "args": ["İstanbul", "﻿bom"], "error": "KeyError: 'İstanbul'"}
+{"fn": "judge", "args": ["hello world", "emoji 👍🏽 mix"], "error": "KeyError: 'hello world'"}
+{"fn": "judge", "args": ["ab", "ΣΊΣΥΦΟΣ"], "error": "KeyError: 'ab'"}
+{"fn": "judge", "args": ["﻿bom", "m"], "error": "KeyError: '\\ufeffbom'"}
+{"fn": "judge", "args": ["trailing.", "ai"], "error": "KeyError: 'trailing.'"}
+{"fn": "judge", "args": ["llo", "hello"], "error": "KeyError: 'llo'"}
+{"fn": "judge", "args": ["ns:key.path", "a:b:c"], "error": "KeyError: 'ns:key.path'"}
+{"fn": "judge", "args": ["a.b.cabc", "line1\nline2"], "error": "KeyError: 'a.b.cabc'"}
+{"fn": "judge", "args": ["a", "  padded  "], "error": "KeyError: 'a'"}
+{"fn": "judge", "args": ["hello worlda..b", "helloa.b.c"], "error": "KeyError: 'hello worlda..b'"}
+{"fn": "judge", "args": [":key.pa", "ns:key.path"], "error": "KeyError: ':key.pa'"}
+{"fn": "judge", "args": ["日本語のテキスト", "hello world"], "error": "KeyError: '日本語のテキスト'"}
+{"fn": "judge", "args": ["ab", "hello"], "error": "KeyError: 'ab'"}
+{"fn": "judge", "args": ["L", "İstanbul"], "error": "KeyError: 'L'"}
+{"fn": "judge", "args": ["./x/**/*.json", "line1\nline2ab"], "error": "KeyError: './x/**/*.json'"}
+{"fn": "judge", "args": ["straße", "abc"], "error": "KeyError: 'straße'"}
+{"fn": "judge", "args": ["straße", ":ns:key.path"], "error": "KeyError: 'straße'"}
+{"fn": "judge", "args": ["EY.PAT", "ns:key.path"], "error": "KeyError: 'EY.PAT'"}
+{"fn": "judge", "args": ["key_name-1", "straße:"], "error": "KeyError: 'key_name-1'"}
+{"fn": "judge", "args": [":", "ab"], "error": "KeyError: ':'"}
+{"fn": "judge", "args": ["el", "hello world"], "error": "KeyError: 'el'"}
+{"fn": "judge", "args": ["src/a/b.ts", "😀hello"], "error": "KeyError: 'src/a/b.ts'"}
+{"fn": "judge", "args": ["😀Hello World", "rl"], "error": "KeyError: '😀Hello World'"}
+{"fn": "judge", "args": ["tab\tseparated", "Hello WorldHello World"], "error": "KeyError: 'tab\\tseparated'"}
+{"fn": "judge", "args": ["lead", ".leading"], "error": "KeyError: 'lead'"}
+{"fn": "judge", "args": ["﻿bom", "  padded  "], "error": "KeyError: '\\ufeffbom'"}
+{"fn": "judge", "args": ["a..b", "hello"], "error": "KeyError: 'a..b'"}
+{"fn": "judge", "args": ["ab:", ""], "error": "KeyError: 'ab:'"}
+{"fn": "judge", "args": ["HELLO", "a.b.ca"], "error": "KeyError: 'HELLO'"}
+{"fn": "judge", "args": ["ns:key.pathtab\tseparated", "  padded  "], "error": "KeyError: 'ns:key.pathtab\\tseparated'"}
+{"fn": "judge", "args": ["D", "ünïcödé"], "error": "KeyError: 'D'"}
+{"fn": "judge", "args": ["aße./x/**/*.js", "straße./x/**/*.json"], "error": "KeyError: 'aße./x/**/*.js'"}
+{"fn": "judge", "args": ["Hello World", "a:b:c"], "error": "KeyError: 'Hello World'"}
+{"fn": "judge", "args": ["ab", "ΣΊΣΥΦΟΣa😀b😀c"], "error": "KeyError: 'ab'"}
+{"fn": "judge", "args": ["a😀b😀c{name} has {count} items", "src/a/b.ts"], "error": "KeyError: 'a😀b😀c{name} has {count} items'"}
+{"fn": "judge", "args": ["́", "é"], "error": "KeyError: '́'"}
+{"fn": "judge", "args": ["ünïcödéé", "trailing."], "error": "KeyError: 'ünïcödéé'"}
+{"fn": "judge", "args": ["日本語のテキストkey_name-1", "a"], "error": "KeyError: '日本語のテキストkey_name-1'"}
+{"fn": "judge", "args": ["abc", "emoji 👍🏽 mix"], "error": "KeyError: 'abc'"}
+{"fn": "judge", "args": ["emoji 👍🏽 mixünïcödé", "ns:key.path"], "error": "KeyError: 'emoji 👍🏽 mixünïcödé'"}
+{"fn": "judge", "args": ["a..b", "ab"], "error": "KeyError: 'a..b'"}
+{"fn": "judge", "args": ["a", "ΣΊΣΥΦΟΣ"], "error": "KeyError: 'a'"}
+{"fn": "judge", "args": ["hello", ".leading"], "error": "KeyError: 'hello'"}
+{"fn": "judge", "args": ["", "line1\nline2"], "error": "KeyError: ''"}
+{"fn": "judge", "args": ["a..b", "{name} has {count} items"], "error": "KeyError: 'a..b'"}
+{"fn": "judge", "args": [":C", "a:b:c"], "error": "KeyError: ':C'"}
+{"fn": "judge", "args": ["trailing.", "ünïcödé"], "error": "KeyError: 'trailing.'"}
+{"fn": "judge", "args": ["ünïcödé", "a.b.c"], "error": "KeyError: 'ünïcödé'"}
+{"fn": "judge", "args": ["ünïcödé", "line1\nline2ns:key.path"], "error": "KeyError: 'ünïcödé'"}
+{"fn": "judge", "args": ["straße", "ße"], "error": "KeyError: 'straße'"}
+{"fn": "judge", "args": ["{name} has {count} items", "ab"], "error": "KeyError: '{name} has {count} items'"}
+{"fn": "judge", "args": ["a.b.c", "straße"], "error": "KeyError: 'a.b.c'"}
+{"fn": "judge", "args": ["İstanbul", "an"], "error": "KeyError: 'İstanbul'"}
+{"fn": "judge", "args": [":", "ΣΊΣΥΦΟΣ./x/**/*.json"], "error": "KeyError: ':'"}
+{"fn": "judge", "args": ["ns:key.path", "line1\nline2"], "error": "KeyError: 'ns:key.path'"}
+{"fn": "judge", "args": ["a.b.c", "a..b"], "error": "KeyError: 'a.b.c'"}
+{"fn": "judge", "args": ["abHELLO", "😀"], "error": "KeyError: 'abHELLO'"}
+{"fn": "judge", "args": ["日本語のテキスト", "trailing."], "error": "KeyError: '日本語のテキスト'"}
+{"fn": "judge", "args": ["a", "  padded  trailing."], "error": "KeyError: 'a'"}
+{"fn": "judge", "args": ["line1\nline2", "İstanbul"], "error": "KeyError: 'line1\\nline2'"}
+{"fn": "judge", "args": ["ab", "日本語のテキスト"], "error": "KeyError: 'ab'"}
+{"fn": "judge", "args": ["Hello World😀", "tab\tseparated"], "error": "KeyError: 'Hello World😀'"}
+{"fn": "judge", "args": ["日本語のテキスト", "key_name-1"], "error": "KeyError: '日本語のテキスト'"}
+{"fn": "judge", "args": ["  padded  ", "a😀b😀c"], "error": "KeyError: '  padded  '"}
+{"fn": "judge", "args": ["{name} has {count} items", "日本語のテキスト"], "error": "KeyError: '{name} has {count} items'"}
+{"fn": "judge", "args": ["", "ΣΊΣΥΦΟΣ"], "error": "KeyError: ''"}
+{"fn": "judge", "args": ["ünïcödé", "D"], "error": "KeyError: 'ünïcödé'"}
+{"fn": "judge", "args": ["ΣΊΣΥΦΟΣ", ".leading./x/**/*.json"], "error": "KeyError: 'ΣΊΣΥΦΟΣ'"}
+{"fn": "judge", "args": ["tab\tseparated", "Hello World"], "error": "KeyError: 'tab\\tseparated'"}
+{"fn": "judge", "args": ["hello", "he"], "error": "KeyError: 'hello'"}
+{"fn": "judge", "args": ["a..b", "a"], "error": "KeyError: 'a..b'"}
+{"fn": "judge", "args": ["emoji 👍🏽 mix", "x"], "error": "KeyError: 'emoji 👍🏽 mix'"}
+{"fn": "judge", "args": ["HELLO", "hello world"], "error": "KeyError: 'HELLO'"}
+{"fn": "judge", "args": ["é", "HELLO"], "error": "KeyError: 'é'"}
+{"fn": "judge", "args": ["key_name-1", "line1\nline2"], "error": "KeyError: 'key_name-1'"}
+{"fn": "judge", "args": ["ns:key.path", "emoji 👍🏽 mix"], "error": "KeyError: 'ns:key.path'"}
+{"fn": "judge", "args": ["HELLO", "straße日本語のテキスト"], "error": "KeyError: 'HELLO'"}
+{"fn": "judge", "args": ["ns:key.pa", "ns:key.pathab"], "error": "KeyError: 'ns:key.pa'"}
+{"fn": "judge", "args": ["a😀b😀c", "key_name-1"], "error": "KeyError: 'a😀b😀c'"}
+{"fn": "judge", "args": ["a:b:c", "line1\nline2"], "error": "KeyError: 'a:b:c'"}
+{"fn": "judge", "args": ["e1\nlin", "line1\nline2"], "error": "KeyError: 'e1\\nlin'"}
+{"fn": "judge", "args": ["./x/**/*.json", "/*."], "error": "KeyError: './x/**/*.json'"}
+{"fn": "judge", "args": ["İstanbul", "日本語のテキスト"], "error": "KeyError: 'İstanbul'"}
+{"fn": "judge", "args": [":", "a..b"], "error": "KeyError: ':'"}
+{"fn": "judge", "args": ["ΣΊΣΥΦΟΣ", "hello world"], "error": "KeyError: 'ΣΊΣΥΦΟΣ'"}
+{"fn": "judge", "args": ["trailing.", "a.b.c"], "error": "KeyError: 'trailing.'"}
+{"fn": "judge", "args": ["", ":tab\tseparated"], "error": "KeyError: ''"}
+{"fn": "judge", "args": ["line1\nline2", "a.b.c"], "error": "KeyError: 'line1\\nline2'"}
+{"fn": "judge", "args": ["  padded  ", "straßens:key.path"], "error": "KeyError: '  padded  '"}
+{"fn": "judge", "args": [".leadingtrailing.", "a"], "error": "KeyError: '.leadingtrailing.'"}
+{"fn": "judge", "args": ["a:b:c", "HELLO"], "error": "KeyError: 'a:b:c'"}
+{"fn": "judge", "args": ["HELLO", "src/a/b.ts"], "error": "KeyError: 'HELLO'"}
+{"fn": "judge", "args": ["ΣΊΣΥΦΟΣ", ":"], "error": "KeyError: 'ΣΊΣΥΦΟΣ'"}
+{"fn": "judge", "args": ["hello world", ".leadinga.b.c"], "error": "KeyError: 'hello world'"}
+{"fn": "judge", "args": ["tab\tseparated", "tab\tseparated"], "ok": 0}
+{"fn": "judge", "args": ["a.b.cstraße", "ße"], "error": "KeyError: 'a.b.cstraße'"}
+{"fn": "judge", "args": ["./x/**/*.json", "İstanbula.b.c"], "error": "KeyError: './x/**/*.json'"}
+{"fn": "judge", "args": [":", "a:b:c"], "error": "KeyError: ':'"}
+{"fn": "judge", "args": ["hello world", "hello"], "error": "KeyError: 'hello world'"}
+{"fn": "judge", "args": ["éa", "a"], "error": "KeyError: 'éa'"}
+{"fn": "judge", "args": ["key_name-1", "a:b:c"], "error": "KeyError: 'key_name-1'"}
+{"fn": "judge", "args": ["😀", "{name} has {count} items"], "error": "KeyError: '😀'"}
+{"fn": "judge", "args": ["Hello World", "./x/**/*.json"], "error": "KeyError: 'Hello World'"}
+{"fn": "judge", "args": ["hello worldtrailing.", "hello world"], "error": "KeyError: 'hello worldtrailing.'"}
+{"fn": "judge", "args": ["tab\tseparated", "{name} has {count} items:"], "error": "KeyError: 'tab\\tseparated'"}
+{"fn": "judge", "args": [".leadingtab\tseparated", "trailing."], "error": "KeyError: '.leadingtab\\tseparated'"}
+{"fn": "judge", "args": ["a.b.c  padded  ", "tab\tseparated"], "error": "KeyError: 'a.b.c  padded  '"}
+{"fn": "judge", "args": ["rate", "tab\tseparated"], "error": "KeyError: 'rate'"}
+{"fn": "judge", "args": ["key_name-1", "straße"], "error": "KeyError: 'key_name-1'"}
+{"fn": "judge", "args": ["a..b", "a..bhello world"], "error": "KeyError: 'a..b'"}
+{"fn": "judge", "args": ["", "hello world"], "error": "KeyError: ''"}
+{"fn": "judge", "args": ["emoji 👍🏽 mix", "a"], "error": "KeyError: 'emoji 👍🏽 mix'"}
+{"fn": "judge", "args": ["ße", "straße"], "error": "KeyError: 'ße'"}
+{"fn": "judge", "args": ["😀ab", "ünïcödé"], "error": "KeyError: '😀ab'"}
+{"fn": "judge", "args": ["ab", "ab"], "ok": 0}
+{"fn": "judge", "args": ["HELLOkey_name-1", "ab"], "error": "KeyError: 'HELLOkey_name-1'"}
+{"fn": "judge", "args": ["a.b.c", "hello"], "error": "KeyError: 'a.b.c'"}
+{"fn": "judge", "args": ["ns:key.path", "﻿boma:b:c"], "error": "KeyError: 'ns:key.path'"}
+{"fn": "judge", "args": ["ΣΊΣΥΦΟΣ", "Σ"], "error": "KeyError: 'ΣΊΣΥΦΟΣ'"}
+{"fn": "judge", "args": ["ab", "a"], "error": "KeyError: 'ab'"}
+{"fn": "judge", "args": ["src/a/b.ts", "line1\nline2"], "error": "KeyError: 'src/a/b.ts'"}
+{"fn": "judge", "args": ["HELLO", "key_name-1"], "error": "KeyError: 'HELLO'"}
+{"fn": "judge", "args": ["ΣΊΣΥΦΟΣ{name} has {count} items", "tab\tseparated"], "error": "KeyError: 'ΣΊΣΥΦΟΣ{name} has {count} items'"}
+{"fn": "judge", "args": ["key_name-1", "  padded  "], "error": "KeyError: 'key_name-1'"}
+{"fn": "judge", "args": ["a.b.c", "ns:key.path"], "error": "KeyError: 'a.b.c'"}
+{"fn": "judge", "args": ["emoji 👍🏽 mix", "İstanbul"], "error": "KeyError: 'emoji 👍🏽 mix'"}
+{"fn": "judge", "args": ["ns:key.path", ".leading"], "error": "KeyError: 'ns:key.path'"}
+{"fn": "judge", "args": [".leading", "﻿bom"], "error": "KeyError: '.leading'"}
+{"fn": "judge", "args": ["ünïcödé", "ns:key.path"], "error": "KeyError: 'ünïcödé'"}
+{"fn": "judge", "args": ["étrailing.", "é"], "error": "KeyError: 'étrailing.'"}
+{"fn": "judge", "args": ["b:c", "a:b:c"], "error": "KeyError: 'b:c'"}
+{"fn": "judge", "args": ["Hello World", "a😀b😀c"], "error": "KeyError: 'Hello World'"}
+{"fn": "judge", "args": ["😀abc", "tab\tseparated"], "error": "KeyError: '😀abc'"}
+{"fn": "judge", "args": ["a:b:c", "./x/**/*.json"], "error": "KeyError: 'a:b:c'"}
+{"fn": "judge", "args": ["日本語のテキスト", "語の"], "error": "KeyError: '日本語のテキスト'"}
+{"fn": "judge", "args": ["  padded  ", "  padded  "], "ok": 0}
+{"fn": "judge", "args": ["a.b.c", "  padded  "], "error": "KeyError: 'a.b.c'"}
+{"fn": "judge", "args": ["a😀b😀c", "éünïcödé"], "error": "KeyError: 'a😀b😀c'"}
+{"fn": "judge", "args": ["line1\nline2", "😀"], "error": "KeyError: 'line1\\nline2'"}
+{"fn": "judge", "args": ["語のテキス", "abc日本語のテキスト"], "error": "KeyError: '語のテキス'"}
+{"fn": "judge", "args": ["rc/a", "src/a/b.ts"], "error": "KeyError: 'rc/a'"}
+{"fn": "judge", "args": ["emoji 👍🏽 mix", "é"], "error": "KeyError: 'emoji 👍🏽 mix'"}
+{"fn": "judge", "args": ["trailing.ΣΊΣΥΦΟΣ", ""], "error": "KeyError: 'trailing.ΣΊΣΥΦΟΣ'"}
+{"fn": "judge", "args": ["src/a/b.ts", "s"], "error": "KeyError: 'src/a/b.ts'"}
+{"fn": "judge", "args": ["﻿", "﻿bom"], "error": "KeyError: '\\ufeff'"}
+{"fn": "judge", "args": ["ns:key.path", "hello"], "error": "KeyError: 'ns:key.path'"}
+{"fn": "judge", "args": [".leading", "ns:key.pathstraße"], "error": "KeyError: '.leading'"}
+{"fn": "judge", "args": ["a😀b😀c", "hello world"], "error": "KeyError: 'a😀b😀c'"}
+{"fn": "judge", "args": [":line1\nline2", "a.b.ca"], "error": "KeyError: ':line1\\nline2'"}
+{"fn": "judge", "args": ["hello", "é"], "error": "KeyError: 'hello'"}
+{"fn": "judge", "args": [".leading", "ΣΊΣΥΦΟΣ  padded  "], "error": "KeyError: '.leading'"}
+{"fn": "judge", "args": ["b😀", "a😀b😀c"], "error": "KeyError: 'b😀'"}
+{"fn": "judge", "args": ["ünïcödé", "{name} has {count} itemsé"], "error": "KeyError: 'ünïcödé'"}
+{"fn": "judge", "args": ["trailing.", "ab"], "error": "KeyError: 'trailing.'"}
+{"fn": "judge", "args": ["emoji 👍🏽 mixHello World", "hello world"], "error": "KeyError: 'emoji 👍🏽 mixHello World'"}
+{"fn": "judge", "args": ["a.b.c", "emoji 👍🏽 mix"], "error": "KeyError: 'a.b.c'"}
+{"fn": "judge", "args": ["é", "a.b.c"], "error": "KeyError: 'é'"}
+{"fn": "judge", "args": [":", ":"], "ok": 0}
+{"fn": "judge", "args": ["a:b:c", ".leading"], "error": "KeyError: 'a:b:c'"}
+{"fn": "judge", "args": [":", "straße"], "error": "KeyError: ':'"}
+{"fn": "judge", "args": ["﻿bom", "a.b.c"], "error": "KeyError: '\\ufeffbom'"}
+{"fn": "judge", "args": ["trailing.", "﻿boma:b:c"], "error": "KeyError: 'trailing.'"}
+{"fn": "judge", "args": ["  padded  ", "İstanbul"], "error": "KeyError: '  padded  '"}
+{"fn": "judge", "args": ["İstanbul", "key_name-1"], "error": "KeyError: 'İstanbul'"}
+{"fn": "judge", "args": ["😀", "ΣΊΣΥΦΟΣ"], "error": "KeyError: '😀'"}
+{"fn": "judge", "args": ["emoji 👍🏽 mix", "hello"], "error": "KeyError: 'emoji 👍🏽 mix'"}
+{"fn": "judge", "args": ["abcHELLO", "  padded  "], "error": "KeyError: 'abcHELLO'"}
+{"fn": "judge", "args": ["a.b.c", "ünïcödé"], "error": "KeyError: 'a.b.c'"}
+{"fn": "judge", "args": ["a.b.c", "b.c"], "error": "KeyError: 'a.b.c'"}
+{"fn": "judge", "args": ["hello worlda", "  padded  "], "error": "KeyError: 'hello worlda'"}
+{"fn": "judge", "args": ["ΣΊΣΥΦΟΣ", "key_name-1"], "error": "KeyError: 'ΣΊΣΥΦΟΣ'"}
+{"fn": "judge", "args": ["trailing.", "ab./x/**/*.json"], "error": "KeyError: 'trailing.'"}
+{"fn": "judge", "args": ["ünïcödéhello", "emoji 👍🏽 mix"], "error": "KeyError: 'ünïcödéhello'"}
+{"fn": "judge", "args": ["DING", ".leading"], "error": "KeyError: 'DING'"}
+{"fn": "judge", "args": ["./x/**/*.json", "é"], "error": "KeyError: './x/**/*.json'"}
+{"fn": "judge", "args": ["  padded  ", "ab"], "error": "KeyError: '  padded  '"}
+{"fn": "judge", "args": ["héllo wörld", "ame-"], "error": "KeyError: 'héllo wörld'"}
+{"fn": "judge", "args": ["👍🏽 thumbs", "ame-"], "error": "KeyError: '👍🏽 thumbs'"}
+{"fn": "judge", "args": ["日本語", "ame-"], "error": "KeyError: '日本語'"}
+{"fn": "judge", "args": ["", "ame-"], "error": "KeyError: ''"}
+{"fn": "judge", "args": ["é", "ame-"], "error": "KeyError: 'é'"}
+{"fn": "judge", "args": ["İstanbul", "ame-"], "error": "KeyError: 'İstanbul'"}
+{"fn": "judge", "args": ["straße", "ame-"], "error": "KeyError: 'straße'"}
+{"fn": "judge", "args": ["ılık ırmak", "ame-"], "error": "KeyError: 'ılık ırmak'"}
+{"fn": "judge", "args": ["👨‍👩‍👧 family", "ame-"], "error": "KeyError: '👨\\u200d👩\\u200d👧 family'"}
+{"fn": "judge", "args": ["a b", "ame-"], "error": "KeyError: 'a\\xa0b'"}
+{"fn": "judge", "args": ["ΣΊΣΥΦΟΣ", "ame-"], "error": "KeyError: 'ΣΊΣΥΦΟΣ'"}
+{"fn": "judge", "args": ["a😀b", "ame-"], "error": "KeyError: 'a😀b'"}
+{"fn": "judge", "args": ["﻿bom", "ame-"], "error": "KeyError: '\\ufeffbom'"}
+{"fn": "judge", "args": ["key_name-1", "héllo wörld"], "error": "KeyError: 'key_name-1'"}
+{"fn": "judge", "args": ["key_name-1", "👍🏽 thumbs"], "error": "KeyError: 'key_name-1'"}
+{"fn": "judge", "args": ["key_name-1", "日本語"], "error": "KeyError: 'key_name-1'"}
+{"fn": "judge", "args": ["key_name-1", ""], "error": "KeyError: 'key_name-1'"}
+{"fn": "judge", "args": ["key_name-1", "é"], "error": "KeyError: 'key_name-1'"}
+{"fn": "judge", "args": ["key_name-1", "İstanbul"], "error": "KeyError: 'key_name-1'"}
+{"fn": "judge", "args": ["key_name-1", "ılık ırmak"], "error": "KeyError: 'key_name-1'"}
+{"fn": "judge", "args": ["key_name-1", "👨‍👩‍👧 family"], "error": "KeyError: 'key_name-1'"}
+{"fn": "judge", "args": ["key_name-1", "a b"], "error": "KeyError: 'key_name-1'"}
+{"fn": "judge", "args": ["key_name-1", "ΣΊΣΥΦΟΣ"], "error": "KeyError: 'key_name-1'"}
+{"fn": "judge", "args": ["key_name-1", "a😀b"], "error": "KeyError: 'key_name-1'"}
+{"fn": "judge", "args": ["key_name-1", "﻿bom"], "error": "KeyError: 'key_name-1'"}
+{"fn": "slots_payout", "args": [255, 9223372036854775807], "ok": {"$int": "-9223372036854775807"}}
+{"fn": "slots_payout", "args": [2147483647, 42], "ok": -42}
+{"fn": "slots_payout", "args": [-2147483648, 42], "ok": -42}
+{"fn": "slots_payout", "args": [1, -100], "ok": -400}
+{"fn": "slots_payout", "args": [100, -100], "ok": 100}
+{"fn": "slots_payout", "args": [-100, 0], "ok": 0}
+{"fn": "slots_payout", "args": [-100, 1], "ok": -1}
+{"fn": "slots_payout", "args": [100, 7], "ok": -7}
+{"fn": "slots_payout", "args": [100, -2147483648], "ok": 2147483648}
+{"fn": "slots_payout", "args": [255, -1], "ok": 1}
+{"fn": "slots_payout", "args": [7, 0], "ok": 0}
+{"fn": "slots_payout", "args": [1, 2], "ok": 8}
+{"fn": "slots_payout", "args": [2147483647, 9223372036854775807], "ok": {"$int": "-9223372036854775807"}}
+{"fn": "slots_payout", "args": [-100, 7], "ok": -7}
+{"fn": "slots_payout", "args": [2, -2147483648], "ok": 2147483648}
+{"fn": "slots_payout", "args": [-100, 2], "ok": -2}
+{"fn": "slots_payout", "args": [2, 2], "ok": -2}
+{"fn": "slots_payout", "args": [1, -1], "ok": -4}
+{"fn": "slots_payout", "args": [9223372036854775807, -100], "ok": 100}
+{"fn": "slots_payout", "args": [-100, 2147483647], "ok": -2147483647}
+{"fn": "slots_payout", "args": [-100, 9223372036854775807], "ok": {"$int": "-9223372036854775807"}}
+{"fn": "slots_payout", "args": [-1, 255], "ok": -255}
+{"fn": "slots_payout", "args": [9223372036854775807, 1], "ok": -1}
+{"fn": "slots_payout", "args": [42, 255], "ok": -255}
+{"fn": "slots_payout", "args": [42, 100], "ok": -100}
+{"fn": "slots_payout", "args": [-100, -2147483648], "ok": 2147483648}
+{"fn": "slots_payout", "args": [7, 42], "ok": -42}
+{"fn": "slots_payout", "args": [2, -100], "ok": 100}
+{"fn": "slots_payout", "args": [2, -1], "ok": 1}
+{"fn": "slots_payout", "args": [42, -100], "ok": 100}
+{"fn": "slots_payout", "args": [42, -2147483648], "ok": 2147483648}
+{"fn": "slots_payout", "args": [9223372036854775807, 2], "ok": -2}
+{"fn": "slots_payout", "args": [2147483647, 100], "ok": -100}
+{"fn": "slots_payout", "args": [1, -2147483648], "ok": -8589934592}
+{"fn": "slots_payout", "args": [100, 1], "ok": -1}
+{"fn": "slots_payout", "args": [255, 100], "ok": -100}
+{"fn": "slots_payout", "args": [2147483647, -1], "ok": 1}
+{"fn": "slots_payout", "args": [-1, 7], "ok": -7}
+{"fn": "slots_payout", "args": [-100, 255], "ok": -255}
+{"fn": "slots_payout", "args": [100, 2147483647], "ok": -2147483647}
+{"fn": "slots_payout", "args": [-2147483648, 2], "ok": -2}
+{"fn": "slots_payout", "args": [42, 0], "ok": 0}
+{"fn": "slots_payout", "args": [-2147483648, -1], "ok": 1}
+{"fn": "slots_payout", "args": [-100, 42], "ok": -42}
+{"fn": "slots_payout", "args": [2147483647, 2], "ok": -2}
+{"fn": "slots_payout", "args": [7, 255], "ok": -255}
+{"fn": "slots_payout", "args": [-2147483648, 100], "ok": -100}
+{"fn": "slots_payout", "args": [-1, 1], "ok": -1}
+{"fn": "slots_payout", "args": [255, 2], "ok": -2}
+{"fn": "slots_payout", "args": [2, 2147483647], "ok": -2147483647}
+{"fn": "slots_payout", "args": [0, 7], "ok": -7}
+{"fn": "slots_payout", "args": [7, -1], "ok": 1}
+{"fn": "slots_payout", "args": [0, 2147483647], "ok": -2147483647}
+{"fn": "slots_payout", "args": [7, 9223372036854775807], "ok": {"$int": "-9223372036854775807"}}
+{"fn": "slots_payout", "args": [0, 0], "ok": 0}
+{"fn": "slots_payout", "args": [-1, 2147483647], "ok": -2147483647}
+{"fn": "slots_payout", "args": [100, 255], "ok": -255}
+{"fn": "slots_payout", "args": [0, 1], "ok": -1}
+{"fn": "slots_payout", "args": [100, 100], "ok": -100}
+{"fn": "slots_payout", "args": [1, 9223372036854775807], "ok": {"$int": "36893488147419103228"}}
+{"fn": "slots_payout", "args": [0, -100], "ok": 100}
+{"fn": "slots_payout", "args": [1, 1], "ok": 4}
+{"fn": "slots_payout", "args": [-2147483648, 255], "ok": -255}
+{"fn": "slots_payout", "args": [7, 1], "ok": -1}
+{"fn": "slots_payout", "args": [-100, 100], "ok": -100}
+{"fn": "slots_payout", "args": [-2147483648, 0], "ok": 0}
+{"fn": "slots_payout", "args": [-1, 0], "ok": 0}
+{"fn": "slots_payout", "args": [255, 1], "ok": -1}
+{"fn": "slots_payout", "args": [-2147483648, 7], "ok": -7}
+{"fn": "slots_payout", "args": [2147483647, 0], "ok": 0}
+{"fn": "slots_payout", "args": [1, 100], "ok": 400}
+{"fn": "slots_payout", "args": [-1, 9223372036854775807], "ok": {"$int": "-9223372036854775807"}}
+{"fn": "slots_payout", "args": [-1, -2147483648], "ok": 2147483648}
+{"fn": "slots_payout", "args": [7, 100], "ok": -100}
+{"fn": "slots_payout", "args": [-1, 2], "ok": -2}
+{"fn": "slots_payout", "args": [2, 7], "ok": -7}
+{"fn": "slots_payout", "args": [2147483647, 7], "ok": -7}
+{"fn": "slots_payout", "args": [0, -2147483648], "ok": 2147483648}
+{"fn": "slots_payout", "args": [1, 2147483647], "ok": 8589934588}
+{"fn": "slots_payout", "args": [42, 2147483647], "ok": -2147483647}
+{"fn": "slots_payout", "args": [0, 9223372036854775807], "ok": {"$int": "-9223372036854775807"}}
+{"fn": "slots_payout", "args": [255, 2147483647], "ok": -2147483647}
+{"fn": "slots_payout", "args": [0, 100], "ok": -100}
+{"fn": "slots_payout", "args": [-2147483648, 9223372036854775807], "ok": {"$int": "-9223372036854775807"}}
+{"fn": "slots_payout", "args": [42, 2], "ok": -2}
+{"fn": "slots_payout", "args": [7, -2147483648], "ok": 2147483648}
+{"fn": "slots_payout", "args": [9223372036854775807, 100], "ok": -100}
+{"fn": "slots_payout", "args": [9223372036854775807, 255], "ok": -255}
+{"fn": "slots_payout", "args": [2147483647, 1], "ok": -1}
+{"fn": "slots_payout", "args": [-2147483648, 2147483647], "ok": -2147483647}
+{"fn": "slots_payout", "args": [100, -1], "ok": 1}
+{"fn": "slots_payout", "args": [2147483647, 255], "ok": -255}
+{"fn": "slots_payout", "args": [1, 255], "ok": 1020}
+{"fn": "slots_payout", "args": [2, 1], "ok": -1}
+{"fn": "slots_payout", "args": [9223372036854775807, -2147483648], "ok": 2147483648}
+{"fn": "slots_payout", "args": [2, 9223372036854775807], "ok": {"$int": "-9223372036854775807"}}
+{"fn": "slots_payout", "args": [-100, -100], "ok": 100}
+{"fn": "slots_payout", "args": [2147483647, -2147483648], "ok": 2147483648}
+{"fn": "slots_payout", "args": [42, 1], "ok": -1}
+{"fn": "slots_payout", "args": [-2147483648, -100], "ok": 100}
+{"fn": "slots_payout", "args": [0, 42], "ok": -42}
+{"fn": "slots_payout", "args": [7, 2], "ok": -2}
+{"fn": "slots_payout", "args": [-1, -1], "ok": 1}
+{"fn": "slots_payout", "args": [9223372036854775807, 42], "ok": -42}
+{"fn": "slots_payout", "args": [2, 0], "ok": 0}
+{"fn": "slots_payout", "args": [-1, 100], "ok": -100}
+{"fn": "slots_payout", "args": [7, 2147483647], "ok": -2147483647}
+{"fn": "slots_payout", "args": [100, 42], "ok": -42}
+{"fn": "slots_payout", "args": [7, 7], "ok": -7}
+{"fn": "slots_payout", "args": [255, 7], "ok": -7}
+{"fn": "slots_payout", "args": [255, -2147483648], "ok": 2147483648}
+{"fn": "slots_payout", "args": [255, 0], "ok": 0}
+{"fn": "slots_payout", "args": [-100, -1], "ok": 1}
+{"fn": "slots_payout", "args": [9223372036854775807, 9223372036854775807], "ok": {"$int": "-9223372036854775807"}}
+{"fn": "slots_payout", "args": [100, 0], "ok": 0}
+{"fn": "slots_payout", "args": [255, -100], "ok": 100}
+{"fn": "slots_payout", "args": [2, 42], "ok": -42}
+{"fn": "slots_payout", "args": [9223372036854775807, 7], "ok": -7}
+{"fn": "slots_payout", "args": [1, 0], "ok": 0}
+{"fn": "slots_payout", "args": [42, 7], "ok": -7}
+{"fn": "slots_payout", "args": [1, 42], "ok": 168}
+{"fn": "slots_payout", "args": [2, 255], "ok": -255}
+{"fn": "slots_payout", "args": [2147483647, -100], "ok": 100}
+{"fn": "slots_payout", "args": [255, 42], "ok": -42}
+{"fn": "slots_payout", "args": [0, 255], "ok": -255}
+{"fn": "slots_payout", "args": [42, -1], "ok": 1}
+{"fn": "slots_payout", "args": [9223372036854775807, -1], "ok": 1}
+{"fn": "slots_payout", "args": [-1, -100], "ok": 100}
+{"fn": "slots_payout", "args": [100, 2], "ok": -2}
+{"fn": "slots_payout", "args": [100, 9223372036854775807], "ok": {"$int": "-9223372036854775807"}}
+{"fn": "slots_payout", "args": [2147483647, 2147483647], "ok": -2147483647}
+{"fn": "slots_payout", "args": [7, -100], "ok": 100}
+{"fn": "slots_payout", "args": [255, 255], "ok": -255}
+{"fn": "slots_payout", "args": [1, 7], "ok": 28}
+{"fn": "slots_payout", "args": [0, -1], "ok": 1}
+{"fn": "slots_payout", "args": [-2147483648, -2147483648], "ok": 2147483648}
+{"fn": "slots_payout", "args": [0, 2], "ok": -2}
+{"fn": "slots_payout", "args": [42, 42], "ok": -42}
+{"fn": "slots_payout", "args": [-1, 42], "ok": -42}
+{"fn": "slots_payout", "args": [-2147483648, 1], "ok": -1}
+{"fn": "slots_payout", "args": [9223372036854775807, 0], "ok": 0}
+{"fn": "slots_payout", "args": [9223372036854775807, 2147483647], "ok": -2147483647}
+{"fn": "slots_payout", "args": [42, 9223372036854775807], "ok": {"$int": "-9223372036854775807"}}
+{"fn": "slots_payout", "args": [2, 100], "ok": -100}
+{"fn": "slots_payout", "args": [-7, 9223372036854775807], "ok": {"$int": "-9223372036854775807"}}
+{"fn": "slots_payout", "args": [2147483648, 9223372036854775807], "ok": {"$int": "-9223372036854775807"}}
+{"fn": "slots_payout", "args": [-2147483649, 9223372036854775807], "ok": {"$int": "-9223372036854775807"}}
+{"fn": "slots_payout", "args": [9007199254740993, 9223372036854775807], "ok": {"$int": "-9223372036854775807"}}
+{"fn": "slots_payout", "args": [-9223372036854775808, 9223372036854775807], "ok": {"$int": "-9223372036854775807"}}
+{"fn": "slots_payout", "args": [255, -7], "ok": 7}
+{"fn": "slots_payout", "args": [255, 2147483648], "ok": -2147483648}
+{"fn": "slots_payout", "args": [255, -2147483649], "ok": 2147483649}
+{"fn": "slots_payout", "args": [255, 9007199254740993], "ok": {"$int": "-9007199254740993"}}
+{"fn": "slots_payout", "args": [255, -9223372036854775808], "ok": {"$int": "9223372036854775808"}}
+{"fn": "new_board", "args": [], "ok": [" ", " ", " ", " ", " ", " ", " ", " ", " "]}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], 255, "﻿bom"], "ok": false}
+{"fn": "move", "args": [["emoji 👍🏽 mixhello world"], 2147483647, "a..b"], "ok": false}
+{"fn": "move", "args": [[], 255, "src/a/b.ts"], "ok": false}
+{"fn": "move", "args": [["ΣΊΣΥΦΟΣ", "straße"], 42, "line1\nline2"], "ok": false}
+{"fn": "move", "args": [["a"], 42, ".leading.leading"], "ok": false}
+{"fn": "move", "args": [["line1\nline2", "﻿bom", "./x/**/*.jsona:b:c"], 2147483647, "ns:key.path"], "ok": false}
+{"fn": "move", "args": [["emoji 👍🏽 mix", "src/a/b.ts"], 100, ""], "ok": false}
+{"fn": "move", "args": [["line1\nline2", "hello world", "a..b"], 0, "key_name-1"], "ok": false}
+{"fn": "move", "args": [["  padded  ", "trailing.", "./x/**/*.json"], 2, "emoji 👍🏽 mix"], "ok": false}
+{"fn": "move", "args": [["a.b.cİstanbul", "ab", ":"], 7, "﻿bom"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [[], 1, "😀"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["日本語のテキスト", "a😀b😀c", "ns:key.path"], 2, "ünïcödé"], "ok": false}
+{"fn": "move", "args": [[], -1, "a:b:c"], "ok": false}
+{"fn": "move", "args": [["straße", "  padded  "], 1, "./x/**/*.json"], "ok": false}
+{"fn": "move", "args": [["key_name-1", "hello world", "日本語のテキスト"], 42, "ΣΊΣΥΦΟΣ"], "ok": false}
+{"fn": "move", "args": [["straße"], 100, "./x/**/*.json"], "ok": false}
+{"fn": "move", "args": [["abcab", "a.b.c"], 42, "a:b:c"], "ok": false}
+{"fn": "move", "args": [["😀", "key_name-1"], 100, "aa..b"], "ok": false}
+{"fn": "move", "args": [["ünïcödé", "line1\nline2"], -100, "ns:key.path"], "ok": false}
+{"fn": "move", "args": [["  padded  ", "src/a/b.ts", "a..b"], -100, ".leading"], "ok": false}
+{"fn": "move", "args": [[], -2147483648, "a"], "ok": false}
+{"fn": "move", "args": [["trailing.日本語のテキスト", "tab\tseparated"], 1, "ünïcödé"], "ok": false}
+{"fn": "move", "args": [["ΣΊΣΥΦΟΣ"], 255, "a..b"], "ok": false}
+{"fn": "move", "args": [["日本語のテキスト", "emoji 👍🏽 mix", ".leading"], 100, "line1\nline2"], "ok": false}
+{"fn": "move", "args": [["line1\nline2﻿bom"], 2, ":line1\nline2"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["HELLO"], 2147483647, "😀"], "ok": false}
+{"fn": "move", "args": [[":", "trailing.", "İstanbul"], 2, "hello"], "ok": false}
+{"fn": "move", "args": [["HELLO", "a.b.c", "ns:key.path"], 42, "İstanbul"], "ok": false}
+{"fn": "move", "args": [["a"], -100, "日本語のテキストab"], "ok": false}
+{"fn": "move", "args": [["line1\nline2"], 42, "日本語のテキスト"], "ok": false}
+{"fn": "move", "args": [["😀  padded  ", "﻿bom"], -1, "src/a/b.ts"], "ok": false}
+{"fn": "move", "args": [[], 1, "é"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["ünïcödé", ".leading"], 1, "tab\tseparated"], "ok": false}
+{"fn": "move", "args": [[], 0, "ab"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["a.b.c", "abc", "abc"], 100, ":"], "ok": false}
+{"fn": "move", "args": [["ns:key.path", "trailing.", "  padded  "], 255, "HELLO"], "ok": false}
+{"fn": "move", "args": [["./x/**/*.json", "ΣΊΣΥΦΟΣ"], 255, "hello world"], "ok": false}
+{"fn": "move", "args": [["ünïcödé"], 2, "é"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["emoji 👍🏽 mix", "straße"], -1, "a..b"], "ok": false}
+{"fn": "move", "args": [["Hello Worldstraße"], 2, "straße"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["hellons:key.path"], 0, "a..b"], "ok": false}
+{"fn": "move", "args": [["a:b:c"], 9223372036854775807, "hello"], "ok": false}
+{"fn": "move", "args": [["Hello World"], 255, "  padded  "], "ok": false}
+{"fn": "move", "args": [["İstanbul", "İstanbul", "a:b:c"], -1, "﻿bom"], "ok": false}
+{"fn": "move", "args": [[".leading", "./x/**/*.jsonHello World"], 2, "src/a/b.ts"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["./x/**/*.json", "trailing.", ":"], 7, "key_name-1"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["src/a/b.ts", "./x/**/*.json"], 42, "HELLO"], "ok": false}
+{"fn": "move", "args": [["a😀b😀cline1\nline2", "ünïcödé﻿bom", "ns:key.path"], 42, "İstanbul"], "ok": false}
+{"fn": "move", "args": [["日本語のテキストtab\tseparated"], -1, "a:b:c"], "ok": false}
+{"fn": "move", "args": [["  padded  "], -2147483648, "{name} has {count} items"], "ok": false}
+{"fn": "move", "args": [["line1\nline2", "emoji 👍🏽 mix"], 100, "abc"], "ok": false}
+{"fn": "move", "args": [["src/a/b.ts", "line1\nline2", "src/a/b.ts"], 1, "emoji 👍🏽 mix"], "ok": false}
+{"fn": "move", "args": [["日本語のテキスト:", "é"], -2147483648, "emoji 👍🏽 mix"], "ok": false}
+{"fn": "move", "args": [[], 1, "line1\nline2"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [[], 42, "a.b.c"], "ok": false}
+{"fn": "move", "args": [["İstanbul", "ab"], 9223372036854775807, "./x/**/*.jsona:b:c"], "ok": false}
+{"fn": "move", "args": [[], 7, "ünïcödé"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [[], -1, ":"], "ok": false}
+{"fn": "move", "args": [[], 100, "abcé"], "ok": false}
+{"fn": "move", "args": [["line1\nline2", "emoji 👍🏽 mix", "ΣΊΣΥΦΟΣ"], 255, "{name} has {count} items"], "ok": false}
+{"fn": "move", "args": [["src/a/b.ts", "é"], -100, "tab\tseparated"], "ok": false}
+{"fn": "move", "args": [["a.b.c", "helloΣΊΣΥΦΟΣ"], -2147483648, "a😀b😀c日本語のテキスト"], "ok": false}
+{"fn": "move", "args": [["İstanbul", "ns:key.path", "﻿boma"], 0, "a"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items"], 100, "helloa😀b😀c"], "ok": false}
+{"fn": "move", "args": [["﻿bom"], 255, "Hello World"], "ok": false}
+{"fn": "move", "args": [["src/a/b.ts"], 2147483647, ".leading"], "ok": false}
+{"fn": "move", "args": [[], 7, "é"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["İstanbul", "ünïcödé"], 2147483647, "ab"], "ok": false}
+{"fn": "move", "args": [["line1\nline2", "trailing.﻿bom"], 7, "trailing."], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [[], 9223372036854775807, "a"], "ok": false}
+{"fn": "move", "args": [[], -2147483648, ":"], "ok": false}
+{"fn": "move", "args": [[], 255, "straße"], "ok": false}
+{"fn": "move", "args": [["ab"], 255, "﻿bom"], "ok": false}
+{"fn": "move", "args": [["HELLOabc", "a.b.c", "a"], -2147483648, "  padded  "], "ok": false}
+{"fn": "move", "args": [["src/a/b.ts"], 2, "ünïcödéhello"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [[], 0, "abc"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["hello world", ""], 2, "a"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [[], 7, "ns:key.path"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["straße"], 42, "tab\tseparated"], "ok": false}
+{"fn": "move", "args": [["a.b.c"], -1, "﻿bom"], "ok": false}
+{"fn": "move", "args": [["a:b:c"], 2, "{name} has {count} items"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["é"], -1, "a:b:ctrailing."], "ok": false}
+{"fn": "move", "args": [["﻿bomhello world"], -1, ":"], "ok": false}
+{"fn": "move", "args": [["tab\tseparated"], 100, "😀"], "ok": false}
+{"fn": "move", "args": [["src/a/b.ts"], 100, "İstanbulns:key.path"], "ok": false}
+{"fn": "move", "args": [[], 2147483647, "a..b"], "ok": false}
+{"fn": "move", "args": [[], -100, "日本語のテキスト"], "ok": false}
+{"fn": "move", "args": [[], 1, "a.b.c"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["trailing."], 7, "key_name-1"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["ab"], -2147483648, "trailing.src/a/b.ts"], "ok": false}
+{"fn": "move", "args": [["src/a/b.ts", "straße", "ns:key.path"], 1, "é"], "ok": false}
+{"fn": "move", "args": [["./x/**/*.json", "Hello World", ":"], 0, "line1\nline2"], "ok": false}
+{"fn": "move", "args": [["abc", "ΣΊΣΥΦΟΣ"], 2147483647, "a:b:c"], "ok": false}
+{"fn": "move", "args": [["./x/**/*.json", "a:b:c", "key_name-1"], 42, ":😀"], "ok": false}
+{"fn": "move", "args": [["straße", "tab\tseparatedtrailing."], 2, "a"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [[], 2147483647, "tab\tseparated"], "ok": false}
+{"fn": "move", "args": [[], 9223372036854775807, "ns:key.path"], "ok": false}
+{"fn": "move", "args": [["a..b"], 0, "key_name-1ns:key.path"], "ok": false}
+{"fn": "move", "args": [[""], -100, "😀"], "ok": false}
+{"fn": "move", "args": [["tab\tseparated"], -1, "tab\tseparated"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "a😀b😀c"], -2147483648, "İstanbul./x/**/*.json"], "ok": false}
+{"fn": "move", "args": [["日本語のテキスト", "😀", "a:b:c"], 9223372036854775807, "ns:key.path"], "ok": false}
+{"fn": "move", "args": [["  padded  "], -2147483648, "a😀b😀c"], "ok": false}
+{"fn": "move", "args": [["😀", "ΣΊΣΥΦΟΣ", "straße"], -1, "  padded  "], "ok": false}
+{"fn": "move", "args": [["key_name-1", ":"], -100, "straße日本語のテキスト"], "ok": false}
+{"fn": "move", "args": [["﻿bom", "ünïcödé"], -100, "src/a/b.ts"], "ok": false}
+{"fn": "move", "args": [["😀", "a.b.c"], 2, "./x/**/*.json"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["ünïcödé", "", "a.b.c"], 2147483647, "é{name} has {count} items"], "ok": false}
+{"fn": "move", "args": [[".leadingab"], 255, "Hello World"], "ok": false}
+{"fn": "move", "args": [["straße", "a..b", "a..b"], 7, "straße"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["Hello World"], 2147483647, "tab\tseparated"], "ok": false}
+{"fn": "move", "args": [["tab\tseparated", "ünïcödé", "İstanbul"], 7, "a😀b😀c"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["line1\nline2", "./x/**/*.json"], 1, "ΣΊΣΥΦΟΣ"], "ok": false}
+{"fn": "move", "args": [["tab\tseparated", "trailing."], 255, "hello"], "ok": false}
+{"fn": "move", "args": [[".leading", "emoji 👍🏽 mix"], 9223372036854775807, ":"], "ok": false}
+{"fn": "move", "args": [["日本語のテキスト", "{name} has {count} items", "ns:key.path"], 255, "日本語のテキスト"], "ok": false}
+{"fn": "move", "args": [[], 7, "ΣΊΣΥΦΟΣ"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["é", "日本語のテキスト"], 0, "line1\nline2"], "ok": false}
+{"fn": "move", "args": [["é", "trailing.İstanbul", "ünïcödé"], 255, "line1\nline2ünïcödé"], "ok": false}
+{"fn": "move", "args": [[".leadingab"], -100, "a.b.c"], "ok": false}
+{"fn": "move", "args": [["a:b:cΣΊΣΥΦΟΣ"], -1, "ns:key.path"], "ok": false}
+{"fn": "move", "args": [[], 100, "a.b.c"], "ok": false}
+{"fn": "move", "args": [["a"], -100, "./x/**/*.json"], "ok": false}
+{"fn": "move", "args": [[".leading"], -1, "hello"], "ok": false}
+{"fn": "move", "args": [["line1\nline2", "HELLO﻿bom"], -2147483648, "straße"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "straße"], 42, "hello world"], "ok": false}
+{"fn": "move", "args": [["HELLO", "😀", ":"], 1, ":"], "ok": false}
+{"fn": "move", "args": [[], 2, "日本語のテキスト"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["aa:b:c", "a..b"], 42, "é"], "ok": false}
+{"fn": "move", "args": [[], -1, "abc"], "ok": false}
+{"fn": "move", "args": [["tab\tseparated", "﻿bomHELLO", "a😀b😀c"], 255, "tab\tseparated"], "ok": false}
+{"fn": "move", "args": [["ΣΊΣΥΦΟΣ", "HELLO"], 9223372036854775807, "﻿bom"], "ok": false}
+{"fn": "move", "args": [["a.b.c", "tab\tseparated"], 42, ".leading.leading"], "ok": false}
+{"fn": "move", "args": [["a😀b😀c"], 7, "😀İstanbul"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["﻿bom"], 1, ""], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [[], 0, "a..b"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["a😀b😀c"], 9223372036854775807, "hello"], "ok": false}
+{"fn": "move", "args": [["a😀b😀c", "﻿bom"], 255, "HELLO"], "ok": false}
+{"fn": "move", "args": [[], 1, ":"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["key_name-1ns:key.path", "line1\nline2"], 1, "Hello World"], "ok": false}
+{"fn": "move", "args": [["hello", "a.b.c"], 0, ".leading"], "ok": false}
+{"fn": "move", "args": [["😀", "a", "Hello World"], 255, "abc:"], "ok": false}
+{"fn": "move", "args": [["tab\tseparated", "ab"], 255, "Hello World"], "ok": false}
+{"fn": "move", "args": [[], 0, "﻿bom"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["a😀b😀c", "日本語のテキストemoji 👍🏽 mix", "ns:key.pathHELLO"], -2147483648, "﻿bomstraße"], "ok": false}
+{"fn": "move", "args": [[], 9223372036854775807, "straße"], "ok": false}
+{"fn": "move", "args": [["ünïcödé", "HELLO", ""], 2147483647, "hello"], "ok": false}
+{"fn": "move", "args": [[], -1, "line1\nline2key_name-1"], "ok": false}
+{"fn": "move", "args": [["./x/**/*.json", "HELLO"], -2147483648, "src/a/b.tsHELLO"], "ok": false}
+{"fn": "move", "args": [["  padded  ", "a.b.c", "trailing.  padded  "], -2147483648, "HELLOa"], "ok": false}
+{"fn": "move", "args": [["😀", "﻿bom"], -2147483648, "😀"], "ok": false}
+{"fn": "move", "args": [["  padded  "], 2147483647, "ns:key.path"], "ok": false}
+{"fn": "move", "args": [[], 9223372036854775807, "tab\tseparated"], "ok": false}
+{"fn": "move", "args": [[], -2147483648, "trailing."], "ok": false}
+{"fn": "move", "args": [["hello", "emoji 👍🏽 mix"], 42, "trailing."], "ok": false}
+{"fn": "move", "args": [["a.b.c"], 9223372036854775807, "  padded  "], "ok": false}
+{"fn": "move", "args": [[], 0, "key_name-1"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["emoji 👍🏽 mix", ":"], 9223372036854775807, "﻿bom"], "ok": false}
+{"fn": "move", "args": [[], 1, "  padded  "], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["emoji 👍🏽 mix", "src/a/b.ts", "a"], 1, "emoji 👍🏽 mix"], "ok": false}
+{"fn": "move", "args": [["tab\tseparatedtab\tseparated", "abchello"], 2, "emoji 👍🏽 mix"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["日本語のテキスト", "a", "src/a/b.ts"], 2, "HELLO"], "ok": false}
+{"fn": "move", "args": [[".leadinga😀b😀c"], -2147483648, "😀"], "ok": false}
+{"fn": "move", "args": [[], 2147483647, "hello"], "ok": false}
+{"fn": "move", "args": [["hello"], 9223372036854775807, "a"], "ok": false}
+{"fn": "move", "args": [["", "é", "İstanbul"], -1, "a😀b😀c😀"], "ok": false}
+{"fn": "move", "args": [[], -2147483648, "a.b.c"], "ok": false}
+{"fn": "move", "args": [[], -1, "ΣΊΣΥΦΟΣ"], "ok": false}
+{"fn": "move", "args": [["hello", "Hello World"], 1, "hello"], "ok": false}
+{"fn": "move", "args": [["tab\tseparated", "ns:key.path😀", "ab"], -1, "é"], "ok": false}
+{"fn": "move", "args": [["é"], 0, "straße"], "ok": false}
+{"fn": "move", "args": [["日本語のテキスト"], 100, ""], "ok": false}
+{"fn": "move", "args": [[], 2147483647, "ΣΊΣΥΦΟΣ.leading"], "ok": false}
+{"fn": "move", "args": [["emoji 👍🏽 mix", "a..b"], -1, "hello world"], "ok": false}
+{"fn": "move", "args": [["hello world", "trailing.", "trailing."], 42, "trailing."], "ok": false}
+{"fn": "move", "args": [[], 2147483647, "ns:key.path日本語のテキスト"], "ok": false}
+{"fn": "move", "args": [["ΣΊΣΥΦΟΣ", "é"], 0, "é"], "ok": false}
+{"fn": "move", "args": [["😀"], -1, "İstanbul日本語のテキスト"], "ok": false}
+{"fn": "move", "args": [["src/a/b.ts", "Hello World", "hello world"], 1, "trailing.a😀b😀c"], "ok": false}
+{"fn": "move", "args": [[], 42, "src/a/b.ts"], "ok": false}
+{"fn": "move", "args": [["a.b.c"], 9223372036854775807, "abc"], "ok": false}
+{"fn": "move", "args": [["ünïcödé", "é"], 42, "trailing.straße"], "ok": false}
+{"fn": "move", "args": [["ΣΊΣΥΦΟΣ"], 9223372036854775807, "é"], "ok": false}
+{"fn": "move", "args": [[], -1, "İstanbul"], "ok": false}
+{"fn": "move", "args": [["﻿bom", "a😀b😀c"], 100, "abc"], "ok": false}
+{"fn": "move", "args": [["ΣΊΣΥΦΟΣ"], -100, "ab"], "ok": false}
+{"fn": "move", "args": [["﻿bom", "a", "trailing."], 9223372036854775807, "a"], "ok": false}
+{"fn": "move", "args": [["straßetrailing.", "{name} has {count} items"], 2, "﻿bom{name} has {count} items"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [[], 2, "Hello Worldİstanbul"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["ΣΊΣΥΦΟΣ"], -1, "a..b"], "ok": false}
+{"fn": "move", "args": [["HELLO", "ΣΊΣΥΦΟΣ"], 1, ".leading"], "ok": false}
+{"fn": "move", "args": [["./x/**/*.json"], 2147483647, "ünïcödé"], "ok": false}
+{"fn": "move", "args": [[], 7, "aé"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [["ab", "line1\nline2"], 2, "a"], "error": "IndexError: list index out of range"}
+{"fn": "move", "args": [[], 9223372036854775807, "src/a/b.ts"], "ok": false}
+{"fn": "move", "args": [[], 255, ".leading"], "ok": false}
+{"fn": "move", "args": [["😀", "src/a/b.ts"], 2147483647, "straße"], "ok": false}
+{"fn": "move", "args": [["a..b", ".leading"], 255, "😀hello"], "ok": false}
+{"fn": "move", "args": [["hello world"], 42, "hello world"], "ok": false}
+{"fn": "move", "args": [["ab.leading", "./x/**/*.jsonİstanbul"], 255, "a:b:csrc/a/b.ts"], "ok": false}
+{"fn": "move", "args": [[], 255, "﻿bom"], "ok": false}
+{"fn": "move", "args": [["b", "a", "B", "é", "10", "9", "a"], 255, "﻿bom"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], -7, "﻿bom"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], -1, "﻿bom"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], 0, "﻿bom"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], 2147483648, "﻿bom"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], -2147483649, "﻿bom"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], 9007199254740993, "﻿bom"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], 9223372036854775807, "﻿bom"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], -9223372036854775808, "﻿bom"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], 255, "héllo wörld"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], 255, "👍🏽 thumbs"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], 255, "日本語"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], 255, ""], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], 255, "é"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], 255, "İstanbul"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], 255, "straße"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], 255, "ılık ırmak"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], 255, "👨‍👩‍👧 family"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], 255, "a b"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], 255, "ΣΊΣΥΦΟΣ"], "ok": false}
+{"fn": "move", "args": [["{name} has {count} items", "src/a/b.ts"], 255, "a😀b"], "ok": false}
+{"fn": "winner", "args": [["  padded  a:b:c"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["é", "straße", ":"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a..b", "tab\tseparated", "Hello World"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["Hello World"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["😀", "tab\tseparated", "hello world"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ab  padded  ", "a:b:c", "a:b:c"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["src/a/b.ts:", "line1\nline2", "😀"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a😀b😀c", "İstanbul"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["😀", "{name} has {count} itemsa..b"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ab.leading", "abc.leading", "straße"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["İstanbul"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["tab\tseparated", "  padded  "]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["😀", "emoji 👍🏽 mix"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [[]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ünïcödé", ".leading", "😀"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["hello", "a.b.c", ".leading"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a.b.c  padded  "]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ΣΊΣΥΦΟΣ", ".leading"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["hello", "line1\nline2", "hello world"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["﻿bom", "ünïcödé", "Hello WorldHello World"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["﻿bom", "ns:key.path日本語のテキスト", "hello world"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["straße:", "line1\nline2"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["trailing.", "key_name-1"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a😀b😀c"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["./x/**/*.json", ".leading"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a:b:c😀", "😀"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["abc"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a..b", "", "a.b.c"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["İstanbul", "hello"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ünïcödéé", "ns:key.path", "line1\nline2a..b"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a:b:c"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["line1\nline2", "line1\nline2"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["trailing.", "ünïcödé"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ünïcödé"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [[".leading", "src/a/b.tsa"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["src/a/b.ts"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["tab\tseparated", "a:b:c", "  padded  "]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["abc", "hello world"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a:b:c", ":"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["tab\tseparatedtrailing.", "hello"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["key_name-1", "﻿bom"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["é"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a", "line1\nline2", "Hello Worlda😀b😀c"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["trailing.", "emoji 👍🏽 mix", "line1\nline2"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a..b"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["HELLO", "﻿bom", "a😀b😀c"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["HELLO", "HELLO"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["line1\nline2:"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["﻿bom"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["straße", "line1\nline2straße", "é"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["abc", "key_name-1", "ab"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ns:key.pathhello", "﻿bom", ""]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [[".leadingkey_name-1", "straße"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["日本語のテキスト", "a.b.c", "akey_name-1"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["tab\tseparated"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["./x/**/*.json", "src/a/b.ts"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["hello world", "src/a/b.ts", "a.b.c"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["line1\nline2"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["abc", "ΣΊΣΥΦΟΣ", "日本語のテキスト"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ab", "HELLO", "a"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["日本語のテキスト", "é", "hello worldHello World"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["line1\nline2:", "{name} has {count} items"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["./x/**/*.json", "﻿bom"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["hello world"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [[".leading", "straße", "a😀b😀c"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["abc", "😀", "é"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ΣΊΣΥΦΟΣ"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [[":ns:key.path", "  padded  ", "😀"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["abc", "emoji 👍🏽 mix日本語のテキスト", "trailing."]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["Hello World", "aé"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ns:key.patha:b:c"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["{name} has {count} items"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["éa:b:c", "HELLO", "key_name-1line1\nline2"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [[":"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a", "😀", "abc"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ünïcödé", "  padded  "]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["trailing.hello world"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["hello", "{name} has {count} items", "日本語のテキスト"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a😀b😀ca"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a", "Hello World", ".leading"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ab", "a", "a.b.c"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["﻿bom", "ΣΊΣΥΦΟΣ"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["﻿boma..b"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["{name} has {count} itemsabc"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ΣΊΣΥΦΟΣ", "日本語のテキストab"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a", "tab\tseparated", "{name} has {count} items"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ünïcödé./x/**/*.json", "a..b", "日本語のテキスト"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["é", "emoji 👍🏽 mix", "emoji 👍🏽 mix"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["İstanbulhello", "İstanbul"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["HELLO", "hello worldΣΊΣΥΦΟΣ", "line1\nline2"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["emoji 👍🏽 mix", "line1\nline2", "HELLO"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a😀b😀c", "ab"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["trailing.tab\tseparated", "a.b.c", "é"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["  padded  ", ":"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["key_name-1"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["hello"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a..b", "HELLO"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["é", "😀Hello World"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["Hello World", "{name} has {count} items{name} has {count} items", "hello"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["key_name-1", "line1\nline2", "ünïcödé"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ns:key.path"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["日本語のテキストkey_name-1", "src/a/b.ts"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["trailing.a😀b😀c", "İstanbul", "straße"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["src/a/b.ts", "trailing.", "./x/**/*.json"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["HELLOhello world"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a..b", "a.b.c", "😀"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["straße", "﻿bom", "emoji 👍🏽 mix"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a😀b😀c", "ΣΊΣΥΦΟΣ", "straße"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["HELLO"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ns:key.path", "  padded  ", "日本語のテキストab"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["{name} has {count} items", "aa.b.c", ""]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["straße"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["hello world", "hello"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["日本語のテキストabc", "HELLO{name} has {count} items"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a:b:c.leading", "é./x/**/*.json"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [[".leading"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ΣΊΣΥΦΟΣ", "hellotrailing.", "😀"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [[""]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["tab\tseparated日本語のテキスト"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["emoji 👍🏽 mix", "{name} has {count} items", "src/a/b.tsHELLO"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a😀b😀c", "src/a/b.ts", "é"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["trailing.src/a/b.ts"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a:b:c.leading", "日本語のテキスト", "a😀b😀c"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["😀", "trailing."]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["😀"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["HELLO", ".leading:"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [[":", "src/a/b.ts"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["  padded  ns:key.path"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["  padded  ", "emoji 👍🏽 mix", "emoji 👍🏽 mix"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a:b:c", ".leading"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a😀b😀c{name} has {count} items", "  padded  ", "hello"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [[":", ":", ""]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a:b:cline1\nline2"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["😀", "line1\nline2", "ΣΊΣΥΦΟΣ"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a.b.cünïcödé"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["src/a/b.ts", "tab\tseparated", "a😀b😀c"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["  padded  ", "é"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["😀", ":", "tab\tseparated"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["emoji 👍🏽 mix", "日本語のテキストstraße", "./x/**/*.json"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a:b:c", "a.b.c", "İstanbul"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["", "ΣΊΣΥΦΟΣ"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["abc", "hello", "src/a/b.ts"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["Hello World", ""]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ababc", "tab\tseparated", "./x/**/*.jsona..b"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["key_name-1", "hello worldab", "hello"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["emoji 👍🏽 mixHello World"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["abca:b:c", "ünïcödé", "abc"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["﻿bom", "﻿bom"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["😀ns:key.path", "ünïcödé"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ab", "é", "trailing."]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ünïcödé", "ΣΊΣΥΦΟΣ"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [[":", "日本語のテキスト"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["line1\nline2", "emoji 👍🏽 mix"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a😀b😀c", "😀"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["ab😀"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["./x/**/*.json.leading"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a", "trailing.", "tab\tseparated"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a:b:ca😀b😀c"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["abcsrc/a/b.ts", "hello", "a:b:c"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a.b.c", "tab\tseparated", "日本語のテキスト"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["hello", "😀", "hello"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a..bünïcödé", "日本語のテキスト", ":"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["﻿bom", "  padded  "]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["key_name-1", "abc"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["Hello World", "日本語のテキスト", ":"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["abc", "é", "İstanbul"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["Hello World日本語のテキスト", "  padded  ", "straße"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [[".leading", "  padded  "]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a😀b😀c", "line1\nline2"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["﻿bom", "日本語のテキスト", "src/a/b.ts"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a:b:c", ""]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["straße", "日本語のテキスト", "{name} has {count} itemsünïcödé"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["line1\nline2", "tab\tseparated", "straße"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["./x/**/*.json", "a😀b😀c", ".leadingns:key.path"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["emoji 👍🏽 mixtab\tseparated"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["straße", "日本語のテキスト  padded  ", "src/a/b.ts"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a", "日本語のテキスト"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["  padded  ", "a:b:c", "ünïcödé"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["trailing.ΣΊΣΥΦΟΣ", "trailing."]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["日本語のテキストa😀b😀c", "HELLOab"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["line1\nline2", "src/a/b.ts", "straße"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["Hello World", "a😀b😀c", "ns:key.path"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["emoji 👍🏽 mix", "é", "日本語のテキスト"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["日本語のテキストhello"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["straße", "line1\nline2"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["{name} has {count} items", "./x/**/*.jsona:b:c", ".leading"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["tab\tseparated", "😀", ""]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a😀b😀c", "日本語のテキスト"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["é", "ΣΊΣΥΦΟΣ", ".leading"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["日本語のテキスト", "hello"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["abc", "日本語のテキスト", "emoji 👍🏽 mix"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["a..bab", "ab"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["tab\tseparated", "a😀b😀cé", "line1\nline2"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["line1\nline2", "日本語のテキスト", "./x/**/*.jsonline1\nline2"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["😀", "  padded  ", "é"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["emoji 👍🏽 mix", "trailing."]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [[".leading", "HELLO"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["abc", "  padded  abc"]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["abcsrc/a/b.ts", "trailing."]], "error": "IndexError: list index out of range"}
+{"fn": "winner", "args": [["b", "a", "B", "é", "10", "9", "a"]], "error": "IndexError: list index out of range"}
