@@ -20,3 +20,9 @@ TMessagesProj/jni/ffmpeg/build_android
 buildSrc/.kotlin/
 server/data/
 *.apk
+
+# Telegram-боты (bots/)
+bots/.env
+bots/data/
+__pycache__/
+.pytest_cache/
