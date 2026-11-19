@@ -6,7 +6,7 @@ import java.util.Random;
 /** Игровой мир: непрерывное движение, территории на мелкой сетке, ИИ ботов. Без Android-зависимостей. */
 public class Engine {
     public static final int RES = 12;               // клеток сетки на 1 игровую единицу
-    public static final float BASE_SPEED = 4.6f;   // единиц/сек
+    public static final float BASE_SPEED = 7.2f;   // единиц/сек
     static final float PT_STEP = 0.12f;            // шаг точек следа
     static final int SELF_SKIP = 15;               // сколько последних точек своего следа не опасны
     static final float START_R = 2.6f;             // радиус стартовой территории
@@ -194,7 +194,10 @@ public class Engine {
     void kill(Ent e, Ent killer, boolean ignored) {
         if (!e.alive) return;
         e.alive = false; e.tn = 0; e.hasT = false;
-        int id = e.id; for (int i = 0; i < owner.length; i++) if ((owner[i] & 0xFF) == id) owner[i] = 0;
+        int id = e.id;
+        // территория убитого переходит убийце; при гибели без убийцы — исчезает
+        int to = (killer != null && killer != e && killer.alive) ? killer.id : 0;
+        for (int i = 0; i < owner.length; i++) if ((owner[i] & 0xFF) == id) { if (to != 0) setCell(i, to); else owner[i] = 0; }
         cnt[id] = 0; fullDirty = true; e.respawnAt = time + 3.2f;
         if (killer != null && killer != e) killer.kills++;
         Event ev = new Event(); ev.type = EV_DEATH; ev.e = e; ev.other = killer != e ? killer : null; ev.x = e.x; ev.y = e.y; events.add(ev);

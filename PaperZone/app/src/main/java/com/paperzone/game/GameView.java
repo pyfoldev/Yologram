@@ -141,7 +141,7 @@ public class GameView extends View {
         eng = new Engine(c);
         tbmp = Bitmap.createBitmap(eng.W, eng.H, Bitmap.Config.ARGB_8888); pix = new int[eng.W * eng.H];
         eng.events.clear();
-        camX = eng.player.x; camY = eng.player.y; zoom = 14f; over = paused = endShown = false; dlg = null; started = false; maxPct = 0;
+        camX = eng.player.x; camY = eng.player.y; zoom = 15.5f; over = paused = endShown = false; dlg = null; started = false; maxPct = 0;
         parts.clear(); floats.clear(); jActive = false; shake = 0; hudMsgT = 0;
         refreshBitmap(true); scr = Scr.GAME; btns.clear(); prev.clear();
     }
@@ -234,7 +234,7 @@ public class GameView extends View {
             over = true; endT = .7f; endShown = false; play(3);
         }
         float areaU = eng.cnt[pl.id] / (float) (Engine.RES * Engine.RES);
-        float tz = Math.max(12.5f, Math.min(24f, 12f + (float) Math.sqrt(Math.max(areaU, 20)) * .62f));
+        float tz = Math.max(14f, Math.min(26f, 13.5f + (float) Math.sqrt(Math.max(areaU, 20)) * .62f));
         zoom += (tz - zoom) * Math.min(1, dt * 1.2f);
         float k = Math.min(1, dt * 7f); camX += (pl.x - camX) * k; camY += (pl.y - camY) * k;
         for (int i = parts.size() - 1; i >= 0; i--) {
