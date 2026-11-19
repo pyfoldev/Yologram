@@ -74,7 +74,8 @@ fun Root(prefs: Prefs) {
             Route.Main -> MainScaffold(prefs, tab, { tab = it }) { stack.add(Route.Detail(it)) }
             is Route.Detail -> DetailScreen(r.id, prefs,
                 onBack = { stack.removeAt(stack.lastIndex) },
-                onPlay = { ord -> stack.add(Route.Player(r.id, ord)) })
+                onPlay = { ord -> stack.add(Route.Player(r.id, ord)) },
+                onOpen = { stack.add(Route.Detail(it)) })
             is Route.Player -> PlayerScreen(r.id, r.ordinal, prefs, onBack = { stack.removeAt(stack.lastIndex) })
         }
     }

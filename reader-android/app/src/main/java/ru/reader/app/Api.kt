@@ -93,6 +93,14 @@ object Api {
     suspend fun search(q: String): List<Card> =
         JSONArray(get(url("app/search/releases", "query" to q), ttlMs = 60_000)).mapObj { it.toCard() }
 
+    /** Все части франшизы (сезоны, фильмы, спин-оффы) по порядку. Пусто, если франшизы нет. */
+    suspend fun franchise(id: Int): List<Card> = try {
+        val a = JSONArray(get(url("anime/franchises/release/$id"), ttlMs = 30 * 60_000))
+        if (a.length() == 0) emptyList()
+        else a.getJSONObject(0).optJSONArray("franchise_releases").mapObj { it }
+            .sortedBy { it.optInt("sort_order") }.map { it.getJSONObject("release").toCard() }
+    } catch (e: IOException) { emptyList() } catch (e: org.json.JSONException) { emptyList() }
+
     suspend fun genres(): List<Genre> =
         JSONArray(get(url("anime/catalog/references/genres"), ttlMs = 24 * 3600_000))
             .mapObj { Genre(it.getInt("id"), it.getString("name")) }

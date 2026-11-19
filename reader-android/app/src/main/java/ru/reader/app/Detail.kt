@@ -1,7 +1,10 @@
 package ru.reader.app
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -24,7 +27,7 @@ import kotlinx.coroutines.CancellationException
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun DetailScreen(id: Int, prefs: Prefs, onBack: () -> Unit, onPlay: (Int?) -> Unit) {
+fun DetailScreen(id: Int, prefs: Prefs, onBack: () -> Unit, onPlay: (Int?) -> Unit, onOpen: (Int) -> Unit) {
     var d by remember { mutableStateOf<Detail?>(null) }
     var error by remember { mutableStateOf<String?>(null) }
     var attempt by remember { mutableIntStateOf(0) }
@@ -32,6 +35,8 @@ fun DetailScreen(id: Int, prefs: Prefs, onBack: () -> Unit, onPlay: (Int?) -> Un
         error = null
         try { d = Api.detail(id) } catch (e: CancellationException) { throw e } catch (e: Exception) { error = e.message ?: "Нет сети" }
     }
+    var parts by remember { mutableStateOf<List<Card>>(emptyList()) }
+    LaunchedEffect(id) { parts = try { Api.franchise(id) } catch (e: CancellationException) { throw e } catch (e: Exception) { emptyList() } }
     val detail = d
     Box(Modifier.fillMaxSize()) {
         if (detail == null) {
@@ -107,6 +112,31 @@ fun DetailScreen(id: Int, prefs: Prefs, onBack: () -> Unit, onPlay: (Int?) -> Un
                 if (detail.genres.isNotEmpty()) item {
                     FlowRow(Modifier.padding(horizontal = 20.dp, vertical = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         detail.genres.forEach { SuggestionChip({}, label = { Text(it) }) }
+                    }
+                }
+                if (parts.size > 1) item {
+                    Column(Modifier.padding(top = 12.dp)) {
+                        Text("Сезоны и связанное", style = MaterialTheme.typography.titleLarge,
+                            modifier = Modifier.padding(start = 20.dp, bottom = 10.dp))
+                        LazyRow(contentPadding = PaddingValues(horizontal = 20.dp), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                            itemsIndexed(parts, key = { _, c -> c.id }) { i, c ->
+                                val cur = c.id == id
+                                Column(Modifier.width(120.dp).clip(MaterialTheme.shapes.large).clickable(enabled = !cur) { onOpen(c.id) }) {
+                                    Box(Modifier.fillMaxWidth().aspectRatio(2f / 3f).clip(MaterialTheme.shapes.large)
+                                        .then(if (cur) Modifier.border(3.dp, MaterialTheme.colorScheme.primary, MaterialTheme.shapes.large) else Modifier)) {
+                                        Poster(c.thumb, Modifier.fillMaxSize())
+                                        Text("${i + 1}", color = Color.White, style = MaterialTheme.typography.labelLarge,
+                                            modifier = Modifier.align(Alignment.TopStart).padding(8.dp)
+                                                .background(if (cur) MaterialTheme.colorScheme.primary else Color.Black.copy(.6f), CircleShape)
+                                                .padding(horizontal = 10.dp, vertical = 3.dp))
+                                    }
+                                    Text(c.title, maxLines = 2, overflow = TextOverflow.Ellipsis, style = MaterialTheme.typography.bodyMedium,
+                                        fontWeight = if (cur) FontWeight.Bold else null, modifier = Modifier.padding(top = 6.dp, start = 2.dp))
+                                    Text("${c.year} · ${c.type}", style = MaterialTheme.typography.bodySmall,
+                                        color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(start = 2.dp))
+                                }
+                            }
+                        }
                     }
                 }
                 if (canPlay) item {
