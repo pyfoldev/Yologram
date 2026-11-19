@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Читалка</title>
+<meta name="theme-color" content="#14141a">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <nav id="tabs">
+    <button data-tab="anime" class="on">Аниме</button>
+    <button data-tab="books">Книги</button>
+    <button data-tab="comics">Комиксы</button>
+    <button data-tab="saved">Закладки</button>
+  </nav>
+  <form id="search"><input id="q" type="search" placeholder="Поиск…" autocomplete="off"><button>Найти</button></form>
+  <div id="sources" hidden></div>
+</header>
+<main id="grid"></main>
+<p id="status"></p>
+<div id="reader" hidden>
+  <div class="bar">
+    <button id="close">← Назад</button>
+    <b id="rtitle"></b>
+    <span id="rtools"></span>
+  </div>
+  <div id="rbody"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.5.17/hls.min.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
