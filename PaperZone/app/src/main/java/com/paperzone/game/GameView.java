@@ -185,12 +185,12 @@ public class GameView extends View {
             int i = ev.findPointerIndex(jId); if (i < 0) return true;
             jx = ev.getX(i); jy = ev.getY(i);
             float dx = jx - jx0, dy = jy - jy0, len = (float) Math.hypot(dx, dy);
-            if (len > 9 * d && !over) {
+            if (len > 5 * d && !over) {
                 eng.player.tAng = (float) Math.atan2(dy, dx); eng.player.hasT = true;
                 if (!eng.started) eng.start();
                 started = true;
             }
-            float maxL = 60 * d; if (len > maxL) { jx0 = jx - dx / len * maxL; jy0 = jy - dy / len * maxL; }
+            float maxL = 36 * d; if (len > maxL) { jx0 = jx - dx / len * maxL; jy0 = jy - dy / len * maxL; }
         } else if (a == MotionEvent.ACTION_UP || a == MotionEvent.ACTION_CANCEL || a == MotionEvent.ACTION_POINTER_UP) {
             if (ev.getPointerId(ev.getActionIndex()) == jId) jActive = false;
         }

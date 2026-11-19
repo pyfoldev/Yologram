@@ -26,7 +26,7 @@ public class Engine {
 
     public static class Ent {
         public int id, skin, color; public String name; public boolean ai, alive;
-        public float x, y, ang, speed = BASE_SPEED, tAng, turnRate = 5.4f; public boolean hasT;
+        public float x, y, ang, speed = BASE_SPEED, tAng, turnRate = 9.5f; public boolean hasT;
         public float[] tx = new float[512], ty = new float[512]; public int tn;
         public float lastInX, lastInY; public int kills; public float respawnAt, born;
         // ИИ
