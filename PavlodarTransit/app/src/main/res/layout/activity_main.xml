@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <org.osmdroid.views.MapView android:id="@+id/map" android:layout_width="match_parent" android:layout_height="match_parent"/>
+    <TextView android:id="@+id/sourceBadge" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_gravity="top|start" android:layout_margin="8dp" android:padding="6dp"
+        android:background="#CCFFFFFF" android:textSize="12sp" android:textColor="#B71C1C"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton android:id="@+id/fabLocate"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom" android:layout_marginEnd="16dp" android:layout_marginBottom="300dp"
+        android:src="@android:drawable/ic_menu_mylocation" android:contentDescription="Моё местоположение"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="280dp" android:layout_gravity="bottom"
+        android:orientation="vertical" android:background="#F5FFFFFF" android:elevation="8dp" android:padding="12dp">
+        <TextView android:id="@+id/stopTitle" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:textSize="18sp" android:textStyle="bold" android:text="Определяю остановку…"/>
+        <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:scrollbars="none">
+            <LinearLayout android:id="@+id/nearbyRow" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal"/>
+        </HorizontalScrollView>
+        <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:scrollbars="none">
+            <LinearLayout android:id="@+id/filterRow" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal"/>
+        </HorizontalScrollView>
+        <ListView android:id="@+id/arrivals" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"/>
+    </LinearLayout>
+</FrameLayout>
