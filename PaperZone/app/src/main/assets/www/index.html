@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Paper Zone</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game"></canvas>
+
+<!-- HUD -->
+<div id="hud" class="hidden">
+  <div id="hudL">
+    <div id="pct">0%</div>
+    <div id="goal"></div>
+    <div id="bar"><i></i></div>
+    <div id="stats"></div>
+  </div>
+  <div id="board"></div>
+  <button id="pauseBtn" aria-label="Пауза">❚❚</button>
+  <canvas id="mini" width="96" height="96"></canvas>
+  <div id="hint">Проведи пальцем, чтобы поехать</div>
+  <div id="toast"></div>
+</div>
+
+<!-- Главное меню -->
+<section id="menu" class="screen">
+  <div class="bgsquares"></div>
+  <h1 class="logo"><span>P</span><span>A</span><span>P</span><span>E</span><span>R</span><br><b>ZONE</b></h1>
+  <canvas id="menuHero" width="240" height="240"></canvas>
+  <div id="menuName"></div>
+  <div class="col">
+    <button class="btn big green" id="bEndless">∞ Бесконечный режим</button>
+    <button class="btn big blue" id="bLevels">★ Уровни</button>
+    <button class="btn big purple" id="bChar">☻ Персонаж и цвет</button>
+    <button class="btn small" id="bSound">Звук: вкл</button>
+  </div>
+  <div class="foot">Без рекламы • Без интернета</div>
+</section>
+
+<!-- Уровни -->
+<section id="levels" class="screen hidden">
+  <header><button class="back" data-back>‹</button><h2>Уровни</h2><span></span></header>
+  <div id="levelGrid"></div>
+</section>
+
+<!-- Персонаж -->
+<section id="chars" class="screen hidden">
+  <header><button class="back" data-back>‹</button><h2>Персонаж</h2><span></span></header>
+  <canvas id="charPreview" width="300" height="300"></canvas>
+  <input id="nameInput" maxlength="12" placeholder="Твоё имя" autocomplete="off">
+  <div id="skinGrid"></div>
+  <div class="lbl">Цвет</div>
+  <div id="colorRow"></div>
+  <button class="btn big green" id="bCharDone">Готово</button>
+</section>
+
+<!-- Диалоги -->
+<section id="dlg" class="screen overlay hidden">
+  <div class="card">
+    <h2 id="dTitle"></h2>
+    <div id="dBody"></div>
+    <div id="dStars"></div>
+    <div class="col" id="dBtns"></div>
+  </div>
+</section>
+
+<script src="engine.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
