@@ -1,0 +1,49 @@
+{
+ "_comment": "What TikTok Mi Patcher reads to know which mods there are and where the finished apk is. Read from raw.githubusercontent.com, so a link here can be changed for everybody without an update.",
+ "patcher": null,
+ "channel": "https://t.me/dktiktokmi",
+ "mods": [
+  {
+   "id": "tiktokmi",
+   "name": "TikTok Mi",
+   "icon": "tiktokmi",
+   "package": "com.zhiliaoapp.musically",
+   "about": {
+    "ru": "Мод TikTok: оформление Material 3, скачивание без водяного знака, подмена региона, значки и многое другое.",
+    "uk": "Мод TikTok: оформлення Material 3, завантаження без водяного знака, підміна регіону, значки та багато іншого.",
+    "en": "A TikTok mod: Material 3 looks, downloads without a watermark, a region of your choice, badges and a lot more."
+   },
+   "releases": [],
+   "apks": [
+    {
+     "version": "2.2.0",
+     "beta": false,
+     "apk": {
+      "url": "https://github.com/fuckramochka/tiktokmi/releases/download/2.2.0/tiktokmi.apk",
+      "sha256": "09646192effe47fd06fa6fb96076ebacb36f0a8183732869b5840abe3594f516",
+      "size": 395163055
+     },
+     "notes": {
+      "ru": "Спонсор-блок пропускает рекламу, которую читают авторы, и узнаёт её же по звуку. Режим призрака, папки чатов, чистая «Входящие», удаление всех репостов, анимация набора текста и длинные комментарии. Мод тратит меньше батареи.",
+      "uk": "Спонсор-блок пропускає рекламу, яку читають автори, і впізнає її за звуком. Режим привида, папки чатів, чиста «Вхідні», видалення всіх репостів, анімація набору тексту й довгі коментарі. Мод витрачає менше батареї.",
+      "en": "Sponsor block skips adverts read out by authors and recognises the same advert by its sound. Ghost mode, chat folders, a cleaner inbox, removing every repost, the typing animation and long comments. The mod uses less battery."
+     }
+    },
+    {
+     "version": "2.0.5",
+     "beta": false,
+     "apk": {
+      "url": "https://github.com/fuckramochka/tiktokmi/releases/download/2.0.5/tiktokmi.apk",
+      "sha256": "f94b790110582018a421f64d8d16445107e825005422fe04eca3f7974a9ecd24",
+      "size": 395035910
+     },
+     "notes": {
+      "ru": "Меньше подлагов: мод больше не обходит экран перед каждым кадром. Убран «скрытый режим» с чёрным окном в недавних. Отчёт о лагах называет плагин, который тормозит.",
+      "uk": "Менше підлагів: мод більше не обходить екран перед кожним кадром. Прибрано «прихований режим» із чорним вікном у недавніх. Звіт про лаги називає плагін, який гальмує.",
+      "en": "Less stutter: the mod no longer goes over the screen before every frame. No more blacked-out window in recents. A lag report names the plugin that is holding the app up."
+     }
+    }
+   ]
+  }
+ ]
+}
